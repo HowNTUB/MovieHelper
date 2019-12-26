@@ -6,7 +6,7 @@
     "scripts": {
         "start": "python app.py"
     },
-    "author": "tomlin",
+    "author": "10456003",
     "license": "ISC",
     "dependencies": {
         "express": "^4.16.3",

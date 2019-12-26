@@ -31,14 +31,8 @@ from linebot.models import (
 
 app = Flask(__name__)
 # get channel_secret and channel_access_token from your environment variable
-channel_secret = os.getenv('318d67366cb286f75b9894da10dc36af', None)
-channel_access_token = os.getenv('ZvAXCuzk2y7F6b5mmRHMGEale/T6gIyz5XsvBYUsxDID11m9LDCxnp9+x5f6sLkP+Zlh5D+v3LVaymuIt1Mh8PSd7+2RYM+2NxJyQguGY7o5Xtrxx+zaYs2BDhtGE1vv7RtX7kP1xNzETMgyx5T3OgdB04t89/1O/w1cDnyilFU=', None)
-if channel_secret is None:
-    print('Specify LINE_CHANNEL_SECRET as environment variable.')
-    sys.exit(1)
-if channel_access_token is None:
-    print('Specify LINE_CHANNEL_ACCESS_TOKEN as environment variable.')
-    sys.exit(1)
+channel_secret = os.getenv('318d67366cb286f75b9894da10dc36af')
+channel_access_token = os.getenv('ZvAXCuzk2y7F6b5mmRHMGEale/T6gIyz5XsvBYUsxDID11m9LDCxnp9+x5f6sLkP+Zlh5D+v3LVaymuIt1Mh8PSd7+2RYM+2NxJyQguGY7o5Xtrxx+zaYs2BDhtGE1vv7RtX7kP1xNzETMgyx5T3OgdB04t89/1O/w1cDnyilFU=')
 
 line_bot_api = LineBotApi(channel_access_token)
 parser = WebhookParser(channel_secret)

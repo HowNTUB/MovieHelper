@@ -1,10 +1,10 @@
 {
-    "name": "BIRC",
+    "name": "birc",
     "version": "1.0.0",
     "description": "my Linebot application",
     "main": "app.py",
     "scripts": {
-        "start": "node ."
+        "start": "python ."
     },
     "author": "tomlin",
     "license": "ISC",

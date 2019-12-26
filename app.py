@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from flask import Flask, request, abort
 from urllib.request import urlopen
 

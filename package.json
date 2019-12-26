@@ -4,7 +4,7 @@
     "description": "my Linebot application",
     "main": "app.py",
     "scripts": {
-        "start": "python ."
+        "start": ""
     },
     "author": "tomlin",
     "license": "ISC",

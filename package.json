@@ -1,8 +1,8 @@
 {
-    "name": "myApp",
+    "name": "BIRC",
     "version": "1.0.0",
     "description": "my Linebot application",
-    "main": "index.js",
+    "main": "app.py",
     "scripts": {
         "start": "node ."
     },

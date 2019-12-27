@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 
+from urllib import request
+from bs4 import BeautifulSoup
 import os
 from flask import Flask, request, abort
 
@@ -11,8 +13,6 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
-from urllib import request
-from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 

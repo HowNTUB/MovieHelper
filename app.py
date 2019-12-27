@@ -12,6 +12,9 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+from urllib import request
+from bs4 import BeautifulSoup
+
 app = Flask(__name__)
 
 # Channel Access Token
@@ -40,8 +43,6 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if(event.message.text == "movie"):
-        from urllib import request
-        from bs4 import BeautifulSoup
         try:
             url = 'https://movies.yahoo.com.tw/'
             headers = {}
@@ -52,13 +53,15 @@ def handle_message(event):
             soup = BeautifulSoup(respData)
 
             rating_selector_name = ".text_truncate_1"
-            rating_name = [i.text for i in soup.select(rating_selector_name)][0]
+            rating_name = [i.text for i in soup.select(
+                rating_selector_name)][0]
             line_bot_api.reply_message(event.reply_token, rating_name)
         except Exception as e:
             print(str(e))
     else:
         message = TextSendMessage(text=event.message.text)
         line_bot_api.reply_message(event.reply_token, message)
+
 
 # ---------------------------------------------------------------
 if __name__ == "__main__":

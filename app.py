@@ -32,12 +32,17 @@ def callback():
         abort(400)
     return 'OK'
 
+#---------------------------------------------------------------
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text=event.message.text)
-    line_bot_api.reply_message(event.reply_token, message)
+    if(event.message.text=="hi"):
+        message = TextSendMessage(text=event.message.text)
+        line_bot_api.reply_message(event.reply_token, message)
+    else:
+        line_bot_api.reply_message("...")
 
+#---------------------------------------------------------------
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))

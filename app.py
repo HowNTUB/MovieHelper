@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 
+import os
 from flask import Flask, request, abort
 
 from linebot import (
@@ -13,7 +14,8 @@ from linebot.models import *
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('4O8vNwJN4S3g6m6UtTe6T9hhUW0rXnIH4aK52CMEJFL53XyzQQkZZg5o90w8y1p9+Zlh5D+v3LVaymuIt1Mh8PSd7+2RYM+2NxJyQguGY7qE/GI0Ttwbzk5HmMmBS2RSzjzSIzVPgE7WyNQCDLPpywdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi(
+    '4O8vNwJN4S3g6m6UtTe6T9hhUW0rXnIH4aK52CMEJFL53XyzQQkZZg5o90w8y1p9+Zlh5D+v3LVaymuIt1Mh8PSd7+2RYM+2NxJyQguGY7qE/GI0Ttwbzk5HmMmBS2RSzjzSIzVPgE7WyNQCDLPpywdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
 handler = WebhookHandler('318d67366cb286f75b9894da10dc36af')
 
@@ -38,31 +40,30 @@ def handle_message(event):
     message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
     message = TemplateSendMessage(
-    alt_text='Buttons template',
-    template=ButtonsTemplate(
-        thumbnail_image_url='https://example.com/image.jpg',
-        title='Menu',
-        text='Please select',
-        actions=[
-            PostbackTemplateAction(
-                label='postback',
-                text='postback text',
-                data='action=buy&itemid=1'
-            ),
-            MessageTemplateAction(
-                label='message',
-                text='message text'
-            ),
-            URITemplateAction(
-                label='uri',
-                uri='http://example.com/'
-            )
-        ]
+        alt_text='Buttons template',
+        template=ButtonsTemplate(
+            thumbnail_image_url='https://example.com/image.jpg',
+            title='Menu',
+            text='Please select',
+            actions=[
+                PostbackTemplateAction(
+                    label='postback',
+                    text='postback text',
+                    data='action=buy&itemid=1'
+                ),
+                MessageTemplateAction(
+                    label='message',
+                    text='message text'
+                ),
+                URITemplateAction(
+                    label='uri',
+                    uri='http://example.com/'
+                )
+            ]
+        )
     )
-)
-line_bot_api.reply_message(event.reply_token, message)
+    line_bot_api.reply_message(event.reply_token, message)
 
-import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)

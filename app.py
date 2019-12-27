@@ -40,7 +40,7 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if(event.message.text == "movie"):
-        import urllib.request
+        from urllib import request
         from bs4 import BeautifulSoup
         try:
             url = 'https://movies.yahoo.com.tw/'

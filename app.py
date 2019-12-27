@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-from urllib3 import request
+from urllib import request
 from bs4 import BeautifulSoup
 import os
 from flask import Flask, request, abort

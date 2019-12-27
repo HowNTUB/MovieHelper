@@ -37,30 +37,153 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TemplateSendMessage(
-        alt_text='Buttons template',
-        template=ButtonsTemplate(
-            thumbnail_image_url='https://example.com/image.jpg',
-            title='Menu',
-            text='Please select',
-            actions=[
-                PostbackTemplateAction(
-                    label='postback',
-                    text='postback text',
-                    data='action=buy&itemid=1'
-                ),
-                MessageTemplateAction(
-                    label='message',
-                    text='message text'
-                ),
-                URITemplateAction(
-                    label='uri',
-                    uri='http://example.com/'
-                )
-            ]
-        )
-    )
+    json = {
+        "type": "flex",
+        "altText": "Flex Message",
+        "contents": {
+            "type": "bubble",
+            "hero": {
+                "type": "image",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_3_movie.png",
+                "size": "full",
+                "aspectRatio": "20:13",
+                "aspectMode": "cover",
+                "action": {
+                    "type": "uri",
+                    "label": "Action",
+                    "uri": "https://linecorp.com/"
+                }
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "md",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "電影名稱",
+                        "size": "xl",
+                        "gravity": "center",
+                        "weight": "bold",
+                        "wrap": true
+                    },
+                    {
+                        "type": "box",
+                        "layout": "baseline",
+                        "margin": "md",
+                        "contents": [
+                            {
+                                "type": "icon",
+                                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                                "size": "sm"
+                            },
+                            {
+                                "type": "icon",
+                                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                                "size": "sm"
+                            },
+                            {
+                                "type": "icon",
+                                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                                "size": "sm"
+                            },
+                            {
+                                "type": "icon",
+                                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                                "size": "sm"
+                            },
+                            {
+                                "type": "icon",
+                                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+                                "size": "sm"
+                            },
+                            {
+                                "type": "text",
+                                "text": "4.0",
+                                "flex": 0,
+                                "margin": "md",
+                                "size": "sm",
+                                "color": "#999999"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "margin": "lg",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "spacing": "sm",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "上映日期",
+                                        "flex": 2,
+                                        "size": "sm",
+                                        "color": "#AAAAAA"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "Monday 25, 9:00PM",
+                                        "flex": 4,
+                                        "size": "sm",
+                                        "color": "#666666",
+                                        "wrap": true
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "baseline",
+                                "spacing": "sm",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "電影簡介",
+                                        "flex": 2,
+                                        "size": "sm",
+                                        "color": "#AAAAAA"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "C Row, 18 Seat",
+                                        "flex": 4,
+                                        "size": "sm",
+                                        "color": "#666666",
+                                        "wrap": true
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "margin": "xxl",
+                                "contents": [
+                                    {
+                                        "type": "spacer"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "資料來源：Yahoo電影",
+                                        "margin": "xxl",
+                                        "size": "xs",
+                                        "color": "#AAAAAA",
+                                        "wrap": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+    message = TemplateSendMessage(json)
     line_bot_api.reply_message(event.reply_token, message)
+
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))

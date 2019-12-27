@@ -40,11 +40,9 @@ def index():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text==u"==":
-        line_bot_api.reply_message(event.reply_token,
-        TextSendMessage(u"2017年底終於有人知道==不要加空格"))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(u"2017年底終於有人知道==不要加空格"))
     else:
-        line_bot_api.reply_message(event.reply_token,
-        TextSendMessage(text=event.message.text))
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=event.message.text))
 
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port= 7777)

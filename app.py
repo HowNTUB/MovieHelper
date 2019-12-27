@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-from urllib import request
+from urllib import request as urlrequest
 from bs4 import BeautifulSoup
 import os
 from flask import Flask, request, abort
@@ -46,8 +46,8 @@ def handle_message(event):
             url = 'https://movies.yahoo.com.tw/'
             headers = {}
             headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-            req = request.Request(url, headers=headers)
-            resp = request.urlopen(req)
+            req = urlrequest.Request(url, headers=headers)
+            resp = urlrequest.urlopen(req)
             respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
             soup = BeautifulSoup(respData)
 

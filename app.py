@@ -53,7 +53,7 @@ def handle_message(event):
             headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
             req = request.Request(movieURL, headers=headers)
             resp = request.urlopen(req)
-            respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+            respData = str(resp.read().decode('utf-8'))
             soup = BeautifulSoup(respData, "html.parser")
 
             rating_selector_name = ".release_movie_name > a"
@@ -64,11 +64,14 @@ def handle_message(event):
             imglist = []
             for img in rating_img:
                 imglist.append(img["src"])
+            
             rating_selector_url = ".release_movie_name > a"
             rating_url = soup.select(rating_selector_url)
             urllist = []
             for url in rating_url:
                 urllist.append(url["href"])
+            
+            print(urllist[0])
             buttons_template_message = TemplateSendMessage(
                 alt_text='Buttons template',
                 template=ButtonsTemplate(

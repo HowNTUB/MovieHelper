@@ -69,65 +69,71 @@ def handle_message(event):
         urllist = []
         for url in rating_url:
             urllist.append(url["href"])
-
+        
+        contents=[]
+        for index in len(imglist):
+            contents.append({
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": "電影(Movie)",
+                        "size": "xl",
+                        "align": "start",
+                        "weight": "bold",
+                        "color": "#000000"
+                        }
+                    ]
+                    },
+                    "hero": {
+                    "type": "image",
+                    "url": imglist[index],
+                    "gravity": "top",
+                    "size": "full",
+                    "aspectRatio": "3:4",
+                    "aspectMode": "fit",
+                    "backgroundColor": "#FFFFFF"
+                    },
+                    "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": rating_name[index],
+                        "margin": "none",
+                        "size": "xxl",
+                        "align": "center",
+                        "gravity": "top"
+                        }
+                    ]
+                    },
+                    "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {
+                        "type": "button",
+                        "action": {
+                            "type": "postback",
+                            "label": "詳細資料",
+                            "text": "詳細資料",
+                            "data": urllist[index]
+                        },
+                        "color": "#B0B0B0"
+                        }
+                    ]
+                    }
+                    })
         flex_message = FlexSendMessage(
             alt_text='movielist',
             contents={
-                "type": "bubble",
-                "direction": "ltr",
-                "header": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "電影(Movie)",
-                    "size": "xl",
-                    "align": "start",
-                    "weight": "bold",
-                    "color": "#000000"
-                    }
-                ]
-                },
-                "hero": {
-                "type": "image",
-                "url": imglist[0],
-                "gravity": "top",
-                "size": "full",
-                "aspectRatio": "3:4",
-                "aspectMode": "fit",
-                "backgroundColor": "#FFFFFF"
-                },
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": rating_name[0],
-                    "margin": "none",
-                    "size": "xxl",
-                    "align": "center",
-                    "gravity": "top"
-                    }
-                ]
-                },
-                "footer": {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                    {
-                    "type": "button",
-                    "action": {
-                        "type": "postback",
-                        "label": "詳細資料",
-                        "text": "詳細資料",
-                        "data": urllist[0]
-                    },
-                    "color": "#B0B0B0"
-                    }
-                ]
-                }
+                "type": "carousel",
+                "contents": contents
             }
         )
 

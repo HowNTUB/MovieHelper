@@ -69,8 +69,6 @@ def handle_message(event):
             urllist = []
             for url in rating_url:
                 urllist.append(url["href"])
-            message = TextSendMessage(text=rating_name[0])
-            line_bot_api.reply_message(event.reply_token, message)
             flex_message = FlexSendMessage(
                 alt_text='hello',
                 contents={
@@ -86,6 +84,7 @@ def handle_message(event):
                     }
                 }
             )
+            line_bot_api.reply_message(event.reply_token, flex_message)
         except Exception as e:
             print(str(e))
     else:

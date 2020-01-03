@@ -43,9 +43,8 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if(event.message.text == "movie"):
         try:
-            name = '蜘蛛人'
+            name = event.message.text
             urlname = parse.quote(name)
             movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + urlname
             print(movieURL)
@@ -79,8 +78,8 @@ def handle_message(event):
                     hero=ImageComponent(
                         url=imglist[0],
                         size='full',
-                        aspect_ratio='1:1.5',
-                        aspect_mode='cover',
+                        aspect_ratio='1:1.618',
+                        aspect_mode='fill',
                         action=URIAction(uri='http://example.com', label='label')
                     )
                 )
@@ -89,9 +88,6 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, flex_message)
         except Exception as e:
             print(str(e))
-    else:
-        message = TextSendMessage(text=event.message.text)
-        line_bot_api.reply_message(event.reply_token, message)
 
 
 # ---------------------------------------------------------------

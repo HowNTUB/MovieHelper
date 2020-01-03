@@ -69,28 +69,30 @@ def handle_message(event):
             urllist = []
             for url in rating_url:
                 urllist.append(url["href"])
-            button_template_message = ButtonsTemplate(
-                thumbnail_image_url="https://i.imgur.com/eTldj2E.png?1",
-                title='Menu',
-                text='Please select',
-                image_size="cover",
-                actions=[
-                    PostbackTemplateAction(
-                        label='查詢個人檔案顯示文字-Postback',
-                        text='查詢個人檔案',
-                        data='action=buy&itemid=1'
-                    ),
-                    PostbackTemplateAction(
-                        label='不顯示文字-Postback',
-                        text=None,
-                        data='action=buy&itemid=1'
-                    ),
-                    MessageTemplateAction(
-                        label='查詢個人檔案-Message', text='查詢個人檔案'
-                    ),
-                ]
+            buttons_template_message = TemplateSendMessage(
+                alt_text='Buttons template',
+                template=ButtonsTemplate(
+                    thumbnail_image_url='https://example.com/image.jpg',
+                    title='Menu',
+                    text='Please select',
+                    actions=[
+                        PostbackAction(
+                            label='postback',
+                            display_text='postback text',
+                            data='action=buy&itemid=1'
+                        ),
+                        MessageAction(
+                            label='message',
+                            text='message text'
+                        ),
+                        URIAction(
+                            label='uri',
+                            uri='http://example.com/'
+                        )
+                    ]
+                )
             )
-            line_bot_api.reply_message(event.reply_token, button_template_message)
+            line_bot_api.reply_message(event.reply_token, buttons_template_message)
         except Exception as e:
             print(str(e))
     else:

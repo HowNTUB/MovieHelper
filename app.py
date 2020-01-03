@@ -1,9 +1,11 @@
 # -*- coding: UTF-8 -*-
 
-from urllib import request as urlrequest
-from bs4 import BeautifulSoup
+import requests
 import os
-from flask import Flask, request, abort
+import flask
+from urllib import request
+from urllib import parse
+from bs4 import BeautifulSoup
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -14,7 +16,7 @@ from linebot.exceptions import (
 from linebot.models import *
 
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 # Channel Access Token
 line_bot_api = LineBotApi(
@@ -28,13 +30,13 @@ def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
     # get request body as text
-    body = request.get_data(as_text=True)
+    body = flask.request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
     # handle webhook body
     try:
         handler.handle(body, signature)
     except InvalidSignatureError:
-        abort(400)
+        flask.abort(400)
     return 'OK'
 
 # ---------------------------------------------------------------
@@ -43,18 +45,34 @@ def callback():
 def handle_message(event):
     if(event.message.text == "movie"):
         try:
-            url = 'https://movies.yahoo.com.tw/'
+            name = '蜘蛛人'
+            urlname = parse.quote(name)
+            url = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + urlname
+            print(url)
             headers = {}
             headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-            req = urlrequest.Request(url, headers=headers)
-            resp = urlrequest.urlopen(req)
+            req = request.Request(url, headers=headers)
+            resp = request.urlopen(req)
             respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
             soup = BeautifulSoup(respData)
 
-            rating_selector_name = ".text_truncate_1"
-            rating_name = [i.text for i in soup.select(
-                rating_selector_name)][0]
-            line_bot_api.reply_message(event.reply_token, rating_name)
+            rating_selector_name = ".release_movie_name > a"
+            rating_name = [i.text for i in soup.select(rating_selector_name)]
+
+            rating_selector_img = ".release_foto img"
+            rating_img = soup.select(rating_selector_img)
+            imglist = []
+            for img in rating_img:
+                imglist.append(img["src"])
+
+            rating_selector_url = ".release_movie_name > a"
+            rating_url = soup.select(rating_selector_url)
+            urllist = []
+            for url in rating_url:
+                urllist.append(url["href"])
+            line_bot_api.reply_message(event.reply_token,rating_name)
+            line_bot_api.reply_message(event.reply_token,imglist)
+            line_bot_api.reply_message(event.reply_token,urllist)
         except Exception as e:
             print(str(e))
     else:

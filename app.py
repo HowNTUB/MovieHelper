@@ -106,16 +106,97 @@ def handle_message(event):
                     "layout": "vertical",
                     "contents": [
                         {
-                        "type": "text",
-                        "text": rating_name[index],
-                        "margin": "none",
-                        "size": "lg",
-                        "align": "center",
-                        "gravity": "top",
-                        "weight": "bold"
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": rating_name[index],
+                            "margin": "none",
+                            "size": "lg",
+                            "align": "center",
+                            "gravity": "top",
+                            "weight": "bold"
+                            },
+                            {
+                            "type": "text",
+                            "text": "YAOAN"
+                            }
+                        ]
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "lg",
+                        "color": "#FFFFFF"
+                        },
+                        {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": "上映日期："
+                            },
+                            {
+                            "type": "text",
+                            "text": "1999-10-22"
+                            }
+                        ]
+                        },
+                        {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": "期待度：",
+                            "align": "start",
+                            "weight": "bold",
+                            "color": "#BB21CA"
+                            },
+                            {
+                            "type": "text",
+                            "text": "87%"
+                            }
+                        ]
+                        },
+                        {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": "滿意度：",
+                            "align": "start",
+                            "weight": "bold",
+                            "color": "#2133CA"
+                            },
+                            {
+                            "type": "text",
+                            "text": "3.7",
+                            "align": "start"
+                            }
+                        ]
                         }
                     ]
                     },
+                    "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {
+                        "type": "button",
+                        "action": {
+                            "type": "postback",
+                            "label": "詳細資料",
+                            "text": "詳細資料",
+                            "data": "postbackcontect"
+                        },
+                        "color": "#B0B0B0"
+                        }
+                    ]
+                    }
+                ,
                     "footer": {
                     "type": "box",
                     "layout": "horizontal",

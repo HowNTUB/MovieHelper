@@ -76,10 +76,10 @@ def handle_message(event):
                 template=ImageCarouselTemplate(
                     columns=[
                         ImageCarouselColumn(
-                            image_url='https://example.com/item1.jpg',
+                            image_url=imglist[0],
                             action=PostbackAction(
-                                label='postback1',
-                                display_text='postback text1',
+                                label=rating_name[0],
+                                display_text=urllist[0],
                                 data='action=buy&itemid=1'
                             )
                         ),

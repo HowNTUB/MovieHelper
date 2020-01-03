@@ -71,7 +71,7 @@ def handle_message(event):
             urllist.append(url["href"])
 
         flex_message = FlexSendMessage(
-            alt_text='hello',
+            alt_text='movielist',
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -81,20 +81,36 @@ def handle_message(event):
                 "contents": [
                     {
                     "type": "text",
-                    "text": rating_name[0],
-                    "size": "xxl",
-                    "align": "center",
+                    "text": "電影(Movie)",
+                    "size": "xl",
+                    "align": "start",
                     "weight": "bold",
-                    "color": "#003634"
+                    "color": "#000000"
                     }
                 ]
                 },
                 "hero": {
                 "type": "image",
                 "url": imglist[0],
-                "size": "xl",
-                "aspectRatio": "1:3",
-                "aspectMode": "fit"
+                "gravity": "top",
+                "size": "full",
+                "aspectRatio": "3:4",
+                "aspectMode": "fit",
+                "backgroundColor": "#FFFFFF"
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": rating_name[0],
+                    "margin": "none",
+                    "size": "xxl",
+                    "align": "center",
+                    "gravity": "top"
+                    }
+                ]
                 },
                 "footer": {
                 "type": "box",
@@ -103,11 +119,12 @@ def handle_message(event):
                     {
                     "type": "button",
                     "action": {
-                        "type": "uri",
-                        "label": "詳細資訊",
-                        "uri": urllist[0]
+                        "type": "postback",
+                        "label": "詳細資料",
+                        "text": "詳細資料",
+                        "data": urllist[0]
                     },
-                    "color": "#838383"
+                    "color": "#B0B0B0"
                     }
                 ]
                 }

@@ -69,8 +69,8 @@ def handle_message(event):
             urllist = []
             for url in rating_url:
                 urllist.append(url["href"])
-            moviename=rating_name
-            line_bot_api.reply_message(event.reply_token,rating_name)
+            moviename = rating_name[0]
+            line_bot_api.reply_message(event.reply_token, rating_name)
         except Exception as e:
             print(str(e))
     else:

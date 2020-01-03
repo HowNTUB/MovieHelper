@@ -77,45 +77,173 @@ def handle_message(event):
                 "altText": "Flex Message",
                 "contents": {
                     "type": "bubble",
-                    "direction": "ltr",
-                    "header": {
+                    "hero": {
+                    "type": "image",
+                    "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_3_movie.png",
+                    "size": "full",
+                    "aspectRatio": "20:13",
+                    "aspectMode": "cover",
+                    "action": {
+                        "type": "uri",
+                        "label": "Action",
+                        "uri": "https://linecorp.com/"
+                    }
+                    },
+                    "body": {
                     "type": "box",
                     "layout": "vertical",
+                    "spacing": "md",
                     "contents": [
                         {
                         "type": "text",
-                        "text": "電影",
-                        "size": "xxl",
-                        "align": "center",
+                        "text": "BROWN'S ADVENTURE\nIN MOVIE",
+                        "size": "xl",
+                        "gravity": "center",
                         "weight": "bold",
-                        "color": "#003634"
-                        }
-                    ]
-                    },
-                    "hero": {
-                    "type": "image",
-                    "url": "https://developers.line.biz/assets/images/services/bot-designer-icon.png",
-                    "size": "xl",
-                    "aspectRatio": "1:3",
-                    "aspectMode": "fit"
-                    },
-                    "footer": {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [
-                        {
-                        "type": "button",
-                        "action": {
-                            "type": "uri",
-                            "label": "詳細資訊",
-                            "uri": "https://linecorp.com"
+                        "wrap": true
                         },
-                        "color": "#838383"
+                        {
+                        "type": "box",
+                        "layout": "baseline",
+                        "margin": "md",
+                        "contents": [
+                            {
+                            "type": "icon",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                            "size": "sm"
+                            },
+                            {
+                            "type": "icon",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                            "size": "sm"
+                            },
+                            {
+                            "type": "icon",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                            "size": "sm"
+                            },
+                            {
+                            "type": "icon",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png",
+                            "size": "sm"
+                            },
+                            {
+                            "type": "icon",
+                            "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png",
+                            "size": "sm"
+                            },
+                            {
+                            "type": "text",
+                            "text": "4.0",
+                            "flex": 0,
+                            "margin": "md",
+                            "size": "sm",
+                            "color": "#999999"
+                            }
+                        ]
+                        },
+                        {
+                        "type": "box",
+                        "layout": "vertical",
+                        "spacing": "sm",
+                        "margin": "lg",
+                        "contents": [
+                            {
+                            "type": "box",
+                            "layout": "baseline",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                "type": "text",
+                                "text": "Date",
+                                "flex": 1,
+                                "size": "sm",
+                                "color": "#AAAAAA"
+                                },
+                                {
+                                "type": "text",
+                                "text": "Monday 25, 9:00PM",
+                                "flex": 4,
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": true
+                                }
+                            ]
+                            },
+                            {
+                            "type": "box",
+                            "layout": "baseline",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                "type": "text",
+                                "text": "Place",
+                                "flex": 1,
+                                "size": "sm",
+                                "color": "#AAAAAA"
+                                },
+                                {
+                                "type": "text",
+                                "text": "7 Floor, No.3",
+                                "flex": 4,
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": true
+                                }
+                            ]
+                            },
+                            {
+                            "type": "box",
+                            "layout": "baseline",
+                            "spacing": "sm",
+                            "contents": [
+                                {
+                                "type": "text",
+                                "text": "Seats",
+                                "flex": 1,
+                                "size": "sm",
+                                "color": "#AAAAAA"
+                                },
+                                {
+                                "type": "text",
+                                "text": "C Row, 18 Seat",
+                                "flex": 4,
+                                "size": "sm",
+                                "color": "#666666",
+                                "wrap": true
+                                }
+                            ]
+                            },
+                            {
+                            "type": "box",
+                            "layout": "vertical",
+                            "margin": "xxl",
+                            "contents": [
+                                {
+                                "type": "spacer"
+                                },
+                                {
+                                "type": "image",
+                                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/linecorp_code_withborder.png",
+                                "size": "xl",
+                                "aspectMode": "cover"
+                                },
+                                {
+                                "type": "text",
+                                "text": "You can enter the theater by using this code instead of a ticket",
+                                "margin": "xxl",
+                                "size": "xs",
+                                "color": "#AAAAAA",
+                                "wrap": true
+                                }
+                            ]
+                            }
+                        ]
                         }
                     ]
                     }
                 }
-            }
+                }
         )
 
         line_bot_api.reply_message(event.reply_token, flex_message)

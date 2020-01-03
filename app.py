@@ -54,7 +54,7 @@ def handle_message(event):
             req = request.Request(movieURL, headers=headers)
             resp = request.urlopen(req)
             respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
-            soup = BeautifulSoup(respData)
+            soup = BeautifulSoup(respData, "html.parser")
 
             rating_selector_name = ".release_movie_name > a"
             rating_name = [i.text for i in soup.select(rating_selector_name)]

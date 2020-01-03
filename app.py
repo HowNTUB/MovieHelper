@@ -71,28 +71,17 @@ def handle_message(event):
             for url in rating_url:
                 urllist.append(url["href"])
             
-            image_carousel_template_message = TemplateSendMessage(
-                alt_text='ImageCarousel template',
-                template=ImageCarouselTemplate(
-                    columns=[
-                        ImageCarouselColumn(
-                            image_url=imglist[0],
-                            size="full",
-                            action=PostbackAction(
-                                label=rating_name[0],
-                                display_text=urllist[0],
-                                data='action=buy&itemid=1'
-                            )
-                        ),
-                        ImageCarouselColumn(
-                            image_url='https://example.com/item2.jpg',
-                            action=PostbackAction(
-                                label='postback2',
-                                display_text='postback text2',
-                                data='action=buy&itemid=2'
-                            )
-                        )
-                    ]
+            flex_message = FlexSendMessage(
+                alt_text=rating_name[0],
+                contents=BubbleContainer(
+                    direction='ltr',
+                    hero=ImageComponent(
+                        url=imglist[0],
+                        size='full',
+                        aspect_ratio='20:13',
+                        aspect_mode='cover',
+                        action=URIAction(uri='http://example.com', label='label')
+                    )
                 )
             )
 

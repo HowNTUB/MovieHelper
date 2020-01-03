@@ -73,47 +73,15 @@ def handle_message(event):
         flex_message = FlexSendMessage(
             alt_text='hello',
             contents={
-                "type": "flex",
-                "altText": "Flex Message",
-                "contents": {
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "header": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                        "type": "text",
-                        "text": rating_name[0],
-                        "size": "xxl",
-                        "align": "center",
-                        "weight": "bold",
-                        "color": "#003634"
-                        }
-                    ]
-                    },
-                    "hero": {
-                    "type": "image",
-                    "url": imglist[0],
-                    "size": "xl",
-                    "aspectRatio": "1:3",
-                    "aspectMode": "fit"
-                    },
-                    "footer": {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [
-                        {
-                        "type": "button",
-                        "action": {
-                            "type": "uri",
-                            "label": "詳細資訊",
-                            "uri": urllist[0]
-                        },
-                        "color": "#838383"
-                        }
-                    ]
-                    }
+                'type': 'bubble',
+                'direction': 'ltr',
+                'hero': {
+                    'type': 'image',
+                    'url': 'https://example.com/cafe.jpg',
+                    'size': 'full',
+                    'aspectRatio': '20:13',
+                    'aspectMode': 'cover',
+                    'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
                 }
             }
         )

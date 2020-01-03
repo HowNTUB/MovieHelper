@@ -47,11 +47,11 @@ def handle_message(event):
         try:
             name = '蜘蛛人'
             urlname = parse.quote(name)
-            url = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + urlname
-            print(url)
+            movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + urlname
+            print(movieURL)
             headers = {}
             headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-            req = request.Request(url, headers=headers)
+            req = request.Request(movieURL, headers=headers)
             resp = request.urlopen(req)
             respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
             soup = BeautifulSoup(respData)

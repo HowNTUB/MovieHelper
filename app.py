@@ -71,11 +71,10 @@ def handle_message(event):
             for url in rating_url:
                 urllist.append(url["href"])
             
-            print(urllist[0])
             buttons_template_message = TemplateSendMessage(
                 alt_text='Buttons template',
                 template=ButtonsTemplate(
-                    thumbnail_image_url=urllist[0],
+                    thumbnail_image_url=imglist[0],
                     title=rating_name[0],
                     text='上映日期：...',
                     actions=[

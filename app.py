@@ -77,6 +77,7 @@ def handle_message(event):
                     columns=[
                         ImageCarouselColumn(
                             image_url=imglist[0],
+                            size="full",
                             action=PostbackAction(
                                 label=rating_name[0],
                                 display_text=urllist[0],

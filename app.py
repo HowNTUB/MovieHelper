@@ -78,7 +78,7 @@ def handle_message(event):
                     hero=ImageComponent(
                         url=imglist[0],
                         size='full',
-                        aspect_ratio='20:13',
+                        aspect_ratio='9:21',
                         aspect_mode='cover',
                         action=URIAction(uri='http://example.com', label='label')
                     )

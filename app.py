@@ -75,9 +75,9 @@ def handle_message(event):
             urllist = []
             for url in rating_url:
                 urllist.append(url["href"])
-            line_bot_api.reply_message(event.reply_token,rating_name)
-            line_bot_api.reply_message(event.reply_token,imglist)
-            line_bot_api.reply_message(event.reply_token,urllist)
+            line_bot_api.reply_message(event.reply_token,rating_name[1])
+            line_bot_api.reply_message(event.reply_token,imglist[1])
+            line_bot_api.reply_message(event.reply_token,urllist[1])
         except Exception as e:
             print(str(e))
     else:

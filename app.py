@@ -73,15 +73,47 @@ def handle_message(event):
         flex_message = FlexSendMessage(
             alt_text='hello',
             contents={
-                'type': 'bubble',
-                'direction': 'ltr',
-                'hero': {
-                    'type': 'image',
-                    'url': 'https://example.com/cafe.jpg',
-                    'size': 'full',
-                    'aspectRatio': '20:13',
-                    'aspectMode': 'cover',
-                    'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
+                "type": "flex",
+                "altText": "Flex Message",
+                "contents": {
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": "電影",
+                        "size": "xxl",
+                        "align": "center",
+                        "weight": "bold",
+                        "color": "#003634"
+                        }
+                    ]
+                    },
+                    "hero": {
+                    "type": "image",
+                    "url": "https://developers.line.biz/assets/images/services/bot-designer-icon.png",
+                    "size": "xl",
+                    "aspectRatio": "1:3",
+                    "aspectMode": "fit"
+                    },
+                    "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "詳細資訊",
+                            "uri": "https://linecorp.com"
+                        },
+                        "color": "#838383"
+                        }
+                    ]
+                    }
                 }
             }
         )

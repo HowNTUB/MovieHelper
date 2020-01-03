@@ -71,6 +71,21 @@ def handle_message(event):
                 urllist.append(url["href"])
             message = TextSendMessage(text=rating_name[0])
             line_bot_api.reply_message(event.reply_token, message)
+            flex_message = FlexSendMessage(
+                alt_text='hello',
+                contents={
+                    'type': 'bubble',
+                    'direction': 'ltr',
+                    'hero': {
+                        'type': 'image',
+                        'url': 'https://example.com/cafe.jpg',
+                        'size': 'full',
+                        'aspectRatio': '20:13',
+                        'aspectMode': 'cover',
+                        'action': { 'type': 'uri', 'uri': 'http://example.com', 'label': 'label' }
+                    }
+                }
+            )
         except Exception as e:
             print(str(e))
     else:

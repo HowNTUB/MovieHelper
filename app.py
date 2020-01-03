@@ -75,10 +75,11 @@ def handle_message(event):
                 alt_text=rating_name[0],
                 contents=BubbleContainer(
                     direction='ltr',
+                    text=rating_name[0],
                     hero=ImageComponent(
                         url=imglist[0],
                         size='full',
-                        aspect_ratio='9:21',
+                        aspect_ratio='1:1.5',
                         aspect_mode='cover',
                         action=URIAction(uri='http://example.com', label='label')
                     )

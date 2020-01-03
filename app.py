@@ -79,7 +79,7 @@ def handle_message(event):
                         url=imglist[0],
                         size='full',
                         aspect_ratio='1:1.618',
-                        aspect_mode='fill',
+                        aspect_mode='cover',
                         action=URIAction(uri='http://example.com', label='label')
                     )
                 )

@@ -72,9 +72,9 @@ def handle_message(event):
             buttons_template_message = TemplateSendMessage(
                 alt_text='Buttons template',
                 template=ButtonsTemplate(
-                    thumbnail_image_url='https://example.com/image.jpg',
-                    title='Menu',
-                    text='Please select',
+                    thumbnail_image_url=urllist[0],
+                    title=rating_name[0],
+                    text='上映日期：...',
                     actions=[
                         PostbackAction(
                             label='postback',
@@ -82,8 +82,8 @@ def handle_message(event):
                             data='action=buy&itemid=1'
                         ),
                         MessageAction(
-                            label='message',
-                            text='message text'
+                            label='網址',
+                            text=urllist[0]
                         ),
                         URIAction(
                             label='uri',

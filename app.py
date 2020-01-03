@@ -43,51 +43,84 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-        try:
-            name = event.message.text
-            urlname = parse.quote(name)
-            movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + urlname
-            print(movieURL)
-            headers = {}
-            headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-            req = request.Request(movieURL, headers=headers)
-            resp = request.urlopen(req)
-            respData = str(resp.read().decode('utf-8'))
-            soup = BeautifulSoup(respData, "html.parser")
+    try:
+        name = event.message.text
+        urlname = parse.quote(name)
+        movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + urlname
+        print(movieURL)
+        headers = {}
+        headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+        req = request.Request(movieURL, headers=headers)
+        resp = request.urlopen(req)
+        respData = str(resp.read().decode('utf-8'))
+        soup = BeautifulSoup(respData, "html.parser")
 
-            rating_selector_name = ".release_movie_name > a"
-            rating_name = [i.text for i in soup.select(rating_selector_name)]
+        rating_selector_name = ".release_movie_name > a"
+        rating_name = [i.text for i in soup.select(rating_selector_name)]
 
-            rating_selector_img = ".release_foto img"
-            rating_img = soup.select(rating_selector_img)
-            imglist = []
-            for img in rating_img:
-                imglist.append(img["src"])
-            
-            rating_selector_url = ".release_movie_name > a"
-            rating_url = soup.select(rating_selector_url)
-            urllist = []
-            for url in rating_url:
-                urllist.append(url["href"])
-            
-            flex_message = FlexSendMessage(
-                alt_text=rating_name[0],
-                contents=BubbleContainer(
-                    direction='ltr',
-                    text=rating_name[0],
-                    hero=ImageComponent(
-                        url=imglist[0],
-                        size='full',
-                        aspect_ratio='1:1.618',
-                        aspect_mode='cover',
-                        action=URIAction(uri='http://example.com', label='label')
-                    )
-                )
-            )
+        rating_selector_img = ".release_foto img"
+        rating_img = soup.select(rating_selector_img)
+        imglist = []
+        for img in rating_img:
+            imglist.append(img["src"])
 
-            line_bot_api.reply_message(event.reply_token, flex_message)
-        except Exception as e:
-            print(str(e))
+        rating_selector_url = ".release_movie_name > a"
+        rating_url = soup.select(rating_selector_url)
+        urllist = []
+        for url in rating_url:
+            urllist.append(url["href"])
+
+        flex_message = FlexSendMessage(
+            alt_text='hello',
+            contents={
+                "type": "flex",
+                "altText": "Flex Message",
+                "contents": {
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": "電影",
+                        "size": "xxl",
+                        "align": "center",
+                        "weight": "bold",
+                        "color": "#003634"
+                        }
+                    ]
+                    },
+                    "hero": {
+                    "type": "image",
+                    "url": "https://developers.line.biz/assets/images/services/bot-designer-icon.png",
+                    "size": "xl",
+                    "aspectRatio": "1:3",
+                    "aspectMode": "fit"
+                    },
+                    "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "詳細資訊",
+                            "uri": "https://linecorp.com"
+                        },
+                        "color": "#838383"
+                        }
+                    ]
+                    }
+                }
+                }
+        )
+
+        line_bot_api.reply_message(event.reply_token, flex_message)
+    except Exception as e:
+        print(str(e))
 
 
 # ---------------------------------------------------------------

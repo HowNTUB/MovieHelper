@@ -69,11 +69,8 @@ def handle_message(event):
             urllist = []
             for url in rating_url:
                 urllist.append(url["href"])
-            print('save')
-            moviename = rating_name[0]
-            print(moviename)
-            line_bot_api.reply_message(event.reply_token, moviename)
-            print('over')
+            message = TextSendMessage(text=rating_name[0])
+            line_bot_api.reply_message(event.reply_token, message)
         except Exception as e:
             print(str(e))
     else:

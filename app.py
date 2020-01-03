@@ -71,7 +71,7 @@ def handle_message(event):
             urllist.append(url["href"])
         
         contents=[]
-        for index in len(imglist):
+        for index in range(len(imglist)):
             contents.append({
                     "type": "bubble",
                     "direction": "ltr",

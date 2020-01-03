@@ -1,6 +1,6 @@
 line-bot-sdk
-flask
-bs4
-urllib
 requests
 os
+flask
+urllib
+bs4

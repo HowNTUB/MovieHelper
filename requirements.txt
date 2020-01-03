@@ -1,6 +1,5 @@
 line-bot-sdk
 requests
-os
 flask
 urllib
 bs4

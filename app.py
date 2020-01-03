@@ -47,7 +47,9 @@ def callback():
 def handle_message(event):
     try:
         name = event.message.text
+        #中文轉URL格式編碼
         urlname = parse.quote(name)
+        #電影清單URL
         movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + urlname
         headers = {}
         headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
@@ -55,22 +57,22 @@ def handle_message(event):
         resp = request.urlopen(req)
         respData = str(resp.read().decode('utf-8'))
         soup = BeautifulSoup(respData, "html.parser")
-
+        #抓電影名稱
         rating_selector_name = ".release_movie_name > a"
         rating_name = [i.text for i in soup.select(rating_selector_name)]
-
+        #抓圖片
         rating_selector_img = ".release_foto img"
         rating_img = soup.select(rating_selector_img)
         imglist = []
         for img in rating_img:
             imglist.append(img["src"])
-
+        #抓詳細資料網址
         rating_selector_url = ".release_movie_name > a"
         rating_url = soup.select(rating_selector_url)
         urllist = []
         for url in rating_url:
             urllist.append(url["href"])
-        
+        #內容轉為json格式
         contents=[]
         for index in range(len(imglist)):
             contents.append({
@@ -95,8 +97,8 @@ def handle_message(event):
                     "url": imglist[index],
                     "gravity": "top",
                     "size": "full",
-                    "aspectRatio": "3:4",
-                    "aspectMode": "fit",
+                    "aspectRatio": "1:1.4",
+                    "aspectMode": "cover",
                     "backgroundColor": "#FFFFFF"
                     },
                     "body": {
@@ -107,9 +109,10 @@ def handle_message(event):
                         "type": "text",
                         "text": rating_name[index],
                         "margin": "none",
-                        "size": "xxl",
+                        "size": "lg",
                         "align": "center",
-                        "gravity": "top"
+                        "gravity": "top",
+                        "weight": "bold"
                         }
                     ]
                     },
@@ -130,6 +133,7 @@ def handle_message(event):
                     ]
                     }
                     })
+        #彈性訊息
         flex_message = FlexSendMessage(
             alt_text='movielist',
             contents={
@@ -137,7 +141,7 @@ def handle_message(event):
                 "contents": contents
             }
         )
-
+        #回復
         line_bot_api.reply_message(event.reply_token, flex_message)
     except Exception as e:
         print(str(e))

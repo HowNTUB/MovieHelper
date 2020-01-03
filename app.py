@@ -52,19 +52,24 @@ def handle_message(event):
             headers = {}
             headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
             req = request.Request(movieURL, headers=headers)
+            print(1)
             resp = request.urlopen(req)
+            print(2)
             respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+            print(3)
             soup = BeautifulSoup(respData, "html.parser")
+            print(4)
 
             rating_selector_name = ".release_movie_name > a"
             rating_name = [i.text for i in soup.select(rating_selector_name)]
+            print(5)
 
             rating_selector_img = ".release_foto img"
             rating_img = soup.select(rating_selector_img)
             imglist = []
             for img in rating_img:
                 imglist.append(img["src"])
-
+            print(6)
             rating_selector_url = ".release_movie_name > a"
             rating_url = soup.select(rating_selector_url)
             urllist = []

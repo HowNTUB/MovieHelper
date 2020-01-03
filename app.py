@@ -33,7 +33,7 @@ def callback():
     body = flask.request.get_data(as_text=True)
     app.logger.info("Request body: " + body)
 
-    print(body)
+    print(body.data)
     # handle webhook body
     try:
         handler.handle(body, signature)
@@ -49,7 +49,6 @@ def handle_message(event):
         name = event.message.text
         urlname = parse.quote(name)
         movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + urlname
-        print(movieURL)
         headers = {}
         headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
         req = request.Request(movieURL, headers=headers)

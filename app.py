@@ -81,7 +81,7 @@ def handle_message(event):
                 "contents": [
                     {
                     "type": "text",
-                    "text": "電影",
+                    "text": rating_name[0],
                     "size": "xxl",
                     "align": "center",
                     "weight": "bold",
@@ -91,7 +91,7 @@ def handle_message(event):
                 },
                 "hero": {
                 "type": "image",
-                "url": "https://developers.line.biz/assets/images/services/bot-designer-icon.png",
+                "url": imglist[0],
                 "size": "xl",
                 "aspectRatio": "1:3",
                 "aspectMode": "fit"
@@ -105,7 +105,7 @@ def handle_message(event):
                     "action": {
                         "type": "uri",
                         "label": "詳細資訊",
-                        "uri": "https://linecorp.com"
+                        "uri": urllist[0]
                     },
                     "color": "#838383"
                     }

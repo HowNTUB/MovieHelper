@@ -57,24 +57,31 @@ def handle_message(event):
         resp = request.urlopen(req)
         respData = str(resp.read().decode('utf-8'))
         soup = BeautifulSoup(respData, "html.parser")
-        #抓電影名稱
-        rating_selector_name = ".release_movie_name > a"
-        rating_name = [i.text for i in soup.select(rating_selector_name)]
-        #抓圖片
-        rating_selector_img = ".release_foto img"
-        rating_img = soup.select(rating_selector_img)
-        imglist = []
-        for img in rating_img:
-            imglist.append(img["src"])
-        #抓詳細資料網址
-        rating_selector_url = ".release_movie_name > a"
-        rating_url = soup.select(rating_selector_url)
-        urllist = []
-        for url in rating_url:
-            urllist.append(url["href"])
+        #movieNameCN 中文名
+        #movieNameEN 英文名
+        #movieExpectation 滿意度
+        #movieSatisfactoryDegree 期待值
+        #moviePoster 海報
+        #movieReleaseTime 上映時間
+        #movieDetailUrl 詳細資訊網址
+
+        movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
+        movieNameEN = [i.text for i in soup.select(".en a")]
+        movieExpectation = [i.text for i in soup.select("#content_l dt span")]
+        movieSatisfactoryDegree = [i.text for i in soup.select(".count")]
+        movieImg = [i for i in soup.select(".release_foto img")]
+        moviePoster = []
+        for img in movieImg:moviePoster.append(img["src"])
+        movieReleaseTimeStr = [i.text for i in soup.select(".time")]
+        movieReleaseTime=[]
+        for date in movieReleaseTimeStr:
+            movieReleaseTime.append(date[7:])
+        movieDetail = [i for i in soup.select(".release_movie_name > a")]
+        movieDetailUrl = []
+        for url in movieDetail:movieDetailUrl.append(url["href"])
         #內容轉為json格式
         contents=[]
-        for index in range(len(imglist)):
+        for index in range(len(movieNameCN)):
             contents.append({
                     "type": "bubble",
                     "direction": "ltr",
@@ -94,7 +101,7 @@ def handle_message(event):
                     },
                     "hero": {
                     "type": "image",
-                    "url": imglist[index],
+                    "url": moviePoster[index],
                     "gravity": "top",
                     "size": "full",
                     "aspectRatio": "1:1.4",
@@ -111,7 +118,7 @@ def handle_message(event):
                         "contents": [
                             {
                             "type": "text",
-                            "text": rating_name[index],
+                            "text": movieNameCN[index],
                             "margin": "none",
                             "size": "lg",
                             "align": "center",
@@ -120,7 +127,7 @@ def handle_message(event):
                             },
                             {
                             "type": "text",
-                            "text": "YAOAN"
+                            "text": movieNameEN[index]
                             }
                         ]
                         },
@@ -139,7 +146,7 @@ def handle_message(event):
                             },
                             {
                             "type": "text",
-                            "text": "1999-10-22"
+                            "text": movieReleaseTime[index]
                             }
                         ]
                         },
@@ -156,7 +163,7 @@ def handle_message(event):
                             },
                             {
                             "type": "text",
-                            "text": "87%"
+                            "text": movieSatisfactoryDegree[index]
                             }
                         ]
                         },
@@ -173,7 +180,7 @@ def handle_message(event):
                             },
                             {
                             "type": "text",
-                            "text": "3.7",
+                            "text": movieExpectation[index],
                             "align": "start"
                             }
                         ]
@@ -207,7 +214,7 @@ def handle_message(event):
                             "type": "postback",
                             "label": "詳細資料",
                             "text": "詳細資料",
-                            "data": urllist[index]
+                            "data": movieDetailUrl[index]
                         },
                         "color": "#B0B0B0"
                         }

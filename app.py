@@ -127,7 +127,8 @@ def handle_message(event):
                             },
                             {
                             "type": "text",
-                            "text": movieNameEN[index]
+                            "text": movieNameEN[index],
+                            "align": "center"
                             }
                         ]
                         },

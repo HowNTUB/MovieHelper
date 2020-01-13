@@ -189,7 +189,7 @@ def handle_postback(event):
                     "type": "text",
                     "text": "亞當崔佛(Adam Driver) 、 黛西蕾德莉(Daisy Ridley) 、 多姆納爾格里森(Domhnall Gleeson) 、 凱莉羅素(Keri Russell) 、 奧斯卡伊薩克(Oscar Isaac) 、 露琵塔尼詠歐(Lupita Nyong'o) 、 伊恩麥卡達米(Ian McDiarmid ) 、 李察葛蘭(Richard E. Grant)",
                     "size": "xs",
-                    "wrap": true
+                    "wrap": True
                     }
                 ]
                 },

@@ -34,7 +34,7 @@ def use_moviename_serch_movielist(movieName):
         movieReleaseTimeStr = [i.text for i in soup.select(".time")]
         movieReleaseTime = []
         for date in movieReleaseTimeStr:
-        movieReleaseTime.append(date[7:])
+        movieReleaseTime.append(date[7:17])
         movieDetail = [i for i in soup.select(".release_movie_name > a")]
         movieDetailUrl = []
         for url in movieDetail:

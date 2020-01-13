@@ -1,7 +1,7 @@
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-
+from linebot.models import *
 
 def use_moviename_serch_movielist(movieName):
     try:
@@ -181,7 +181,7 @@ def use_moviename_serch_movielist(movieName):
                 }
             })
         # 彈性訊息
-        flex_message=(
+        flex_message = FlexSendMessage(
             alt_text='movielist',
             contents={
                 "type": "carousel",

@@ -181,7 +181,7 @@ def use_moviename_serch_movielist(movieName):
                 }
             })
         # 彈性訊息
-        flex_message = FlexSendMessage(
+        flex_message=(
             alt_text='movielist',
             contents={
                 "type": "carousel",

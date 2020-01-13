@@ -44,7 +44,7 @@ def callback():
 # 處理訊息
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    print(event)
+    print(event.data)
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     try:

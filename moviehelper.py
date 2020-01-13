@@ -33,8 +33,8 @@ def use_moviename_serch_movielist(movieName):
             moviePoster.append(img["src"])
         movieReleaseTimeStr = [i.text for i in soup.select(".time")]
         movieReleaseTime = []
-        for Releasedate in movieReleaseTimeStr:
-        movieReleaseTime.append(Releasedate[7:])
+        for date in movieReleaseTimeStr:
+        movieReleaseTime.append(date)
         movieDetail = [i for i in soup.select(".release_movie_name > a")]
         movieDetailUrl = []
         for url in movieDetail:

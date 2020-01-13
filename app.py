@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 
 import requests
-import os
 import flask
 from urllib import request
 from urllib import parse
@@ -52,9 +51,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,"近期上映的電影")
     else:
         line_bot_api.reply_message(event.reply_token,use_moviename_serch_movielist(event.message.text)
-
+    
 
 # ---------------------------------------------------------------
+import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)

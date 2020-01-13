@@ -195,3 +195,6 @@ def use_moviename_serch_movielist(movieName):
 
     except Exception as e:
         print(str(e))
+
+
+def use_movieurl_get_movieinfo(url):

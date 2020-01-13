@@ -17,16 +17,18 @@ def use_moviename_serch_movielist(movieName):
         soup = BeautifulSoup(respData, "html.parser")
         # movieNameCN 中文名
         # movieNameEN 英文名
-        # movieExpectation 滿意度
-        # movieSatisfactoryDegree 期待值
+        # movieExpectation 期待值
+        # movieSatisfactoryDegree 滿意度
         # moviePoster 海報
         # movieReleaseTime 上映時間
         # movieDetailUrl 詳細資訊網址
-
+        movieInfo = [i.text for i in soup.select(".release_info")]
         movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
         movieNameEN = [i.text for i in soup.select(".en a")]
         movieExpectation = [i.text for i in soup.select("#content_l dt span")]
-        movieSatisfactoryDegree = [i.text for i in soup.select(".count")]
+        movieSatisfactoryDegree=[]
+        for info in movieInfo:
+            movieSatisfactoryDegree.append('未上映(無滿意度)') if info.find("滿意度")==-1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
         movieImg = [i for i in soup.select(".release_foto img")]
         moviePoster = []
         for img in movieImg:
@@ -124,7 +126,7 @@ def use_moviename_serch_movielist(movieName):
                                 },
                                 {
                                     "type": "text",
-                                    "text": movieSatisfactoryDegree[index]
+                                    "text": movieExpectation[index]
                                 }
                             ]
                         },
@@ -141,7 +143,7 @@ def use_moviename_serch_movielist(movieName):
                                 },
                                 {
                                     "type": "text",
-                                    "text": movieExpectation[index],
+                                    "text": movieSatisfactoryDegree[index],
                                     "align": "start"
                                 }
                             ]

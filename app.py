@@ -48,7 +48,8 @@ def handle_postback(event):
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text=='近期上映':
-        line_bot_api.reply_message(event.reply_token,"近期上映的電影")
+        text_message = TextSendMessage(text='近期上映的電影清單')
+        line_bot_api.reply_message(event.reply_token,text_message)
     else:
         line_bot_api.reply_message(event.reply_token,use_moviename_serch_movielist(event.message.text))
 

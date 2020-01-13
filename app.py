@@ -236,6 +236,7 @@ def handle_postback(event):
             }
         }
     )
+    line_bot_api.reply_message(event.reply_token,flex_message)
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

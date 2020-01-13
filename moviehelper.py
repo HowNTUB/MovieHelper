@@ -28,7 +28,7 @@ def use_moviename_serch_movielist(movieName):
         movieExpectation = [i.text for i in soup.select("#content_l dt span")]
         movieSatisfactoryDegree=[]
         for info in movieInfo:
-            movieSatisfactoryDegree.append('未上映(無滿意度)') if info.find("滿意度")==-1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
+            movieSatisfactoryDegree.append('未上映') if info.find("滿意度")==-1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
         movieImg = [i for i in soup.select(".release_foto img")]
         moviePoster = []
         for img in movieImg:

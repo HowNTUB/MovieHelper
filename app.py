@@ -215,7 +215,6 @@ def handle_message(event):
                         "action": {
                             "type": "postback",
                             "label": "詳細資料",
-                            "text": "詳細資料",
                             "data": movieDetailUrl[index]
                         },
                         "color": "#B0B0B0"

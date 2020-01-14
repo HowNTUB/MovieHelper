@@ -423,7 +423,7 @@ def use_movieurl_get_movieinfo(url):
                 "url": actorImgURL[index],
                 "size": "full",
                 "aspectRatio": "3:4",
-                "aspectMode": "full"
+                "aspectMode": "cover"
                 },
                 "body": {
                 "type": "box",

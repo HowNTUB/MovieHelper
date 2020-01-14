@@ -227,7 +227,7 @@ def use_movieurl_get_movieinfo(url):
         movieExpectation = (
             (soup.select(".evaluate_inner")[0].text).split())[-2]
         movieSatisfactoryDegree = (
-            (soup.select(".evaluate_inner")[1].text).split())[-2]
+            (soup.select(".evaluate_inner")[1].text).split())[3]
 
         # 彈性訊息
         movieTagContent = []

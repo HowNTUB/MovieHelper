@@ -56,7 +56,7 @@ def use_moviename_serch_movielist(movieName):
                     "contents": [
                         {
                             "type": "text",
-                            "text": "電影(Movie)",
+                            "text": "電影",
                             "size": "xl",
                             "align": "start",
                             "weight": "bold",
@@ -238,7 +238,7 @@ def use_movieurl_get_movieinfo(url):
                 "weight": "bold",
                 "color": "#000C3B"
             })
-        flex_message = FlexSendMessage(
+        info_flex_message = FlexSendMessage(
             alt_text='movielist',
             contents={
                 "type": "bubble",
@@ -249,7 +249,7 @@ def use_movieurl_get_movieinfo(url):
                     "contents": [
                         {
                             "type": "text",
-                            "text": "電影資訊(Infomation)",
+                            "text": "電影資訊",
                             "size": "xl",
                             "align": "start",
                             "weight": "bold"
@@ -387,8 +387,6 @@ def use_movieurl_get_movieinfo(url):
                 }
             }
         )
-        # 回復
-        return(flex_message)
         # --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]
         actorNameCN = []
@@ -401,6 +399,73 @@ def use_movieurl_get_movieinfo(url):
         moviePoster = []
         for img in movieImg:
             moviePoster.append(img["src"])
+
+        actorContents = []
+        for index in range(len(movieNameCN)):
+            actorContents.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "導演與演員",
+                    "size": "xl",
+                    "align": "start",
+                    "weight": "bold"
+                    }
+                ]
+                },
+                "hero": {
+                "type": "image",
+                "url": "https://movies.yahoo.com.tw/x/r/h290/i/o/production/names/June2017/cJBa7RG1De2dSyFr2YyS-2400x3600.jpg",
+                "size": "full",
+                "aspectRatio": "3:4",
+                "aspectMode": "fit"
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "亞伯拉漢",
+                    "size": "xl",
+                    "weight": "bold"
+                    },
+                    {
+                    "type": "text",
+                    "text": "ABOLAHAN",
+                    "size": "xl"
+                    }
+                ]
+                },
+                "footer": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "button",
+                    "action": {
+                        "type": "uri",
+                        "label": "演員介紹",
+                        "uri": "https://linecorp.com"
+                    }
+                    }
+                ]
+                }
+            })
+        actor_flex_message = FlexSendMessage(
+            alt_text='actorlist',
+            contents={
+                "type": "carousel",
+                "contents": actorContents
+            }
+        )
+
+        return(info_flex_message, actor_flex_message)
         # --------------------
     except Exception as e:
         print(str(e))

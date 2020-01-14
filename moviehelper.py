@@ -395,13 +395,13 @@ def use_movieurl_get_movieinfo(url):
             name = name.split()
             actorNameCN.append(name[0])
             actorNameEN.append(name[1]+' '+name[2])
-        movieImg = [i for i in soup.select("._slickcontent .fotoinner img")]
-        moviePoster = []
-        for img in movieImg:
-            moviePoster.append(img["src"])
+        actorImg = [i for i in soup.select("._slickcontent .fotoinner img")]
+        actorImgURL = []
+        for img in actorImg:
+            actorImgURL.append(img["src"])
 
         actorContents = []
-        for index in range(len(movieNameCN)):
+        for index in range(len(actorNameCN)):
             actorContents.append({
                 "type": "bubble",
                 "direction": "ltr",
@@ -420,7 +420,7 @@ def use_movieurl_get_movieinfo(url):
                 },
                 "hero": {
                 "type": "image",
-                "url": "https://movies.yahoo.com.tw/x/r/h290/i/o/production/names/June2017/cJBa7RG1De2dSyFr2YyS-2400x3600.jpg",
+                "url": actorImgURL,
                 "size": "full",
                 "aspectRatio": "3:4",
                 "aspectMode": "fit"
@@ -431,13 +431,13 @@ def use_movieurl_get_movieinfo(url):
                 "contents": [
                     {
                     "type": "text",
-                    "text": "亞伯拉漢",
+                    "text": actorNameCN,
                     "size": "xl",
                     "weight": "bold"
                     },
                     {
                     "type": "text",
-                    "text": "ABOLAHAN",
+                    "text": actorNameEN,
                     "size": "xl"
                     }
                 ]

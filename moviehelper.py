@@ -263,13 +263,14 @@ def use_movieurl_get_movieinfo(url):
                         {
                             "type": "text",
                             "text": movieNameCN,
+                            "size": "lg",
                             "align": "center",
                             "weight": "bold"
                         },
                         {
                             "type": "text",
                             "text": movieNameEN,
-                            "size": "xs",
+                            "size": "md",
                             "align": "center"
                         },
                         {

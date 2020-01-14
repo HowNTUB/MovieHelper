@@ -233,7 +233,7 @@ def use_movieurl_get_movieinfo(url):
         for tag in movieTag:
             movieTagContent.append({
                 "type": "text",
-                "text": tag,
+                "text": tag+'　',
                 "flex": 0,
                 "weight": "bold",
                 "color": "#000C3B"
@@ -276,13 +276,13 @@ def use_movieurl_get_movieinfo(url):
                         {
                             "type": "box",
                             "layout": "horizontal",
-                            "margin": "sm",
+                            "margin": "lg",
                             "contents": movieTagContent
                         },
                         {
                             "type": "box",
                             "layout": "horizontal",
-                            "margin": "sm",
+                            "margin": "lg",
                             "contents": [
                                 {
                                     "type": "text",
@@ -330,7 +330,7 @@ def use_movieurl_get_movieinfo(url):
                         {
                             "type": "box",
                             "layout": "horizontal",
-                            "margin": "xs",
+                            "margin": "lg",
                             "contents": [
                                 {
                                     "type": "text",

@@ -399,7 +399,7 @@ def use_movieurl_get_movieinfo(url):
         actorImg = [i for i in soup.select("._slickcontent .fotoinner img")]
         actorImgURL = []
         for img in actorImg:
-            actorImgURL.append(img["src"])
+            actorImgURL.append('https://i.imgur.com/ioORQOf.jpg') if img["src"] == '/build/images/noavatar.jpg' else actorImgURL.append(img["src"])
         actorContents = []
         for index in range(len(actorNameCN)):
             actorContents.append({

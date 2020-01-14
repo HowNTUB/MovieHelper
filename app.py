@@ -44,7 +44,8 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_postback(event):
     print(event.postback.data)
-    line_bot_api.reply_message(event.reply_token,[use_movieurl_get_movieinfo(event.postback.data)])
+    infoContant, actorContant = use_movieurl_get_movieinfo(event.postback.data)
+    line_bot_api.reply_message(event.reply_token,[infoContant, actorContant])
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

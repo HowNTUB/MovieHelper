@@ -420,7 +420,7 @@ def use_movieurl_get_movieinfo(url):
                 },
                 "hero": {
                 "type": "image",
-                "url": actorImgURL,
+                "url": actorImgURL[index],
                 "size": "full",
                 "aspectRatio": "3:4",
                 "aspectMode": "fit"
@@ -431,13 +431,13 @@ def use_movieurl_get_movieinfo(url):
                 "contents": [
                     {
                     "type": "text",
-                    "text": actorNameCN,
+                    "text": actorNameCN[index],
                     "size": "xl",
                     "weight": "bold"
                     },
                     {
                     "type": "text",
-                    "text": actorNameEN,
+                    "text": actorNameEN[index],
                     "size": "xl"
                     }
                 ]

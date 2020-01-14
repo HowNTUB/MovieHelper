@@ -225,9 +225,9 @@ def use_movieurl_get_movieinfo(url):
         movieProCo = (soup.select("span:nth-child(7)")[1].text)[5:]
         movieIMDb = (soup.select_one("span:nth-child(8)").text)[7:]
         movieExpectation = (
-            (soup.select(".evaluate_inner")[0].text).split())[2]
+            (soup.select(".evaluate_inner")[0].text).split())[-2]
         movieSatisfactoryDegree = (
-            (soup.select(".evaluate_inner")[1].text).split())[3]
+            (soup.select(".evaluate_inner")[1].text).split())[-2]
 
         # 彈性訊息
         movieTagContent = []
@@ -395,16 +395,12 @@ def use_movieurl_get_movieinfo(url):
         for name in actorName:
             name = name.split()
             actorNameCN.append(name[0])
-            actorNameEN.append(name[1]+' '+name[2]) if len(name)>1 else actorNameEN.append(' ')
+            actorNameEN.append(name[1]+' '+name[2]) if len(name)>1 else actorNameEN.append('　')
         actorImg = [i for i in soup.select("._slickcontent .fotoinner img")]
         actorImgURL = []
         for img in actorImg:
             actorImgURL.append(img["src"])
-        print(actorNameCN)
-        print(actorNameEN)
-        print(actorImgURL)
         actorContents = []
-        print(range(len(actorNameCN)))
         for index in range(len(actorNameCN)):
             actorContents.append({
                 "type": "bubble",
@@ -427,7 +423,7 @@ def use_movieurl_get_movieinfo(url):
                 "url": actorImgURL[index],
                 "size": "full",
                 "aspectRatio": "3:4",
-                "aspectMode": "fit"
+                "aspectMode": "full"
                 },
                 "body": {
                 "type": "box",

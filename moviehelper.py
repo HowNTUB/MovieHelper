@@ -399,8 +399,11 @@ def use_movieurl_get_movieinfo(url):
         actorImgURL = []
         for img in actorImg:
             actorImgURL.append(img["src"])
-
+        print(actorNameCN)
+        print(actorNameEN)
+        print(actorImgURL)
         actorContents = []
+        print(range(len(actorNameCN)))
         for index in range(len(actorNameCN)):
             actorContents.append({
                 "type": "bubble",

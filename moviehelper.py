@@ -202,7 +202,6 @@ def use_moviename_serch_movielist(movieName):
 
 def use_movieurl_get_movieinfo(url):
     try:
-        url = 'https://movies.yahoo.com.tw/movieinfo_main/STAR-WARS-%E5%A4%A9%E8%A1%8C%E8%80%85%E7%9A%84%E5%B4%9B%E8%B5%B7-star-wars-the-rise-of-skywalker-10225'
         headers = {}
         headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
         req = request.Request(url, headers=headers)

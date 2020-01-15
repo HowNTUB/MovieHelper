@@ -465,7 +465,9 @@ def use_movieurl_get_movieinfo(url):
             }
         )
 
-        return(info_flex_message, actor_flex_message)
+        movieIntroduction = (soup.select_one(".gray_infobox_inner").text)[:-4]
+        movieIntroduction_text_message = TextSendMessage(text=movieIntroduction)
+        return(info_flex_message, actor_flex_message, movieIntroduction_text_message)
         # --------------------
     except Exception as e:
         print(str(e))

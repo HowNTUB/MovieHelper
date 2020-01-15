@@ -5,7 +5,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo
+from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo_replymessage
 
 from linebot import (
     LineBotApi, WebhookHandler

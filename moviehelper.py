@@ -1,13 +1,8 @@
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-from linebot.exceptions import (
-    InvalidSignatureError
-)
 from linebot.models import *
+
 
 def use_moviename_serch_movielist(movieName):
     try:
@@ -206,7 +201,7 @@ def use_moviename_serch_movielist(movieName):
 
 
 
-def use_movieurl_get_movieinfo_replymessage(url):
+def use_movieurl_get_movieinfo(url):
     try:
         headers = {}
         headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
@@ -232,10 +227,10 @@ def use_movieurl_get_movieinfo_replymessage(url):
         if movieIMDb == '' : movieIMDb = '無評分'
         movieExpectation = (
             (soup.select(".evaluate_inner")[0].text).split())[-2]
-        if movieExpectation == '' : movieIMDb = '無評分'
+        if movieExpectation == '' : movieExpectation = '無評分'
         movieSatisfactoryDegree = (
             (soup.select(".evaluate_inner")[1].text).split())[3]
-        if movieSatisfactoryDegree == '' : movieIMDb = '無評分'
+        if movieSatisfactoryDegree == '' : movieSatisfactoryDegree = '無評分'
 
         # 彈性訊息
         movieTagContent = []
@@ -477,7 +472,7 @@ def use_movieurl_get_movieinfo_replymessage(url):
         movieIntroduction_text_message = TextSendMessage(text=movieIntroduction)
         print(movieExpectation)
 
-        line_bot_api.reply_message(event.reply_token,[info_flex_message, actor_flex_message, movieIntroduction_text_message])
+        return(info_flex_message, actor_flex_message, movieIntroduction_text_message)
         # --------------------
     except Exception as e:
         print(str(e))

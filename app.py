@@ -5,7 +5,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo_replymessage
+from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -44,7 +44,8 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_postback(event):
     print(event.postback.data)
-    use_movieurl_get_movieinfo_replymessage(event.postback.data)
+    infoContant, actorContant, introductionContant = use_movieurl_get_movieinfo(event.postback.data)
+    line_bot_api.reply_message(event.reply_token,[infoContant, actorContant, introductionContant])
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

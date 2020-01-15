@@ -224,10 +224,13 @@ def use_movieurl_get_movieinfo(url):
         movieRuntime = (soup.select_one("span:nth-child(6)").text)[5:]
         movieProCo = (soup.select("span:nth-child(7)")[1].text)[5:]
         movieIMDb = (soup.select_one("span:nth-child(8)").text)[7:]
+        if movieIMDb == '' : movieIMDb = '無評分'
         movieExpectation = (
             (soup.select(".evaluate_inner")[0].text).split())[-2]
+        if movieExpectation == '' : movieIMDb = '無評分'
         movieSatisfactoryDegree = (
             (soup.select(".evaluate_inner")[1].text).split())[3]
+        if movieSatisfactoryDegree == '' : movieIMDb = '無評分'
 
         # 彈性訊息
         movieTagContent = []
@@ -467,6 +470,8 @@ def use_movieurl_get_movieinfo(url):
 
         movieIntroduction = (soup.select_one(".gray_infobox_inner").text)[:-4]
         movieIntroduction_text_message = TextSendMessage(text=movieIntroduction)
+        print(movieExpectation)
+
         return(info_flex_message, actor_flex_message, movieIntroduction_text_message)
         # --------------------
     except Exception as e:

@@ -468,7 +468,7 @@ def use_movieurl_get_movieinfo(url):
             }
         )
 
-        movieIntroduction = (soup.select_one(".gray_infobox_inner , #story").text)[13:-11]
+        movieIntroduction = [i.text for i in soup.select("#story")]
         print(movieIntroduction)
         movieIntroduction_text_message = TextSendMessage(text=movieIntroduction)
 

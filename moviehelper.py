@@ -200,7 +200,6 @@ def use_moviename_serch_movielist(movieName):
         print(str(e))
 
 
-
 def use_movieurl_get_movieinfo(url):
     try:
         headers = {}
@@ -224,13 +223,13 @@ def use_movieurl_get_movieinfo(url):
         movieRuntime = (soup.select_one("span:nth-child(6)").text)[5:]
         movieProCo = (soup.select("span:nth-child(7)")[1].text)[5:]
         movieIMDb = (soup.select_one("span:nth-child(8)").text)[7:]
-        if movieIMDb == '' : movieIMDb = '無評分'
+        if movieIMDb == '': movieIMDb = '無評分'
         movieExpectation = (
             (soup.select(".evaluate_inner")[0].text).split())[-2]
-        if movieExpectation == '' : movieExpectation = '無評分'
+        if movieExpectation == '': movieExpectation = '無評分'
         movieSatisfactoryDegree = (
             (soup.select(".evaluate_inner")[1].text).split())[3]
-        if movieSatisfactoryDegree == '' : movieSatisfactoryDegree = '無評分'
+        if movieSatisfactoryDegree == '': movieSatisfactoryDegree = '無評分'
 
         # 彈性訊息
         movieTagContent = []
@@ -398,11 +397,13 @@ def use_movieurl_get_movieinfo(url):
         for name in actorName:
             name = name.split()
             actorNameCN.append(name[0])
-            actorNameEN.append(name[1]+' '+name[2]) if len(name)>1 else actorNameEN.append('　')
+            actorNameEN.append(
+                name[1]+' '+name[2]) if len(name) > 1 else actorNameEN.append('　')
         actorImg = [i for i in soup.select("._slickcontent .fotoinner img")]
         actorImgURL = []
         for img in actorImg:
-            actorImgURL.append('https://i.imgur.com/ioORQOf.jpg') if img["src"] == '/build/images/noavatar.jpg' else actorImgURL.append(img["src"])
+            actorImgURL.append(
+                'https://i.imgur.com/ioORQOf.jpg') if img["src"] == '/build/images/noavatar.jpg' else actorImgURL.append(img["src"])
         actorContents = []
         for index in range(len(actorNameCN)):
             actorContents.append({
@@ -474,30 +475,30 @@ def use_movieurl_get_movieinfo(url):
             movieStillsUrl.append(img["src"])
 
         print(movieStillsUrl)
-        
-        movieStills_flex_message = TemplateSendMessage(
-            alt_text='ImageCarousel template',
-            template=ImageCarouselTemplate(
-                columns=[
-                    ImageCarouselColumn(
-                        image_url=movieStillsUrl[0],
-                        action=PostbackAction(
-                            label='postback1',
-                            display_text='',
-                            data=''
-                        )
-                    ),
-                    ImageCarouselColumn(
-                        image_url=movieStillsUrl[1],
-                        action=PostbackAction(
-                            label='postback2',
-                            display_text='',
-                            data=''
-                        )
-                    )
-                ]
-            )
+        movieStillsContent = []
+        for img in movieStillsUrl:
+            print(img)
+            movieStillsContent.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "hero": {
+                    "type": "image",
+                    "url": img,
+                    "size": "full",
+                    "aspectRatio": "1.85:1",
+                    "aspectMode": "cover"
+                }
+            })
+
+        movieStills_flex_message = FlexSendMessage(
+            alt_text = 'movieStillslist',
+            contents = {
+                "type": "carousel",
+                "contents": movieStillsContent
+            }
         )
+
+
         return(info_flex_message, actor_flex_message, movieStills_flex_message)
         # --------------------
     except Exception as e:

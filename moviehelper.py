@@ -400,8 +400,16 @@ def use_movieurl_get_movieinfo(url):
         for name in actorName:
             name = name.split()
             actorNameCN.append(name[0])
-            actorNameEN.append(
-                name[1]+' '+name[2]) if len(name) > 1 else actorNameEN.append('　')
+            if len(name)>3:
+                ENname=''
+            for index in range(len(name))[1:]:
+                ENname+=name[index]
+                print(ENname)
+                actorNameEN.append(ENname)
+            elif len(name)==2:
+                actorNameEN.append(name[1])
+            else:
+                actorNameEN.append(' ')
         actorImg = [i for i in soup.select("._slickcontent .fotoinner img")]
         actorImgURL = []
         for img in actorImg:

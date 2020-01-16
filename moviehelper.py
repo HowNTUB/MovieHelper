@@ -416,9 +416,6 @@ def use_movieurl_get_movieinfo(url):
                 'https://i.imgur.com/ioORQOf.jpg') if img["src"] == '/build/images/noavatar.jpg' else actorImgURL.append(img["src"])
         actorContents = []
         for index in range(len(actorNameCN)):
-            headerTitle = '導演'
-            if index != 0:
-                headerTitle = '演員'
             actorContents.append({
                 "type": "bubble",
                 "direction": "ltr",
@@ -428,7 +425,7 @@ def use_movieurl_get_movieinfo(url):
                     "contents": [
                         {
                             "type": "text",
-                            "text": headerTitle,
+                            "text": "導演及演員",
                             "size": "xl",
                             "align": "start",
                             "weight": "bold"

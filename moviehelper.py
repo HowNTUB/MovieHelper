@@ -467,8 +467,8 @@ def use_movieurl_get_movieinfo(url):
                 "contents": actorContents
             }
         )
-        print((soup.select_one(".gray_infobox_inner").text))
-        movieIntroduction = (soup.select_one(".gray_infobox_inner").text)
+
+        movieIntroduction = [(soup.select_one(".gray_infobox_inner").text)]
         print(movieIntroduction)
         movieIntroduction_text_message = TextSendMessage(text=movieIntroduction)
 

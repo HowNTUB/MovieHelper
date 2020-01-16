@@ -475,14 +475,28 @@ def use_movieurl_get_movieinfo(url):
 
         print(movieStillsUrl)
         
-        movieStills_flex_message = FlexSendMessage(
-            alt_text='movieStillslist',
-            contents={
-                "type": "image",
-                "originalContentUrl": movieStillsUrl[0],
-                "previewImageUrl": movieStillsUrl[0],
-                "animated": False
-            }
+        movieStills_flex_message = TemplateSendMessage(
+            alt_text='ImageCarousel template',
+            template=ImageCarouselTemplate(
+                columns=[
+                    ImageCarouselColumn(
+                        image_url=movieStillsUrl[0],
+                        action=PostbackAction(
+                            label='postback1',
+                            display_text='',
+                            data=''
+                        )
+                    ),
+                    ImageCarouselColumn(
+                        image_url=movieStillsUrl[1],
+                        action=PostbackAction(
+                            label='postback2',
+                            display_text='',
+                            data=''
+                        )
+                    )
+                ]
+            )
         )
         return(info_flex_message, actor_flex_message, movieStills_flex_message)
         # --------------------

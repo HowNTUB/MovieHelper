@@ -421,7 +421,7 @@ def use_movieurl_get_movieinfo(url):
                     "contents": [
                         {
                             "type": "text",
-                            "text": title,
+                            "text": headerTitle,
                             "size": "xl",
                             "align": "start",
                             "weight": "bold"

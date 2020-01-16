@@ -473,7 +473,7 @@ def use_movieurl_get_movieinfo(url):
         for img in movieStills:
             movieStillsUrl.append(img["src"])
 
-        
+        print(movieStillsUrl)
         
         movieStills_flex_message = FlexSendMessage(
             alt_text='movieStillslist',

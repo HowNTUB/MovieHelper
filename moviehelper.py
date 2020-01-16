@@ -223,13 +223,16 @@ def use_movieurl_get_movieinfo(url):
         movieRuntime = (soup.select_one("span:nth-child(6)").text)[5:]
         movieProCo = (soup.select("span:nth-child(7)")[1].text)[5:]
         movieIMDb = (soup.select_one("span:nth-child(8)").text)[7:]
-        if movieIMDb == '': movieIMDb = '無評分'
+        if movieIMDb == '':
+            movieIMDb = '無評分'
         movieExpectation = (
             (soup.select(".evaluate_inner")[0].text).split())[-2]
-        if movieExpectation == '': movieExpectation = '無評分'
+        if movieExpectation == '':
+            movieExpectation = '無評分'
         movieSatisfactoryDegree = (
             (soup.select(".evaluate_inner")[1].text).split())[3]
-        if movieSatisfactoryDegree == '': movieSatisfactoryDegree = '無評分'
+        if movieSatisfactoryDegree == '':
+            movieSatisfactoryDegree = '無評分'
 
         # 彈性訊息
         movieTagContent = []
@@ -411,55 +414,55 @@ def use_movieurl_get_movieinfo(url):
                 "type": "bubble",
                 "direction": "ltr",
                 "header": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": title,
-                    "size": "xl",
-                    "align": "start",
-                    "weight": "bold"
-                    }
-                ]
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": title,
+                            "size": "xl",
+                            "align": "start",
+                            "weight": "bold"
+                        }
+                    ]
                 },
                 "hero": {
-                "type": "image",
-                "url": actorImgURL[index],
-                "size": "full",
-                "aspectRatio": "3:4",
-                "aspectMode": "cover"
+                    "type": "image",
+                    "url": actorImgURL[index],
+                    "size": "full",
+                    "aspectRatio": "3:4",
+                    "aspectMode": "cover"
                 },
                 "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": actorNameCN[index],
-                    "size": "xl",
-                    "weight": "bold"
-                    },
-                    {
-                    "type": "text",
-                    "text": actorNameEN[index],
-                    "size": "xl"
-                    }
-                ]
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": actorNameCN[index],
+                            "size": "xl",
+                            "weight": "bold"
+                        },
+                        {
+                            "type": "text",
+                            "text": actorNameEN[index],
+                            "size": "xl"
+                        }
+                    ]
                 },
                 "footer": {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                    {
-                    "type": "button",
-                    "action": {
-                        "type": "uri",
-                        "label": "演員介紹",
-                        "uri": "https://linecorp.com"
-                    }
-                    }
-                ]
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "label": "演員介紹",
+                                "uri": "https://linecorp.com"
+                            }
+                        }
+                    ]
                 }
             })
         actor_flex_message = FlexSendMessage(
@@ -477,10 +480,10 @@ def use_movieurl_get_movieinfo(url):
 
         print(movieStillsUrl)
         movieStillsContent = []
-        cnt=0
+        cnt = 0
         for img in movieStillsUrl:
-            cnt+=1
-            if cnt<=10:
+            cnt += 1
+            if cnt <= 10:
                 movieStillsContent.append({
                     "type": "bubble",
                     "direction": "ltr",
@@ -494,15 +497,87 @@ def use_movieurl_get_movieinfo(url):
                 })
 
         movieStills_flex_message = FlexSendMessage(
-            alt_text = 'movieStillslist',
-            contents = {
+            alt_text='movieStillslist',
+            contents={
                 "type": "carousel",
                 "contents": movieStillsContent
             }
         )
 
+        articleTitle = [i.text for i in soup.select("#native_ad_target h2")]
+        articleContent = [i.text[21:-17]
+                          for i in soup.select(".jq_text_overflow_link")]
+        articleImg = [i['src'] for i in soup.select("#native_ad_target img")]
+        articleURL = [i['href'] for i in soup.select("#native_ad_target li a")]
 
-        return(info_flex_message, actor_flex_message, movieStills_flex_message)
+        articleContents=[]
+        for index in range(len((articleTitle))):
+            articleContents.append(
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "相關文章",
+                    "size": "xl",
+                    "align": "start",
+                    "weight": "bold"
+                    }
+                ]
+                },
+                "hero": {
+                "type": "image",
+                "url": articleImg[index],
+                "size": "full",
+                "aspectRatio": "3:4",
+                "aspectMode": "cover"
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": articleTitle[index],
+                    "align": "center",
+                    "weight": "bold",
+                    "wrap": True
+                    },
+                    {
+                    "type": "text",
+                    "text": articleContent[index],
+                    "size": "sm",
+                    "wrap": True
+                    }
+                ]
+                },
+                "footer": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "button",
+                    "action": {
+                        "type": "uri",
+                        "label": "詳全文（yahoo電影）",
+                        "uri": articleURL[index]
+                    }
+                    }
+                ]
+                }})
+
+        article_flex_message = FlexSendMessage(
+            alt_text='movieStillslist',
+            contents={
+                "type": "carousel",
+                "contents": articleContents
+            }
+        )
+
+        return(info_flex_message, actor_flex_message, movieStills_flex_message, article_flex_message)
         # --------------------
     except Exception as e:
         print(str(e))

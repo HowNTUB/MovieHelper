@@ -512,7 +512,7 @@ def use_movieurl_get_movieinfo(url):
 
         articleContents=[]
         for index in range(len((articleTitle))):
-            articleContents.append(
+            articleContents.append({
                 "type": "bubble",
                 "direction": "ltr",
                 "header": {
@@ -567,7 +567,8 @@ def use_movieurl_get_movieinfo(url):
                     }
                     }
                 ]
-                }})
+                }
+            })
 
         article_flex_message = FlexSendMessage(
             alt_text='movieStillslist',

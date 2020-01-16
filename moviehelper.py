@@ -400,11 +400,10 @@ def use_movieurl_get_movieinfo(url):
         for name in actorName:
             name = name.split()
             actorNameCN.append(name[0])
-            if len(name)>3:
+            if len(name)>=3:
                 ENname=''
-            for index in range(len(name))[1:]:
-                ENname+=name[index]
-                print(ENname)
+                for index in range(len(name))[1:]:
+                    ENname+=' '+name[index]
                 actorNameEN.append(ENname)
             elif len(name)==2:
                 actorNameEN.append(name[1])

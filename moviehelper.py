@@ -479,8 +479,8 @@ def use_movieurl_get_movieinfo(url):
             alt_text='movieStillslist',
             contents={
                 "type": "image",
-                "originalContentUrl": movieStills[0],
-                "previewImageUrl": movieStills[0],
+                "originalContentUrl": movieStillsUrl[0],
+                "previewImageUrl": movieStillsUrl[0],
                 "animated": False
             }
         )

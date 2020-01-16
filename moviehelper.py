@@ -473,20 +473,15 @@ def use_movieurl_get_movieinfo(url):
         for img in movieStills:
             movieStillsUrl.append(img["src"])
 
-        movieStillsContent=[]
-        for img in movieStills:
-            movieStillsContent.append({
-                "type": "image",
-                "originalContentUrl": img,
-                "previewImageUrl": img,
-                "animated": False
-            })
+        
         
         movieStills_flex_message = FlexSendMessage(
-            alt_text='actorlist',
+            alt_text='movieStillslist',
             contents={
-                "type": "carousel",
-                "contents": movieStillsContent
+                "type": "image",
+                "originalContentUrl": movieStills[0],
+                "previewImageUrl": movieStills[0],
+                "animated": False
             }
         )
         return(info_flex_message, actor_flex_message, movieStills_flex_message)

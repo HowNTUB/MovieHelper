@@ -468,11 +468,28 @@ def use_movieurl_get_movieinfo(url):
             }
         )
 
-        movieIntroduction = (soup.find_all("span",id="story"))#, "gray_infobox_inner").text)[14:-11]
-        print(movieIntroduction)
-        movieIntroduction_text_message = TextSendMessage(text=movieIntroduction)
+        movieStills = [i for i in soup.select(".imglist img")]
+        movieStillsUrl = []
+        for img in movieStills:
+            movieStillsUrl.append(img["src"])
 
-        return(info_flex_message, actor_flex_message, movieIntroduction_text_message)
+        movieStillsContent=[]
+        for img in movieStills:
+            movieStillsContent.append({
+                "type": "image",
+                "originalContentUrl": img,
+                "previewImageUrl": img,
+                "animated": False
+            })
+        
+        movieStills_flex_message = FlexSendMessage(
+            alt_text='actorlist',
+            contents={
+                "type": "carousel",
+                "contents": movieStillsContent
+            }
+        )
+        return(info_flex_message, actor_flex_message, movieStills_flex_message)
         # --------------------
     except Exception as e:
         print(str(e))

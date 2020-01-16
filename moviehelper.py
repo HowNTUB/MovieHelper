@@ -468,22 +468,9 @@ def use_movieurl_get_movieinfo(url):
             }
         )
 
-        #movieIntroduction = (soup.select_one(".gray_infobox_inner").text)[:-4]
-        movieIntroduction = '''★星戰傳奇系列磅礡終曲、絕地武士與最強西斯的終極對決
-★導演J.J.亞伯拉罕證實，本次將會有粉絲從未見過得新型原力使用方式
-★將是觀眾最後一次在大銀幕上看到飾演莉亞公主的凱莉費雪
-★金獎作曲家約翰威廉斯聲明這將是星際大戰作曲的封筆之作
-★打造過《復仇者聯盟 : 終局之戰》的頂尖特效團隊光影魔幻工業(ILM)巔峰之作，將帶給全球觀眾前所未見的特效視覺饗宴
- 
-絕地武士的最後希望--芮(身世未明) 與繼承了黑武士血脈、邪惡第一軍團的最高領袖--凱羅忍，雙方受到上個世代戰爭英雄影響所產生的成長與矛盾，將在《STAR WARS : 天行者的崛起》中，用原力劃下光明與黑暗交織的最完美句點。
- 
-過去的傳奇角色: 路克天行者、莉亞、藍多卡瑞辛皆全數回歸本作。此外，過去星際大戰電影系列的終極大反派 -- 西斯大帝(白卜庭)並未消失，將以最具威脅的大魔王之姿現身向抵抗勢力展開一場前所未見的終極復仇。
- 
-1977年開始陸續上映的八部星戰系列正傳電影，故事發生在充滿想像的銀河系，講述一個探討善與惡、光明與黑暗、並環繞在包含知名黑武士在內的天行者家族傳奇故事。
- 
-《STAR WARS : 天行者的崛起》是星際大戰正傳電影系列的第九部作品，同時也是精心策劃超過40年的傳奇完結篇。'''
+        movieIntroduction = (soup.select_one(".gray_infobox_inner").text)[:-4]
+        print(movieIntroduction)
         movieIntroduction_text_message = TextSendMessage(text=movieIntroduction)
-        print(movieExpectation)
 
         return(info_flex_message, actor_flex_message, movieIntroduction_text_message)
         # --------------------

@@ -420,61 +420,79 @@ def use_movieurl_get_movieinfo(url):
             actorContents = []
 
             for index in range(len(actorNameCN)):
-                actorContents.append({
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "header": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "導演及演員",
-                                "size": "xl",
-                                "align": "start",
-                                "weight": "bold"
-                            }
-                        ]
-                    },
-                    "hero": {
-                        "type": "image",
-                        "url": actorImgURL[index],
-                        "size": "full",
-                        "aspectRatio": "3:4",
-                        "aspectMode": "cover"
-                    },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": actorNameCN[index],
-                                "size": "xl",
-                                "weight": "bold"
-                            },
-                            {
-                                "type": "text",
-                                "text": actorNameEN[index],
-                                "size": "xl"
-                            }
-                        ]
-                    },
-                    "footer": {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "contents": [
-                            {
-                                "type": "button",
-                                "action": {
-                                    "type": "uri",
-                                    "label": "演員介紹",
-                                    "uri": "https://linecorp.com"
+                print(len(actorNameCN))
+                if len(actorNameCN) == 0:
+                    actorContents.append({
+                        "type": "bubble",
+                        "direction": "ltr",
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "無導演與演員資料",
+                                    "align": "center"
                                 }
-                            }
-                        ]
-                    }
-                })
+                            ]
+                        }
+                    })
+                else:
+                    actorContents.append({
+                        "type": "bubble",
+                        "direction": "ltr",
+                        "header": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "導演及演員",
+                                    "size": "xl",
+                                    "align": "start",
+                                    "weight": "bold"
+                                }
+                            ]
+                        },
+                        "hero": {
+                            "type": "image",
+                            "url": actorImgURL[index],
+                            "size": "full",
+                            "aspectRatio": "3:4",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": actorNameCN[index],
+                                    "size": "xl",
+                                    "weight": "bold"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": actorNameEN[index],
+                                    "size": "xl"
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "uri",
+                                        "label": "演員介紹",
+                                        "uri": "https://linecorp.com"
+                                    }
+                                }
+                            ]
+                        }
+                    })
         except:
             actorContents.append({
                 "type": "bubble",

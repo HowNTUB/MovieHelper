@@ -395,7 +395,7 @@ def use_movieurl_get_movieinfo(url):
         )
         # --------------------actor
         try:
-            actorName = [i.text for i in soup.select(".actor_inner h2")]
+            '''actorName = [i.text for i in soup.select(".actor_inner h2")]
             actorNameCN = []
             actorNameEN = []
             for name in actorName:
@@ -417,7 +417,7 @@ def use_movieurl_get_movieinfo(url):
                     'https://i.imgur.com/ioORQOf.jpg') if img["src"] == '/build/images/noavatar.jpg' else actorImgURL.append(img["src"])
             actorContents = []
             for index in range(len(actorNameCN)):
-                if range(len(actorNameCN))==0:
+                if range(len(actorNameCN))==0:'''
                     actorContents.append({
                         "type": "bubble",
                         "direction": "ltr",
@@ -433,7 +433,7 @@ def use_movieurl_get_movieinfo(url):
                         ]
                         }
                     })
-                else:
+                '''else:
                     actorContents.append({
                         "type": "bubble",
                         "direction": "ltr",
@@ -488,7 +488,7 @@ def use_movieurl_get_movieinfo(url):
                                 }
                             ]
                         }
-                    })
+                    })'''
             actor_flex_message = FlexSendMessage(
                 alt_text='actorlist',
                 contents={

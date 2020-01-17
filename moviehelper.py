@@ -398,29 +398,22 @@ def use_movieurl_get_movieinfo(url):
             actorName = [i.text for i in soup.select(".actor_inner h2")]
             actorNameCN = []
             actorNameEN = []
-            for name in actorName:
-                name = name.split()
-                actorNameCN.append(name[0])
-                if len(name) >= 3:
-                    ENname = ''
-                    for index in range(len(name))[1:]:
-                        ENname += ' '+name[index]
-                    actorNameEN.append(ENname)
-                elif len(name) == 2:
-                    actorNameEN.append(name[1])
-                else:
-                    actorNameEN.append(' ')
-            actorImg = [i["src"] for i in soup.select(
-                "._slickcontent .fotoinner img")]
-            '''
-            actorImgURL = []
-            if len(actorImg)!=0:
-                for img in actorImg:
-                    actorImgURL.append(
-                        'https://i.imgur.com/ioORQOf.jpg') if img["src"] == '/build/images/noavatar.jpg' else actorImgURL.append(img["src"])
-            '''
+            if len(actorName)>0:
+                for name in actorName:
+                    name = name.split()
+                    actorNameCN.append(name[0])
+                    if len(name) >= 3:
+                        ENname = ''
+                        for index in range(len(name))[1:]:
+                            ENname += ' '+name[index]
+                        actorNameEN.append(ENname)
+                    elif len(name) == 2:
+                        actorNameEN.append(name[1])
+                    else:
+                        actorNameEN.append(' ')
+                actorImg = [i["src"] for i in soup.select(
+                    "._slickcontent .fotoinner img")]
             actorContents = []
-
             for index in range(len(actorNameCN)):
                 print(len(actorNameCN))
                 if len(actorNameCN) == 0:

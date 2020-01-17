@@ -410,14 +410,15 @@ def use_movieurl_get_movieinfo(url):
                     actorNameEN.append(name[1])
                 else:
                     actorNameEN.append(' ')
-            actorImg = [i for i in soup.select(
+            actorImg = [i["src"] for i in soup.select(
                 "._slickcontent .fotoinner img")]
+            '''
             actorImgURL = []
             if len(actorImg)!=0:
                 for img in actorImg:
                     actorImgURL.append(
                         'https://i.imgur.com/ioORQOf.jpg') if img["src"] == '/build/images/noavatar.jpg' else actorImgURL.append(img["src"])
-
+            '''
             actorContents = []
 
             for index in range(len(actorNameCN)):
@@ -457,7 +458,7 @@ def use_movieurl_get_movieinfo(url):
                         },
                         "hero": {
                             "type": "image",
-                            "url": actorImgURL[index],
+                            "url": actorImg[index],
                             "size": "full",
                             "aspectRatio": "3:4",
                             "aspectMode": "cover"

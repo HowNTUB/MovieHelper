@@ -420,23 +420,6 @@ def use_movieurl_get_movieinfo(url):
             actorContents = []
 
             for index in range(len(actorNameCN)):
-                if len(actorNameCN) == 0:
-                    actorContents.append({
-                        "type": "bubble",
-                        "direction": "ltr",
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "無導演與演員資料",
-                                    "align": "center"
-                                }
-                            ]
-                        }
-                    })
-            else:
                 actorContents.append({
                     "type": "bubble",
                     "direction": "ltr",
@@ -500,7 +483,21 @@ def use_movieurl_get_movieinfo(url):
                 }
             )
         except:
-            actor_flex_message = TextSendMessage(text='沒有導演與演員的資訊。')
+            actorContents.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "無導演與演員資料",
+                            "align": "center"
+                        }
+                    ]
+                }
+            })
         movieStills = [i for i in soup.select(".imglist img")]
         movieStillsUrl = []
         for img in movieStills:

@@ -415,7 +415,7 @@ def use_movieurl_get_movieinfo(url):
             for img in actorImg:
                 actorImgURL.append(
                     'https://i.imgur.com/ioORQOf.jpg') if img["src"] == '/build/images/noavatar.jpg' else actorImgURL.append(img["src"])
-            actorContents = []
+            '''actorContents = []'''
             for index in range(len(actorNameCN)):
                 if range(len(actorNameCN))==0:'''
                     actorContents.append({

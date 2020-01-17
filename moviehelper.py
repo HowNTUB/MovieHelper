@@ -394,7 +394,7 @@ def use_movieurl_get_movieinfo(url):
             }
         )
         # --------------------actor
-        try:
+        '''try:
             actorName = [i.text for i in soup.select(".actor_inner h2")]
             actorNameCN = []
             actorNameEN = []
@@ -502,7 +502,7 @@ def use_movieurl_get_movieinfo(url):
         movieStillsUrl = []
         for img in movieStills:
             movieStillsUrl.append(img["src"])
-
+'''
         print(movieStillsUrl)
         movieStillsContent = []
         cnt = 0
@@ -603,7 +603,7 @@ def use_movieurl_get_movieinfo(url):
             }
         )
 
-        return(info_flex_message, actor_flex_message, movieStills_flex_message, article_flex_message)
+        return(info_flex_message''', actor_flex_message,''' movieStills_flex_message, article_flex_message)
         # --------------------
     except Exception as e:
         print(str(e))

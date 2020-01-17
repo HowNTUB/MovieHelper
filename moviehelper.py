@@ -239,7 +239,7 @@ def use_movieurl_get_movieinfo(url):
         for tag in movieTag:
             movieTagContent.append({
                 "type": "text",
-                "text": tag+'　',
+                "text": tag+'　　',
                 "flex": 0,
                 "weight": "bold",
                 "color": "#000C3B"
@@ -417,61 +417,78 @@ def use_movieurl_get_movieinfo(url):
                     'https://i.imgur.com/ioORQOf.jpg') if img["src"] == '/build/images/noavatar.jpg' else actorImgURL.append(img["src"])
             actorContents = []
             for index in range(len(actorNameCN)):
-                actorContents.append({
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "header": {
+                if range(len(actorNameCN))==0:
+                    actorContents.append({
+                        "type": "bubble",
+                        "direction": "ltr",
+                        "body": {
                         "type": "box",
                         "layout": "vertical",
                         "contents": [
                             {
-                                "type": "text",
-                                "text": "導演及演員",
-                                "size": "xl",
-                                "align": "start",
-                                "weight": "bold"
+                            "type": "text",
+                            "text": "無導演與演員資料",
+                            "align": "center"
                             }
                         ]
-                    },
-                    "hero": {
-                        "type": "image",
-                        "url": actorImgURL[index],
-                        "size": "full",
-                        "aspectRatio": "3:4",
-                        "aspectMode": "cover"
-                    },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": actorNameCN[index],
-                                "size": "xl",
-                                "weight": "bold"
-                            },
-                            {
-                                "type": "text",
-                                "text": actorNameEN[index],
-                                "size": "xl"
-                            }
-                        ]
-                    },
-                    "footer": {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "contents": [
-                            {
-                                "type": "button",
-                                "action": {
-                                    "type": "uri",
-                                    "label": "演員介紹",
-                                    "uri": "https://linecorp.com"
+                        }
+                    })
+                else:
+                    actorContents.append({
+                        "type": "bubble",
+                        "direction": "ltr",
+                        "header": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "導演及演員",
+                                    "size": "xl",
+                                    "align": "start",
+                                    "weight": "bold"
                                 }
-                            }
-                        ]
-                    }
-                })
+                            ]
+                        },
+                        "hero": {
+                            "type": "image",
+                            "url": actorImgURL[index],
+                            "size": "full",
+                            "aspectRatio": "3:4",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": actorNameCN[index],
+                                    "size": "xl",
+                                    "weight": "bold"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": actorNameEN[index],
+                                    "size": "xl"
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "uri",
+                                        "label": "演員介紹",
+                                        "uri": "https://linecorp.com"
+                                    }
+                                }
+                            ]
+                        }
+                    })
             actor_flex_message = FlexSendMessage(
                 alt_text='actorlist',
                 contents={

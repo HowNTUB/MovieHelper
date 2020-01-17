@@ -398,6 +398,7 @@ def use_movieurl_get_movieinfo(url):
             actorName = [i.text for i in soup.select(".actor_inner h2")]
             actorNameCN = []
             actorNameEN = []
+            print(actorName)
             if len(actorName)>0:
                 for name in actorName:
                     name = name.split()

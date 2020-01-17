@@ -410,7 +410,8 @@ def use_movieurl_get_movieinfo(url):
                     actorNameEN.append(name[1])
                 else:
                     actorNameEN.append(' ')
-            actorImg = [i for i in soup.select("._slickcontent .fotoinner img")]
+            actorImg = [i for i in soup.select(
+                "._slickcontent .fotoinner img")]
             actorImgURL = []
             for img in actorImg:
                 actorImgURL.append(
@@ -420,22 +421,22 @@ def use_movieurl_get_movieinfo(url):
             '''
             for index in range(len(actorNameCN)):
                 if range(len(actorNameCN))==0:'''
-                    actorContents.append({
-                        "type": "bubble",
-                        "direction": "ltr",
-                        "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
+            actorContents.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
                             "type": "text",
                             "text": "無導演與演員資料",
                             "align": "center"
-                            }
-                        ]
                         }
-                    })
-                '''else:
+                    ]
+                }
+            })
+            '''else:
                     actorContents.append({
                         "type": "bubble",
                         "direction": "ltr",
@@ -537,63 +538,63 @@ def use_movieurl_get_movieinfo(url):
         articleImg = [i['src'] for i in soup.select("#native_ad_target img")]
         articleURL = [i['href'] for i in soup.select("#native_ad_target li a")]
 
-        articleContents=[]
+        articleContents = []
         for index in range(len((articleTitle))):
             articleContents.append({
                 "type": "bubble",
                 "direction": "ltr",
                 "header": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "相關文章",
-                    "size": "xl",
-                    "align": "start",
-                    "weight": "bold"
-                    }
-                ]
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "相關文章",
+                            "size": "xl",
+                            "align": "start",
+                            "weight": "bold"
+                        }
+                    ]
                 },
                 "hero": {
-                "type": "image",
-                "url": articleImg[index],
-                "size": "full",
-                "aspectRatio": "3:4",
-                "aspectMode": "cover"
+                    "type": "image",
+                    "url": articleImg[index],
+                    "size": "full",
+                    "aspectRatio": "3:4",
+                    "aspectMode": "cover"
                 },
                 "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": articleTitle[index],
-                    "align": "center",
-                    "weight": "bold",
-                    "wrap": True
-                    },
-                    {
-                    "type": "text",
-                    "text": articleContent[index],
-                    "size": "sm",
-                    "wrap": True
-                    }
-                ]
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": articleTitle[index],
+                            "align": "center",
+                            "weight": "bold",
+                            "wrap": True
+                        },
+                        {
+                            "type": "text",
+                            "text": articleContent[index],
+                            "size": "sm",
+                            "wrap": True
+                        }
+                    ]
                 },
                 "footer": {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                    {
-                    "type": "button",
-                    "action": {
-                        "type": "uri",
-                        "label": "詳全文（yahoo電影）",
-                        "uri": articleURL[index]
-                    }
-                    }
-                ]
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "label": "詳全文（yahoo電影）",
+                                "uri": articleURL[index]
+                            }
+                        }
+                    ]
                 }
             })
 

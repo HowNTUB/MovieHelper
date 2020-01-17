@@ -475,13 +475,6 @@ def use_movieurl_get_movieinfo(url):
                         ]
                     }
                 })
-            actor_flex_message = FlexSendMessage(
-                alt_text='actorlist',
-                contents={
-                    "type": "carousel",
-                    "contents": actorContents
-                }
-            )
         except:
             actorContents.append({
                 "type": "bubble",
@@ -498,6 +491,16 @@ def use_movieurl_get_movieinfo(url):
                     ]
                 }
             })
+        
+        actor_flex_message = FlexSendMessage(
+            alt_text='actorlist',
+            contents={
+                "type": "carousel",
+                "contents": actorContents
+            }
+        )
+        
+
         movieStills = [i for i in soup.select(".imglist img")]
         movieStillsUrl = []
         for img in movieStills:

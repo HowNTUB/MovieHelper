@@ -64,8 +64,7 @@ def handle_message(event):
             ]
         )
     else:
-        movielist, articlelist = use_moviename_serch_movielist(
-            event.message.text)
+        movielist, articlelist = use_moviename_serch_movielist(event.message.text)
         line_bot_api.reply_message(event.reply_token, [movielist, articlelist])
 
 

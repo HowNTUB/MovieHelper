@@ -200,7 +200,7 @@ def use_moviename_serch_movielist(movieName):
 
     if soup.select_one(".fotoinner img") == None:
         article_flex_message = FlexSendMessage(
-            alt_text='movielist',
+            alt_text='notfound',
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -218,14 +218,14 @@ def use_moviename_serch_movielist(movieName):
             }
         )
     else:
-        articleTitle = [i.text for i in soup.select("h2")][:10]
-        articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")][:10]
-        articleImg = [i['src'] for i in soup.select(".fotoinner img")][:10]
-        articleURL = [i['href'] for i in soup.select(".nlist li a")][:10]
-        articleDate = [i.text for i in soup.select(".day")][:10]
+        articleTitle = [i.text for i in soup.select("h2")][:9]
+        articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")][:9]
+        articleImg = [i['src'] for i in soup.select(".fotoinner img")][:9]
+        articleURL = [i['href'] for i in soup.select(".nlist li a")][:9]
+        articleDate = [i.text for i in soup.select(".day")][:9]
 
         articleContents = []
-        for index in range(len((articleTitle))):
+        for index in range(len(articleTitle)):
             articleContents.append({
                 "type": "bubble",
                 "direction": "ltr",
@@ -293,8 +293,6 @@ def use_moviename_serch_movielist(movieName):
         )
 
     return(movie_flex_message, article_flex_message)
-    
-
 
 def use_movieurl_get_movieinfo(url):
     try:

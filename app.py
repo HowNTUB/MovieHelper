@@ -68,6 +68,7 @@ def handle_message(event):
             text_message = TextSendMessage(text=notfind)
             line_bot_api.reply_message(event.reply_token,text_message)
         except:
+            print("error")
 
 
 # ---------------------------------------------------------------

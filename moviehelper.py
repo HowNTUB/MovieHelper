@@ -524,7 +524,6 @@ def use_movieurl_get_movieinfo(url):
                         actorNameEN.append(' ')
                 actorImg = [i["src"] for i in soup.select(
                     "._slickcontent .fotoinner img")]
-            actorNameCN = actorNameCN[:10]
             for index in range(len(actorNameCN)):
                 actorContents.append({
                     "type": "bubble",

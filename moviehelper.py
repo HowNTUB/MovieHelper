@@ -5,26 +5,28 @@ from linebot.models import *
 
 
 def use_moviename_serch_movielist(movieName):
-    try:
-        # 中文轉URL格式編碼
-        urlname = parse.quote(movieName)
-        # 電影清單URL
-        movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + \
-            urlname + '&type=movie'
-        headers = {}
-        headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-        req = request.Request(movieURL, headers=headers)
-        resp = request.urlopen(req)
-        respData = str(resp.read().decode('utf-8'))
-        soup = BeautifulSoup(respData, "html.parser")
-        # movieNameCN 中文名
-        # movieNameEN 英文名
-        # movieExpectation 期待值
-        # movieSatisfactoryDegree 滿意度
-        # moviePoster 海報
-        # movieReleaseTime 上映時間
-        # movieDetailUrl 詳細資訊網址
-        movieInfo = [i.text for i in soup.select(".release_info")]
+    # 中文轉URL格式編碼
+    urlname = parse.quote(movieName)
+    # 電影清單URL
+    movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + \
+        urlname + '&type=movie'
+    headers = {}
+    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+    req = request.Request(movieURL, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))
+    soup = BeautifulSoup(respData, "html.parser")
+    # movieNameCN 中文名
+    # movieNameEN 英文名
+    # movieExpectation 期待值
+    # movieSatisfactoryDegree 滿意度
+    # moviePoster 海報
+    # movieReleaseTime 上映時間
+    # movieDetailUrl 詳細資訊網址
+    movieInfo = [i.text for i in soup.select(".release_info")]
+    if soup.select_one(".release_movie_name > a") == '':
+        return TextSendMessage(text='沒有找到相關資料')
+    else:
         movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
         movieNameEN = [i.text for i in soup.select(".en a")]
         movieExpectation = [i.text for i in soup.select("#content_l dt span")]
@@ -196,9 +198,6 @@ def use_moviename_serch_movielist(movieName):
         # 回復
         return(flex_message)
 
-    except:
-        print('沒查到')
-        return TextSendMessage(text='沒有找到 ' + movieName + ' 的相關資訊')
 
 
 def use_movieurl_get_movieinfo(url):

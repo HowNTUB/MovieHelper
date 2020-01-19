@@ -206,6 +206,8 @@ def use_moviename_serch_movielist(movieName):
                         for i in soup.select("#content_l .text_truncate_dot")]
     articleImg = [i['src'] for i in soup.select(".fotoinner img")]
     articleURL = [i['href'] for i in soup.select(".nlist li a")]
+    
+    print(articleTitle + '\n' + articleContent + '\n' + articleImg + '\n' + articleURL)
 
     articleContents = []
     for index in range(len((articleTitle))):

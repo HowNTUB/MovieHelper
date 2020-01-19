@@ -208,7 +208,7 @@ def use_moviename_serch_movielist(movieName):
     resp = request.urlopen(req)
     respData = str(resp.read().decode('utf-8'))
     soup = BeautifulSoup(respData, "html.parser")
-
+    print(soup)
     if soup.select_one(".fotoinner img") == None:
         article_flex_message = FlexSendMessage(
             alt_text='movielist',
@@ -297,6 +297,8 @@ def use_moviename_serch_movielist(movieName):
                         ]
                     }
                 })
+            else:
+                break
 
         article_flex_message = FlexSendMessage(
             alt_text='articlelist',

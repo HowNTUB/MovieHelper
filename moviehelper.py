@@ -5,44 +5,28 @@ from linebot.models import *
 
 
 def use_moviename_serch_movielist(movieName):
-    # 中文轉URL格式編碼
-    urlname = parse.quote(movieName)
-    # 電影清單URL
-    movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + \
-        urlname + '&type=movie'
-    headers = {}
-    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-    req = request.Request(movieURL, headers=headers)
-    resp = request.urlopen(req)
-    respData = str(resp.read().decode('utf-8'))
-    soup = BeautifulSoup(respData, "html.parser")
-    # movieNameCN 中文名
-    # movieNameEN 英文名
-    # movieExpectation 期待值
-    # movieSatisfactoryDegree 滿意度
-    # moviePoster 海報
-    # movieReleaseTime 上映時間
-    # movieDetailUrl 詳細資訊網址
-    contents = []
-    movieInfo = [i.text for i in soup.select(".release_info")]
-    if soup.select_one(".release_movie_name > a") == '':
-        print('ifififif')
-        contents.append({
-            "type": "bubble",
-            "direction": "ltr",
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": "無找到"+movieName+"的相關資料",
-                        "align": "center"
-                    }
-                ]
-            }
-        })
-    else:
+    try:
+        # 中文轉URL格式編碼
+        urlname = parse.quote(movieName)
+        # 電影清單URL
+        movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + \
+            urlname + '&type=movie'
+        headers = {}
+        headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+        req = request.Request(movieURL, headers=headers)
+        resp = request.urlopen(req)
+        respData = str(resp.read().decode('utf-8'))
+        soup = BeautifulSoup(respData, "html.parser")
+        # movieNameCN 中文名
+        # movieNameEN 英文名
+        # movieExpectation 期待值
+        # movieSatisfactoryDegree 滿意度
+        # moviePoster 海報
+        # movieReleaseTime 上映時間
+        # movieDetailUrl 詳細資訊網址
+        
+        movieInfo = [i.text for i in soup.select(".release_info")]
+    
         movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
         movieNameEN = [i.text for i in soup.select(".en a")]
         movieExpectation = [i.text for i in soup.select("#content_l dt span")]
@@ -62,7 +46,9 @@ def use_moviename_serch_movielist(movieName):
         movieDetailUrl = []
         for url in movieDetail:
             movieDetailUrl.append(url["href"])
+
         # 內容轉為json格式
+        contents = []
         for index in range(len(movieNameCN)):
             contents.append({
                 "type": "bubble",
@@ -202,7 +188,7 @@ def use_moviename_serch_movielist(movieName):
                     ]
                 }
             })
-        # 彈性訊息
+        # 回復
         flex_message = FlexSendMessage(
             alt_text='movielist',
             contents={
@@ -210,15 +196,28 @@ def use_moviename_serch_movielist(movieName):
                 "contents": contents
             }
         )
-        # 回復
-    flex_message = FlexSendMessage(
-        alt_text='movielist',
-        contents={
-            "type": "carousel",
-            "contents": contents
-        }
-    )
-    return(flex_message)
+        return(flex_message)
+    except:
+        print('error')
+        flex_message = FlexSendMessage(
+            alt_text='movielist',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "無找到"+movieName+"的相關資料",
+                            "align": "center"
+                        }
+                    ]
+                }
+            }
+        )
+        return(flex_message)
 
 
 def use_movieurl_get_movieinfo(url):

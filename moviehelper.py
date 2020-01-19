@@ -212,7 +212,7 @@ def use_movieurl_get_movieinfo(url):
 
         # --------------------moviePoster
         moviePoster = soup.select_one(".movie_intro_foto img")["src"]
-        moviePoster_message = ImageSendMessage(
+        moviePoster_image_message = ImageSendMessage(
             original_content_url=moviePoster,
             preview_image_url=moviePoster
         )
@@ -403,6 +403,7 @@ def use_movieurl_get_movieinfo(url):
         # --------------------story
         story = soup.select_one("#story")
         story_text_message = TextSendMessage(text=story)
+        print(story)
         # --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]
         actorContents = []
@@ -425,7 +426,6 @@ def use_movieurl_get_movieinfo(url):
         else:
             actorNameCN = []
             actorNameEN = []
-            print(actorName)
             if len(actorName) > 0:
                 for name in actorName:
                     name = name.split()
@@ -538,6 +538,7 @@ def use_movieurl_get_movieinfo(url):
             }
         )
         
+        # --------------------article
         articleTitle = [i.text for i in soup.select("#native_ad_target h2")]
         articleContent = [i.text[21:-17]
                           for i in soup.select(".jq_text_overflow_link")]
@@ -611,7 +612,10 @@ def use_movieurl_get_movieinfo(url):
                 "contents": articleContents
             }
         )
-        return(moviePoster_message, info_flex_message, story_text_message, actor_flex_message, movieStills_flex_message, article_flex_message)
+
+
+
+        return(moviePoster_image_message, info_flex_message, story_text_message, actor_flex_message, movieStills_flex_message, article_flex_message)
         # --------------------
     except Exception as e:
         print(str(e))

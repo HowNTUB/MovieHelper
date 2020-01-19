@@ -59,6 +59,8 @@ def handle_message(event):
             TextSendMessage(text='Hello World!'),
             TextSendMessage(text='Hello World!'),
             TextSendMessage(text='Hello World!'),
+            TextSendMessage(text='Hello World!'),
+            TextSendMessage(text='Hello World!'),
             TextSendMessage(text='Hello World!')
             ]
         )

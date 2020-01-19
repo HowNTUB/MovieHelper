@@ -43,11 +43,11 @@ def callback():
 # 處理訊息
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    print(event.postback.data)
-    moviePosterContant, infoContant, storyContant, actorContant, stillsContant = use_movieurl_get_movieinfo(
-        event.postback.data)
-    line_bot_api.reply_message(
-        event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
+    if event.postback.data[:43] == 'https://movies.yahoo.com.tw/movieinfo_main/':
+        moviePosterContant, infoContant, storyContant, actorContant, stillsContant = use_movieurl_get_movieinfo(
+            event.postback.data)
+        line_bot_api.reply_message(
+            event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

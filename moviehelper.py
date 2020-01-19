@@ -406,7 +406,7 @@ def use_movieurl_get_movieinfo(url):
             br.insert_after("\n")
             br.unwrap()
         story = story.text[:-10]
-        story_text_message = TextSendMessage(text='story')
+        story_text_message = TextSendMessage(text=story)
 
         # --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]

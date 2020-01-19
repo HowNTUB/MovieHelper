@@ -401,7 +401,7 @@ def use_movieurl_get_movieinfo(url):
             }
         )
         # --------------------story
-        story = soup.select_one("#story").text
+        story = (soup.select_one("#story").text)[:254]
         story_text_message = FlexSendMessage(
             alt_text='storyMessage',
             contents={

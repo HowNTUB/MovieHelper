@@ -400,6 +400,9 @@ def use_movieurl_get_movieinfo(url):
                 }
             }
         )
+        # --------------------story
+        story = soup.select_one("#story")
+        story_text_message = TextSendMessage(text=story)
         # --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]
         actorContents = []
@@ -608,7 +611,7 @@ def use_movieurl_get_movieinfo(url):
                 "contents": articleContents
             }
         )
-        return(moviePoster_message, info_flex_message, actor_flex_message, movieStills_flex_message, article_flex_message)
+        return(moviePoster_message, info_flex_message, story_text_message, actor_flex_message, movieStills_flex_message, article_flex_message)
         # --------------------
     except Exception as e:
         print(str(e))

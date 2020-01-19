@@ -53,18 +53,9 @@ def use_moviename_serch_movielist(movieName):
         for info in movieInfo:
             movieSatisfactoryDegree.append('未上映') if info.find(
                 "滿意度") == -1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
-        movieImg = [i for i in soup.select(".release_foto img")]
-        moviePoster = []
-        for img in movieImg:
-            moviePoster.append(img["src"])
-        movieReleaseTimeStr = [i.text for i in soup.select(".time")]
-        movieReleaseTime = []
-        for date in movieReleaseTimeStr:
-            movieReleaseTime.append(date[7:])
-        movieDetail = [i for i in soup.select(".release_movie_name > a")]
-        movieDetailUrl = []
-        for url in movieDetail:
-            movieDetailUrl.append(url["href"])
+        moviePoster = [i["src"] for i in soup.select(".release_foto img")]
+        movieReleaseTime = [(i.text)[7:] for i in soup.select(".time")]
+        movieDetailUrl = [i["href"] for i in soup.select(".release_movie_name > a")]
 
         # 內容轉為json格式
         contents = []
@@ -223,12 +214,6 @@ def use_moviename_serch_movielist(movieName):
         articleImg = [i['src'] for i in soup.select("#content_l img")][:10]
         articleURL = [i['href'] for i in soup.select(".news_content a")][:10]
         articleDate = [i.text for i in soup.select(".day")][:10]
-
-        print(len(articleTitle))
-        print(articleContent[0])
-        print(articleImg[0])
-        print(articleURL[0])
-        print(articleDate[0])
 
         articleContents = []
         for index in range(len(articleTitle)):

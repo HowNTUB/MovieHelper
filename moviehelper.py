@@ -523,8 +523,8 @@ def use_movieurl_get_movieinfo(url):
                         actorNameEN.append(name[1])
                     else:
                         actorNameEN.append(' ')
-                actorImg = [i["src"] for i in soup.select(
-                    "._slickcontent .fotoinner img")]
+                    actorImg = [i["src"] for i in soup.select(
+                        "._slickcontent .fotoinner img")]
             
             for index in range(len(actorNameCN)):
                 actorContents.append({
@@ -613,6 +613,8 @@ def use_movieurl_get_movieinfo(url):
                         "aspectMode": "cover"
                     }
                 })
+            else:
+                break
 
         movieStills_flex_message = FlexSendMessage(
             alt_text='movieStillslist',

@@ -44,12 +44,22 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_postback(event):
     print(event.postback.data)
-    infoContant, actorContant, stillsContant, articleContents = use_movieurl_get_movieinfo(event.postback.data)
-    line_bot_api.reply_message(event.reply_token,[infoContant, actorContant, stillsContant, articleContents])
+    infoContant, actorContant, stillsContant, articleContents = use_movieurl_get_movieinfo(
+        event.postback.data)
+    line_bot_api.reply_message(
+        event.reply_token, [infoContant, actorContant, stillsContant, articleContents])
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if event.message.text=='近期上映':
+    if event.message.text == '近期上映':
+
+        line_bot_api.reply_message(
+            event.reply_token, [
+            TextSendMessage(text='Hello World!')
+            ]
+        )
+        '''
         text_message = TextSendMessage(text='近期上映的電影清單')
         line_bot_api.reply_message(
             event.reply_token, [
@@ -60,6 +70,7 @@ def handle_message(event):
             TextSendMessage(text='Hello World!')
             ]
         )
+        '''
     else:
         try:
             line_bot_api.reply_message(event.reply_token,use_moviename_serch_movielist(event.message.text))

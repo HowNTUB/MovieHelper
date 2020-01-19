@@ -199,9 +199,17 @@ def use_moviename_serch_movielist(movieName):
                 "contents": contents
             }
         )
-    return(movie_flex_message)
-'''
     # --------------------article
+    
+
+    movieURL = 'https://movies.yahoo.com.tw/tagged/' + urlname
+    headers = {}
+    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+    req = request.Request(movieURL, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))
+    soup = BeautifulSoup(respData, "html.parser")
+
     articleTitle = [i.text for i in soup.select("h2")]
     articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")]
     articleImg = [i['src'] for i in soup.select(".fotoinner img")]
@@ -275,8 +283,8 @@ def use_moviename_serch_movielist(movieName):
             "contents": articleContents
         }
     )
-, article_flex_message
-    '''
+
+    return(movie_flex_message, article_flex_message)
     
 
 

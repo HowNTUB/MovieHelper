@@ -224,6 +224,12 @@ def use_moviename_serch_movielist(movieName):
         articleURL = [i['href'] for i in soup.select(".nlist li a")][:9]
         articleDate = [i.text for i in soup.select(".day")][:9]
 
+        print(len(articleTitle))
+        print(articleContent[0])
+        print(articleImg[0])
+        print(articleURL[0])
+        print(articleDate[0])
+
         articleContents = []
         for index in range(len(articleTitle)):
             articleContents.append({

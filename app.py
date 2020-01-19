@@ -66,9 +66,25 @@ def handle_message(event):
         
             notfind = '沒有找到 ' + event.message.text + ' 相關的資訊'
             text_message = TextSendMessage(text=notfind)
-            line_bot_api.reply_message(event.reply_token,text_message)
+            line_bot_api.reply_message(
+                event.reply_token, [
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!')
+                ]
+            )
         except:
-            print("error")
+            line_bot_api.reply_message(
+                event.reply_token, [
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!')
+                ]
+            )
 
 
 # ---------------------------------------------------------------

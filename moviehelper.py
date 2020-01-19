@@ -5,28 +5,47 @@ from linebot.models import *
 
 
 def use_moviename_serch_movielist(movieName):
-    try:
-        # 中文轉URL格式編碼
-        urlname = parse.quote(movieName)
-        # 電影清單URL
-        movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + \
-            urlname + '&type=movie'
-        headers = {}
-        headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-        req = request.Request(movieURL, headers=headers)
-        resp = request.urlopen(req)
-        respData = str(resp.read().decode('utf-8'))
-        soup = BeautifulSoup(respData, "html.parser")
-        # movieNameCN 中文名
-        # movieNameEN 英文名
-        # movieExpectation 期待值
-        # movieSatisfactoryDegree 滿意度
-        # moviePoster 海報
-        # movieReleaseTime 上映時間
-        # movieDetailUrl 詳細資訊網址
-        
-        movieInfo = [i.text for i in soup.select(".release_info")]
+    # 中文轉URL格式編碼
+    urlname = parse.quote(movieName)
+    # 電影清單URL
+    movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + \
+        urlname + '&type=movie'
+    headers = {}
+    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+    req = request.Request(movieURL, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))
+    soup = BeautifulSoup(respData, "html.parser")
+    # movieNameCN 中文名
+    # movieNameEN 英文名
+    # movieExpectation 期待值
+    # movieSatisfactoryDegree 滿意度
+    # moviePoster 海報
+    # movieReleaseTime 上映時間
+    # movieDetailUrl 詳細資訊網址
     
+    if soup.select_one(".release_movie_name > a") == None:
+        flex_message = FlexSendMessage(
+            alt_text='movielist',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "無找到"+movieName+"的相關資料",
+                            "align": "center"
+                        }
+                    ]
+                }
+            }
+        )
+        return flex_message
+    else:        
+        movieInfo = [i.text for i in soup.select(".release_info")]
         movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
         movieNameEN = [i.text for i in soup.select(".en a")]
         movieExpectation = [i.text for i in soup.select("#content_l dt span")]
@@ -196,27 +215,6 @@ def use_moviename_serch_movielist(movieName):
                 "contents": contents
             }
         )
-    except:
-        print('error')
-        flex_message = FlexSendMessage(
-            alt_text='movielist',
-            contents={
-                "type": "bubble",
-                "direction": "ltr",
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "無找到"+movieName+"的相關資料",
-                            "align": "center"
-                        }
-                    ]
-                }
-            }
-        )
-    finally:
         return(flex_message)
 
 

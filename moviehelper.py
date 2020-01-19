@@ -406,39 +406,7 @@ def use_movieurl_get_movieinfo(url):
             br.insert_after("\n")
             br.unwrap()
         story = story.text[:-10]
-        story_text_message = FlexSendMessage(
-            alt_text='storyMessage',
-            contents={
-                "type": "bubble",
-                "direction": "ltr",
-                "header": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "故事",
-                            "size": "xl",
-                            "align": "start",
-                            "weight": "bold"
-                        }
-                    ]
-                },
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": story,
-                            "size": "sm",
-                            "align": "center",
-                            "wrap": True
-                        }
-                    ]
-                }
-            }
-        )
+        story_text_message = TextSendMessage(text='story')
 
         # --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]

@@ -196,7 +196,8 @@ def use_moviename_serch_movielist(movieName):
         # 回復
         return(flex_message)
 
-    except Exception as e:
+    except:
+        print('沒查到')
         return TextSendMessage(text='沒有找到 ' + movieName + ' 的相關資訊')
 
 

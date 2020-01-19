@@ -24,6 +24,7 @@ def use_moviename_serch_movielist(movieName):
     # movieReleaseTime 上映時間
     # movieDetailUrl 詳細資訊網址
 
+    # --------------------movie list
     if soup.select_one(".release_movie_name > a") == None:
         flex_message = FlexSendMessage(
             alt_text='movielist',
@@ -191,14 +192,91 @@ def use_moviename_serch_movielist(movieName):
                 }
             })
         # 回復
-        flex_message = FlexSendMessage(
+        movie_flex_message = FlexSendMessage(
             alt_text='movielist',
             contents={
                 "type": "carousel",
                 "contents": contents
             }
         )
-    return(flex_message)
+
+    # --------------------article
+    articleTitle = [i.text for i in soup.select("h2")]
+    articleContent = [i.text[21:-17]
+                        for i in soup.select("#content_l .text_truncate_dot")]
+    articleImg = [i['src'] for i in soup.select(".fotoinner img")]
+    articleURL = [i['href'] for i in soup.select(".nlist li a")]
+
+    articleContents = []
+    for index in range(len((articleTitle))):
+        articleContents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "相關文章",
+                        "size": "xl",
+                        "align": "start",
+                        "weight": "bold"
+                    }
+                ]
+            },
+            "hero": {
+                "type": "image",
+                "url": articleImg[index],
+                "size": "full",
+                "aspectRatio": "3:4",
+                "aspectMode": "cover"
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": articleTitle[index],
+                        "align": "center",
+                        "weight": "bold",
+                        "wrap": True
+                    },
+                    {
+                        "type": "text",
+                        "text": articleContent[index],
+                        "size": "sm",
+                        "wrap": True
+                    }
+                ]
+            },
+            "footer": {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": "詳全文（yahoo電影）",
+                            "uri": articleURL[index]
+                        }
+                    }
+                ]
+            }
+        })
+
+    article_flex_message = FlexSendMessage(
+        alt_text='movieStillslist',
+        contents={
+            "type": "carousel",
+            "contents": articleContents
+        }
+    )
+
+
+    return(movie_flex_message, article_flex_message)
 
 
 def use_movieurl_get_movieinfo(url):
@@ -550,80 +628,3 @@ def use_movieurl_get_movieinfo(url):
     except Exception as e:
         print(str(e))
 
-
-'''
-# --------------------article
-        articleTitle = [i.text for i in soup.select("#native_ad_target h2")]
-        articleContent = [i.text[21:-17]
-                          for i in soup.select(".jq_text_overflow_link")]
-        articleImg = [i['src'] for i in soup.select("#native_ad_target img")]
-        articleURL = [i['href'] for i in soup.select("#native_ad_target li a")]
-
-        articleContents = []
-        for index in range(len((articleTitle))):
-            articleContents.append({
-                "type": "bubble",
-                "direction": "ltr",
-                "header": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "相關文章",
-                            "size": "xl",
-                            "align": "start",
-                            "weight": "bold"
-                        }
-                    ]
-                },
-                "hero": {
-                    "type": "image",
-                    "url": articleImg[index],
-                    "size": "full",
-                    "aspectRatio": "3:4",
-                    "aspectMode": "cover"
-                },
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": articleTitle[index],
-                            "align": "center",
-                            "weight": "bold",
-                            "wrap": True
-                        },
-                        {
-                            "type": "text",
-                            "text": articleContent[index],
-                            "size": "sm",
-                            "wrap": True
-                        }
-                    ]
-                },
-                "footer": {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "uri",
-                                "label": "詳全文（yahoo電影）",
-                                "uri": articleURL[index]
-                            }
-                        }
-                    ]
-                }
-            })
-
-        article_flex_message = FlexSendMessage(
-            alt_text='movieStillslist',
-            contents={
-                "type": "carousel",
-                "contents": articleContents
-            }
-        )
-'''

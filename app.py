@@ -61,7 +61,10 @@ def handle_message(event):
             ]
         )
     else:
-        line_bot_api.reply_message(event.reply_token,use_moviename_serch_movielist(event.message.text))
+        try:
+            line_bot_api.reply_message(event.reply_token,use_moviename_serch_movielist(event.message.text))
+        except:
+            line_bot_api.reply_message(event.reply_token,TextMessage(text='沒有找到 ' + event.message.text ' 相關的資訊')
 
 
 # ---------------------------------------------------------------

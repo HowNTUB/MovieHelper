@@ -37,7 +37,7 @@ def use_moviename_serch_movielist(movieName):
                     "contents": [
                         {
                             "type": "text",
-                            "text": "無找到 "+movieName+" 的相關資料",
+                            "text": "無找到 "+movieName+" 的相關電影",
                             "align": "center"
                         }
                     ]
@@ -202,79 +202,102 @@ def use_moviename_serch_movielist(movieName):
     # --------------------article
     
 
-    movieURL = 'https://movies.yahoo.com.tw/tagged/' + urlname
+    articleURL = 'https://movies.yahoo.com.tw/tagged/' + urlname
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-    req = request.Request(movieURL, headers=headers)
+    req = request.Request(articleURL, headers=headers)
     resp = request.urlopen(req)
     respData = str(resp.read().decode('utf-8'))
     soup = BeautifulSoup(respData, "html.parser")
 
-    articleTitle = [i.text for i in soup.select("h2")]
-    articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")]
-    articleImg = [i['src'] for i in soup.select(".fotoinner img")]
-    articleURL = [i['href'] for i in soup.select(".nlist li a")]
-    articleDate = [i.text for i in soup.select(".day")]
-
-    articleContents = []
-    for index in range(len((articleTitle))):
-        articleContents.append({
-            "type": "bubble",
-            "direction": "ltr",
-            "header": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": "相關文章",
-                        "size": "xl",
-                        "align": "start",
-                        "weight": "bold"
-                    }
-                ]
-            },
-            "hero": {
-                "type": "image",
-                "url": articleImg[index],
-                "size": "full",
-                "aspectRatio": "3:4",
-                "aspectMode": "cover"
-            },
-            "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                        "type": "text",
-                        "text": articleTitle[index],
-                        "align": "center",
-                        "weight": "bold",
-                        "wrap": True
-                    },
-                    {
-                        "type": "text",
-                        "text": articleContent[index],
-                        "size": "sm",
-                        "wrap": True
-                    }
-                ]
-            },
-            "footer": {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                    {
-                        "type": "button",
-                        "action": {
-                            "type": "uri",
-                            "label": "詳全文（yahoo電影）",
-                            "uri": articleURL[index]
+    if soup.select_one(".release_movie_name > a") == None:
+        article_flex_message = FlexSendMessage(
+            alt_text='movielist',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "無找到 "+movieName+" 的相關文章",
+                            "align": "center"
                         }
-                    }
-                ]
+                    ]
+                }
             }
-        })
+        )
+    else:
+        articleTitle = [i.text for i in soup.select("h2")]
+        articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")]
+        articleImg = [i['src'] for i in soup.select(".fotoinner img")]
+        articleURL = [i['href'] for i in soup.select(".nlist li a")]
+        articleDate = [i.text for i in soup.select(".day")]
+
+        articleContents = []
+        cnt = 0
+        for index in range(len((articleTitle))):
+            cnt += 1
+            if cnt<=10:
+                articleContents.append({
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "header": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "相關文章",
+                                "size": "xl",
+                                "align": "start",
+                                "weight": "bold"
+                            }
+                        ]
+                    },
+                    "hero": {
+                        "type": "image",
+                        "url": articleImg[index],
+                        "size": "full",
+                        "aspectRatio": "3:4",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": articleTitle[index],
+                                "align": "center",
+                                "weight": "bold",
+                                "wrap": True
+                            },
+                            {
+                                "type": "text",
+                                "text": articleContent[index],
+                                "size": "sm",
+                                "wrap": True
+                            }
+                        ]
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "uri",
+                                    "label": "詳全文（yahoo電影）",
+                                    "uri": articleURL[index]
+                                }
+                            }
+                        ]
+                    }
+                })
 
     article_flex_message = FlexSendMessage(
         alt_text='articlelist',

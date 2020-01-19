@@ -64,10 +64,10 @@ def handle_message(event):
             ]
         )
     else:
-        movielist, articlelist = use_moviename_serch_movielist(
+        movielist = use_moviename_serch_movielist(
             event.message.text)
-        line_bot_api.reply_message(event.reply_token, [movielist, articlelist])
-
+        line_bot_api.reply_message(event.reply_token, [movielist])
+#, articlelist, articlelist
 
 # ---------------------------------------------------------------
 if __name__ == "__main__":

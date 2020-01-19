@@ -199,7 +199,7 @@ def use_moviename_serch_movielist(movieName):
                 "contents": contents
             }
         )
-
+'''
     # --------------------article
     articleTitle = [i.text for i in soup.select("h2")]
     articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")]
@@ -268,15 +268,15 @@ def use_moviename_serch_movielist(movieName):
         })
 
     article_flex_message = FlexSendMessage(
-        alt_text='movieStillslist',
+        alt_text='articlelist',
         contents={
             "type": "carousel",
             "contents": articleContents
         }
     )
-
-
-    return(movie_flex_message, article_flex_message)
+, article_flex_message
+    '''
+    return(movie_flex_message)
 
 
 def use_movieurl_get_movieinfo(url):

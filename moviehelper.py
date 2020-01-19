@@ -414,10 +414,11 @@ def use_movieurl_get_movieinfo(url):
                         actorNameEN.append(' ')
                 actorImg = [i["src"] for i in soup.select(
                     "._slickcontent .fotoinner img")]
+            
             actorContents = []
             for index in range(len(actorNameCN)):
                 print(len(actorNameCN))
-                if len(actorNameCN) == 0:
+                if len(actorName) == 0:
                     actorContents.append({
                         "type": "bubble",
                         "direction": "ltr",
@@ -520,7 +521,6 @@ def use_movieurl_get_movieinfo(url):
         for img in movieStills:
             movieStillsUrl.append(img["src"])
 
-        print(movieStillsUrl)
         movieStillsContent = []
         cnt = 0
         for img in movieStillsUrl:

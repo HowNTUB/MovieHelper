@@ -1,0 +1,14 @@
+(1) (網頁)已下載及安裝Node.js
+(2) 已安裝Heroku CLI, npm install heroku -g
+(3) (網頁)已下載及安裝git CLI
+(4) (網頁)已登入Github
+(5) (網頁)已登入Line Developer
+(6) (網頁)已登入Heroku
+(7) heroku login -i
+(8) git config --global user.email "自己在git的email帳號"
+(9) git init
+(10) heroku git:remote -a [Heroku上的應用程式名稱]
+---------------------------------------------------
+(11) git add .
+(12) git commit -am "myApp"
+(13) git push heroku master -f

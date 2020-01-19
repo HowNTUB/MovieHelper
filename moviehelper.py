@@ -298,13 +298,13 @@ def use_moviename_serch_movielist(movieName):
                     }
                 })
 
-    article_flex_message = FlexSendMessage(
-        alt_text='articlelist',
-        contents={
-            "type": "carousel",
-            "contents": articleContents
-        }
-    )
+        article_flex_message = FlexSendMessage(
+            alt_text='articlelist',
+            contents={
+                "type": "carousel",
+                "contents": articleContents
+            }
+        )
 
     return(movie_flex_message, article_flex_message)
     

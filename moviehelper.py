@@ -41,7 +41,6 @@ def use_moviename_serch_movielist(movieName):
                 ]
             }
         })
-        return contents
     else:
         movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
         movieNameEN = [i.text for i in soup.select(".en a")]
@@ -211,7 +210,14 @@ def use_moviename_serch_movielist(movieName):
             }
         )
         # 回復
-        return(flex_message)
+    flex_message = FlexSendMessage(
+        alt_text='movielist',
+        contents={
+            "type": "carousel",
+            "contents": contents
+        }
+    )
+    return(flex_message)
 
 
 def use_movieurl_get_movieinfo(url):

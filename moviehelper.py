@@ -199,6 +199,7 @@ def use_moviename_serch_movielist(movieName):
                 "contents": contents
             }
         )
+    return(movie_flex_message)
 '''
     # --------------------article
     articleTitle = [i.text for i in soup.select("h2")]
@@ -276,7 +277,7 @@ def use_moviename_serch_movielist(movieName):
     )
 , article_flex_message
     '''
-    return(movie_flex_message)
+    
 
 
 def use_movieurl_get_movieinfo(url):

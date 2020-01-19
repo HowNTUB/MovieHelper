@@ -55,7 +55,8 @@ def use_moviename_serch_movielist(movieName):
                 "滿意度") == -1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
         moviePoster = [i["src"] for i in soup.select(".release_foto img")]
         movieReleaseTime = [(i.text)[7:] for i in soup.select(".time")]
-        movieDetailUrl = [i["href"] for i in soup.select(".release_movie_name > a")]
+        movieDetailUrl = [i["href"]
+                          for i in soup.select(".release_movie_name > a")]
 
         # 內容轉為json格式
         contents = []
@@ -210,7 +211,8 @@ def use_moviename_serch_movielist(movieName):
         )
     else:
         articleTitle = [i.text for i in soup.select(".text_truncate_2")][:10]
-        articleContent = [i.text[21:-17] for i in soup.select(".jq_text_overflow_link")][:10]
+        articleContent = [i.text[21:-17]
+                          for i in soup.select(".jq_text_overflow_link")][:10]
         articleImg = [i['src'] for i in soup.select("#content_l img")][:10]
         articleURL = [i['href'] for i in soup.select(".news_content a")][:10]
         articleDate = [i.text for i in soup.select(".day")][:10]
@@ -285,6 +287,7 @@ def use_moviename_serch_movielist(movieName):
 
     return(movie_flex_message, article_flex_message)
 
+
 def use_movieurl_get_movieinfo(url):
     try:
         headers = {}
@@ -303,7 +306,8 @@ def use_movieurl_get_movieinfo(url):
         # --------------------info
         movieNameCN = soup.select_one("h1").text
         movieNameEN = soup.select_one(".movie_intro_info_r h3").text
-        movieTag = [(i.text.split())[0] for i in soup.select(".level_name .gabtn")]
+        movieTag = [(i.text.split())[0]
+                    for i in soup.select(".level_name .gabtn")]
         movieReleaseTime = soup.select_one(".level_name_box+ span").text[5:]
         movieRuntime = (soup.select_one("span:nth-child(6)").text)[5:]
         movieProCo = (soup.select("span:nth-child(7)")[1].text)[5:]
@@ -318,9 +322,11 @@ def use_movieurl_get_movieinfo(url):
             (soup.select(".evaluate_inner")[1].text).split())[3]
         if movieSatisfactoryDegree == '':
             movieSatisfactoryDegree = '無評分'
-        director = [i.text.replace('\n', '').replace(' ', '').split('、') for i in soup.select(".movie_intro_list")][0]
+        director = [i.text.replace('\n', '').replace(' ', '').split(
+            '、') for i in soup.select(".movie_intro_list")][0]
         director = ','.join(director)
-        actor = [i.text.replace('\n', '').replace(' ', '').split('、') for i in soup.select(".movie_intro_list")][1]
+        actor = [i.text.replace('\n', '').replace(' ', '').split(
+            '、') for i in soup.select(".movie_intro_list")][1]
         actor = ','.join(actor)
         # 彈性訊息
         movieTagContent = []
@@ -443,78 +449,78 @@ def use_movieurl_get_movieinfo(url):
                             "layout": "horizontal",
                             "margin": "xs",
                             "contents": [
-                            {
-                                "type": "box",
-                                "layout": "horizontal",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "期待度",
-                                        "weight": "bold",
-                                        "color": "#BB21CA"
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": movieExpectation
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "box",
-                                "layout": "horizontal",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "滿意度",
-                                        "weight": "bold",
-                                        "color": "#2133CA"
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": movieSatisfactoryDegree
-                                    }
-                                ]
-                            },
-                            {
-                                "type": "box",
-                                "layout": "vertical",
-                                "margin": "lg",
-                                "contents": [
-                                    {
+                                {
                                     "type": "box",
-                                    "layout": "vertical",
+                                    "layout": "horizontal",
                                     "contents": [
                                         {
-                                        "type": "text",
-                                        "text": "導演",
-                                        "weight": "bold"
+                                            "type": "text",
+                                            "text": "期待度",
+                                            "weight": "bold",
+                                            "color": "#BB21CA"
                                         },
                                         {
-                                        "type": "text",
-                                        "text": director,
-                                        "size": "xs",
-                                        "wrap": True
+                                            "type": "text",
+                                            "text": movieExpectation
                                         }
                                     ]
-                                    }
-                                ]
-                            }
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "滿意度",
+                                            "weight": "bold",
+                                            "color": "#2133CA"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": movieSatisfactoryDegree
+                                        }
+                                    ]
+                                }
                             ]
                         },
                         {
                             "type": "box",
                             "layout": "vertical",
+                            "margin": "lg",
                             "contents": [
                                 {
-                                "type": "text",
-                                "text": "演員",
-                                "weight": "bold"
-                                },
-                                {
-                                "type": "text",
-                                "text": actor,
-                                "size": "xxs",
-                                "wrap": True
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "導演",
+                                            "weight": "bold"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": director,
+                                            "size": "xs",
+                                            "wrap": True
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "contents": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "演員",
+                                                    "weight": "bold"
+                                                },
+                                                {
+                                                    "type": "text",
+                                                    "text": actor,
+                                                    "size": "xxs",
+                                                    "wrap": True
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -670,4 +676,3 @@ def use_movieurl_get_movieinfo(url):
         # --------------------
     except Exception as e:
         print(str(e))
-

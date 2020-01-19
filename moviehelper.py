@@ -219,7 +219,7 @@ def use_moviename_serch_movielist(movieName):
         )
     else:
         articleTitle = [i.text for i in soup.select("h2")][:9]
-        articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")][:9]
+        articleContent = articleContent = [i.text[21:-17] for i in soup.select(".jq_text_overflow_link")][:9]
         articleImg = [i['src'] for i in soup.select(".fotoinner img")][:9]
         articleURL = [i['href'] for i in soup.select(".nlist li a")][:9]
         articleDate = [i.text for i in soup.select(".day")][:9]

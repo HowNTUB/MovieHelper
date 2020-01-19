@@ -318,8 +318,10 @@ def use_movieurl_get_movieinfo(url):
             (soup.select(".evaluate_inner")[1].text).split())[3]
         if movieSatisfactoryDegree == '':
             movieSatisfactoryDegree = '無評分'
-        director = [i.text.strip() for i in soup.select(".movie_intro_list")][0]
+        director = [i.text.replace('\n', '').replace(' ', '').split('、') for i in soup.select(".movie_intro_list")][0]
+        director = ','.join(director)
         actor = [i.text.replace('\n', '').replace(' ', '').split('、') for i in soup.select(".movie_intro_list")][1]
+        actor = ','.join(actor)
         # 彈性訊息
         movieTagContent = []
         for tag in movieTag:

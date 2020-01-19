@@ -405,35 +405,33 @@ def use_movieurl_get_movieinfo(url):
         story_text_message = FlexSendMessage(
             alt_text='storyMessage',
             contents={
-                "contents": {
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "header": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                        "type": "text",
-                        "text": "故事",
-                        "size": "xl",
-                        "align": "start",
-                        "weight": "bold"
-                        }
-                    ]
-                    },
-                    "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                        "type": "text",
-                        "text": story,
-                        "size": "sm",
-                        "align": "center",
-                        "wrap": True
-                        }
-                    ]
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "故事",
+                    "size": "xl",
+                    "align": "start",
+                    "weight": "bold"
                     }
+                ]
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": story,
+                    "size": "sm",
+                    "align": "center",
+                    "wrap": True
+                    }
+                ]
                 }
             }
         )

@@ -498,7 +498,8 @@ def use_movieurl_get_movieinfo(url):
                 "contents": actorContents
             }
         )
-
+'''
+        # --------------------movieStills
         movieStills = [i for i in soup.select(".imglist img")]
         movieStillsUrl = []
         for img in movieStills:
@@ -528,7 +529,7 @@ def use_movieurl_get_movieinfo(url):
                 "contents": movieStillsContent
             }
         )
-        '''
+        
         articleTitle = [i.text for i in soup.select("#native_ad_target h2")]
         articleContent = [i.text[21:-17]
                           for i in soup.select(".jq_text_overflow_link")]

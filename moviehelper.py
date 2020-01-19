@@ -201,14 +201,17 @@ def use_moviename_serch_movielist(movieName):
         )
 
     # --------------------article
-    articleURL = 'https://movies.yahoo.com.tw/tagged/' + urlname
+    # 中文轉URL格式編碼
+    urlname = parse.quote(movieName)
+    # 電影清單URL
+    movieURL = 'https://movies.yahoo.com.tw/tagged/'+urlname
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-    req = request.Request(articleURL, headers=headers)
+    req = request.Request(movieURL, headers=headers)
     resp = request.urlopen(req)
     respData = str(resp.read().decode('utf-8'))
     soup = BeautifulSoup(respData, "html.parser")
-    print(soup)
+
     if soup.select_one(".fotoinner img") == None:
         article_flex_message = FlexSendMessage(
             alt_text='movielist',

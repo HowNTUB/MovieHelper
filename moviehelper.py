@@ -394,47 +394,46 @@ def use_movieurl_get_movieinfo(url):
                 }
             }
         )
-        '''# --------------------actor
+        # --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]
-        actorNameCN = []
-        actorNameEN = []
-        print(actorName)
-        if len(actorName) > 0:
-            for name in actorName:
-                name = name.split()
-                actorNameCN.append(name[0])
-                if len(name) >= 3:
-                    ENname = ''
-                    for index in range(len(name))[1:]:
-                        ENname += ' '+name[index]
-                    actorNameEN.append(ENname)
-                elif len(name) == 2:
-                    actorNameEN.append(name[1])
-                else:
-                    actorNameEN.append(' ')
-            actorImg = [i["src"] for i in soup.select(
-                "._slickcontent .fotoinner img")]
-
         actorContents = []
-        for index in range(len(actorNameCN)):
-            print(len(actorNameCN))
-            if len(actorName) == None:
-                actorContents.append({
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "無導演與演員資料",
-                                "align": "center"
-                            }
-                        ]
-                    }
-                })
-            else:
+        if soup.select_one(".actor_inner h2") == None:
+            actorContents.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "無導演與演員資料",
+                            "align": "center"
+                        }
+                    ]
+                }
+            })
+        else:
+            actorNameCN = []
+            actorNameEN = []
+            print(actorName)
+            if len(actorName) > 0:
+                for name in actorName:
+                    name = name.split()
+                    actorNameCN.append(name[0])
+                    if len(name) >= 3:
+                        ENname = ''
+                        for index in range(len(name))[1:]:
+                            ENname += ' '+name[index]
+                        actorNameEN.append(ENname)
+                    elif len(name) == 2:
+                        actorNameEN.append(name[1])
+                    else:
+                        actorNameEN.append(' ')
+                actorImg = [i["src"] for i in soup.select(
+                    "._slickcontent .fotoinner img")]
+
+            for index in range(len(actorNameCN)):
                 actorContents.append({
                     "type": "bubble",
                     "direction": "ltr",
@@ -498,7 +497,7 @@ def use_movieurl_get_movieinfo(url):
                 "contents": actorContents
             }
         )
-'''
+
         # --------------------movieStills
         movieStills = [i for i in soup.select(".imglist img")]
         movieStillsUrl = []

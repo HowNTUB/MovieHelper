@@ -573,7 +573,19 @@ def use_movieurl_get_movieinfo(url):
             }
         )
         
-        # --------------------article
+        
+
+
+
+        return(moviePoster_image_message, info_flex_message, story_text_message, actor_flex_message, movieStills_flex_message)
+        # --------------------
+    except Exception as e:
+        print(str(e))
+
+
+
+'''
+# --------------------article
         articleTitle = [i.text for i in soup.select("#native_ad_target h2")]
         articleContent = [i.text[21:-17]
                           for i in soup.select(".jq_text_overflow_link")]
@@ -647,10 +659,4 @@ def use_movieurl_get_movieinfo(url):
                 "contents": articleContents
             }
         )
-
-
-
-        return(moviePoster_image_message, info_flex_message, story_text_message, actor_flex_message, movieStills_flex_message, article_flex_message)
-        # --------------------
-    except Exception as e:
-        print(str(e))
+'''

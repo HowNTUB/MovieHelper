@@ -210,6 +210,12 @@ def use_movieurl_get_movieinfo(url):
         respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
         soup = BeautifulSoup(respData)
 
+        # --------------------moviePoster
+        moviePoster = [i["src"] for i in soup.select_one(".movie_intro_foto img")][0]
+        moviePoster_message = ImageSendMessage(
+            original_content_url=moviePoster,
+            preview_image_url=moviePoster
+        )
         # --------------------info
         movieNameCN = soup.select_one("h1").text
         movieNameEN = soup.select_one(".movie_intro_info_r h3").text
@@ -602,7 +608,7 @@ def use_movieurl_get_movieinfo(url):
                 "contents": articleContents
             }
         )
-        return(info_flex_message, actor_flex_message, movieStills_flex_message, article_flex_message)
+        return(moviePoster_message, info_flex_message, actor_flex_message, movieStills_flex_message, article_flex_message)
         # --------------------
     except Exception as e:
         print(str(e))

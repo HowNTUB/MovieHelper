@@ -394,7 +394,7 @@ def use_movieurl_get_movieinfo(url):
                 }
             }
         )
-        # --------------------actor
+        '''# --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]
         actorNameCN = []
         actorNameEN = []
@@ -528,7 +528,7 @@ def use_movieurl_get_movieinfo(url):
                 "contents": movieStillsContent
             }
         )
-
+        '''
         articleTitle = [i.text for i in soup.select("#native_ad_target h2")]
         articleContent = [i.text[21:-17]
                           for i in soup.select(".jq_text_overflow_link")]
@@ -602,8 +602,8 @@ def use_movieurl_get_movieinfo(url):
                 "contents": articleContents
             }
         )
-
-        return(info_flex_message, actor_flex_message, movieStills_flex_message, article_flex_message)
+#actor_flex_message,
+        return(info_flex_message,  movieStills_flex_message, article_flex_message)
         # --------------------
     except Exception as e:
         print(str(e))

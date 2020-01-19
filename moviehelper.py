@@ -306,7 +306,7 @@ def use_movieurl_get_movieinfo(url):
         # --------------------info
         movieNameCN = soup.select_one("h1").text
         movieNameEN = soup.select_one(".movie_intro_info_r h3").text
-        movieTag = [(i.text.split())[0]
+        movieTag = [((i.text.split())[0])+'　'
                     for i in soup.select(".level_name .gabtn")]
         movieReleaseTime = soup.select_one(".level_name_box+ span").text[5:]
         movieRuntime = (soup.select_one("span:nth-child(6)").text)[5:]
@@ -333,7 +333,7 @@ def use_movieurl_get_movieinfo(url):
         for tag in movieTag:
             movieTagContent.append({
                 "type": "text",
-                "text": tag+'　　',
+                "text": tag,
                 "flex": 0,
                 "weight": "bold",
                 "color": "#000C3B"

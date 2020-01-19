@@ -171,20 +171,6 @@ def use_moviename_serch_movielist(movieName):
                         "action": {
                             "type": "postback",
                             "label": "詳細資料",
-                            "text": "詳細資料",
-                            "data": "postbackcontect"
-                        },
-                        "color": "#B0B0B0"
-                    }]
-                },
-                "footer": {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [{
-                        "type": "button",
-                        "action": {
-                            "type": "postback",
-                            "label": "詳細資料",
                             "data": movieDetailUrl[index]
                         },
                         "color": "#B0B0B0"
@@ -232,76 +218,71 @@ def use_moviename_serch_movielist(movieName):
             }
         )
     else:
-        articleTitle = [i.text for i in soup.select("h2")]
-        articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")]
-        articleImg = [i['src'] for i in soup.select(".fotoinner img")]
-        articleURL = [i['href'] for i in soup.select(".nlist li a")]
-        articleDate = [i.text for i in soup.select(".day")]
+        articleTitle = [i.text for i in soup.select("h2")][:10]
+        articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")][:10]
+        articleImg = [i['src'] for i in soup.select(".fotoinner img")][:10]
+        articleURL = [i['href'] for i in soup.select(".nlist li a")][:10]
+        articleDate = [i.text for i in soup.select(".day")][:10]
 
         articleContents = []
-        cnt = 0
         for index in range(len((articleTitle))):
-            cnt += 1
-            if cnt<=10:
-                articleContents.append({
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "header": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "相關文章",
-                                "size": "xl",
-                                "align": "start",
-                                "weight": "bold"
+            articleContents.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "相關文章",
+                            "size": "xl",
+                            "align": "start",
+                            "weight": "bold"
+                        }
+                    ]
+                },
+                "hero": {
+                    "type": "image",
+                    "url": articleImg[index],
+                    "size": "full",
+                    "aspectRatio": "3:4",
+                    "aspectMode": "cover"
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": articleTitle[index],
+                            "align": "center",
+                            "weight": "bold",
+                            "wrap": True
+                        },
+                        {
+                            "type": "text",
+                            "text": articleContent[index],
+                            "size": "sm",
+                            "wrap": True
+                        }
+                    ]
+                },
+                "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "label": "詳全文（yahoo電影）",
+                                "uri": articleURL[index]
                             }
-                        ]
-                    },
-                    "hero": {
-                        "type": "image",
-                        "url": articleImg[index],
-                        "size": "full",
-                        "aspectRatio": "3:4",
-                        "aspectMode": "cover"
-                    },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": articleTitle[index],
-                                "align": "center",
-                                "weight": "bold",
-                                "wrap": True
-                            },
-                            {
-                                "type": "text",
-                                "text": articleContent[index],
-                                "size": "sm",
-                                "wrap": True
-                            }
-                        ]
-                    },
-                    "footer": {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "contents": [
-                            {
-                                "type": "button",
-                                "action": {
-                                    "type": "uri",
-                                    "label": "詳全文（yahoo電影）",
-                                    "uri": articleURL[index]
-                                }
-                            }
-                        ]
-                    }
-                })
-            else:
-                break
+                        }
+                    ]
+                }
+            })
 
         article_flex_message = FlexSendMessage(
             alt_text='articlelist',

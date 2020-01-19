@@ -211,7 +211,7 @@ def use_movieurl_get_movieinfo(url):
         soup = BeautifulSoup(respData)
 
         # --------------------moviePoster
-        moviePoster = [i["src"] for i in soup.select_one(".movie_intro_foto img")][0]
+        moviePoster = soup.select_one(".movie_intro_foto img")["src"]
         moviePoster_message = ImageSendMessage(
             original_content_url=moviePoster,
             preview_image_url=moviePoster

@@ -402,8 +402,43 @@ def use_movieurl_get_movieinfo(url):
         )
         # --------------------story
         story = soup.select_one("#story").text
-        story_text_message = TextSendMessage(text=story)
-        print(story)
+        story_text_message = FlexSendMessage(
+            alt_text='storyMessage',
+            contents={
+                "contents": {
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": "故事",
+                        "size": "xl",
+                        "align": "start",
+                        "weight": "bold"
+                        }
+                    ]
+                    },
+                    "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": story,
+                        "size": "sm",
+                        "align": "center",
+                        "wrap": True
+                        }
+                    ]
+                    }
+                }
+            }
+        )
+
+        
         # --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]
         actorContents = []

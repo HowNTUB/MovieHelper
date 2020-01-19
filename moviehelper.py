@@ -490,6 +490,7 @@ def use_movieurl_get_movieinfo(url):
         # --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]
         actorContents = []
+        cnt = 0
         if soup.select_one(".actor_inner h2") == None:
             actorContents.append({
                 "type": "bubble",
@@ -507,79 +508,82 @@ def use_movieurl_get_movieinfo(url):
                 }
             })
         else:
-            actorNameCN = []
-            actorNameEN = []
-            for name in actorName:
-                name = name.split()
-                actorNameCN.append(name[0])
-                actorNameCN = actorNameCN[:10]
-                if len(name) >= 3:
-                    ENname = ''
-                    for index in range(len(name))[1:]:
-                        ENname += ' '+name[index]
-                    actorNameEN.append(ENname)
-                elif len(name) == 2:
-                    actorNameEN.append(name[1])
-                else:
-                    actorNameEN.append(' ')
-            actorImg = [i["src"] for i in soup.select(
-                "._slickcontent .fotoinner img")]
-            for index in range(len(actorNameCN)):
-                actorContents.append({
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "header": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "導演及演員",
-                                "size": "xl",
-                                "align": "start",
-                                "weight": "bold"
-                            }
-                        ]
-                    },
-                    "hero": {
-                        "type": "image",
-                        "url": actorImg[index],
-                        "size": "full",
-                        "aspectRatio": "3:4",
-                        "aspectMode": "cover"
-                    },
-                    "body": {
-                        "type": "box",
-                        "layout": "vertical",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": actorNameCN[index],
-                                "size": "xl",
-                                "weight": "bold"
-                            },
-                            {
-                                "type": "text",
-                                "text": actorNameEN[index],
-                                "size": "xl"
-                            }
-                        ]
-                    },
-                    "footer": {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "contents": [
-                            {
-                                "type": "button",
-                                "action": {
-                                    "type": "uri",
-                                    "label": "演員介紹",
-                                    "uri": "https://linecorp.com"
+            cnt += 1
+            if cnt <= 10:
+                actorNameCN = []
+                actorNameEN = []
+                if len(actorName) > 0:
+                    for name in actorName:
+                        name = name.split()
+                        actorNameCN.append(name[0])
+                        if len(name) >= 3:
+                            ENname = ''
+                            for index in range(len(name))[1:]:
+                                ENname += ' '+name[index]
+                            actorNameEN.append(ENname)
+                        elif len(name) == 2:
+                            actorNameEN.append(name[1])
+                        else:
+                            actorNameEN.append(' ')
+                    actorImg = [i["src"] for i in soup.select(
+                        "._slickcontent .fotoinner img")]
+
+                for index in range(len(actorNameCN)):
+                    actorContents.append({
+                        "type": "bubble",
+                        "direction": "ltr",
+                        "header": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "導演及演員",
+                                    "size": "xl",
+                                    "align": "start",
+                                    "weight": "bold"
                                 }
-                            }
-                        ]
-                    }
-                })
+                            ]
+                        },
+                        "hero": {
+                            "type": "image",
+                            "url": actorImg[index],
+                            "size": "full",
+                            "aspectRatio": "3:4",
+                            "aspectMode": "cover"
+                        },
+                        "body": {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": actorNameCN[index],
+                                    "size": "xl",
+                                    "weight": "bold"
+                                },
+                                {
+                                    "type": "text",
+                                    "text": actorNameEN[index],
+                                    "size": "xl"
+                                }
+                            ]
+                        },
+                        "footer": {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "uri",
+                                        "label": "演員介紹",
+                                        "uri": "https://linecorp.com"
+                                    }
+                                }
+                            ]
+                        }
+                    })
 
         actor_flex_message = FlexSendMessage(
             alt_text='actorlist',

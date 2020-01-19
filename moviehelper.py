@@ -318,7 +318,8 @@ def use_movieurl_get_movieinfo(url):
             (soup.select(".evaluate_inner")[1].text).split())[3]
         if movieSatisfactoryDegree == '':
             movieSatisfactoryDegree = '無評分'
-
+        director = [i.text.strip() for i in soup.select(".movie_intro_list")][0]
+        actor = [i.text.replace('\n', '').replace(' ', '').split('、') for i in soup.select(".movie_intro_list")][1]
         # 彈性訊息
         movieTagContent = []
         for tag in movieTag:
@@ -471,7 +472,48 @@ def use_movieurl_get_movieinfo(url):
                                             "text": movieSatisfactoryDegree
                                         }
                                     ]
-                                }
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "margin": "lg",
+                                    "contents": [
+                                        {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [
+                                            {
+                                            "type": "text",
+                                            "text": "導演",
+                                            "weight": "bold"
+                                            },
+                                            {
+                                            "type": "text",
+                                            "text": director,
+                                            "size": "xs",
+                                            "wrap": True
+                                            }
+                                        ]
+                                        },
+                                        {
+                                        "type": "box",
+                                        "layout": "vertical",
+                                        "contents": [
+                                            {
+                                            "type": "text",
+                                            "text": "演員",
+                                            "weight": "bold"
+                                            },
+                                            {
+                                            "type": "text",
+                                            "text": actor,
+                                            "size": "xxs",
+                                            "wrap": True
+                                            }
+                                        ]
+                                        }
+                                    ]
+                                    }
                             ]
                         }
                     ]

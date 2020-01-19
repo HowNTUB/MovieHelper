@@ -26,7 +26,7 @@ def use_moviename_serch_movielist(movieName):
 
     # --------------------movie list
     if soup.select_one(".release_movie_name > a") == None:
-        flex_message = FlexSendMessage(
+        movie_flex_message = FlexSendMessage(
             alt_text='movielist',
             contents={
                 "type": "bubble",
@@ -202,12 +202,10 @@ def use_moviename_serch_movielist(movieName):
 
     # --------------------article
     articleTitle = [i.text for i in soup.select("h2")]
-    articleContent = [i.text[21:-17]
-                        for i in soup.select("#content_l .text_truncate_dot")]
+    articleContent = [i.text[21:-17] for i in soup.select("#content_l .text_truncate_dot")]
     articleImg = [i['src'] for i in soup.select(".fotoinner img")]
     articleURL = [i['href'] for i in soup.select(".nlist li a")]
-    
-    print(articleTitle + '\n' + articleContent + '\n' + articleImg + '\n' + articleURL)
+    articleDate = [i.text for i in soup.select(".day")]
 
     articleContents = []
     for index in range(len((articleTitle))):

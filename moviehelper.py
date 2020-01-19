@@ -23,7 +23,7 @@ def use_moviename_serch_movielist(movieName):
     # moviePoster 海報
     # movieReleaseTime 上映時間
     # movieDetailUrl 詳細資訊網址
-    
+
     if soup.select_one(".release_movie_name > a") == None:
         flex_message = FlexSendMessage(
             alt_text='movielist',
@@ -36,15 +36,14 @@ def use_moviename_serch_movielist(movieName):
                     "contents": [
                         {
                             "type": "text",
-                            "text": "無找到"+movieName+"的相關資料",
+                            "text": "無找到 "+movieName+" 的相關資料",
                             "align": "center"
                         }
                     ]
                 }
             }
         )
-        return flex_message
-    else:        
+    else:
         movieInfo = [i.text for i in soup.select(".release_info")]
         movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
         movieNameEN = [i.text for i in soup.select(".en a")]
@@ -75,16 +74,14 @@ def use_moviename_serch_movielist(movieName):
                 "header": {
                     "type": "box",
                     "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "電影",
-                            "size": "xl",
-                            "align": "start",
-                            "weight": "bold",
-                            "color": "#000000"
-                        }
-                    ]
+                    "contents": [{
+                        "type": "text",
+                        "text": "電影",
+                        "size": "xl",
+                        "align": "start",
+                        "weight": "bold",
+                        "color": "#000000"
+                    }]
                 },
                 "hero": {
                     "type": "image",
@@ -98,113 +95,99 @@ def use_moviename_serch_movielist(movieName):
                 "body": {
                     "type": "box",
                     "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": movieNameCN[index],
-                                    "margin": "none",
-                                    "size": "lg",
-                                    "align": "center",
-                                    "gravity": "top",
-                                    "weight": "bold"
-                                },
-                                {
-                                    "type": "text",
-                                    "text": movieNameEN[index],
-                                    "align": "center"
-                                }
-                            ]
+                    "contents": [{
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [{
+                            "type": "text",
+                            "text": movieNameCN[index],
+                            "margin": "none",
+                            "size": "lg",
+                            "align": "center",
+                            "gravity": "top",
+                            "weight": "bold"
                         },
+                            {
+                            "type": "text",
+                            "text": movieNameEN[index],
+                            "align": "center"
+                        }]
+                    },
                         {
-                            "type": "separator",
-                            "margin": "lg",
-                            "color": "#FFFFFF"
+                        "type": "separator",
+                        "margin": "lg",
+                        "color": "#FFFFFF"
+                    },
+                        {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [{
+                            "type": "text",
+                            "text": "上映日期："
                         },
+                            {
+                            "type": "text",
+                            "text": movieReleaseTime[index]
+                        }]
+                    },
                         {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "上映日期："
-                                },
-                                {
-                                    "type": "text",
-                                    "text": movieReleaseTime[index]
-                                }
-                            ]
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [{
+                            "type": "text",
+                            "text": "期待度：",
+                            "align": "start",
+                            "weight": "bold",
+                            "color": "#BB21CA"
                         },
+                            {
+                            "type": "text",
+                            "text": movieExpectation[index]
+                        }]
+                    },
                         {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "期待度：",
-                                    "align": "start",
-                                    "weight": "bold",
-                                    "color": "#BB21CA"
-                                },
-                                {
-                                    "type": "text",
-                                    "text": movieExpectation[index]
-                                }
-                            ]
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [{
+                                "type": "text",
+                                "text": "滿意度：",
+                                "align": "start",
+                                "weight": "bold",
+                                "color": "#2133CA"
                         },
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "滿意度：",
-                                    "align": "start",
-                                    "weight": "bold",
-                                    "color": "#2133CA"
-                                },
-                                {
-                                    "type": "text",
-                                    "text": movieSatisfactoryDegree[index],
-                                    "align": "start"
-                                }
-                            ]
-                        }
-                    ]
+                            {
+                                "type": "text",
+                                "text": movieSatisfactoryDegree[index],
+                                "align": "start"
+                        }]
+                    }
+                    ]},
+                "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [{
+                        "type": "button",
+                        "action": {
+                            "type": "postback",
+                            "label": "詳細資料",
+                            "text": "詳細資料",
+                            "data": "postbackcontect"
+                        },
+                        "color": "#B0B0B0"
+                    }]
                 },
                 "footer": {
                     "type": "box",
                     "layout": "horizontal",
-                    "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "postback",
-                                "label": "詳細資料",
-                                "text": "詳細資料",
-                                "data": "postbackcontect"
-                            },
-                            "color": "#B0B0B0"
-                        }
-                    ]
-                },
-                "footer": {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "postback",
-                                "label": "詳細資料",
-                                "data": movieDetailUrl[index]
-                            },
-                            "color": "#B0B0B0"
-                        }
-                    ]
+                    "contents": [{
+                        "type": "button",
+                        "action": {
+                            "type": "postback",
+                            "label": "詳細資料",
+                            "data": movieDetailUrl[index]
+                        },
+                        "color": "#B0B0B0"
+                    }]
                 }
             })
         # 回復
@@ -215,7 +198,7 @@ def use_moviename_serch_movielist(movieName):
                 "contents": contents
             }
         )
-        return(flex_message)
+    return(flex_message)
 
 
 def use_movieurl_get_movieinfo(url):
@@ -412,118 +395,101 @@ def use_movieurl_get_movieinfo(url):
             }
         )
         # --------------------actor
-        try:
-            actorName = [i.text for i in soup.select(".actor_inner h2")]
-            actorNameCN = []
-            actorNameEN = []
-            print(actorName)
-            if len(actorName) > 0:
-                for name in actorName:
-                    name = name.split()
-                    actorNameCN.append(name[0])
-                    if len(name) >= 3:
-                        ENname = ''
-                        for index in range(len(name))[1:]:
-                            ENname += ' '+name[index]
-                        actorNameEN.append(ENname)
-                    elif len(name) == 2:
-                        actorNameEN.append(name[1])
-                    else:
-                        actorNameEN.append(' ')
-                actorImg = [i["src"] for i in soup.select(
-                    "._slickcontent .fotoinner img")]
-
-            actorContents = []
-            for index in range(len(actorNameCN)):
-                print(len(actorNameCN))
-                if len(actorName) == 0:
-                    actorContents.append({
-                        "type": "bubble",
-                        "direction": "ltr",
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "無導演與演員資料",
-                                    "align": "center"
-                                }
-                            ]
-                        }
-                    })
+        actorName = [i.text for i in soup.select(".actor_inner h2")]
+        actorNameCN = []
+        actorNameEN = []
+        print(actorName)
+        if len(actorName) > 0:
+            for name in actorName:
+                name = name.split()
+                actorNameCN.append(name[0])
+                if len(name) >= 3:
+                    ENname = ''
+                    for index in range(len(name))[1:]:
+                        ENname += ' '+name[index]
+                    actorNameEN.append(ENname)
+                elif len(name) == 2:
+                    actorNameEN.append(name[1])
                 else:
-                    actorContents.append({
-                        "type": "bubble",
-                        "direction": "ltr",
-                        "header": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "導演及演員",
-                                    "size": "xl",
-                                    "align": "start",
-                                    "weight": "bold"
+                    actorNameEN.append(' ')
+            actorImg = [i["src"] for i in soup.select(
+                "._slickcontent .fotoinner img")]
+
+        actorContents = []
+        for index in range(len(actorNameCN)):
+            print(len(actorNameCN))
+            if len(actorName) == None:
+                actorContents.append({
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "無導演與演員資料",
+                                "align": "center"
+                            }
+                        ]
+                    }
+                })
+            else:
+                actorContents.append({
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "header": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "導演及演員",
+                                "size": "xl",
+                                "align": "start",
+                                "weight": "bold"
+                            }
+                        ]
+                    },
+                    "hero": {
+                        "type": "image",
+                        "url": actorImg[index],
+                        "size": "full",
+                        "aspectRatio": "3:4",
+                        "aspectMode": "cover"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": actorNameCN[index],
+                                "size": "xl",
+                                "weight": "bold"
+                            },
+                            {
+                                "type": "text",
+                                "text": actorNameEN[index],
+                                "size": "xl"
+                            }
+                        ]
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "uri",
+                                    "label": "演員介紹",
+                                    "uri": "https://linecorp.com"
                                 }
-                            ]
-                        },
-                        "hero": {
-                            "type": "image",
-                            "url": actorImg[index],
-                            "size": "full",
-                            "aspectRatio": "3:4",
-                            "aspectMode": "cover"
-                        },
-                        "body": {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": actorNameCN[index],
-                                    "size": "xl",
-                                    "weight": "bold"
-                                },
-                                {
-                                    "type": "text",
-                                    "text": actorNameEN[index],
-                                    "size": "xl"
-                                }
-                            ]
-                        },
-                        "footer": {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                                {
-                                    "type": "button",
-                                    "action": {
-                                        "type": "uri",
-                                        "label": "演員介紹",
-                                        "uri": "https://linecorp.com"
-                                    }
-                                }
-                            ]
-                        }
-                    })
-        except:
-            actorContents.append({
-                "type": "bubble",
-                "direction": "ltr",
-                "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "無導演與演員資料",
-                            "align": "center"
-                        }
-                    ]
-                }
-            })
+                            }
+                        ]
+                    }
+                })
 
         actor_flex_message = FlexSendMessage(
             alt_text='actorlist',

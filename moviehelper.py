@@ -26,6 +26,7 @@ def use_moviename_serch_movielist(movieName):
     contents = []
     movieInfo = [i.text for i in soup.select(".release_info")]
     if soup.select_one(".release_movie_name > a") == '':
+        print('ifififif')
         contents.append({
             "type": "bubble",
             "direction": "ltr",

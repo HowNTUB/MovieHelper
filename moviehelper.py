@@ -402,7 +402,7 @@ def use_movieurl_get_movieinfo(url):
         )
         # --------------------story
         story = soup.select_one("#story")
-        story = (stroy.replace('</br>', '\n')).text
+        story = (story.replace('</br>', '\n')).text
         story_text_message = FlexSendMessage(
             alt_text='storyMessage',
             contents={

@@ -23,9 +23,25 @@ def use_moviename_serch_movielist(movieName):
     # moviePoster 海報
     # movieReleaseTime 上映時間
     # movieDetailUrl 詳細資訊網址
+    contents = []
     movieInfo = [i.text for i in soup.select(".release_info")]
     if soup.select_one(".release_movie_name > a") == '':
-        return TextSendMessage(text='沒有找到相關資料')
+        contents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                        "type": "text",
+                        "text": "無找到"+movieName+"的相關資料",
+                        "align": "center"
+                    }
+                ]
+            }
+        })
+        return contents
     else:
         movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
         movieNameEN = [i.text for i in soup.select(".en a")]
@@ -47,7 +63,6 @@ def use_moviename_serch_movielist(movieName):
         for url in movieDetail:
             movieDetailUrl.append(url["href"])
         # 內容轉為json格式
-        contents = []
         for index in range(len(movieNameCN)):
             contents.append({
                 "type": "bubble",
@@ -197,7 +212,6 @@ def use_moviename_serch_movielist(movieName):
         )
         # 回復
         return(flex_message)
-
 
 
 def use_movieurl_get_movieinfo(url):
@@ -399,7 +413,7 @@ def use_movieurl_get_movieinfo(url):
             actorNameCN = []
             actorNameEN = []
             print(actorName)
-            if len(actorName)>0:
+            if len(actorName) > 0:
                 for name in actorName:
                     name = name.split()
                     actorNameCN.append(name[0])
@@ -414,7 +428,7 @@ def use_movieurl_get_movieinfo(url):
                         actorNameEN.append(' ')
                 actorImg = [i["src"] for i in soup.select(
                     "._slickcontent .fotoinner img")]
-            
+
             actorContents = []
             for index in range(len(actorNameCN)):
                 print(len(actorNameCN))
@@ -506,7 +520,7 @@ def use_movieurl_get_movieinfo(url):
                     ]
                 }
             })
-        
+
         actor_flex_message = FlexSendMessage(
             alt_text='actorlist',
             contents={
@@ -514,7 +528,6 @@ def use_movieurl_get_movieinfo(url):
                 "contents": actorContents
             }
         )
-        
 
         movieStills = [i for i in soup.select(".imglist img")]
         movieStillsUrl = []

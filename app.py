@@ -6,7 +6,6 @@ from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
 from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo
-import os
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -66,10 +65,11 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token,use_moviename_serch_movielist(event.message.text))
         except:
             notfind = '沒有找到 ' + event.message.text + ' 相關的資訊'
-            line_bot_api.reply_message(event.reply_token,TextMessage(text=notfind)
+            line_bot_api.reply_message(event.reply_token,TextMessage(text=notfind))
 
 
 # ---------------------------------------------------------------
+import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)

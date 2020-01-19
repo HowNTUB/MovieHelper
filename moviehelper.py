@@ -401,7 +401,7 @@ def use_movieurl_get_movieinfo(url):
             }
         )
         # --------------------story
-        story = soup.select_one("#story")
+        story = soup.select_one("#story").text
         story_text_message = TextSendMessage(text=story)
         print(story)
         # --------------------actor

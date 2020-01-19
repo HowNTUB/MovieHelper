@@ -602,8 +602,7 @@ def use_movieurl_get_movieinfo(url):
                 "contents": articleContents
             }
         )
-#actor_flex_message,
-        return(info_flex_message,  movieStills_flex_message, article_flex_message)
+        return(info_flex_message, actor_flex_message, movieStills_flex_message, article_flex_message)
         # --------------------
     except Exception as e:
         print(str(e))

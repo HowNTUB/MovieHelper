@@ -196,7 +196,6 @@ def use_moviename_serch_movielist(movieName):
                 "contents": contents
             }
         )
-        return(flex_message)
     except:
         print('error')
         flex_message = FlexSendMessage(
@@ -217,6 +216,7 @@ def use_moviename_serch_movielist(movieName):
                 }
             }
         )
+    finally:
         return(flex_message)
 
 

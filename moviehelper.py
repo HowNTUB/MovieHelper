@@ -509,23 +509,21 @@ def use_movieurl_get_movieinfo(url):
         else:
             actorNameCN = []
             actorNameEN = []
-            if len(actorName) > 0:
-                for name in actorName:
-                    name = name.split()
-                    actorNameCN.append(name[0])
-                    actorNameCN = actorNameCN[:10]
-                    if len(name) >= 3:
-                        ENname = ''
-                        for index in range(len(name))[1:]:
-                            ENname += ' '+name[index]
-                        actorNameEN.append(ENname)
-                    elif len(name) == 2:
-                        actorNameEN.append(name[1])
-                    else:
-                        actorNameEN.append(' ')
-                actorImg = [i["src"] for i in soup.select(
-                    "._slickcontent .fotoinner img")]
-            print(len(actorNameCN))
+            for name in actorName:
+                name = name.split()
+                actorNameCN.append(name[0])
+                actorNameCN = actorNameCN[:10]
+                if len(name) >= 3:
+                    ENname = ''
+                    for index in range(len(name))[1:]:
+                        ENname += ' '+name[index]
+                    actorNameEN.append(ENname)
+                elif len(name) == 2:
+                    actorNameEN.append(name[1])
+                else:
+                    actorNameEN.append(' ')
+            actorImg = [i["src"] for i in soup.select(
+                "._slickcontent .fotoinner img")]
             for index in range(len(actorNameCN)):
                 actorContents.append({
                     "type": "bubble",

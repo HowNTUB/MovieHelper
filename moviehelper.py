@@ -199,9 +199,8 @@ def use_moviename_serch_movielist(movieName):
                 "contents": contents
             }
         )
-    # --------------------article
-    
 
+    # --------------------article
     articleURL = 'https://movies.yahoo.com.tw/tagged/' + urlname
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
@@ -210,7 +209,7 @@ def use_moviename_serch_movielist(movieName):
     respData = str(resp.read().decode('utf-8'))
     soup = BeautifulSoup(respData, "html.parser")
 
-    if soup.select_one(".release_movie_name > a") == None:
+    if soup.select_one(".fotoinner img") == None:
         article_flex_message = FlexSendMessage(
             alt_text='movielist',
             contents={

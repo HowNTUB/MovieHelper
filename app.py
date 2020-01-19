@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 
+import os
 import requests
 import flask
 from urllib import request
@@ -49,25 +50,26 @@ def handle_postback(event):
         line_bot_api.reply_message(
             event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
 
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text == '近期上映':
         text_message = TextSendMessage(text='近期上映的電影清單')
         line_bot_api.reply_message(
             event.reply_token, [
-            TextSendMessage(text='Hello World!'),
-            TextSendMessage(text='Hello World!'),
-            TextSendMessage(text='Hello World!'),
-            TextSendMessage(text='Hello World!')
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!'),
+                TextSendMessage(text='Hello World!')
             ]
         )
     else:
-        line_bot_api.reply_message(event.reply_token,use_moviename_serch_movielist(event.message.text))
-        
+        movielist, articlelist = use_moviename_serch_movielist(
+            event.message.text)
+        line_bot_api.reply_message(event.reply_token, [movielist, articlelist])
 
 
 # ---------------------------------------------------------------
-import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)

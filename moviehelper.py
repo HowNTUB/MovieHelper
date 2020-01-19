@@ -443,79 +443,79 @@ def use_movieurl_get_movieinfo(url):
                             "layout": "horizontal",
                             "margin": "xs",
                             "contents": [
-                                {
-                                    "type": "box",
-                                    "layout": "horizontal",
-                                    "contents": [
-                                        {
-                                            "type": "text",
-                                            "text": "期待度",
-                                            "weight": "bold",
-                                            "color": "#BB21CA"
-                                        },
-                                        {
-                                            "type": "text",
-                                            "text": movieExpectation
-                                        }
-                                    ]
-                                },
-                                {
-                                    "type": "box",
-                                    "layout": "horizontal",
-                                    "contents": [
-                                        {
-                                            "type": "text",
-                                            "text": "滿意度",
-                                            "weight": "bold",
-                                            "color": "#2133CA"
-                                        },
-                                        {
-                                            "type": "text",
-                                            "text": movieSatisfactoryDegree
-                                        }
-                                    ]
-                                },
-                                {
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "期待度",
+                                        "weight": "bold",
+                                        "color": "#BB21CA"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": movieExpectation
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "滿意度",
+                                        "weight": "bold",
+                                        "color": "#2133CA"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": movieSatisfactoryDegree
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "margin": "lg",
+                                "contents": [
+                                    {
                                     "type": "box",
                                     "layout": "vertical",
-                                    "margin": "lg",
                                     "contents": [
                                         {
-                                        "type": "box",
-                                        "layout": "vertical",
-                                        "contents": [
-                                            {
-                                            "type": "text",
-                                            "text": "導演",
-                                            "weight": "bold"
-                                            },
-                                            {
-                                            "type": "text",
-                                            "text": director,
-                                            "size": "xs",
-                                            "wrap": True
-                                            }
-                                        ]
+                                        "type": "text",
+                                        "text": "導演",
+                                        "weight": "bold"
                                         },
                                         {
-                                        "type": "box",
-                                        "layout": "vertical",
-                                        "contents": [
-                                            {
-                                            "type": "text",
-                                            "text": "演員",
-                                            "weight": "bold"
-                                            },
-                                            {
-                                            "type": "text",
-                                            "text": actor,
-                                            "size": "xxs",
-                                            "wrap": True
-                                            }
-                                        ]
+                                        "type": "text",
+                                        "text": director,
+                                        "size": "xs",
+                                        "wrap": True
                                         }
                                     ]
                                     }
+                                ]
+                            }
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "contents": [
+                                {
+                                "type": "text",
+                                "text": "演員",
+                                "weight": "bold"
+                                },
+                                {
+                                "type": "text",
+                                "text": actor,
+                                "size": "xxs",
+                                "wrap": True
+                                }
                             ]
                         }
                     ]

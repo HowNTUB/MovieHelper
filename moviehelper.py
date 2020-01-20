@@ -864,7 +864,6 @@ def search_movie_thisweek(url, page):
                 "align": "center",
                 "action": {
                     "type": "postback",
-                    "text": anotherpage[index],
                     "data": anotherpageURL[index]
                 }
             })

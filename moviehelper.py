@@ -534,8 +534,37 @@ def use_movieurl_get_movieinfo(url):
             br.insert_after("\n")
             br.unwrap()
         story = story.text
-        story_text_message = TextSendMessage(text='電影簡介' + story)
-
+        story_flex_message = FlexSendMessage(
+            alt_text='actorlist',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "電影簡介",
+                    "size": "xl",
+                    "align": "start",
+                    "weight": "bold"
+                    }
+                ]
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": story,
+                    "align": "start",
+                    "wrap": True
+                    }
+                ]
+                }
+        })
         # --------------------actor
         actorName = [i.text for i in soup.select(".actor_inner h2")]
         actorContents = []
@@ -672,7 +701,155 @@ def use_movieurl_get_movieinfo(url):
             }
         )
 
-        return(moviePoster_image_message, info_flex_message, story_text_message, actor_flex_message, movieStills_flex_message)
+        return(moviePoster_image_message, info_flex_message, story_flex_message, actor_flex_message, movieStills_flex_message)
         # --------------------
+    except Exception as e:
+        print(str(e))
+
+
+def search_movie_thisweek():
+    try:
+        url = 'https://movies.yahoo.com.tw/movie_thisweek.html'
+        headers = {}
+        headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+        req = request.Request(url, headers=headers)
+        resp = request.urlopen(req)
+        respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+        soup = BeautifulSoup(respData)
+
+        # --------------------info
+        movieInfo = [i.text for i in soup.select(".release_info")]
+        movieNameCN = [i.text.strip() for i in soup.select(".release_movie_name > a")]
+        movieNameEN = [i.text.strip() for i in soup.select(".en a")]
+        movieExpectation = [i.text for i in soup.select("#content_l dt span")]
+        movieSatisfactoryDegree = []
+        for info in movieInfo:
+            movieSatisfactoryDegree.append('未上映') if info.find(
+                "滿意度") == -1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
+        moviePoster = [i["src"] for i in soup.select(".release_foto img")]
+        movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
+        movieDetailUrl = [i["href"]
+                            for i in soup.select(".release_movie_name > a")]
+        # --------------------
+        contents = []
+        for index in range(len(movieNameCN)):
+            contents.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [{
+                        "type": "text",
+                        "text": "電影",
+                        "size": "xl",
+                        "align": "start",
+                        "weight": "bold",
+                        "color": "#000000"
+                    }]
+                },
+                "hero": {
+                    "type": "image",
+                    "url": moviePoster[index],
+                    "gravity": "top",
+                    "size": "full",
+                    "aspectRatio": "1:1.4",
+                    "aspectMode": "cover",
+                    "backgroundColor": "#FFFFFF"
+                },
+                "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [{
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [{
+                            "type": "text",
+                            "text": movieNameCN[index],
+                            "margin": "none",
+                            "size": "lg",
+                            "align": "center",
+                            "gravity": "top",
+                            "weight": "bold"
+                        },
+                            {
+                            "type": "text",
+                            "text": movieNameEN[index],
+                            "align": "center"
+                        }]
+                    },
+                        {
+                        "type": "separator",
+                        "margin": "lg",
+                        "color": "#FFFFFF"
+                    },
+                        {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [{
+                            "type": "text",
+                            "text": "上映日期："
+                        },
+                            {
+                            "type": "text",
+                            "text": movieReleaseTime[index]
+                        }]
+                    },
+                        {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [{
+                            "type": "text",
+                            "text": "期待度：",
+                            "align": "start",
+                            "weight": "bold",
+                            "color": "#BB21CA"
+                        },
+                            {
+                            "type": "text",
+                            "text": movieExpectation[index]
+                        }]
+                    },
+                        {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [{
+                                "type": "text",
+                                "text": "滿意度：",
+                                "align": "start",
+                                "weight": "bold",
+                                "color": "#2133CA"
+                        },
+                            {
+                                "type": "text",
+                                "text": movieSatisfactoryDegree[index],
+                                "align": "start"
+                        }]
+                    }
+                    ]},
+                "footer": {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [{
+                        "type": "button",
+                        "action": {
+                            "type": "postback",
+                            "label": "詳細資料",
+                            "data": movieDetailUrl[index]
+                        },
+                        "color": "#B0B0B0"
+                    }]
+                }
+            })
+        # 回復
+        movie_flex_message = FlexSendMessage(
+            alt_text='movielist',
+            contents={
+                "type": "carousel",
+                "contents": contents
+            }
+        )
+
+        return(movie_flex_message)
     except Exception as e:
         print(str(e))

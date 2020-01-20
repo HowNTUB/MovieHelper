@@ -865,6 +865,7 @@ def search_movie_thisweek():
                     "type": "message",
                     "label": anotherpageURL[index],
                     "text": anotherpage[index]
+                }
             })
         # 回復
         pagebox_flex_message = FlexSendMessage(

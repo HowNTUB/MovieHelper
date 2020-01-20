@@ -12,7 +12,7 @@ def use_moviename_serch_movielist(movieName, page):
         urlname = parse.quote(movieName)
         movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=' + urlname + '&page=' + page
     # 電影清單URL
-    
+    print(movieURL)
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(movieURL, headers=headers)

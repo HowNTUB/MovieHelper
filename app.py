@@ -45,9 +45,8 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_postback(event):
     userpostback = event.postback.data
-    print(userpostback)
     if userpostback[:71] == 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=':
-        movielist, pagebox = search_movie_thisweek(userpostback)
+        movielist, pagebox = search_movie_thisweek(userpostback, '1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     if userpostback[:43] == 'https://movies.yahoo.com.tw/movieinfo_main/':
         moviePosterContant, infoContant, storyContant, actorContant, stillsContant = use_movieurl_get_movieinfo(

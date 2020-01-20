@@ -3,6 +3,70 @@ from urllib import parse
 from bs4 import BeautifulSoup
 from linebot.models import *
 
+def pagebox(soup):
+    # --------------------pagebox
+    if len(soup.select(".page_numbox ul")) == 0:
+        pagebox_flex_message = FlexSendMessage(
+            alt_text='pagebox',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "僅一頁搜尋結果",
+                    "align": "center"
+                    }
+                ]
+                }
+            }
+        )
+    else:
+        pagebox = soup.select(".page_numbox ul")[0]
+        nowpage = pagebox.select(".active span")[0].text
+        anotherpageURL = [i["href"] for i in pagebox.select("a")]
+        anotherpage = [i.text for i in pagebox.select("a")]
+
+        contents = []
+        for index in range(len(anotherpage)):
+            contents.append({
+                "type": "text",
+                "text": anotherpage[index],
+                "align": "center",
+                "action": {
+                    "type": "postback",
+                    "data": anotherpageURL[index]
+                }
+            })
+        # 回復
+        pagebox_flex_message = FlexSendMessage(
+            alt_text='pagebox',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "目前第"+nowpage+"頁",
+                    "align": "center"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "margin": "xl",
+                    "contents": contents
+                    }
+                ]
+                }
+            }
+        )
+    return(pagebox_flex_message)
 
 def use_moviename_serch_movielist(movieName, page):
     # 中文轉URL格式編碼
@@ -181,68 +245,9 @@ def use_moviename_serch_movielist(movieName, page):
                 "contents": contents
             }
         )
-    # --------------------pagebox
-        if len(soup.select(".page_numbox ul")) == 0:
-            pagebox_flex_message = FlexSendMessage(
-                alt_text='pagebox',
-                contents={
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                        "type": "text",
-                        "text": "僅一頁搜尋結果",
-                        "align": "center"
-                        }
-                    ]
-                    }
-                }
-            )
-        else:
-            pagebox = soup.select(".page_numbox ul")[0]
-            nowpage = pagebox.select(".active span")[0].text
-            anotherpageURL = [i["href"] for i in pagebox.select("a")]
-            anotherpage = [i.text for i in pagebox.select("a")]
 
-            contents = []
-            for index in range(len(anotherpage)):
-                contents.append({
-                    "type": "text",
-                    "text": anotherpage[index],
-                    "align": "center",
-                    "action": {
-                        "type": "postback",
-                        "data": anotherpageURL[index]
-                    }
-                })
-            # 回復
-            pagebox_flex_message = FlexSendMessage(
-                alt_text='pagebox',
-                contents={
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "body": {
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                        "type": "text",
-                        "text": "目前第"+nowpage+"頁",
-                        "align": "center"
-                        },
-                        {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "margin": "xl",
-                        "contents": contents
-                        }
-                    ]
-                    }
-                }
-            )
+        pagebox_flex_message = pagebox(soup)
+
     return(movie_flex_message, pagebox_flex_message)
 
 def use_moviename_serch_article(movieName):

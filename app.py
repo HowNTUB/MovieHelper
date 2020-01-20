@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo, search_movie_week
+from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo, search_movie_thisweek
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -65,7 +65,7 @@ def handle_message(event):
             ]
         )
     elif userMessage == '本週新片':
-        line_bot_api.reply_message(event.reply_token, search_movie_week())
+        line_bot_api.reply_message(event.reply_token, search_movie_thisweek())
     elif userMessage == '附近影城':
         print(userMessage)
     elif userMessage == '排行榜':

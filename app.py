@@ -74,6 +74,11 @@ def handle_message(event):
     elif userMessage == '本週新片':
         movielist, pagebox = search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html?page=','1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
+    elif userMessage == '上映中':
+        
+        movielist, pagebox = search_movie_thisweek('https://movies.yahoo.com.tw/movie_intheaters.html?page=','1')
+        line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
+        print(movie_intheaters)
     elif userMessage == '排行榜':
         print(userMessage)
     elif userMessage == '類型找電影':

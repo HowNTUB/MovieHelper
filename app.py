@@ -45,6 +45,8 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_postback(event):
     userpostback = event.postback.data
+    print(userpostback)
+
     if userpostback[:71] == 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=':
         movielist, pagebox = use_moviename_serch_movielist(userpostback, '1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
@@ -67,20 +69,11 @@ def handle_message(event):
     
     
     if userMessage == '近期上映':
-        text_message = TextSendMessage(text='近期上映的電影清單')
-        line_bot_api.reply_message(
-            event.reply_token, [
-                TextSendMessage(text='Hello World!'),
-                TextSendMessage(text='Hello World!'),
-                TextSendMessage(text='Hello World!'),
-                TextSendMessage(text='Hello World!')
-            ]
-        )
+        
     elif userMessage == '本週新片':
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_thisweek.html?page=','1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     elif userMessage == '上映中':
-        
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_intheaters.html?page=','1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
         print(movie_intheaters)

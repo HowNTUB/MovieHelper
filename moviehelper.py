@@ -997,6 +997,22 @@ def workTeam():
                 {
                 "type": "box",
                 "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "畫面插圖：",
+                    "align": "end"
+                    },
+                    {
+                    "type": "text",
+                    "text": "陳衍儒(還沒畫)",
+                    "align": "start"
+                    }
+                ]
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
                 "margin": "xl",
                 "contents": [
                     {

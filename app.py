@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo, search_movie_thisweekAndIntheaters
+from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo, search_movie_thisweekAndIntheaters, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -68,7 +68,7 @@ def handle_message(event):
     userMessage = event.message.text
     
     if userMessage == '製作團隊':
-        line_bot_api.reply_message(event.reply_token,)
+        line_bot_api.reply_message(event.reply_token,workTeam())
     elif userMessage == '近期上映':
         
     elif userMessage == '本週新片':

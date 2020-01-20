@@ -6,6 +6,7 @@ from linebot.models import *
 
 def use_moviename_serch_movielist(movieName, page):
     # 中文轉URL格式編碼
+    print(movieName)
     if movieName[:71] == 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=':
         movieURL = movieName
     else:

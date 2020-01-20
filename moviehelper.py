@@ -862,10 +862,9 @@ def search_movie_thisweek():
                 "text": anotherpage[index],
                 "align": "center",
                 "action": {
-                    "type": "message",
-                    "label": anotherpageURL[index],
-                    "text": anotherpage[index]
-                }
+                    "type": "postback",
+                    "text": anotherpage[index],
+                    "data": anotherpageURL[index]
             })
         # 回復
         pagebox_flex_message = FlexSendMessage(

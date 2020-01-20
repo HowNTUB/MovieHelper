@@ -856,6 +856,7 @@ def search_movie_thisweek():
         anotherpageURL = [i["href"] for i in pagebox.select("a")]
         anotherpage = [i.text for i in pagebox.select("a")]
 
+        contents = []
         for index in range(len(anotherpage)):
             contents.append({
                 "type": "text",

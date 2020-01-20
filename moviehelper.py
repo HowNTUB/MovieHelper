@@ -4,12 +4,11 @@ from bs4 import BeautifulSoup
 from linebot.models import *
 
 
-def use_moviename_serch_movielist(movieName):
+def use_moviename_serch_movielist(movieName, page):
     # 中文轉URL格式編碼
     urlname = parse.quote(movieName)
     # 電影清單URL
-    movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?keyword=' + \
-        urlname + '&type=movie'
+    movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=' + urlname + '&page=' + page
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(movieURL, headers=headers)
@@ -177,7 +176,48 @@ def use_moviename_serch_movielist(movieName):
                 "contents": contents
             }
         )
+    # --------------------pagebox
+        pagebox = soup.select(".page_numbox ul")[0]
+        nowpage = pagebox.select(".active span")[0].text
+        anotherpageURL = [i["href"] for i in pagebox.select("a")]
+        anotherpage = [i.text for i in pagebox.select("a")]
 
+        contents = []
+        for index in range(len(anotherpage)):
+            contents.append({
+                "type": "text",
+                "text": anotherpage[index],
+                "align": "center",
+                "action": {
+                    "type": "postback",
+                    "data": anotherpageURL[index]
+                }
+            })
+        # 回復
+        pagebox_flex_message = FlexSendMessage(
+            alt_text='pagebox',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "目前第"+nowpage+"頁",
+                    "align": "center"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "margin": "xl",
+                    "contents": contents
+                    }
+                ]
+                }
+            }
+        )
     return(movie_flex_message)
 
 def use_moviename_serch_article(movieName):
@@ -288,7 +328,7 @@ def use_moviename_serch_article(movieName):
             }
         )
         return(article_flex_message)
-        
+
 def use_movieurl_get_movieinfo(url):
     try:
         headers = {}

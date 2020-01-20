@@ -79,7 +79,7 @@ def handle_message(event):
     elif userMessage == '電影時刻':
         print(userMessage)
     else:
-        movielist = use_moviename_serch_movielist(userMessage)
+        movielist = use_moviename_serch_movielist(userMessage, '1')
         line_bot_api.reply_message(event.reply_token, movielist)
 
 

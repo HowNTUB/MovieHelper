@@ -707,9 +707,9 @@ def use_movieurl_get_movieinfo(url):
         print(str(e))
 
 
-def search_movie_thisweek():
+def search_movie_thisweek(url, page):
     try:
-        url = 'https://movies.yahoo.com.tw/movie_thisweek.html'
+        url = url+page
         headers = {}
         headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
         req = request.Request(url, headers=headers)

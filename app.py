@@ -49,7 +49,8 @@ def handle_postback(event):
             event.postback.data)
         line_bot_api.reply_message(
             event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
-
+    if event.postback.data[:47] == 'https://movies.yahoo.com.tw/movie_thisweek.html':
+        search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html',event.postback.data[53:])
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -67,7 +68,7 @@ def handle_message(event):
             ]
         )
     elif userMessage == '本週新片':
-        movielist, pagebox = search_movie_thisweek()
+        movielist, pagebox = search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html?page=',1)
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     elif userMessage == '附近影城':
         print(userMessage)

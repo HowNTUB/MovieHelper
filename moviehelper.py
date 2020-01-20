@@ -778,7 +778,7 @@ def use_movieurl_get_movieinfo(url):
         print(str(e))
 
 
-def search_movie_thisweek(url, page):
+def search_movie_thisweekAndIntheaters(url, page):
     try:
         url = url+page
         headers = {}

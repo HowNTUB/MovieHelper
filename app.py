@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo, search_movie_thisweek
+from moviehelper import use_moviename_serch_movielist, use_movieurl_get_movieinfo, search_movie_thisweekAndIntheaters
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -54,8 +54,13 @@ def handle_postback(event):
         line_bot_api.reply_message(
             event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
     if userpostback[:47] == 'https://movies.yahoo.com.tw/movie_thisweek.html':
-        movielist, pagebox = search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html?page=',userpostback[53:])
+        movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_thisweek.html?page=',userpostback[53:])
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
+    if userpostback[:49] == 'https://movies.yahoo.com.tw/movie_intheaters.html':
+        movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_intheaters.html?page=',userpostback[55:])
+        line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
+
+# ---------------------------------------------------------------
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     userMessage = event.message.text
@@ -72,11 +77,11 @@ def handle_message(event):
             ]
         )
     elif userMessage == '本週新片':
-        movielist, pagebox = search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html?page=','1')
+        movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_thisweek.html?page=','1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     elif userMessage == '上映中':
         
-        movielist, pagebox = search_movie_thisweek('https://movies.yahoo.com.tw/movie_intheaters.html?page=','1')
+        movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_intheaters.html?page=','1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
         print(movie_intheaters)
     elif userMessage == '排行榜':

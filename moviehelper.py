@@ -184,13 +184,9 @@ def use_moviename_serch_movielist(movieName, page):
         if len(soup.select(".page_numbox ul")):
             pagebox_flex_message = FlexSendMessage(
                 alt_text='pagebox',
-                contents={            
-                    "type": "flex",
-                    "altText": "Flex Message",
-                    "contents": {
-                        "type": "bubble",
-                        "direction": "ltr"
-                    }
+                contents={
+                    "type": "bubble",
+                    "direction": "ltr"
                 }
             )
         else:

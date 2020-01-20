@@ -70,17 +70,17 @@ def handle_message(event):
     elif userMessage == '本週新片':
         movielist, pagebox = search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html?page=','1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
-    elif userMessage == '附近影城':
-        print(userMessage)
     elif userMessage == '排行榜':
-        print(userMessage)
-    elif userMessage == '電影時刻':
         print(userMessage)
     elif userMessage == '類型找電影':
         print(userMessage)
+    elif userMessage == '附近影城':
+        print(userMessage)
+    elif userMessage == '電影時刻':
+        print(userMessage)
     else:
-        movielist, articlelist = use_moviename_serch_movielist(userMessage)
-        line_bot_api.reply_message(event.reply_token, [movielist, articlelist])
+        movielist = use_moviename_serch_movielist(userMessage)
+        line_bot_api.reply_message(event.reply_token, movielist)
 
 
 # ---------------------------------------------------------------

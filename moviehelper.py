@@ -178,6 +178,9 @@ def use_moviename_serch_movielist(movieName):
             }
         )
 
+    return(movie_flex_message)
+
+def use_moviename_serch_article(movieName):
     # --------------------article
     # 中文轉URL格式編碼
     urlname = parse.quote(movieName)
@@ -284,10 +287,8 @@ def use_moviename_serch_movielist(movieName):
                 "contents": articleContents
             }
         )
-
-    return(movie_flex_message, article_flex_message)
-
-
+        return(article_flex_message)
+        
 def use_movieurl_get_movieinfo(url):
     try:
         headers = {}

@@ -926,3 +926,92 @@ def search_movie_thisweekAndIntheaters(url, page):
         return(movie_flex_message, pagebox_flex_message)
     except Exception as e:
         print(str(e))
+
+def workTeam():
+    movie_flex_message = FlexSendMessage(
+        alt_text='movielist',
+        contents={
+            "type": "carousel",
+            "contents": "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": "製作者名單",
+                "size": "xl",
+                "align": "center",
+                "weight": "bold"
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "margin": "xl",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "構想：",
+                    "align": "end"
+                    },
+                    {
+                    "type": "text",
+                    "text": "林萬豪",
+                    "align": "start"
+                    }
+                ]
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "程式設計：",
+                    "align": "end"
+                    },
+                    {
+                    "type": "text",
+                    "text": "林萬豪",
+                    "align": "start"
+                    }
+                ]
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "前端介面：",
+                    "align": "end"
+                    },
+                    {
+                    "type": "text",
+                    "text": "林萬豪",
+                    "align": "start"
+                    }
+                ]
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "margin": "xl",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "資料來源：",
+                    "align": "end"
+                    },
+                    {
+                    "type": "text",
+                    "text": "Yahoo電影",
+                    "align": "start"
+                    }
+                ]
+                }
+            ]
+            }
+        }
+    )

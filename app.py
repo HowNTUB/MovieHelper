@@ -67,8 +67,9 @@ def handle_postback(event):
 def handle_message(event):
     userMessage = event.message.text
     
-    
-    if userMessage == '近期上映':
+    if userMessage == '製作團隊':
+        line_bot_api.reply_message(event.reply_token,)
+    elif userMessage == '近期上映':
         
     elif userMessage == '本週新片':
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_thisweek.html?page=','1')

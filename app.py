@@ -65,7 +65,8 @@ def handle_message(event):
             ]
         )
     elif userMessage == '本週新片':
-        line_bot_api.reply_message(event.reply_token, search_movie_thisweek())
+        movielist, pagebox = search_movie_thisweek()
+        line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     elif userMessage == '附近影城':
         print(userMessage)
     elif userMessage == '排行榜':

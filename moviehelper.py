@@ -850,6 +850,51 @@ def search_movie_thisweek():
             }
         )
 
-        return(movie_flex_message)
+        # --------------------pagebox
+        pagebox = soup.select(".page_numbox ul")[0]
+        nowpage = pagebox.select(".active span")[0].text
+        anotherpageURL = [i["href"] for i in pagebox.select("a")]
+        anotherpage = [i.text for i in pagebox.select("a")]
+
+        for index in range(len(anotherpage)):
+            contents.append({
+                "type": "text",
+                "text": anotherpage[index],
+                "align": "center",
+                "action": {
+                    "type": "message",
+                    "label": anotherpageURL[index],
+                    "text": anotherpage[index]
+            })
+        # 回復
+        pagebox_flex_message = FlexSendMessage(
+            alt_text='pagebox',
+            contents={
+                "type": "carousel",
+                "contents": {
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": "目前第"+nowpage+"頁",
+                        "align": "center"
+                        },
+                        {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "margin": "xl",
+                        "contents": contents
+                        }
+                    ]
+                    }
+                }
+            }
+        )
+
+        return(movie_flex_message, pagebox_flex_message)
     except Exception as e:
         print(str(e))

@@ -181,7 +181,7 @@ def use_moviename_serch_movielist(movieName, page):
             }
         )
     # --------------------pagebox
-        if len(soup.select(".page_numbox ul")):
+        if len(soup.select(".page_numbox ul")) == 0:
             pagebox_flex_message = FlexSendMessage(
                 alt_text='pagebox',
                 contents={

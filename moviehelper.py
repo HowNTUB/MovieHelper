@@ -928,7 +928,7 @@ def search_movie_thisweekAndIntheaters(url, page):
         print(str(e))
 
 def workTeam():
-    movie_flex_message = FlexSendMessage(
+    workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',
         contents={
             "type": "carousel",
@@ -1031,3 +1031,4 @@ def workTeam():
             }
         }
     )
+    return(workTeam_flex_message)

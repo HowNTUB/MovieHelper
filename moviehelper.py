@@ -931,8 +931,7 @@ def workTeam():
     workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',
         contents={
-            "type": "carousel",
-            "contents": "type": "bubble",
+            "type": "bubble",
             "direction": "ltr",
             "body": {
             "type": "box",

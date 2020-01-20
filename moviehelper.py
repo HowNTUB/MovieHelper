@@ -218,7 +218,7 @@ def use_moviename_serch_movielist(movieName, page):
                 }
             }
         )
-    return(movie_flex_message)
+    return(movie_flex_message, pagebox_flex_message)
 
 def use_moviename_serch_article(movieName):
     # --------------------article

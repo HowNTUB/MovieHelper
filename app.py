@@ -50,7 +50,7 @@ def handle_postback(event):
         line_bot_api.reply_message(
             event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
     if event.postback.data[:47] == 'https://movies.yahoo.com.tw/movie_thisweek.html':
-        search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html',event.postback.data[53:])
+        search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html?page=',event.postback.data[53:])
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

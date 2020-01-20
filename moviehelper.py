@@ -186,7 +186,18 @@ def use_moviename_serch_movielist(movieName, page):
                 alt_text='pagebox',
                 contents={
                     "type": "bubble",
-                    "direction": "ltr"
+                    "direction": "ltr",
+                    "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": "僅一頁搜尋結果",
+                        "align": "center"
+                        }
+                    ]
+                    }
                 }
             )
         else:

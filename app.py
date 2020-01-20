@@ -44,13 +44,17 @@ def callback():
 # 處理訊息
 @handler.add(PostbackEvent)
 def handle_postback(event):
-    if event.postback.data[:43] == 'https://movies.yahoo.com.tw/movieinfo_main/':
+    userpostback = event.postback.data
+    if userpostback[:71] == 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=':
+        movielist, pagebox = search_movie_thisweek(userpostback,'')
+        line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
+    if userpostback[:43] == 'https://movies.yahoo.com.tw/movieinfo_main/':
         moviePosterContant, infoContant, storyContant, actorContant, stillsContant = use_movieurl_get_movieinfo(
-            event.postback.data)
+            userpostback)
         line_bot_api.reply_message(
             event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
-    if event.postback.data[:47] == 'https://movies.yahoo.com.tw/movie_thisweek.html':
-        movielist, pagebox = search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html?page=',event.postback.data[53:])
+    if userpostback[:47] == 'https://movies.yahoo.com.tw/movie_thisweek.html':
+        movielist, pagebox = search_movie_thisweek('https://movies.yahoo.com.tw/movie_thisweek.html?page=',userpostback[53:])
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

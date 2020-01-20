@@ -872,27 +872,24 @@ def search_movie_thisweek():
         pagebox_flex_message = FlexSendMessage(
             alt_text='pagebox',
             contents={
-                "type": "carousel",
-                "contents": {
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "body": {
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "目前第"+nowpage+"頁",
+                    "align": "center"
+                    },
+                    {
                     "type": "box",
-                    "layout": "vertical",
-                    "contents": [
-                        {
-                        "type": "text",
-                        "text": "目前第"+nowpage+"頁",
-                        "align": "center"
-                        },
-                        {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "margin": "xl",
-                        "contents": contents
-                        }
-                    ]
+                    "layout": "horizontal",
+                    "margin": "xl",
+                    "contents": contents
                     }
+                ]
                 }
             }
         )

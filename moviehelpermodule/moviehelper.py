@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from linebot.models import *
 import json
 from moviehelpermodule.calculate import getDistance
-
+import os
 def pagebox(soup):
     # --------------------pagebox
     if len(soup.select(".page_numbox ul")) == 0:
@@ -1873,6 +1873,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+str(userLat)+','+str(userLng)+'&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
     print(url)
     headers = {}
+    os.environ['http_proxy'] = os.environ['http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292']
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(url, headers=headers)
     resp = request.urlopen(req)

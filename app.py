@@ -99,7 +99,7 @@ def handle_message(event):
     elif userMessage == '電影時刻':
         print(userMessage)
     elif userMessage[:2] == '新聞':
-        line_bot_api.reply_message(event.reply_token, use_moviename_serch_article(userMessage[:2]))
+        line_bot_api.reply_message(event.reply_token, use_moviename_serch_article(userMessage[2:]))
     else:
         movielist, pagebox = use_moviename_serch_movielist(userMessage, '1')
         if not pagebox:

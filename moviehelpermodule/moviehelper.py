@@ -1898,12 +1898,12 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     soup = BeautifulSoup(respData, "html.parser")
     '''
     
-    heroku_ip_request = urllib2.urlopen(url)
+    heroku_ip_request = urllib.urlopen(url)
     heroku_ip_response = heroku_ip_request.read()
     print(heroku_ip_response)
     os.environ['http_proxy'] = os.environ['QUOTAGUARD_URL']
-    proxy = urllib2.ProxyHandler()
-    opener = urllib2.build_opener(proxy)
+    proxy = urllib.ProxyHandler()
+    opener = urllib.build_opener(proxy)
     in_ = opener.open(url)
     qg_response = in_.read()
     print(qg_response)

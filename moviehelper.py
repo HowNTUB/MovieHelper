@@ -2,8 +2,9 @@ from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
 from linebot.models import *
-from ..moviehekoermodule import calculate
+from calculate import getDistance
 import json
+
 
 def pagebox(soup):
     # --------------------pagebox
@@ -70,13 +71,15 @@ def pagebox(soup):
         )
     return(pagebox_flex_message)
 
+
 def use_moviename_serch_movielist(movieNameOrURL, page):
     # 中文轉URL格式編碼
     if movieNameOrURL[:71] == 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=':
         movieURL = movieNameOrURL
     else:
         urlname = parse.quote(movieNameOrURL)
-        movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=' + urlname + '&page=' + page
+        movieURL = 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=' + \
+            urlname + '&page=' + page
     # 電影清單URL
     print(movieURL)
     headers = {}
@@ -253,6 +256,7 @@ def use_moviename_serch_movielist(movieNameOrURL, page):
 
         return(movie_flex_message, pagebox_flex_message)
 
+
 def use_moviename_serch_article(movieName):
     # --------------------article
     # 中文轉URL格式編碼
@@ -361,6 +365,7 @@ def use_moviename_serch_article(movieName):
             }
         )
     return(article_flex_message)
+
 
 def use_movieurl_get_movieinfo(url):
     try:
@@ -791,7 +796,8 @@ def search_movie_thisweekAndIntheaters(url):
         soup = BeautifulSoup(respData)
 
         # --------------------info
-        movieNameCN = [i.text.strip() for i in soup.select(".release_movie_name > a")]
+        movieNameCN = [i.text.strip()
+                                    for i in soup.select(".release_movie_name > a")]
         movieNameEN = [i.text.strip() for i in soup.select(".en a")]
         movieInfo = [i for i in soup.select(".release_movie_name")]
         movieExpectation = []
@@ -799,11 +805,13 @@ def search_movie_thisweekAndIntheaters(url):
         for html in movieInfo:
             movieExpectation.append(html.select("span")[0].text)
             try:
-                movieSatisfactoryDegree.append((html.select("span")[1])["data-num"])
+                movieSatisfactoryDegree.append(
+                    (html.select("span")[1])["data-num"])
             except:
                 movieSatisfactoryDegree.append("無資料")
         moviePoster = [i["src"] for i in soup.select(".release_foto img")]
-        movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
+        movieReleaseTime = [(i.text)[7:]
+                             for i in soup.select(".release_movie_time")]
         movieDetailUrl = [i["href"]
                             for i in soup.select(".release_movie_name > a")]
         # --------------------
@@ -932,9 +940,10 @@ def search_movie_thisweekAndIntheaters(url):
     except Exception as e:
         print(str(e))
 
+
 def search_movie_comingsoon(url):
     if url == '':
-        url = 'https://movies.yahoo.com.tw/movie_comingsoon.html'        
+        url = 'https://movies.yahoo.com.tw/movie_comingsoon.html'
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(url, headers=headers)
@@ -945,10 +954,10 @@ def search_movie_comingsoon(url):
     # --------------------movieTab
 
     movieTab = [i for i in soup.select(".comingsoon_tab li")]
-    contents=[]
+    contents = []
     for tab in movieTab:
         print(tab)
-        if (tab.text)[:2] == '20':#年
+        if (tab.text)[:2] == '20':  # 年
             print(tab.text)
             contents.append({
                 "type": "text",
@@ -958,7 +967,7 @@ def search_movie_comingsoon(url):
                 "weight": "bold"
             })
         else:
-            if tab["class"] == ['select']:#當月
+            if tab["class"] == ['select']:  # 當月
                 print(True)
                 contents.append({
                     "type": "text",
@@ -970,7 +979,7 @@ def search_movie_comingsoon(url):
                     }
                 })
             else:
-                print(tab.text)#每月
+                print(tab.text)  # 每月
                 print(tab.a["href"])
                 contents.append({
                     "type": "text",
@@ -983,7 +992,6 @@ def search_movie_comingsoon(url):
                     }
                 })
 
-    
     movietab_flex_message = FlexSendMessage(
         alt_text='movielist',
         contents={
@@ -1009,11 +1017,11 @@ def search_movie_comingsoon(url):
             }
         }
     )
-    
-    
+
     # --------------------movieInfo
     movieInfo = [i.text for i in soup.select(".release_info")]
-    movieNameCN = [i.text.strip() for i in soup.select(".release_movie_name > a")]
+    movieNameCN = [i.text.strip()
+                                for i in soup.select(".release_movie_name > a")]
     movieNameEN = [i.text.strip() for i in soup.select(".en a")]
     movieExpectation = [i.text for i in soup.select("#content_l dt span")]
     movieSatisfactoryDegree = []
@@ -1021,7 +1029,8 @@ def search_movie_comingsoon(url):
         movieSatisfactoryDegree.append('未上映') if info.find(
             "滿意度") == -1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
     moviePoster = [i["src"] for i in soup.select(".release_foto img")]
-    movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
+    movieReleaseTime = [(i.text)[7:]
+                         for i in soup.select(".release_movie_time")]
     movieDetailUrl = [i["href"]
                         for i in soup.select(".release_movie_name > a")]
 
@@ -1166,8 +1175,9 @@ def search_movie_comingsoon(url):
 
     pagebox_flex_message = pagebox(soup)
 
-    return(movietab_flex_message, movie_flex_message, pagebox_flex_message )
-    
+    return(movietab_flex_message, movie_flex_message, pagebox_flex_message)
+
+
 def search_movie_chart(url):
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
@@ -1189,16 +1199,19 @@ def search_movie_chart(url):
     movieRankOneImg = (soup.select_one(".rank_list_box img"))["src"]
     movieNameCN = ['　'+i.text for i in soup.select(".rank_txt , h2")]
     movieNameEN = soup.select_one("h3").text
-    movieReleaseTime = ['　'+i.text for i in soup.select(".tr+ .tr .td:nth-child(5)")]
-    movieSatisfactoryDegree = [i.text.strip() for i in soup.select(".starwithnum")]
-    movieURLHTML = [i for i in soup.select(".up~ .td:nth-child(4) , .down~ .td:nth-child(4) , .new~ .td:nth-child(4)")]
+    movieReleaseTime = [
+        '　'+i.text for i in soup.select(".tr+ .tr .td:nth-child(5)")]
+    movieSatisfactoryDegree = [i.text.strip()
+                                            for i in soup.select(".starwithnum")]
+    movieURLHTML = [i for i in soup.select(
+        ".up~ .td:nth-child(4) , .down~ .td:nth-child(4) , .new~ .td:nth-child(4)")]
     movieURL = []
     for html in movieURLHTML:
         if html.a != None:
             movieURL.append(html.a["href"])
         else:
             movieURL.append("沒有資料")
-    rankcontents=[]
+    rankcontents = []
     for index in range(len(movieRank)):
         if index == 0:
             rankcontents.append({
@@ -1358,8 +1371,9 @@ def search_movie_chart(url):
             }
         }
     )
-    
+
     return(movierank_flex_message)
+
 
 def select_movie_type():
     '''
@@ -1670,37 +1684,39 @@ def select_movie_type():
             }
         }
     )
-    
+
     return(movieType_flex_message)
+
 
 def search_movie_type(typeName, url):
     if typeName == '':
         movieURL = url
     else:
-        movieTypeDition={
-            "1":"動作",
-            "2":"冒險",
-            "3":"科幻",
-            "4":"奇幻",
-            "5":"劇情",
-            "6":"犯罪",
-            "7":"恐怖",
-            "8":"懸疑驚悚",
-            "9":"喜劇",
-            "10":"愛情",
-            "11":"溫馨家庭",
-            "12":"動畫",
-            "13":"戰爭",
-            "14":"音樂歌舞",
-            "15":"歷史傳記",
-            "16":"紀錄片",
-            "17":"勵志",
-            "18":"武俠",
-            "19":"影展",
-            "20":"戲劇",
-            "21":"影集",
+        movieTypeDition = {
+            "1": "動作",
+            "2": "冒險",
+            "3": "科幻",
+            "4": "奇幻",
+            "5": "劇情",
+            "6": "犯罪",
+            "7": "恐怖",
+            "8": "懸疑驚悚",
+            "9": "喜劇",
+            "10": "愛情",
+            "11": "溫馨家庭",
+            "12": "動畫",
+            "13": "戰爭",
+            "14": "音樂歌舞",
+            "15": "歷史傳記",
+            "16": "紀錄片",
+            "17": "勵志",
+            "18": "武俠",
+            "19": "影展",
+            "20": "戲劇",
+            "21": "影集",
         }
-        typeNo = list(movieTypeDition.keys())[list(movieTypeDition.values()).index(typeName)]
+        typeNo = list(movieTypeDition.keys())[
+                      list(movieTypeDition.values()).index(typeName)]
         # 電影清單URL
         movieURL = 'https://movies.yahoo.com.tw/moviegenre_result.html?genre_id='+typeNo+'&page=1'
 
@@ -1711,7 +1727,8 @@ def search_movie_type(typeName, url):
     respData = str(resp.read().decode('utf-8'))
     soup = BeautifulSoup(respData, "html.parser")
 
-    movieNameCN = [i.text.strip() for i in soup.select(".release_movie_name > .gabtn")]
+    movieNameCN = [i.text.strip()
+                                for i in soup.select(".release_movie_name > .gabtn")]
     movieNameEN = [i.text.strip() for i in soup.select(".en .gabtn")]
     movieInfo = [i for i in soup.select(".release_movie_name")]
     movieExpectation = []
@@ -1719,11 +1736,13 @@ def search_movie_type(typeName, url):
     for html in movieInfo:
         movieExpectation.append(html.select("span")[0].text)
         try:
-            movieSatisfactoryDegree.append((html.select("span")[1])["data-num"])
+            movieSatisfactoryDegree.append(
+                (html.select("span")[1])["data-num"])
         except:
             movieSatisfactoryDegree.append("無資料")
     moviePoster = [i["src"] for i in soup.select("#content_l img")]
-    movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
+    movieReleaseTime = [(i.text)[7:]
+                         for i in soup.select(".release_movie_time")]
     movieDetailUrl = [i["href"]
                         for i in soup.select(".release_movie_name > .gabtn")]
     # 內容轉為json格式
@@ -1850,8 +1869,10 @@ def search_movie_type(typeName, url):
 
     return(movie_flex_message, pagebox_flex_message)
 
-def movietheaterRadar(userAddress,userLat,userLng):
-    url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+userLat+','+userLng+'&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
+
+def movietheaterRadar(userAddress, userLat, userLng):
+    url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+userLat+','+userLng + \
+        '&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(url, headers=headers)
@@ -1872,11 +1893,13 @@ def movietheaterRadar(userAddress,userLat,userLng):
         movietheaterLng.append(data["geometry"]["location"]["lng"])
         try:
             photoReference = data["photos"][0]['photo_reference']
-            movietheaterPhotos.append('https://maps.googleapis.com/maps/api/place/photo?maxheight=900&maxwidth=1200&photoreference='+photoReference+'&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
+            movietheaterPhotos.append('https://maps.googleapis.com/maps/api/place/photo?maxheight=900&maxwidth=1200&photoreference=' +
+                                      photoReference+'&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
         except:
             movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
         movietheaterRating.append(data["rating"])
         movietheaterAddress.append(data["vicinity"])
+        
     contents = []
     for index in range(len(movietheaterName)):
         contents.append({
@@ -1888,7 +1911,7 @@ def movietheaterRadar(userAddress,userLat,userLng):
             "contents": [
                 {
                 "type": "text",
-                "text": movietheaterName[index],
+                "text": movietheaterName,
                 "size": "xl",
                 "align": "start",
                 "weight": "bold"
@@ -1897,7 +1920,7 @@ def movietheaterRadar(userAddress,userLat,userLng):
             },
             "hero": {
             "type": "image",
-            "url": movietheaterPhotos[index],
+            "url": movietheaterPhotos,
             "size": "full",
             "aspectRatio": "4:3",
             "aspectMode": "fit"
@@ -1908,12 +1931,12 @@ def movietheaterRadar(userAddress,userLat,userLng):
             "contents": [
                 {
                 "type": "text",
-                "text": movietheaterName[index],
+                "text": movietheaterName,
                 "align": "start"
                 },
                 {
                 "type": "text",
-                "text": movietheaterAddress[index]
+                "text": movietheaterAddress
                 },
                 {
                 "type": "box",
@@ -1927,7 +1950,7 @@ def movietheaterRadar(userAddress,userLat,userLng):
                     },
                     {
                     "type": "text",
-                    "text": movietheaterRating[index],
+                    "text": movietheaterRating,
                     "size": "xl"
                     }
                 ]
@@ -1944,7 +1967,7 @@ def movietheaterRadar(userAddress,userLat,userLng):
                     },
                     {
                     "type": "text",
-                    "text": calculate.getDistance(userLat,userLng,movietheaterLat,movietheaterLng),
+                    "text": getDistance(userLat,userLng,movietheaterLat,movietheaterLng),
                     "flex": 0,
                     "size": "xl"
                     },
@@ -1979,6 +2002,7 @@ def movietheaterRadar(userAddress,userLat,userLng):
                 }
                 }
             ]
+            }
         })
     movietheater_flex_message = FlexSendMessage(
         alt_text='movietheater',
@@ -1988,7 +2012,6 @@ def movietheaterRadar(userAddress,userLat,userLng):
         }
     )
     return(movietheater_flex_message)
-
 
 def workTeam():
     workTeam_flex_message = FlexSendMessage(

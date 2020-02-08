@@ -1879,7 +1879,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
     soup = BeautifulSoup(respData)
     jsondata = json.loads(respData)
-    print('json: 'jsondata)
+    print('json: '+jsondata)
     movietheaterName = []
     movietheaterLat = []
     movietheaterLng = []

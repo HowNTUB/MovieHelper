@@ -1884,6 +1884,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     '''
     # 因為heroku無法直接呼叫googleapi，所以要用代理伺服器去呼叫
     url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+str(userLat)+','+str(userLng)+'&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
+    '''
     proxy="http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292"
     # Build ProxyHandler object by given proxy
     proxy_support=request.ProxyHandler({'http':proxy})
@@ -1895,6 +1896,17 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     resp = request.urlopen(url,timeout = 1000)
     respData = str(resp.read().decode('utf-8'))
     soup = BeautifulSoup(respData, "html.parser")
+    '''
+    
+    heroku_ip_request = urllib2.urlopen(url)
+    heroku_ip_response = heroku_ip_request.read()
+    print(heroku_ip_response)
+    os.environ['http_proxy'] = os.environ['QUOTAGUARD_URL']
+    proxy = urllib2.ProxyHandler()
+    opener = urllib2.build_opener(proxy)
+    in_ = opener.open(url)
+    qg_response = in_.read()
+    print(qg_response)
 
     jsondata = json.loads(respData)
     print(soup)

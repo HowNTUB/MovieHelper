@@ -1875,7 +1875,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     headers = {}
     os.environ['http_proxy'] = os.environ['http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292']
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-    req = request.Request(url, headers=headers)
+    req = request.Request(url, headers=headers, environ=os.environ)
     resp = request.urlopen(req)
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
     soup = BeautifulSoup(respData ,features="html.parser")

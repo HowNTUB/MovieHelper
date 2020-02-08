@@ -1942,7 +1942,7 @@ def movietheaterRadar(userAddress,userLat,userLng):
                     },
                     {
                     "type": "text",
-                    "text": getDistance(userLat,userLng,movietheaterLat,movietheaterLng),
+                    "text": '還沒有',
                     "flex": 0,
                     "size": "xl"
                     },

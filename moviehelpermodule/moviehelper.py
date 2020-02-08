@@ -1899,8 +1899,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         movietheaterAddress.append(data["vicinity"])
         
     contents = []
-    for index in range(len(movietheaterName)):
-        if index > 9 : break
+    for index in range(len(movietheaterName[:10])):
         contents.append({
             "type": "bubble",
             "direction": "ltr",

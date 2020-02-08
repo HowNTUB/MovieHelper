@@ -1877,7 +1877,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     req = request.Request(url, headers=headers)
     resp = request.urlopen(req)
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
-    soup = BeautifulSoup(respData)
+    soup = BeautifulSoup(respData ,features="html.parser")
     jsondata = json.loads(respData)
     movietheaterName = []
     movietheaterLat = []

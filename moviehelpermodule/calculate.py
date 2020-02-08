@@ -1,4 +1,5 @@
 from math import radians, atan, tan, acos, cos, sin
+
 def getDistance(latA, lonA, latB, lonB):  
     ra = 6378140  # radius of equator: meter  
     rb = 6356755  # radius of polar: meter  

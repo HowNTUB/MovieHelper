@@ -1870,8 +1870,7 @@ def search_movie_type(typeName, url):
 
 
 def use_location_search_movietheater(userAddress, userLat, userLng):
-    url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+userLat+','+userLng + \
-        '&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
+    url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+str(userLat)+','+str(userLng)+'&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(url, headers=headers)

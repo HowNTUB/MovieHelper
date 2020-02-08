@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, workTeam
+from module.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler

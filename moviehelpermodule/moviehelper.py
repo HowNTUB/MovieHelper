@@ -1,5 +1,5 @@
-from urllib import request
-from urllib import parse
+from urllib import request, parse
+import urllib
 from bs4 import BeautifulSoup
 from linebot.models import *
 import json
@@ -1871,11 +1871,11 @@ def search_movie_type(typeName, url):
 
 def use_location_search_movietheater(userAddress, userLat, userLng):
     url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+str(userLat)+','+str(userLng)+'&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
-    heroku_ip_request = request.urlopen(url)
+    heroku_ip_request = urlopen(url)
     heroku_ip_response = heroku_ip_request.read()
     os.environ['http_proxy'] = os.environ['http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292']
-    proxy = request.ProxyHandler()
-    opener = request.build_opener(proxy)
+    proxy = urllib.ProxyHandler()
+    opener = urllib.build_opener(proxy)
     in_ = opener.open(url)
     qg_response = str(in_.read().decode('utf-8'))
     soup = BeautifulSoup(qg_response ,features="html.parser")

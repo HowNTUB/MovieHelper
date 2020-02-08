@@ -2,7 +2,6 @@ from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
 from linebot.models import *
-from calculate import getDistance
 import json
 
 
@@ -1968,13 +1967,14 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]),
+#from calculate import getDistancegetDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index])
+                    "text": "1.5",
                     "flex": 0,
                     "size": "xl"
                     },
                     {
                     "type": "text",
-                    "text": "公尺",
+                    "text": "公里",
                     "align": "start",
                     "gravity": "bottom"
                     }

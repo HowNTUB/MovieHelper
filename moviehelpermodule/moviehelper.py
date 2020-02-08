@@ -1871,14 +1871,18 @@ def search_movie_type(typeName, url):
 
 def use_location_search_movietheater(userAddress, userLat, userLng):
     url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+str(userLat)+','+str(userLng)+'&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
-    print(url)
-    headers = {}
+    heroku_ip_request = urllib2.urlopen(url)
+    print "Heroku IP:"
+    heroku_ip_response = heroku_ip_request.read()
+    print heroku_ip_response
     os.environ['http_proxy'] = os.environ['http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292']
-    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
-    req = request.Request(url, headers=headers, environ=os.environ)
-    resp = request.urlopen(req)
-    respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
-    soup = BeautifulSoup(respData ,features="html.parser")
+    proxy = urllib2.ProxyHandler()
+    opener = urllib2.build_opener(proxy)
+    in_ = opener.open(url)
+    qg_response = str(in_.read().decode('utf-8'))
+    soup = BeautifulSoup(qg_response ,features="html.parser")
+    jsondata = json.loads(respData)
+
     print(soup)
     jsondata = json.loads(respData)
     movietheaterName = []

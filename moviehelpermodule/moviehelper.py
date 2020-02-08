@@ -1882,6 +1882,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     soup = BeautifulSoup(qg_response ,features="html.parser")
     jsondata = json.loads(respData)
     '''
+    # 因為heroku無法直接呼叫googleapi，所以要用代理伺服器去呼叫
     url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+str(userLat)+','+str(userLng)+'&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
     proxy="http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292"
     # Build ProxyHandler object by given proxy
@@ -1896,6 +1897,8 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     soup = BeautifulSoup(respData, "html.parser")
 
     jsondata = json.loads(respData)
+    print('soup:'+soup)
+    print('jsondata:'+jsondata)
     movietheaterName = []
     movietheaterLat = []
     movietheaterLng = []

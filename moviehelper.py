@@ -3,6 +3,7 @@ from urllib import parse
 from bs4 import BeautifulSoup
 from linebot.models import *
 from calculate import getDistance
+import json
 def pagebox(soup):
     # --------------------pagebox
     if len(soup.select(".page_numbox ul")) == 0:
@@ -1858,7 +1859,134 @@ def movietheaterRadar(userAddress,userLat,userLng):
     soup = BeautifulSoup(respData)
 
     jsondata = json.loads(respData)
-    
+    movietheaterName = []
+    movietheaterLat = []
+    movietheaterLng = []
+    movietheaterPhotos = []
+    movietheaterRating = []
+    movietheaterAddress = []
+    for data in jsondata["results"]:
+        movietheaterName.append(data["name"])
+        movietheaterLat.append(data["geometry"]["location"]["lat"])
+        movietheaterLng.append(data["geometry"]["location"]["lng"])
+        try:
+            photoReference = data["photos"][0]['photo_reference']
+            movietheaterPhotos.append('https://maps.googleapis.com/maps/api/place/photo?maxheight=900&maxwidth=1200&photoreference='+photoReference+'&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
+        except:
+            movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
+        movietheaterRating.append(data["rating"])
+        movietheaterAddress.append(data["vicinity"])
+    contents = []
+    for index in range(len(movietheaterName)):
+        contents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": movietheaterName[index],
+                "size": "xl",
+                "align": "start",
+                "weight": "bold"
+                }
+            ]
+            },
+            "hero": {
+            "type": "image",
+            "url": movietheaterPhotos[index],
+            "size": "full",
+            "aspectRatio": "4:3",
+            "aspectMode": "fit"
+            },
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": movietheaterName[index],
+                "align": "start"
+                },
+                {
+                "type": "text",
+                "text": movietheaterAddress[index]
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "評價",
+                    "flex": 0,
+                    "gravity": "bottom"
+                    },
+                    {
+                    "type": "text",
+                    "text": movietheaterRating[index],
+                    "size": "xl"
+                    }
+                ]
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "距離",
+                    "flex": 0,
+                    "gravity": "bottom"
+                    },
+                    {
+                    "type": "text",
+                    "text": getDistance(userLat,userLng,movietheaterLat,movietheaterLng),
+                    "flex": 0,
+                    "size": "xl"
+                    },
+                    {
+                    "type": "text",
+                    "text": "公尺",
+                    "align": "start",
+                    "gravity": "bottom"
+                    }
+                ]
+                }
+            ]
+            },
+            "footer": {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+                {
+                "type": "button",
+                "action": {
+                    "type": "uri",
+                    "label": "上映場次",
+                    "uri": "https://linecorp.com"
+                }
+                },
+                {
+                "type": "button",
+                "action": {
+                    "type": "uri",
+                    "label": "位置資訊",
+                    "uri": "https://linecorp.com"
+                }
+                }
+            ]
+        })
+    movietheater_flex_message = FlexSendMessage(
+        alt_text='movietheater',
+        contents={
+            "type": "carousel",
+            "contents": contents
+        }
+    )
+    return(movietheater_flex_message)
 
 
 def workTeam():

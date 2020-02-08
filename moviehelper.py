@@ -2003,7 +2003,7 @@ def movietheaterRadar(userAddress, userLat, userLng):
                 }
             ]
             }
-        })
+    })
     movietheater_flex_message = FlexSendMessage(
         alt_text='movietheater',
         contents={

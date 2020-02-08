@@ -927,6 +927,17 @@ def search_movie_thisweekAndIntheaters(url, page):
     except Exception as e:
         print(str(e))
 
+
+
+
+
+
+
+
+
+
+
+
 def workTeam():
     workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',

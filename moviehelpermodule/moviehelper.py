@@ -1895,7 +1895,6 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     respData = str(resp.read().decode('utf-8'))
     soup = BeautifulSoup(respData, "html.parser")
 
-    print(r)
     jsondata = json.loads(respData)
     movietheaterName = []
     movietheaterLat = []

@@ -1870,7 +1870,7 @@ def search_movie_type(typeName, url):
     return(movie_flex_message, pagebox_flex_message)
 
 
-def movietheaterRadar(userAddress, userLat, userLng):
+def use_location_search_movietheater(userAddress, userLat, userLng):
     url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+userLat+','+userLng + \
         '&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
     headers = {}
@@ -1902,6 +1902,7 @@ def movietheaterRadar(userAddress, userLat, userLng):
         
     contents = []
     for index in range(len(movietheaterName)):
+        if index > 9 : break
         contents.append({
             "type": "bubble",
             "direction": "ltr",
@@ -1911,7 +1912,7 @@ def movietheaterRadar(userAddress, userLat, userLng):
             "contents": [
                 {
                 "type": "text",
-                "text": movietheaterName,
+                "text": movietheaterName[index],
                 "size": "xl",
                 "align": "start",
                 "weight": "bold"
@@ -1920,7 +1921,7 @@ def movietheaterRadar(userAddress, userLat, userLng):
             },
             "hero": {
             "type": "image",
-            "url": movietheaterPhotos,
+            "url": movietheaterPhotos[index],
             "size": "full",
             "aspectRatio": "4:3",
             "aspectMode": "fit"
@@ -1931,12 +1932,12 @@ def movietheaterRadar(userAddress, userLat, userLng):
             "contents": [
                 {
                 "type": "text",
-                "text": movietheaterName,
+                "text": movietheaterName[index],
                 "align": "start"
                 },
                 {
                 "type": "text",
-                "text": movietheaterAddress
+                "text": movietheaterAddress[index]
                 },
                 {
                 "type": "box",
@@ -1950,7 +1951,7 @@ def movietheaterRadar(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": movietheaterRating,
+                    "text": movietheaterRating[index],
                     "size": "xl"
                     }
                 ]
@@ -1967,7 +1968,7 @@ def movietheaterRadar(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": getDistance(userLat,userLng,movietheaterLat,movietheaterLng),
+                    "text": getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]),
                     "flex": 0,
                     "size": "xl"
                     },

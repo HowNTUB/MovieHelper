@@ -1870,14 +1870,32 @@ def search_movie_type(typeName, url):
 
 
 def use_location_search_movietheater(userAddress, userLat, userLng):
+    '''
     url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+str(userLat)+','+str(userLng)+'&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
-    proxies = 'http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292'
-    r=requests.get("http://icanhazip.com", proxies=proxies)
-    qg_response = str(r.read().decode('utf-8'))
+    heroku_ip_request = request.urlopen(url)
+    heroku_ip_response = heroku_ip_request.read()
+    os.environ['http_proxy'] = os.environ['http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292']
+    proxy = request.ProxyHandler()
+    opener = request.build_opener(proxy)
+    in_ = opener.open(url)
+    qg_response = str(in_.read().decode('utf-8'))
     soup = BeautifulSoup(qg_response ,features="html.parser")
     jsondata = json.loads(respData)
+    '''
 
-    print(soup)
+    proxy="http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292"
+    # Build ProxyHandler object by given proxy
+    proxy_support=request.ProxyHandler({'http':proxy})
+    # Build opener with ProxyHandler object
+    opener = request.build_opener(proxy_support)
+    # Install opener to request
+    request.install_opener(opener)
+    # Open url
+    resp = request.urlopen(url,timeout = 1000)
+    respData = str(resp.read().decode('utf-8'))
+    soup = BeautifulSoup(respData, "html.parser")
+
+    print(r)
     jsondata = json.loads(respData)
     movietheaterName = []
     movietheaterLat = []

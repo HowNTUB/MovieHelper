@@ -1871,6 +1871,7 @@ def search_movie_type(typeName, url):
 
 def use_location_search_movietheater(userAddress, userLat, userLng):
     url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+str(userLat)+','+str(userLng)+'&radius=5000&keyword=movietheater&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM&language=zh-TW'
+    print(url)
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(url, headers=headers)
@@ -1897,7 +1898,13 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
             movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
         movietheaterRating.append(data["rating"])
         movietheaterAddress.append(data["vicinity"])
-        
+    print(movietheaterName[1])
+    print(movietheaterLat[1])
+    print(movietheaterLng[1])
+    print(movietheaterPhotos[1])
+    print(movietheaterRating[1])
+    print(movietheaterAddress[1])
+    print(getDistance(25.04179847198162,121.525639358062,movietheaterLat[0],movietheaterLng[0]))
     contents = []
     for index in range(len(movietheaterName[:10])):
         contents.append({

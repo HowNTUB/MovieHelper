@@ -112,7 +112,8 @@ def handle_location_message(event):
     print(event.message.address)
     print(event.message.latitude)
     print(event.message.longitude)
-    line_bot_api.reply_message(event.reply_token, use_location_search_movietheater(event.message.address,event.message.latitude,event.message.longitude))
+    radar = use_location_search_movietheater(event.message.address,event.message.latitude,event.message.longitude)
+    line_bot_api.reply_message(event.reply_token, radar)
 
 # ---------------------------------------------------------------
 if __name__ == "__main__":

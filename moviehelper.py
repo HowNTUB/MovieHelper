@@ -2,8 +2,9 @@ from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
 from linebot.models import *
-from moviehelpermodule.calculate import getDistance
+from calculate import getDistance
 import json
+
 def pagebox(soup):
     # --------------------pagebox
     if len(soup.select(".page_numbox ul")) == 0:

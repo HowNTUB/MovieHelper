@@ -1879,7 +1879,6 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
     soup = BeautifulSoup(respData)
     jsondata = json.loads(respData)
-    print('json: '+jsondata)
     movietheaterName = []
     movietheaterLat = []
     movietheaterLng = []
@@ -1898,12 +1897,12 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
             movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
         movietheaterRating.append(data["rating"])
         movietheaterAddress.append(data["vicinity"])
-    print(movietheaterName[1])
-    print(movietheaterLat[1])
-    print(movietheaterLng[1])
-    print(movietheaterPhotos[1])
-    print(movietheaterRating[1])
-    print(movietheaterAddress[1])
+    print(movietheaterName[0])
+    print(movietheaterLat[0])
+    print(movietheaterLng[0])
+    print(movietheaterPhotos[0])
+    print(movietheaterRating[0])
+    print(movietheaterAddress[0])
     print(getDistance(25.04179847198162,121.525639358062,movietheaterLat[0],movietheaterLng[0]))
     contents = []
     for index in range(len(movietheaterName[:10])):

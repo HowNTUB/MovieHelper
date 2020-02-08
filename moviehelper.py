@@ -2,7 +2,7 @@ from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
 from linebot.models import *
-from calculate import getDistance
+from ..moviehekoermodule import calculate
 import json
 
 def pagebox(soup):
@@ -1944,7 +1944,7 @@ def movietheaterRadar(userAddress,userLat,userLng):
                     },
                     {
                     "type": "text",
-                    "text": getDistance(userLat,userLng,movietheaterLat,movietheaterLng),
+                    "text": calculate.getDistance(userLat,userLng,movietheaterLat,movietheaterLng),
                     "flex": 0,
                     "size": "xl"
                     },

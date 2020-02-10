@@ -1923,7 +1923,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
             },
             "hero": {
             "type": "image",
-            "url": 'https://lh3.googleusercontent.com/p/AF1QipMFNviamvPG8b_mQMqzqxZJhLtiR4XBH9ull9YQ=s1600-w1200-h900',
+            "url": 'https://i.imgur.com/CMAl4DQ.jpg',
             "size": "full",
             "aspectRatio": "4:3",
             "aspectMode": "fit"

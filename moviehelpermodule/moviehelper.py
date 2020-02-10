@@ -1908,24 +1908,38 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         contents.append({
             "type": "bubble",
             "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": movietheaterName[index],
+                "size": "xl",
+                "align": "start",
+                "weight": "bold"
+                }
+            ]
+            },
+            "hero": {
+            "type": "image",
+            "url": movietheaterPhotos[index],
+            "size": "full",
+            "aspectRatio": "4:3",
+            "aspectMode": "fit"
+            },
             "body": {
             "type": "box",
             "layout": "vertical",
             "contents": [
                 {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "名稱",
-                    "align": "center"
-                    },
-                    {
-                    "type": "text",
-                    "text": movietheaterName[index]
-                    }
-                ]
+                "type": "text",
+                "text": movietheaterName[index],
+                "align": "start"
+                },
+                {
+                "type": "text",
+                "text": movietheaterAddress[index]
                 },
                 {
                 "type": "box",
@@ -1933,27 +1947,14 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 "contents": [
                     {
                     "type": "text",
-                    "text": "地址",
-                    "align": "center"
+                    "text": "評價",
+                    "flex": 0,
+                    "gravity": "bottom"
                     },
                     {
                     "type": "text",
-                    "text": movietheaterAddress[index]
-                    }
-                ]
-                },
-                {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "評分",
-                    "align": "center"
-                    },
-                    {
-                    "type": "text",
-                    "text": str(movietheaterRating[index])
+                    "text": str(movietheaterRating[index]),
+                    "size": "xl"
                     }
                 ]
                 },
@@ -1964,13 +1965,44 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     {
                     "type": "text",
                     "text": "距離",
-                    "align": "center"
+                    "flex": 0,
+                    "gravity": "bottom"
                     },
                     {
                     "type": "text",
-                    "text": str(getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]))
+                    "text": str((getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index])),
+                    "flex": 0,
+                    "size": "xl"
+                    },
+                    {
+                    "type": "text",
+                    "text": "公尺",
+                    "align": "start",
+                    "gravity": "bottom"
                     }
                 ]
+                }
+            ]
+            },
+            "footer": {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+                {
+                "type": "button",
+                "action": {
+                    "type": "uri",
+                    "label": "上映場次",
+                    "uri": "https://linecorp.com"
+                }
+                },
+                {
+                "type": "button",
+                "action": {
+                    "type": "uri",
+                    "label": "位置資訊",
+                    "uri": "https://linecorp.com"
+                }
                 }
             ]
             }

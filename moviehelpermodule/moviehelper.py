@@ -1894,15 +1894,8 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
             movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
         movietheaterRating.append(data["rating"])
         movietheaterAddress.append(data["vicinity"])
-    print(movietheaterName[0])
-    print(movietheaterLat[0])
-    print(movietheaterLng[0])
-    print(movietheaterPhotos[0])
-    print(movietheaterRating[0])
-    print(movietheaterAddress[0])
-    print(getDistance(25.04179847198162,121.525639358062,movietheaterLat[0],movietheaterLng[0]))
     contents = []
-    for index in range(len(movietheaterName[:9])):
+    for index in range(len(movietheaterName)):
         print(index)
         print(movietheaterName[index])
         print(movietheaterLat[index])
@@ -1911,6 +1904,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         print(movietheaterRating[index])
         print(movietheaterAddress[index])
         print(getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]))
+        if index > 9 : break
         contents.append({
             "type": "bubble",
             "direction": "ltr",

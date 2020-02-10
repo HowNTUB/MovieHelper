@@ -1923,7 +1923,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": "Text"
+                    "text": movietheaterName[index]
                     }
                 ]
                 },
@@ -1938,7 +1938,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": "Text"
+                    "text": movietheaterAddress[index]
                     }
                 ]
                 },
@@ -1953,7 +1953,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": "Text"
+                    "text": movietheaterRating[index]
                     }
                 ]
                 },
@@ -1968,7 +1968,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": "Text"
+                    "text": getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index])
                     }
                 ]
                 }

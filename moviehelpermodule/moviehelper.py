@@ -1874,7 +1874,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
 
     googleAPIKey = os.environ['GOOGLE_API_KEY'] # 在heroku專案中的Config Vars中設定
     gmaps = googlemaps.Client(key=googleAPIKey)
-    nearbyMovietheater = googlemaps.places.places_nearby(location=(userLat,userLng), radius=500000, language="zh-TW", keyword="movietheater", client=gmaps)
+    nearbyMovietheater = googlemaps.places.places_nearby(location=(userLat,userLng), radius=50000, language="zh-TW", keyword="movietheater", client=gmaps)
     print(nearbyMovietheater)
     movietheaterName = []
     movietheaterLat = []
@@ -1968,7 +1968,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": Distance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]),
+                    "text": getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]),
                     "flex": 0,
                     "size": "xl"
                     },

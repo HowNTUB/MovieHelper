@@ -2014,7 +2014,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         }
     )
     return(movietheater_flex_message)
-    '''
+    
 def workTeam():
     workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',

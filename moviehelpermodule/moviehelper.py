@@ -1903,6 +1903,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     print(getDistance(25.04179847198162,121.525639358062,movietheaterLat[0],movietheaterLng[0]))
     contents = []
     for index in range(len(movietheaterName[:9])):
+        print(index)
         contents.append({
             "type": "bubble",
             "direction": "ltr",
@@ -1921,7 +1922,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
             },
             "hero": {
             "type": "image",
-            "url": movietheaterPhotos[index],
+            "url": 'https://lh3.googleusercontent.com/p/AF1QipMFNviamvPG8b_mQMqzqxZJhLtiR4XBH9ull9YQ=s1600-w1200-h900',
             "size": "full",
             "aspectRatio": "4:3",
             "aspectMode": "fit"

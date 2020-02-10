@@ -1870,6 +1870,27 @@ def search_movie_type(typeName, url):
 
 
 def use_location_search_movietheater(userAddress, userLat, userLng):
+    import googlemaps
+    from datetime import datetime
+    import json
+
+    gmaps = googlemaps.Client(key='AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
+
+    # Geocoding an address
+    geocode_result = gmaps.geocode('信義區松壽路20號')
+
+    # Look up an address with reverse geocoding
+    reverse_geocode_result = gmaps.reverse_geocode((40.714224, -73.961452))
+
+    # Request directions via public transit
+    now = datetime.now()
+    directions_result = gmaps.directions("台北商業大學",
+                                        "信義威秀",
+                                        mode="transit",
+                                        departure_time=now,
+                                        language="zh-TW")
+
+    print(type(directions_result))
     '''
     
     heroku_ip_request = request.urlopen(url)
@@ -1897,7 +1918,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     respData = str(resp.read().decode('utf-8'))
     soup = BeautifulSoup(respData, "html.parser")
     '''
-    
+    '''
     heroku_ip_request = request.urlopen(url)
     heroku_ip_response = heroku_ip_request.read()
     print(heroku_ip_response)
@@ -2049,7 +2070,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         }
     )
     return(movietheater_flex_message)
-
+    '''
 def workTeam():
     workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',

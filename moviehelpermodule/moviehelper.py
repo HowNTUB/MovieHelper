@@ -1938,7 +1938,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": "Text"
+                    "text": "movietheaterAddress[index]
                     }
                 ]
                 },

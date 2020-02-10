@@ -1976,7 +1976,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": "公尺",
+                    "text": "公里",
                     "align": "start",
                     "gravity": "bottom"
                     }

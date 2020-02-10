@@ -1869,10 +1869,9 @@ def search_movie_type(typeName, url):
 
 def use_location_search_movietheater(userAddress, userLat, userLng):
     import googlemaps
-    from datetime import datetime
 
-    gmaps = googlemaps.Client(key='AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929Plxm')
-    nearbyMovietheater = googlemaps.places.places_nearby(location=(userLat,userLng), radius=5000, language="zh-TW", keyword="movietheater", client=gmaps)
+    gmaps = googlemaps.Client(key='AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
+    nearbyMovietheater = googlemaps.places.places_nearby(location=userLat+','+userLng, radius=5000, language="zh-TW", keyword="movietheater", components=administrative_area:TX, client=gmaps)
     print(nearbyMovietheater)
     movietheaterName = []
     movietheaterLat = []

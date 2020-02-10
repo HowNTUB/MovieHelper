@@ -1870,7 +1870,6 @@ def search_movie_type(typeName, url):
 def use_location_search_movietheater(userAddress, userLat, userLng):
     import googlemaps
     import os
-    os.environ['http_proxy'] = os.environ['QUOTAGUARD_URL']
 
     gmaps = googlemaps.Client(key='AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
     nearbyMovietheater = googlemaps.places.places_nearby(location=(userLat,userLng), radius=5000, language="zh-TW", keyword="movietheater", client=gmaps)

@@ -117,5 +117,6 @@ def handle_location_message(event):
 
 # ---------------------------------------------------------------
 if __name__ == "__main__":
+    os.environ['http_proxy'] = os.environ['QUOTAGUARD_URL']
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)

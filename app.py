@@ -109,7 +109,6 @@ def handle_message(event):
 
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_location_message(event):
-    os.environ['http_proxy'] = os.environ['QUOTAGUARD_URL']
     print(event.message.address)
     print(event.message.latitude)
     print(event.message.longitude)

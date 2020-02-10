@@ -2,9 +2,7 @@ from urllib import request, parse
 import urllib
 from bs4 import BeautifulSoup
 from linebot.models import *
-import json
 from moviehelpermodule.calculate import getDistance
-import os
 def pagebox(soup):
     # --------------------pagebox
     if len(soup.select(".page_numbox ul")) == 0:
@@ -1872,9 +1870,9 @@ def search_movie_type(typeName, url):
 def use_location_search_movietheater(userAddress, userLat, userLng):
     import googlemaps
     from datetime import datetime
-    import json
+
     gmaps = googlemaps.Client(key='AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
-    nearbyMovietheater = googlemaps.places.places_nearby(location=(25.043180,121.525635), radius=5000, language="zh-TW", keyword="movietheater", client=gmaps)
+    nearbyMovietheater = googlemaps.places.places_nearby(location=(userLat,userLng), radius=5000, language="zh-TW", keyword="movietheater", client=gmaps)
     print(nearbyMovietheater)
     movietheaterName = []
     movietheaterLat = []

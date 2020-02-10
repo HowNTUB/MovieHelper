@@ -20,9 +20,9 @@ from linebot.models import *
 app = flask.Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN'])
+line_bot_api = LineBotApi(os.environ['LINE_CHANNEL_ACCESS_TOKEN']) # 在heroku專案中的Config Vars中設定
 # Channel Secret
-handler = WebhookHandler(os.environ['LINE_CHANNEL_SECRET'])
+handler = WebhookHandler(os.environ['LINE_CHANNEL_SECRET']) # 在heroku專案中的Config Vars中設定
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])

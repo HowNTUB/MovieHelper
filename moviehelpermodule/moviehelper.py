@@ -1968,7 +1968,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": "Text"
+                    "text": str(getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]))
                     }
                 ]
                 }

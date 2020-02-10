@@ -1883,7 +1883,6 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     movietheaterRating = []
     movietheaterAddress = []
     for data in nearbyMovietheater["results"]:
-        print('data:'+data)
         movietheaterName.append(data["name"])
         movietheaterLat.append(data["geometry"]["location"]["lat"])
         movietheaterLng.append(data["geometry"]["location"]["lng"])

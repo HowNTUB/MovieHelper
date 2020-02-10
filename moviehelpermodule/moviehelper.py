@@ -1908,38 +1908,24 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         contents.append({
             "type": "bubble",
             "direction": "ltr",
-            "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": movietheaterName[index],
-                "size": "xl",
-                "align": "start",
-                "weight": "bold"
-                }
-            ]
-            },
-            "hero": {
-            "type": "image",
-            "url": 'https://i.imgur.com/CMAl4DQ.jpg',
-            "size": "full",
-            "aspectRatio": "4:3",
-            "aspectMode": "fit"
-            },
             "body": {
             "type": "box",
             "layout": "vertical",
             "contents": [
                 {
-                "type": "text",
-                "text": movietheaterName[index],
-                "align": "start"
-                },
-                {
-                "type": "text",
-                "text": movietheaterAddress[index]
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "名稱",
+                    "align": "center"
+                    },
+                    {
+                    "type": "text",
+                    "text": "Text"
+                    }
+                ]
                 },
                 {
                 "type": "box",
@@ -1947,14 +1933,27 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 "contents": [
                     {
                     "type": "text",
-                    "text": "評價",
-                    "flex": 0,
-                    "gravity": "bottom"
+                    "text": "地址",
+                    "align": "center"
                     },
                     {
                     "type": "text",
-                    "text": movietheaterRating[index],
-                    "size": "xl"
+                    "text": "Text"
+                    }
+                ]
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "評分",
+                    "align": "center"
+                    },
+                    {
+                    "type": "text",
+                    "text": "Text"
                     }
                 ]
                 },
@@ -1965,48 +1964,24 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     {
                     "type": "text",
                     "text": "距離",
-                    "flex": 0,
-                    "gravity": "bottom"
+                    "align": "center"
                     },
                     {
                     "type": "text",
-                    "text": getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]),
-                    "flex": 0,
-                    "size": "xl"
-                    },
-                    {
-                    "type": "text",
-                    "text": "公里",
-                    "align": "start",
-                    "gravity": "bottom"
+                    "text": "Text"
                     }
                 ]
                 }
             ]
-            },
-            "footer": {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-                {
-                "type": "button",
-                "action": {
-                    "type": "uri",
-                    "label": "上映場次",
-                    "uri": "https://linecorp.com"
-                }
-                },
-                {
-                "type": "button",
-                "action": {
-                    "type": "uri",
-                    "label": "位置資訊",
-                    "uri": "https://linecorp.com"
-                }
-                }
-            ]
             }
         })
+
+    print(movietheaterName)
+    print(movietheaterLat)
+    print(movietheaterLng)
+    print(movietheaterPhotos)
+    print(movietheaterRating)
+    print(movietheaterAddress)
     movietheater_flex_message = FlexSendMessage(
         alt_text='movietheater',
         contents={

@@ -1890,7 +1890,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                                         departure_time=now,
                                         language="zh-TW")
 
-    print(type(directions_result))
+    print(directions_result)
     '''
     
     heroku_ip_request = request.urlopen(url)

@@ -1902,7 +1902,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     print(movietheaterAddress[0])
     print(getDistance(25.04179847198162,121.525639358062,movietheaterLat[0],movietheaterLng[0]))
     contents = []
-    for index in range(len(movietheaterName[:10])):
+    for index in range(len(movietheaterName[:9])):
         contents.append({
             "type": "bubble",
             "direction": "ltr",

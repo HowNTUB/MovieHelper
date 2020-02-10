@@ -1871,10 +1871,10 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     import googlemaps
     import os
     os.environ['http_proxy'] = os.environ['http://lzjsv51uedbimh:pvnf4f1yf5huunkzyecjvmihgb@proxy.quotaguard.com:9292']
-    g = geocoders.GoogleV3(scheme="http")
+    g = googlemaps.places.GoogleV3(scheme="http")
 
     gmaps = googlemaps.Client(key='AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
-    nearbyMovietheater = googlemaps.places.places_nearby(location=(userLat,userLng), radius=5000, language="zh-TW", keyword="movietheater", client=gmaps)
+    nearbyMovietheater = g.places_nearby(location=(userLat,userLng), radius=5000, language="zh-TW", keyword="movietheater", client=gmaps)
     print(nearbyMovietheater)
     movietheaterName = []
     movietheaterLat = []

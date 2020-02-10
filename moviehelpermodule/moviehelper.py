@@ -1875,7 +1875,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
 
     location = str(userLat)+','+str(userLng)
     gmaps = googlemaps.Client(key='AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
-    nearbyMovietheater = g.googlemaps.places.places_nearby(location=location, radius=5000, language="zh-TW", keyword="movietheater", client=gmaps)
+    nearbyMovietheater = googlemaps.places.places_nearby(location=location, radius=5000, language="zh-TW", keyword="movietheater", client=gmaps)
     print(nearbyMovietheater)
     movietheaterName = []
     movietheaterLat = []

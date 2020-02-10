@@ -1938,7 +1938,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": movietheaterAddress[index]
+                    "text": "Text"
                     }
                 ]
                 },
@@ -1953,7 +1953,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": movietheaterRating[index]
+                    "text": "Text"
                     }
                 ]
                 },
@@ -1968,7 +1968,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index])
+                    "text": "Text"
                     }
                 ]
                 }

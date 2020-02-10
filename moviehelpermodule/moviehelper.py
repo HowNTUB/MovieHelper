@@ -1904,6 +1904,13 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     contents = []
     for index in range(len(movietheaterName[:9])):
         print(index)
+        print(movietheaterName[index])
+        print(movietheaterLat[index])
+        print(movietheaterLng[index])
+        print(movietheaterPhotos[index])
+        print(movietheaterRating[index])
+        print(movietheaterAddress[index])
+        print(getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]))
         contents.append({
             "type": "bubble",
             "direction": "ltr",

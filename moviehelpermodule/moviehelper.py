@@ -956,7 +956,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "postback",
                     "label": "導演作品",
-                    "data": 'https://movies.yahoo.com.tw/name_movies/'#+url[url.find('-',-10)+1:]+'?type=1'
+                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=1'
                 }
                 },
                 {
@@ -964,7 +964,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "postback",
                     "label": "演員作品",
-                    "data": 'https://movies.yahoo.com.tw/name_movies/'#+url[url.find('-',-10)+1:]+'?type=2'
+                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=2'
                 }
                 },
                 {
@@ -975,7 +975,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "postback",
                     "label": "相關文章",
-                    "data": use_moviename_serch_article(actorNameCN)
+                    "data": 'https://movies.yahoo.com.tw/tagged/'+actorNameCN
                 }
                 }
             ]

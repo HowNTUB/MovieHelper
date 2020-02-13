@@ -60,6 +60,9 @@ def handle_postback(event):
     if userpostback[:38] == 'https://movies.yahoo.com.tw/name_main/':
         actor, button = use_actorURL_get_actorIntorduction(userpostback)
         line_bot_api.reply_message(event.reply_token, [actor, button])
+    #相關文章
+    if userpostback[:35] == 'https://movies.yahoo.com.tw/tagged/':
+        line_bot_api.reply_message(event.reply_token, use_moviename_serch_article(userpostback[35:]))
     #即將上映
     if userpostback[:49] == 'https://movies.yahoo.com.tw/movie_comingsoon.html':
         movietab, movielist, pagebox = search_movie_comingsoon(userpostback)

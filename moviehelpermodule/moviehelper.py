@@ -945,7 +945,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "message",
                     "label": "個人簡介",
-                    "text": actorIntorduction
+                    "text": 'actorIntorduction'
                 }
                 },
                 {
@@ -956,7 +956,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "postback",
                     "label": "導演作品",
-                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=1'
+                    "data": 'https://movies.yahoo.com.tw/name_movies/'#+url[url.find('-',-10)+1:]+'?type=1'
                 }
                 },
                 {
@@ -964,7 +964,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "postback",
                     "label": "演員作品",
-                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=2'
+                    "data": 'https://movies.yahoo.com.tw/name_movies/'#+url[url.find('-',-10)+1:]+'?type=2'
                 }
                 },
                 {

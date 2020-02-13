@@ -919,9 +919,12 @@ def use_actorURL_get_actorIntorduction(url):
                 ]
                 },
                 {
-                "type": "text",
-                "text": actorImgFrom,
-                "margin": "md"
+                    "type": "text",
+                    "text": actorImgFrom,
+                    "margin": "md",
+                    "size": "xxs",
+                    "align": "end",
+                    "color": "#6A6A6A"
                 }
             ]
             }

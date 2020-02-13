@@ -61,6 +61,7 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, [actor, button])
     #電影清單
     if userpostback[:40] == 'https://movies.yahoo.com.tw/name_movies/':
+        print('postget')
         movielist, pagebox = use_actorURL_search_movielist(userpostback)
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     #相關文章

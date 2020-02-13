@@ -813,8 +813,16 @@ def use_actorURL_get_movielist(url):
             "color": "#000C3B"
         })
 
+    print(actorNameCN)
+    print(actorNameEN)
+    print(actorImg)
+    print(actorImgFrom)
+    print(actorBirth)
+    print(actorPop)
+    print(titleContent)
+
     actor_flex_message = FlexSendMessage(
-        alt_text='movielist',
+        alt_text='actorlist',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -878,7 +886,7 @@ def use_actorURL_get_movielist(url):
                         "flex": 0,
                         "spacing": "md",
                         "margin": "lg",
-                        "contents": actorTitle
+                        "contents": titleContent
                         },
                         {
                         "type": "box",

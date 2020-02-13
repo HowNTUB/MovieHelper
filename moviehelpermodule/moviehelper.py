@@ -1041,6 +1041,7 @@ def use_actorURL_search_movielist(url):
         print(movieExpectation)
         print(movieSatisfactoryDegree)
         print(moviePoster)
+        print(movieReleaseTime)
         print(movieDetailUrl)
         # 內容轉為json格式
         contents = []
@@ -1162,9 +1163,9 @@ def use_actorURL_search_movielist(url):
             }
         )
 
-        pagebox_flex_message = pagebox(soup)
+        #pagebox_flex_message = pagebox(soup)
 
-        return(movie_flex_message, pagebox_flex_message)
+        return(movie_flex_message)#, pagebox_flex_message)
 
 def search_movie_thisweekAndIntheaters(url):
     headers = {}

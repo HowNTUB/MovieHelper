@@ -784,7 +784,7 @@ def use_movieurl_get_movieinfo(url):
     except Exception as e:
         print(str(e))
 
-def use_actorURL_get_movielist(url):
+def use_actorURL_get_actorIntorduction(url):
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(url, headers=headers)

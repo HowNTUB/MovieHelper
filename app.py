@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, use_location_search_movietheater, workTeam
+from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, use_location_search_movietheater, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -58,8 +58,8 @@ def handle_postback(event):
             event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
     #演員詳細資料
     if userpostback[:38] == 'https://movies.yahoo.com.tw/name_main/':
-        actor = use_actorURL_get_movielist(userpostback)
-        use_actorURL_get_movielist(actor)
+        actor = use_actorURL_get_actorIntorduction(userpostback)
+        use_actorURL_get_movielist(event.reply_token, actor)
     #即將上映
     if userpostback[:49] == 'https://movies.yahoo.com.tw/movie_comingsoon.html':
         movietab, movielist, pagebox = search_movie_comingsoon(userpostback)

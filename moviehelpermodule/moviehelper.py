@@ -1033,7 +1033,7 @@ def use_actorURL_search_movielist(url):
             movieSatisfactoryDegree.append('未上映') if info.find(
                 "滿意度") == -1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
         moviePoster = [i["src"] for i in soup.select("#content_l img")]
-        movieReleaseTime = [(i.text)[7:] for i in soup.select(".time")]
+        movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
         movieDetailUrl = [i["href"]
                           for i in soup.select(".release_movie_name > a")]
         print(movieNameCN)

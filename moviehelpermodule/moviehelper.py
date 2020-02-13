@@ -930,7 +930,60 @@ def use_actorURL_get_actorIntorduction(url):
             }
         }
     )
-    return(actor_flex_message)
+
+    introductionlist_flex_message = FlexSendMessage(
+        alt_text='introductionlist',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "button",
+                "action": {
+                    "type": "message",
+                    "label": "個人簡介",
+                    "text": actorIntorduction
+                }
+                },
+                {
+                "type": "separator"
+                },
+                {
+                "type": "button",
+                "action": {
+                    "type": "postback",
+                    "label": "導演作品",
+                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=1'
+                }
+                },
+                {
+                "type": "button",
+                "action": {
+                    "type": "postback",
+                    "label": "演員作品",
+                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=2'
+                }
+                },
+                {
+                "type": "separator"
+                },
+                {
+                "type": "button",
+                "action": {
+                    "type": "postback",
+                    "label": "相關文章",
+                    "data": use_moviename_serch_article(actorNameCN)
+                }
+                }
+            ]
+            }
+        }
+    )
+
+    return(actor_flex_message, introductionlist_flex_message)
 
 def search_movie_thisweekAndIntheaters(url):
     try:

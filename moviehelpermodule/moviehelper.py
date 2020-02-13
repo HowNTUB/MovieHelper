@@ -1024,18 +1024,26 @@ def use_actorURL_search_movielist(url):
         page = False
         return(movie_flex_message, page)
     else:
-        movieInfo = [i.text for i in soup.select(".release_info")]
-        movieNameCN = [i.text for i in soup.select(".release_movie_name > .gabtn")]
-        movieNameEN = [i.text for i in soup.select(".en .gabtn")]
-        movieExpectation = [i.text for i in soup.select("dt span")]
+        movieInfo = [i for i in soup.select(".release_info")]
+        movieInfoText = [i.text for i in soup.select(".release_info")]
+        movieNameCN = [i.text.strip() for i in soup.select(".release_movie_name > .gabtn")]
+        movieNameEN = [i.text.strip() for i in soup.select(".en .gabtn")]
+        movieExpectation = []
+        for info in movieInfoText:
+            movieExpectation.append('未上映') if info.find(
+                "期待度") == -1 else movieExpectation.append(info[info.find("期待度")+5:info.find("期待度")+8])
         movieSatisfactoryDegree = []
-        for info in movieInfo:
-            movieSatisfactoryDegree.append('未上映') if info.find(
-                "滿意度") == -1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
+        for html in movieInfo:
+            try:#沒期待度
+                movieSatisfactoryDegree.append(
+                    (html.select("span")[0])["data-num"])
+            except:#有期待度
+                movieSatisfactoryDegree.append(
+                    (html.select("span")[1])["data-num"])
         moviePoster = [i["src"] for i in soup.select("#content_l img")]
         movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
         movieDetailUrl = [i["href"]
-                          for i in soup.select(".release_movie_name > a")]
+                            for i in soup.select(".release_movie_name > .gabtn")]
         print(movieNameCN)
         print(movieNameEN)
         print(movieExpectation)

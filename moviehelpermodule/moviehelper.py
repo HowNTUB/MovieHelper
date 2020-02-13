@@ -795,6 +795,7 @@ def use_actorURL_get_actorIntorduction(url):
     # --------------------info
     actorNameCN = soup.select_one(".maker_name").text
     actorNameEN = soup.select_one(".name_en").text
+    actorNameCN = actorNameCN[:-len(actorNameEN)]
     actorBirth = soup.select_one(".maker_birth").text[5:]
     actorImg = soup.select_one(".pic img")["src"]
     actorImgFrom = soup.select_one(".pic_txt").text
@@ -803,7 +804,6 @@ def use_actorURL_get_actorIntorduction(url):
     actorIntorduction = soup.select_one(".jq_text_overflow_href_main").text
 
     titleContent=[]
-
     for title in actorTitle:
         titleContent.append({
             "type": "text",
@@ -812,14 +812,6 @@ def use_actorURL_get_actorIntorduction(url):
             "weight": "bold",
             "color": "#000C3B"
         })
-
-    print(actorNameCN)
-    print(actorNameEN)
-    print(actorImg)
-    print(actorImgFrom)
-    print(actorBirth)
-    print(actorPop)
-    print(titleContent)
 
     actor_flex_message = FlexSendMessage(
         alt_text='actorlist',

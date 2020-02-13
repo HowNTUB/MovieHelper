@@ -729,9 +729,9 @@ def use_movieurl_get_movieinfo(url):
                             {
                                 "type": "button",
                                 "action": {
-                                    "type": "uri",
-                                    "label": "演員介紹",
-                                    "uri": actorDetailURL[index]
+                                    "type": "postback",
+                                    "label": "詳細介紹",
+                                    "data": "actorDetailURL"
                                 }
                             }
                         ]

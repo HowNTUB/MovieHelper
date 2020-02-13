@@ -797,7 +797,7 @@ def use_actorURL_get_movielist(url):
     actorNameEN = soup.select_one(".name_en").text
     actorBirth = soup.select_one(".maker_birth").text[5:]
     actorImg = soup.select_one(".pic img")["src"]
-    actorImgFrom = soup.select_one(".pic_txt")
+    actorImgFrom = soup.select_one(".pic_txt").text
     actorTitle = [i.text.split() for i in soup.select(".maker_tips")][0]
     actorPop = soup.select_one(".popnum").text[3:]
     actorIntorduction = soup.select_one(".jq_text_overflow_href_main").text

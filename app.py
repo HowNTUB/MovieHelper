@@ -57,7 +57,7 @@ def handle_postback(event):
         line_bot_api.reply_message(
             event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
     #演員詳細資料
-    if userpostback[:38] = 'https://movies.yahoo.com.tw/name_main/':
+    if userpostback[:38] == 'https://movies.yahoo.com.tw/name_main/':
         actor = use_actorURL_get_movielist(userpostback)
         use_actorURL_get_movielist(actor)
     #即將上映

@@ -663,6 +663,7 @@ def use_movieurl_get_movieinfo(url):
         else:
             actorNameCN = []
             actorNameEN = []
+            actorDetailURL = []
             if len(actorName) > 0:
                 for name in actorName:
                     name = name.split()
@@ -679,6 +680,7 @@ def use_movieurl_get_movieinfo(url):
                 actorImg = [i["src"] for i in soup.select(
                     "._slickcontent .fotoinner img")]
                 actorNameCN = actorNameCN[:10]
+                actorDetailURL = [i["href"] for i in soup.select(".starlist a")]
             for index in range(len(actorNameCN)):
                 actorContents.append({
                     "type": "bubble",
@@ -729,7 +731,7 @@ def use_movieurl_get_movieinfo(url):
                                 "action": {
                                     "type": "uri",
                                     "label": "演員介紹",
-                                    "uri": "https://linecorp.com"
+                                    "uri": actorDetailURL[index]
                                 }
                             }
                         ]
@@ -782,6 +784,150 @@ def use_movieurl_get_movieinfo(url):
     except Exception as e:
         print(str(e))
 
+def use_actorURL_get_movielist(url):
+    headers = {}
+    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+    req = request.Request(url, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+    soup = BeautifulSoup(respData)
+
+    # --------------------info
+    actorNameCN = soup.select_one(".maker_name").text
+    actorNameEN = soup.select_one(".name_en").text
+    actorBirth = soup.select_one(".maker_birth").text[5:]
+    actorImg = soup.select_one(".pic img")["src"]
+    actorImgFrom = soup.select_one(".pic_txt")
+    actorTitle = [i.text.split() for i in soup.select(".maker_tips")][0]
+    actorPop = soup.select_one(".popnum").text[3:]
+    actorIntorduction = soup.select_one(".jq_text_overflow_href_main").text
+
+    titleContent=[]
+
+    for title in actorTitle:
+        titleContent.append({
+            "type": "text",
+            "text": title,
+            "flex": 0,
+            "weight": "bold",
+            "color": "#000C3B"
+        })
+
+    actor_flex_message = FlexSendMessage(
+        alt_text='movielist',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": "人物資訊",
+                "size": "xl",
+                "align": "start",
+                "weight": "bold"
+                }
+            ]
+            },
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "image",
+                        "url": actorImg,
+                        "align": "start",
+                        "aspectRatio": "1:2",
+                        "aspectMode": "cover"
+                        }
+                    ]
+                    },
+                    {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": actorNameCN,
+                            "size": "lg",
+                            "weight": "bold"
+                            },
+                            {
+                            "type": "text",
+                            "text": actorNameEN
+                            }
+                        ]
+                        },
+                        {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "flex": 0,
+                        "spacing": "md",
+                        "margin": "lg",
+                        "contents": actorTitle
+                        },
+                        {
+                        "type": "box",
+                        "layout": "vertical",
+                        "margin": "lg",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": "生日：",
+                            "flex": 0,
+                            "weight": "bold"
+                            },
+                            {
+                            "type": "text",
+                            "text": actorBirth
+                            }
+                        ]
+                        },
+                        {
+                        "type": "box",
+                        "layout": "vertical",
+                        "margin": "lg",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": "人氣：",
+                            "flex": 0,
+                            "weight": "bold"
+                            },
+                            {
+                            "type": "text",
+                            "text": actorPop
+                            }
+                        ]
+                        }
+                    ]
+                    }
+                ]
+                },
+                {
+                "type": "text",
+                "text": actorImgFrom,
+                "margin": "md"
+                }
+            ]
+            }
+        }
+    )
+    return(actor_flex_message)
 
 def search_movie_thisweekAndIntheaters(url):
     try:

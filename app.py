@@ -45,7 +45,6 @@ def callback():
 def handle_postback(event):
     userpostback = event.postback.data
     print(userpostback)
-    
     #電影清單
     if userpostback[:71] == 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=':
         movielist, pagebox = use_moviename_serch_movielist(userpostback, '')
@@ -60,6 +59,10 @@ def handle_postback(event):
     if userpostback[:38] == 'https://movies.yahoo.com.tw/name_main/':
         actor, button = use_actorURL_get_actorIntorduction(userpostback)
         line_bot_api.reply_message(event.reply_token, [actor, button])
+    #電影清單
+    if userpostback[:40] == 'https://movies.yahoo.com.tw/name_movies/':
+        movielist, pagebox = use_moviename_serch_movielist(userpostback, '')
+        line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     #相關文章
     if userpostback[:35] == 'https://movies.yahoo.com.tw/tagged/':
         line_bot_api.reply_message(event.reply_token, use_moviename_serch_article(userpostback[35:]))

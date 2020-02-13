@@ -975,7 +975,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "postback",
                     "label": "相關文章",
-                    "data": "use_moviename_serch_article(actorNameCN)"
+                    "data": use_moviename_serch_article(actorNameCN)
                 }
                 }
             ]

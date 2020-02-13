@@ -1035,7 +1035,12 @@ def use_actorURL_search_movielist(url):
         movieReleaseTime = [(i.text)[7:] for i in soup.select(".time")]
         movieDetailUrl = [i["href"]
                           for i in soup.select(".release_movie_name > a")]
-
+        print(movieNameCN)
+        print(movieNameEN)
+        print(movieExpectation)
+        print(movieSatisfactoryDegree)
+        print(moviePoster)
+        print(movieDetailUrl)
         # 內容轉為json格式
         contents = []
         for index in range(len(movieNameCN)):

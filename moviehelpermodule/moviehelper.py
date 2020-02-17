@@ -1033,13 +1033,22 @@ def use_actorURL_search_movielist(url):
             movieExpectation.append('未上映') if info.find(
                 "期待度") == -1 else movieExpectation.append(info[info.find("期待度")+5:info.find("期待度")+8])
         movieSatisfactoryDegree = []
-        for html in movieInfo:
-            try:#沒期待度
-                movieSatisfactoryDegree.append(
-                    (html.select("span")[0])["data-num"])
-            except:#有期待度
-                movieSatisfactoryDegree.append(
-                    (html.select("span")[1])["data-num"])
+        if url[-1] == '1':
+            for html in movieInfo:
+                try:#沒期待度
+                    movieSatisfactoryDegree.append(
+                        (html.select("span")[0])["data-num"])
+                except:#有期待度
+                    movieSatisfactoryDegree.append(
+                        (html.select("span")[1])["data-num"])
+        elif url[-1] == '2':
+            for html in movieInfo:
+                if html.select(".count") == []:
+                    movieSatisfactoryDegree.append("無滿意度")
+                else:
+                    movieSatisfactoryDegree.append(
+                        (html.select(".count")[0])["data-num"])
+        
         moviePoster = [i["src"] for i in soup.select("#content_l img")]
         movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
         movieDetailUrl = [i["href"]

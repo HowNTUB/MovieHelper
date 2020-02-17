@@ -1624,7 +1624,7 @@ def search_movie_chart(url):
     rankcontents = []
     for index in range(len(movieRank)):
         if index == 0:
-            rankcontemts.append({
+            rankcontents.append({
                 "type": "box",
                 "layout": "vertical",
                 "action": {

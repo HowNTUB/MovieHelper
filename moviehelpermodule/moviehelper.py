@@ -1034,7 +1034,12 @@ def use_actorURL_search_movielist(url):
         movieInfo = [i for i in soup.select(".release_info")]
         movieInfoText = [i.text for i in soup.select(".release_info")]
         movieNameCN = [i.text.strip() for i in soup.select(".release_movie_name > .gabtn")]
-        movieNameEN = [i.text.strip() for i in soup.select(".en .gabtn")]
+        movieNameEN = []
+        for i in soup.select(".en .gabtn"):
+            if i.text.strip() == '':
+                movieNameEN.append(' ')
+            else:
+                movieNameEN.append(i.text.strip())
         movieExpectation = []
         for info in movieInfoText:
             movieExpectation.append('未上映') if info.find(
@@ -1069,7 +1074,7 @@ def use_actorURL_search_movielist(url):
         print(movieDetailUrl)
         # 內容轉為json格式
         contents = []
-        for index in range(len(movieNameCN[:10])):
+        for index in range(len(movieNameCN)):
             contents.append({
                 "type": "bubble",
                 "direction": "ltr",

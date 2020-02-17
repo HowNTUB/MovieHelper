@@ -169,14 +169,12 @@ def use_moviename_serch_movielist(movieNameOrURL, page):
                             "size": "lg",
                             "align": "center",
                             "gravity": "top",
-                            "weight": "bold",
-                            "wrap": True
+                            "weight": "bold"
                         },
                             {
                             "type": "text",
                             "text": movieNameEN[index],
-                            "align": "center",
-                            "wrap": True
+                            "align": "center"
                         }]
                     },
                         {
@@ -449,13 +447,15 @@ def use_movieurl_get_movieinfo(url):
                             "text": movieNameCN,
                             "size": "lg",
                             "align": "center",
-                            "weight": "bold"
+                            "weight": "bold",
+                            "wrap": True
                         },
                         {
                             "type": "text",
                             "text": movieNameEN,
                             "size": "md",
-                            "align": "center"
+                            "align": "center",
+                            "wrap": True
                         },
                         {
                             "type": "box",
@@ -1624,7 +1624,7 @@ def search_movie_chart(url):
     rankcontents = []
     for index in range(len(movieRank)):
         if index == 0:
-            rankcontents.append({
+            rankcontemts.append({
                 "type": "box",
                 "layout": "vertical",
                 "action": {
@@ -1635,28 +1635,28 @@ def search_movie_chart(url):
                     {
                     "type": "box",
                     "layout": "horizontal",
+                    "spacing": "md",
                     "contents": [
                         {
                         "type": "text",
                         "text": movieRank[index],
-                        "flex": 0,
-                        "align": "start"
+                        "flex": 0
                         },
                         {
                         "type": "text",
                         "text": movieRankType[index],
-                        "flex": 0,
-                        "align": "start"
+                        "flex": 0
                         },
                         {
                         "type": "text",
-                        "text": '　'+movieReleaseTime[index],
-                        "flex": 0
+                        "text": movieReleaseTime[index],
+                        "flex": 1
                         },
                         {
                         "type": "text",
                         "text": movieSatisfactoryDegree[index]+int(float(movieSatisfactoryDegree[index]))*'★',
-                        "flex": 0
+                        "flex": 0,
+                        "align": "end"
                         }
                     ]
                     },
@@ -1667,7 +1667,7 @@ def search_movie_chart(url):
                         {
                         "type": "image",
                         "url": movieRankOneImg,
-                        "flex": 0
+                        "align": "start"
                         },
                         {
                         "type": "box",
@@ -1675,22 +1675,19 @@ def search_movie_chart(url):
                         "contents": [
                             {
                             "type": "spacer",
-                            "size": "xxl"
+                            "size": "lg"
                             },
                             {
                             "type": "text",
                             "text": movieNameCN[index],
                             "size": "lg",
                             "align": "start",
-                            "gravity": "center",
                             "weight": "bold",
                             "wrap": True
                             },
                             {
                             "type": "text",
                             "text": movieNameEN,
-                            "align": "start",
-                            "gravity": "center",
                             "wrap": True
                             }
                         ]
@@ -1703,7 +1700,7 @@ def search_movie_chart(url):
             rankcontents.append({
                 "type": "box",
                 "layout": "vertical",
-                "margin": "lg",
+                "margin": "md",
                 "action": {
                     "type": "postback",
                     "data": movieURL[index]
@@ -1712,34 +1709,32 @@ def search_movie_chart(url):
                     {
                     "type": "box",
                     "layout": "horizontal",
+                    "spacing": "md",
                     "contents": [
                         {
                         "type": "text",
-                        "text": '{:>2}'.format(movieRank[index]),
+                        "text": movieRank[index],
                         "flex": 0,
-                        "align": "start",
                         "gravity": "bottom"
                         },
                         {
                         "type": "text",
                         "text": movieNameCN[index],
+                        "flex": 0,
                         "size": "lg",
-                        "align": "start",
-                        "gravity": "center",
-                        "weight": "bold",
-                        "wrap": True
+                        "weight": "bold"
                         }
                     ]
                     },
                     {
                     "type": "box",
                     "layout": "horizontal",
+                    "spacing": "md",
                     "contents": [
                         {
                         "type": "text",
                         "text": movieRankType[index],
-                        "flex": 0,
-                        "align": "start"
+                        "flex": 0
                         },
                         {
                         "type": "text",
@@ -1748,7 +1743,12 @@ def search_movie_chart(url):
                         },
                         {
                         "type": "text",
-                        "text": movieSatisfactoryDegree[index]+int(float(movieSatisfactoryDegree[index]))*'★',
+                        "text": movieSatisfactoryDegree[index],
+                        "flex": 0
+                        },
+                        {
+                        "type": "text",
+                        "text": int(float(movieSatisfactoryDegree[index]))*'★',
                         "flex": 0
                         }
                     ]

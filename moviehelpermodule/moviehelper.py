@@ -398,12 +398,18 @@ def use_movieurl_get_movieinfo(url):
             (soup.select(".evaluate_inner")[1].text).split())[3]
         if movieSatisfactoryDegree == '':
             movieSatisfactoryDegree = '無評分'
-        director = [i.text.replace('\n', '').replace(' ', '').split(
-            '、') for i in soup.select(".movie_intro_list")][0]
-        director = ','.join(director)
-        actor = [i.text.replace('\n', '').replace(' ', '').split(
-            '、') for i in soup.select(".movie_intro_list")][1]
-        actor = ','.join(actor)
+        if soup.select(".movie_intro_list")[0] == None:
+            director="無導演資訊"
+        else:
+            director = [i.text.replace('\n', '').replace(' ', '').split(
+                '、') for i in soup.select(".movie_intro_list")][0]
+            director = ','.join(director)
+        if soup.select(".movie_intro_list")[0] == None:
+            director="無演員資訊"
+        else:
+            actor = [i.text.replace('\n', '').replace(' ', '').split(
+                '、') for i in soup.select(".movie_intro_list")][1]
+            actor = ','.join(actor)
         # 彈性訊息
         movieTagContent = []
         for tag in movieTag:
@@ -1062,7 +1068,7 @@ def use_actorURL_search_movielist(url):
         print(movieDetailUrl)
         # 內容轉為json格式
         contents = []
-        for index in range(len(movieNameCN)):
+        for index in range(len(movieNameCN[:10])):
             contents.append({
                 "type": "bubble",
                 "direction": "ltr",

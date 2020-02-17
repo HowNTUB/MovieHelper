@@ -169,12 +169,14 @@ def use_moviename_serch_movielist(movieNameOrURL, page):
                             "size": "lg",
                             "align": "center",
                             "gravity": "top",
-                            "weight": "bold"
+                            "weight": "bold",
+                            "wrap": True
                         },
                             {
                             "type": "text",
                             "text": movieNameEN[index],
-                            "align": "center"
+                            "align": "center",
+                            "wrap": True
                         }]
                     },
                         {
@@ -992,7 +994,6 @@ def use_actorURL_get_actorIntorduction(url):
     return(actor_flex_message, introductionlist_flex_message)
 
 def use_actorURL_search_movielist(url):
-    print(url)
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(url, headers=headers)
@@ -1056,7 +1057,7 @@ def use_actorURL_search_movielist(url):
         elif url[-1] == '2':
             for html in movieInfo:
                 if html.select(".count") == []:
-                    movieSatisfactoryDegree.append("無滿意度")
+                    movieSatisfactoryDegree.append("未上映")
                 else:
                     movieSatisfactoryDegree.append(
                         (html.select(".count")[0])["data-num"])

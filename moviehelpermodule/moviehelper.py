@@ -2436,6 +2436,56 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     )
     return(movietheater_flex_message)
     
+def get_MovieMoment():
+    url = 'http://www.atmovies.com.tw/movie/new/'
+    headers = {}
+    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+    req = request.Request(url, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+    soup = BeautifulSoup(respData)
+    print(len("http://www.atmovies.com.tw/movie/"))
+    movieOption = [i for i in soup.select("form:nth-child(3) select option")][1:]
+    movieName = []
+    movieID = []
+    for option in movieOption:
+        movieName.append(option.text)
+        movieID.append(option["value"][33:-1])
+
+    movieNameContents = []
+    for index in range(len(movieName)):
+        movieNameContents.append({
+          "type": "box",
+          "layout": "vertical",
+          "margin": "md",
+          "action": {
+            "type": "postback",
+            "data": "http://www.atmovies.com.tw/showtime/"+movieID[index]+"/a02/"
+          },
+          "contents": [
+            {
+              "type": "text",
+              "text": movieName[index],
+              "size": "lg"
+            },
+            {
+              "type": "separator",
+              "margin": "md"
+            }
+          ]
+        })
+    movieSelect_flex_message = FlexSendMessage(
+        alt_text='movieSelect',
+        contents={
+            "type": "carousel",
+            "contents": movieNameContents
+        }
+    )
+    return(movieSelect_flex_message)
+
+
+
+
 def workTeam():
     workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',

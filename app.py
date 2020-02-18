@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, use_location_search_movietheater, workTeam
+from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, use_location_search_movietheater, get_MovieMoment, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -107,7 +107,7 @@ def handle_message(event):
     elif userMessage == '附近影城':
         print(userMessage)
     elif userMessage == '電影時刻':
-        print(userMessage)
+        line_bot_api.reply_message(event.reply_token, get_MovieMoment())
     elif userMessage[:2] == '新聞':
         line_bot_api.reply_message(event.reply_token, use_moviename_serch_article(userMessage[2:]))
     else:

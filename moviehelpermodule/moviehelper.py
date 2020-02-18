@@ -2443,7 +2443,7 @@ def get_MovieMoment():
     req = request.Request(url, headers=headers)
     resp = request.urlopen(req)
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
-    soup = BeautifulSoup(respData, features="lxml")
+    soup = BeautifulSoup(respData)
     movieOption = [i for i in soup.select("form:nth-child(3) select option")][1:]
     movieName = []
     movieID = []
@@ -2452,7 +2452,7 @@ def get_MovieMoment():
         movieID.append(option["value"][33:-1])
 
     movieNameContents = []
-    for index in range(len(movieName)):
+    for index in range(len(movieName[:10])):
         movieNameContents.append({
             "type": "box",
             "layout": "vertical",

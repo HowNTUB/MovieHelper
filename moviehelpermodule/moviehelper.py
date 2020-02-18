@@ -2436,7 +2436,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     )
     return(movietheater_flex_message)
     
-def get_MovieMoment():
+def get_MovieMoment(page):
     url = 'http://www.atmovies.com.tw/movie/new/'
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
@@ -2452,7 +2452,7 @@ def get_MovieMoment():
         movieID.append(option["value"][33:-1])
 
     movieNameContents = []
-    for index in range(len(movieName[:20])):
+    for index in range(len(movieName[int(page)-1:int(page)+14])):
         movieNameContents.append({
             "type": "box",
             "layout": "vertical",
@@ -2498,13 +2498,46 @@ def get_MovieMoment():
             }
         }
     )
-    page_flex_message = TextSendMessage(text='目前第[1]頁',
-                               quick_reply=QuickReply(items=[
-                                   QuickReplyButton(action=MessageAction(label="label", text="text")),
-                                   QuickReplyButton(action=MessageAction(label="label", text="text")),
-                                   QuickReplyButton(action=MessageAction(label="label", text="text"))
-                               ]))
-    return(movieSelect_flex_message, page_flex_message)
+
+    totalPage = int(len(movieName)/15)
+    nowPage = int(page)
+    contents = []
+    for index in range(totalPage):
+        contents.append({
+            "type": "text",
+            "text": index+1,
+            "align": "center",
+            "action": {
+                "type": "postback",
+                "data": "電影時刻"+index
+            }
+        })
+    # 回復
+    pagebox_flex_message = FlexSendMessage(
+        alt_text='pagebox',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": "目前第"+nowPage+"頁",
+                "align": "center"
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "margin": "xl",
+                "contents": contents
+                }
+            ]
+            }
+        }
+    )
+    return(movieSelect_flex_message, pagebox_flex_message)
 
 
 

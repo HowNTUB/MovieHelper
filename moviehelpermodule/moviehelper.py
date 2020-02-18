@@ -2537,7 +2537,7 @@ def get_MovieMoment(page):
             }
         }
     )
-    return(movieSelect_flex_message)#, pagebox_flex_message)
+    return(movieSelect_flex_message, pagebox_flex_message)
 
 
 

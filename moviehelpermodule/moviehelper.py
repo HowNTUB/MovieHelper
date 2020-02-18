@@ -2498,14 +2498,14 @@ def get_MovieMoment(page):
             }
         }
     )
-    '''
+    
     totalPage = int(len(movieName)/15)
     nowPage = int(page)
     contents = []
     for index in range(totalPage):
         contents.append({
             "type": "text",
-            "text": index+1,
+            "text": str(index)+1,
             "align": "center",
             "action": {
                 "type": "postback",
@@ -2536,7 +2536,7 @@ def get_MovieMoment(page):
             ]
             }
         }
-    )'''
+    )
     return(movieSelect_flex_message)#, pagebox_flex_message)
 
 

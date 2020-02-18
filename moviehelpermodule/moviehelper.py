@@ -2498,8 +2498,7 @@ def get_MovieMoment():
             }
         }
     )
-    page_flex_message = TextSendMessage(text='Hello, world',
-                               quick_reply=QuickReply(items=[
+    page_flex_message = TextSendMessage(quick_reply=QuickReply(items=[
                                    QuickReplyButton(action=MessageAction(label="label", text="text"))
                                ]))
     return(movieSelect_flex_message, page_flex_message)

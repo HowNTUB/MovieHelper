@@ -2498,7 +2498,7 @@ def get_MovieMoment(page):
             }
         }
     )
-
+    '''
     totalPage = int(len(movieName)/15)
     nowPage = int(page)
     contents = []
@@ -2536,8 +2536,8 @@ def get_MovieMoment(page):
             ]
             }
         }
-    )
-    return(movieSelect_flex_message, pagebox_flex_message)
+    )'''
+    return(movieSelect_flex_message)#, pagebox_flex_message)
 
 
 

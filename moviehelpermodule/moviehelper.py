@@ -2509,7 +2509,7 @@ def get_MovieMoment(page):
             "align": "center",
             "action": {
                 "type": "postback",
-                "data": "電影時刻"+index
+                "data": "電影時刻"+str(index)
             }
         })
     # 回復
@@ -2524,7 +2524,7 @@ def get_MovieMoment(page):
             "contents": [
                 {
                 "type": "text",
-                "text": "目前第"+nowPage+"頁",
+                "text": "目前第"+str(nowPage)+"頁",
                 "align": "center"
                 },
                 {

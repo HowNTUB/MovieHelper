@@ -2477,8 +2477,26 @@ def get_MovieMoment():
     movieSelect_flex_message = FlexSendMessage(
         alt_text='movieSelect',
         contents={
-            "type": "carousel",
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": "上映中的電影",
+                "size": "xl",
+                "align": "start",
+                "weight": "bold"
+                }
+            ]
+            },
+            "body": {
+            "type": "box",
+            "layout": "vertical",
             "contents": movieNameContents
+            }
         }
     )
     return(movieSelect_flex_message)

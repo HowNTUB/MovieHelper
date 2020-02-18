@@ -2505,7 +2505,7 @@ def get_MovieMoment(page):
     for index in range(totalPage):
         contents.append({
             "type": "text",
-            "text": str(index)+1,
+            "text": str(index+1),
             "align": "center",
             "action": {
                 "type": "postback",

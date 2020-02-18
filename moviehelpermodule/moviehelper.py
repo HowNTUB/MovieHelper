@@ -2509,7 +2509,7 @@ def get_MovieMoment(page):
             "align": "center",
             "action": {
                 "type": "postback",
-                "data": "電影時刻"+str(index)
+                "data": "電影時刻"+str(index+1)
             }
         })
     # 回復
@@ -2539,6 +2539,7 @@ def get_MovieMoment(page):
     )
     return(movieSelect_flex_message, pagebox_flex_message)
 
+def use_movieurl_get_movieMoment(areaNo):
 
 
 
@@ -2636,7 +2637,7 @@ def workTeam():
                     },
                     {
                     "type": "text",
-                    "text": "Yahoo電影",
+                    "text": "Yahoo電影、開眼電影網",
                     "align": "start"
                     }
                 ]

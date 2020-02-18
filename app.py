@@ -81,6 +81,9 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, search_movie_type(userpostback, ''))
     if userpostback[:60] == 'https://movies.yahoo.com.tw/moviegenre_result.html?genre_id=':
         line_bot_api.reply_message(event.reply_token, search_movie_type('', userpostback))
+    #電影時刻清單
+    if userpostback[:4] == '電影時刻':
+        line_bot_api.reply_message(event.reply_token, get_MovieMoment(userpostback[4:]))
     
 # ---------------------------------------------------------------
 @handler.add(MessageEvent, message=TextMessage)

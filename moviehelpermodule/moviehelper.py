@@ -2443,8 +2443,7 @@ def get_MovieMoment():
     req = request.Request(url, headers=headers)
     resp = request.urlopen(req)
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
-    soup = BeautifulSoup(respData)
-    print(len("http://www.atmovies.com.tw/movie/"))
+    soup = BeautifulSoup(respData, features="lxml")
     movieOption = [i for i in soup.select("form:nth-child(3) select option")][1:]
     movieName = []
     movieID = []

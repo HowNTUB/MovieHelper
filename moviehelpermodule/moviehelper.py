@@ -2455,24 +2455,24 @@ def get_MovieMoment():
     movieNameContents = []
     for index in range(len(movieName)):
         movieNameContents.append({
-          "type": "box",
-          "layout": "vertical",
-          "margin": "md",
-          "action": {
-            "type": "postback",
-            "data": "http://www.atmovies.com.tw/showtime/"+movieID[index]+"/a02/"
-          },
-          "contents": [
-            {
-              "type": "text",
-              "text": movieName[index],
-              "size": "lg"
+            "type": "box",
+            "layout": "vertical",
+            "margin": "md",
+            "action": {
+                "type": "postback",
+                "data": "http://www.atmovies.com.tw/showtime/"+movieID[index]+"/a02/"
             },
-            {
-              "type": "separator",
-              "margin": "md"
-            }
-          ]
+            "contents": [
+                {
+                "type": "text",
+                "text": movieName[index],
+                "size": "lg"
+                },
+                {
+                "type": "separator",
+                "margin": "md"
+                }
+            ]
         })
     movieSelect_flex_message = FlexSendMessage(
         alt_text='movieSelect',

@@ -2452,7 +2452,7 @@ def get_MovieMoment():
         movieID.append(option["value"][33:-1])
 
     movieNameContents = []
-    for index in range(len(movieName[:10])):
+    for index in range(len(movieName[:20])):
         movieNameContents.append({
             "type": "box",
             "layout": "vertical",

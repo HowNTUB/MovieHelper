@@ -2498,27 +2498,10 @@ def get_MovieMoment():
             }
         }
     )
-    page_flex_message = FlexSendMessage(
-        alt_text='movieSelect',
-        contents={
-            "quickReply": {
-            "items": [
-                {
-                "type": "action",
-                "action": {
-                    "type": "cameraRoll",
-                    "label": "Send photo"
-                }
-                },
-                {
-                "type": "action",
-                "action": {
-                    "type": "camera",
-                    "label": "Open camera"
-                }
-                }
-            ]
-        }})
+    page_flex_message = TextSendMessage(text='Hello, world',
+                               quick_reply=QuickReply(items=[
+                                   QuickReplyButton(action=MessageAction(label="label", text="text"))
+                               ]))
     return(movieSelect_flex_message, page_flex_message)
 
 

@@ -107,7 +107,7 @@ def handle_message(event):
     elif userMessage == '附近影城':
         print(userMessage)
     elif userMessage == '電影時刻':
-        movielist, pagebox = get_MovieMoment()
+        movielist, pagebox = get_MovieMoment('1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     elif userMessage[:2] == '新聞':
         line_bot_api.reply_message(event.reply_token, use_moviename_serch_article(userMessage[2:]))

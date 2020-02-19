@@ -2563,7 +2563,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo):
         print("="*10)
         timeContents = []
         for movietime in (content.split())[1:]:
-            timeContents.appent({
+            timeContents.append({
                 "type": "box",
                 "layout": "vertical",
                 "margin": "md",

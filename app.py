@@ -89,7 +89,7 @@ def handle_postback(event):
         area = userpostback[userpostback.find("/"):]
         print(movieID)
         print(area)
-        line_bot_api.reply_message(event.reply_message, use_movieurl_get_movieMoment(movieID, area))
+        line_bot_api.reply_message(event.reply_token, use_movieurl_get_movieMoment(movieID, area))
     
 # ---------------------------------------------------------------
 @handler.add(MessageEvent, message=TextMessage)

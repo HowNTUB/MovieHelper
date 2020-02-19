@@ -2458,7 +2458,7 @@ def get_MovieMoment(page):
             "margin": "md",
             "action": {
                 "type": "postback",
-                "data": "電影時刻表"+movieID[index]+"/a02/"
+                "data": "電影時刻"+movieID[index]+"/a02/"
             },
             "contents": [
                 {
@@ -2508,7 +2508,7 @@ def get_MovieMoment(page):
             "align": "center",
             "action": {
                 "type": "postback",
-                "data": "電影時刻"+str(index+1)
+                "data": "電影表"+str(index+1)
             }
         })
     # 回復

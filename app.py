@@ -80,11 +80,11 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, search_movie_type(userpostback, ''))
     if userpostback[:60] == 'https://movies.yahoo.com.tw/moviegenre_result.html?genre_id=':
         line_bot_api.reply_message(event.reply_token, search_movie_type('', userpostback))
-    #電影時刻清單
-    if userpostback[:4] == '電影時刻':
+    #電影表
+    if userpostback[:4] == '電影表':
         line_bot_api.reply_message(event.reply_token, get_MovieMoment(userpostback[4:]))
     #電影時刻表
-    if userpostback[:5] == '電影時刻表':
+    if userpostback[:5] == '電影時刻':
         movieID = userpostback[5:userpostback.find("/")]
         area = userpostback[userpostback.find("/"):]
         print(movieID)

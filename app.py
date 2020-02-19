@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, use_location_search_movietheater, get_MovieMoment, workTeam
+from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, use_location_search_movietheater, get_MovieMoment, use_movieurl_get_movieMoment, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -61,7 +61,6 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, [actor, button])
     #演員電影清單
     if userpostback[:40] == 'https://movies.yahoo.com.tw/name_movies/':
-        print('postget')
         movielist, pagebox = use_actorURL_search_movielist(userpostback)
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     #相關文章
@@ -84,6 +83,11 @@ def handle_postback(event):
     #電影時刻清單
     if userpostback[:4] == '電影時刻':
         line_bot_api.reply_message(event.reply_token, get_MovieMoment(userpostback[4:]))
+    #電影時刻表
+    if userpostback[:5] == '電影時刻表':
+        movieID = userpostback[5:userpostback.find("/")]
+        area = userpostback[userpostback.find("/"):]
+        line_bot_api.reply_message(event.reply_message, use_movieurl_get_movieMoment(movieID, area))
     
 # ---------------------------------------------------------------
 @handler.add(MessageEvent, message=TextMessage)

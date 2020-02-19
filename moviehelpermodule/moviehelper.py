@@ -2459,7 +2459,7 @@ def get_MovieMoment(page):
             "margin": "md",
             "action": {
                 "type": "postback",
-                "data": "http://www.atmovies.com.tw/showtime/"+movieID[index]+"/a02/"
+                "data": "電影時刻表"+movieID[index]+"/a02/"
             },
             "contents": [
                 {
@@ -2539,10 +2539,85 @@ def get_MovieMoment(page):
     )
     return(movieSelect_flex_message, pagebox_flex_message)
 
-def use_movieurl_get_movieMoment(areaNo):
+def use_movieurl_get_movieMoment(movieID, areaNo):
+    import time
+    url = 'http://www.atmovies.com.tw/showtime/'+movieID+'/'+areaNo+'/'
+    headers = {}
+    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+    req = request.Request(url, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+    soup = BeautifulSoup(respData, features="lxml")
 
+    areaOption = [i for i in soup.select(".theaterSelect select option")][1:]
+    areaName = []
+    areaID = []
+    for option in areaOption:
+        areaName.append(option.text)
+        areaID.append(option["value"][33:-1])
 
+    movietheaterHtml = [i.text.strip() for i in soup.select("#filmShowtimeBlock ul")]
+    movietheaterContents = []
+    for content in movietheaterHtml:
+        print(content.split())
+        print("="*10)
+        timeContents = []
+        for movietime in (content.split())[1:]:
+            timeContents.appent({
+                "type": "box",
+                "layout": "vertical",
+                "margin": "md",
+                "action": {
+                    "type": "postback",
+                    "data": "這裡放URL"
+                },
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": movietime,
+                    "size": "lg",
+                    "align": "center"
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "md"
+                    }
+                ]
+            })
+        movietheaterContents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": content.split()[0],
+                "size": "xl",
+                "align": "start",
+                "weight": "bold",
+                "wrap": True
+                }
+            ]
+            },
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": timeContents
+            }
+        })
+    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
+    movietheater_flex_message = FlexSendMessage(
+        alt_text='articlelist',
+        contents={
+            "type": "carousel",
+            "contents": movietheaterContents
+        }
+    )
+
+    return(movietheater_flex_message)
 def workTeam():
     workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',

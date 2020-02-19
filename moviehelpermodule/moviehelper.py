@@ -2583,29 +2583,29 @@ def use_movieurl_get_movieMoment(movieID, areaNo):
                     }
                 ]
             })
-            movietheaterContents.append({
-                "type": "bubble",
-                "direction": "ltr",
-                "header": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": content.split()[0],
-                    "size": "xl",
-                    "align": "start",
-                    "weight": "bold",
-                    "wrap": True
-                    }
-                ]
-                },
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": timeContents
+        movietheaterContents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": content.split()[0],
+                "size": "xl",
+                "align": "start",
+                "weight": "bold",
+                "wrap": True
                 }
-            })
+            ]
+            },
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": timeContents
+            }
+        })
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
     movietheater_flex_message = FlexSendMessage(

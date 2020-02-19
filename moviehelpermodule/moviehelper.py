@@ -2547,7 +2547,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo):
     req = request.Request(url, headers=headers)
     resp = request.urlopen(req)
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
-    soup = BeautifulSoup(respData, features="lxml")
+    soup = BeautifulSoup(respData)
 
     areaOption = [i for i in soup.select(".theaterSelect select option")][1:]
     areaName = []

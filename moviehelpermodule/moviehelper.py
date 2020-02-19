@@ -2450,9 +2450,8 @@ def get_MovieMoment(page):
     for option in movieOption:
         movieName.append(option.text)
         movieID.append(option["value"][33:-1])
-
     movieNameContents = []
-    for index in range(len(movieName[int(page)-1:int(page)+14])):
+    for index in range(len(movieName[(int(page)-1)*15:int(page)*15])):
         movieNameContents.append({
             "type": "box",
             "layout": "vertical",

@@ -82,7 +82,7 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, search_movie_type('', userpostback))
     #電影表
     if userpostback[:3] == '電影表':
-        line_bot_api.reply_message(event.reply_token, get_MovieMoment(userpostback[4:]))
+        line_bot_api.reply_message(event.reply_token, get_MovieMoment(userpostback[3:]))
     #電影時刻表
     if userpostback[:4] == '電影時刻':
         movieID = userpostback[5:userpostback.find("/")]

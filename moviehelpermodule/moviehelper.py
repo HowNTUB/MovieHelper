@@ -2540,7 +2540,7 @@ def get_MovieMoment(page):
 
 def use_movieurl_get_movieMoment(movieID, areaNo):
     import time
-    url = 'http://www.atmovies.com.tw/showtime/'+movieID+'/'+areaNo+'/'
+    url = 'http://www.atmovies.com.tw/showtime/'+movieID+areaNo
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(url, headers=headers)

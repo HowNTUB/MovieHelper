@@ -2696,8 +2696,9 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
                 {
                 "type": "text",
                 "text": movieNameCN,
-                "size": "sm",
+                "size": "md",
                 "align": "center",
+                "weight": "bold",
                 "wrap": True
                 },
                 {

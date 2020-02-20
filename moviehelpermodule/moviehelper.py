@@ -2280,8 +2280,8 @@ def search_movie_type(typeName, url):
     return(movie_flex_message, pagebox_flex_message)
 
 def get_location_message():
-    location_flex_message = FlexSendMessage(
-        alt_text='location_flex_message',
+    nowTime_flex_message = FlexSendMessage(
+        alt_text='pagebox',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -2308,8 +2308,9 @@ def get_location_message():
                 {
                 "type": "button",
                 "action": {
-                    "type":"location",
-                    "label":"Location"
+                    "type": "message",
+                    "label": "選擇指定位置",
+                    "text": "ａａａａａａ"
                 }
                 }
             ]

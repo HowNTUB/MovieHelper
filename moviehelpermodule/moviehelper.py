@@ -2309,8 +2309,7 @@ def get_location_message():
                 "type": "button",
                 "action": {
                     "type":"location",
-                    "label": "選擇指定位置",
-                    "label":"Location"
+                    "label": "選擇指定位置"
                 }
                 }
             ]

@@ -2605,11 +2605,14 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         })
     print(areaDict)
     areaMessageContents = []
-    for contentIndex in range(int(areaCnt/4)):
+    for contentIndex in range(int(areaCnt/4)+1):
         contentsAreaContent = []
         print(contentsAreaContent)
         for areaIndex in range(4):
-            contentsAreaContent.append(areaContent[contentIndex*4+areaIndex])
+            try:
+                contentsAreaContent.append(areaContent[contentIndex*4+areaIndex])
+            except:
+                contentsAreaContent.append()
         areaMessageContents.append({
             "type": "bubble",
             "direction": "ltr",

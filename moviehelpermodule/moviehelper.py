@@ -2594,7 +2594,6 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         print(area)
         areaName = area.text.strip()
         areaID = area["value"][-5:]
-        areaDict[area.text.strip()] = area["value"][-5:]
         areaContent.append({
           "type": "button",
           "action": {

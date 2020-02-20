@@ -2279,6 +2279,43 @@ def search_movie_type(typeName, url):
 
     return(movie_flex_message, pagebox_flex_message)
 
+def get_location_message():
+    movie_flex_message = FlexSendMessage(
+        alt_text='movielist',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": "點擊地圖的指定位置，我將幫您查詢附近的電影院。",
+                "align": "start",
+                "wrap": True
+                },
+                {
+                "type": "separator",
+                "margin": "xl"
+                }
+            ]
+            },
+            "footer": {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+                {
+                "type": "button",
+                "action": {
+                    "type":"location",
+                    "label":"Location"
+                }
+                }
+            ]
+            }
+        }
+    )
 
 def use_location_search_movietheater(userAddress, userLat, userLng):
     import googlemaps

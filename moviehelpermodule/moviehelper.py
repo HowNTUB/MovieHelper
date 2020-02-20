@@ -2618,9 +2618,12 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
     )
 
     totalPage = int(len(movietheaterData)/10)
+    print(totalPage)
     nowPage = int(page)
+    print(nowPage)
     contents = []
     for index in range(totalPage):
+        print(index)
         contents.append({
             "type": "text",
             "text": str(index+1),
@@ -2657,6 +2660,8 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
     )
 
     return(movietheater_flex_message, pagebox_flex_message)
+
+
 def workTeam():
     workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',

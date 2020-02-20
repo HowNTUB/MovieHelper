@@ -2606,6 +2606,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         })
     print(range(int(areaCnt/4)+1))
     for contentIndex in range(int(len(area)/4)+1):
+        print(contentIndex)
         contentsAreaContent = []
         for areaIndex in range(4):
             print('areaIndex:')

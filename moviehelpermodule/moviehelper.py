@@ -2603,7 +2603,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
           "action": {
             "type": "postback",
             "label": areaName,
-            "data": "電影時刻"+movieID+"/"+areaID+"/,"+"1"
+            "data": "電影時刻"+area.text.strip()+"/"+area["value"][-5:]+"/,"+"1"
           }
         })
     print(areaName)

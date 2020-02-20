@@ -2608,7 +2608,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
     for contentIndex in range(int(len(area)/4)):
         contentsAreaContent = []
         for areaIndex in range(4):
-            contentsAreaContent = areaContent[contentIndex*4+areaIndex]
+            contentsAreaContent.append(areaContent[contentIndex*4+areaIndex])
         areaMessageContents.append({
             "type": "bubble",
             "direction": "ltr",

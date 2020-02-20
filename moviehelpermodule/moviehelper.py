@@ -2597,7 +2597,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
         areaName.append(area.text.strip())
         areaID.append(area["value"][-5:])
         areaDict[area.text.strip()] = area["value"][-5:]
-        areaContent.appent({
+        areaContent.append({
           "type": "button",
           "action": {
             "type": "postback",

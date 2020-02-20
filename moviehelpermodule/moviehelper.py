@@ -2280,8 +2280,8 @@ def search_movie_type(typeName, url):
     return(movie_flex_message, pagebox_flex_message)
 
 def get_location_message():
-    nowTime_flex_message = FlexSendMessage(
-        alt_text='pagebox',
+    location_flex_message = FlexSendMessage(
+        alt_text='getLocation',
         contents={
             "type": "bubble",
             "direction": "ltr",

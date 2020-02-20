@@ -2587,12 +2587,48 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
     soup = BeautifulSoup(respData)
 
     areaOption = [i for i in soup.select(".theaterSelect select option")][1:]
+    print(areaOption)
     areaName = []
     areaID = []
-    for option in areaOption:
-        areaName.append(option.text)
-        areaID.append(option["value"][33:-1])
+    areaDict = {}
+    areaMessageContents = []
+    areaContent = []
+    for area in areaOption:
+        areaName = area.text.strip()
+        areaID = area["value"][-5:]
+        areaDict[area.text.strip()] = area["value"][-5:]
+        areaContent.appent({
+          "type": "button",
+          "action": {
+            "type": "postback",
+            "label": areaName,
+            "data": areaID
+          }
+        })
+    for contentIndex in range(int(len(area)/4)):
+        contentsAreaContent = []
+        for areaIndex in range(4):
+            contentsAreaContent = areaContent[contentIndex*4+areaIndex]
+        areaMessageContents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": contentsAreaContent
+            }
+        })
+        
 
+    
+    area_flex_message = FlexSendMessage(
+        alt_text='areaSelect',
+        contents={
+            "type": "carousel",
+            "contents": areaMessageContents
+        }
+    )
+    
     movietheaterData = [i.text.strip() for i in soup.select("#filmShowtimeBlock ul")]
     movietheaterContents = []
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
@@ -2715,7 +2751,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
                     "align": "center",
                     "action": {
                         "type": "postback",
-                        "data": "電影時刻"+movieID+"/a02/,"+str(index+1)
+                        "data": "電影時刻"+movieID+"/"+areaNo+"/,"+str(index+1)
                     }
                 })
         # 回復
@@ -2870,7 +2906,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
             }
         }
     )
-    return(movieInfo_flex_message, nowTime_flex_message, movietheater_flex_message, pagebox_flex_message)
+    return(movieInfo_flex_message, nowTime_flex_message, area_flex_message, movietheater_flex_message, pagebox_flex_message)
 
 
 def workTeam():

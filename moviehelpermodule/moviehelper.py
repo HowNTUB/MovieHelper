@@ -2623,16 +2623,16 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
         print(nowPage)
         contents = []
         for index in range(totalPage):
-            print(index)
-            contents.append({
-                "type": "text",
-                "text": str(index+1),
-                "align": "center",
-                "action": {
-                    "type": "postback",
-                    "data": "電影時刻"+movieID+"/a02/,"+str(index+1)
-                }
-            })
+            if index != nowPage:
+                contents.append({
+                    "type": "text",
+                    "text": str(index+1),
+                    "align": "center",
+                    "action": {
+                        "type": "postback",
+                        "data": "電影時刻"+movieID+"/a02/,"+str(index+1)
+                    }
+                })
         # 回復
         pagebox_flex_message = FlexSendMessage(
             alt_text='pagebox',

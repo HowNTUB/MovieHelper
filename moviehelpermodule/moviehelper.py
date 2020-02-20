@@ -2600,9 +2600,35 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
         print("="*10)
         timeContents = []
         for movietime in (content.split())[1:]:
+            print(movietime)
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
-            if int(now[:2])>=int(movietime[:2]):
-                if int(now[3:])>int(movietime[3:]):
+            print(now)
+            number = ['1','2','3','4','5','6','7','8','9','0']
+            if movietime[0] in number:
+                if int(now[:2])>=int(movietime[:2]):
+                    if int(now[3:])>int(movietime[3:]):
+                        timeContents.append({
+                            "type": "box",
+                            "layout": "vertical",
+                            "margin": "md",
+                            "action": {
+                                "type": "postback",
+                                "data": "這裡放URL"
+                            },
+                            "contents": [
+                                {
+                                "type": "text",
+                                "text": movietime,
+                                "size": "lg",
+                                "align": "center"
+                                },
+                                {
+                                "type": "separator",
+                                "margin": "md"
+                                }
+                            ]
+                        })
+                else:
                     timeContents.append({
                         "type": "box",
                         "layout": "vertical",
@@ -2616,7 +2642,8 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
                             "type": "text",
                             "text": movietime,
                             "size": "lg",
-                            "align": "center"
+                            "align": "center",
+                            "color": "#C1C1C1"
                             },
                             {
                             "type": "separator",
@@ -2629,17 +2656,12 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
                     "type": "box",
                     "layout": "vertical",
                     "margin": "md",
-                    "action": {
-                        "type": "postback",
-                        "data": "這裡放URL"
-                    },
                     "contents": [
                         {
                         "type": "text",
                         "text": movietime,
                         "size": "lg",
-                        "align": "center",
-                        "color": "#C1C1C1"
+                        "align": "center"
                         },
                         {
                         "type": "separator",

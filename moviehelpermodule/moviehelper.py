@@ -2589,11 +2589,13 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     areaOption = [i for i in soup.select(".theaterSelect select option")][1:]
     areaMessageContents = []
     areaContent = []
-    areaCnt=0
+    areaCnt = 0
+    areaDict = {}
     for area in areaOption:
         areaCnt+=1
         areaName = area.text.strip()
         areaID = area["value"][-5:]
+        areaDict[areaID] = areaName
         areaContent.append({
           "type": "button",
           "action": {
@@ -2891,7 +2893,18 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             "contents": [
                 {
                 "type": "text",
-                "text": "現在時間",
+                "text": "查詢地點：",
+                "align": "center",
+                },
+                {
+                "type": "text",
+                "text": areaDict[inAreaID],
+                "align": "center",
+                "weight": "bold"
+                },
+                {
+                "type": "text",
+                "text": "現在時間：",
                 "align": "center",
                 "weight": "bold"
                 },

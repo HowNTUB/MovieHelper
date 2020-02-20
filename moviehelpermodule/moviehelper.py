@@ -2764,7 +2764,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "align": "center",
                     "action": {
                         "type": "postback",
-                        "data": "電影時刻"+movieID+"/"+inAreaID+"/,"+str(index+1)
+                        "data": "電影時刻"+movieID+inAreaID+","+str(index+1)
                     }
                 })
         # 回復

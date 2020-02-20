@@ -2558,7 +2558,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
 
     movietheaterData = [i.text.strip() for i in soup.select("#filmShowtimeBlock ul")]
     movietheaterContents = []
-    for content in movietheaterData[(int(page)-1)*15:int(page)*15]:
+    for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
         print(content.split())
         print("="*10)
         timeContents = []

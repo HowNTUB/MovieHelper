@@ -2602,8 +2602,8 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
           "type": "button",
           "action": {
             "type": "postback",
-            "label": areaName,
-            "data": "電影時刻"+area.text.strip()+"/"+area["value"][-5:]+"/,"+"1"
+            "label": append(area.text.strip()),
+            "data": "電影時刻"+movieID+area["value"][-5:]+","+"1"
           }
         })
     print(areaName)

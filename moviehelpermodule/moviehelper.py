@@ -2772,6 +2772,12 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
             "contents": [
                 {
                 "type": "text",
+                "text": "現在時間",
+                "align": "center",
+                "weight": "bold"
+                },
+                {
+                "type": "text",
                 "text": time.strftime("%Y-%m-%d %H:%M", time.localtime(time.time()+28800)),
                 "align": "center"
                 }

@@ -2604,7 +2604,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
             print(now)
             number = ['1','2','3','4','5','6','7','8','9','0']
-            if movietime[0] in number:
+            if movietime[-1] in number:
                 if int(now[:2])>=int(movietime[:2]):
                     if int(now[3:])>int(movietime[3:]):
                         timeContents.append({

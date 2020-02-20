@@ -2607,7 +2607,6 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
             "contents": timeContents
             }
         })
-    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
     movietheater_flex_message = FlexSendMessage(
         alt_text='articlelist',
@@ -2690,7 +2689,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
             "contents": [
                 {
                 "type": "text",
-                "text": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+                "text": time.strftime("%Y-%m-%d %H:%M", time.localtime(time.time()+28800)),
                 "align": "center"
                 }
             ]

@@ -2600,7 +2600,6 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
         print("="*10)
         timeContents = []
         for movietime in (content.split())[1:]:
-            
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
             if int(now[:2])>=int(movietime[:2]):
                 if int(now[3:])>int(movietime[3:]):

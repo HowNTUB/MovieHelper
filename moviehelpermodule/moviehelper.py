@@ -2679,10 +2679,11 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
         )
 
     movieName = soup.select_one("h2 a").text
+    movieNameCN = movieName[:movieName.find(" ")]
+    movieNameEN = movieName[movieName.find(" ")+1:]
     movieDetail = soup.select_one(".runtimeText").text
     movieRuntime = movieDetail[movieDetail.find("片長：")+3:movieDetail.find("分")+1]
     movieReleaseTime = movieDetail[movieDetail.find("上映日期：")+5:movieDetail.find("廳數")+-1]
-    movieNameCN = movieName[:movieName.find(" ")]
     movieInfo_flex_message = FlexSendMessage(
         alt_text='pagebox',
         contents={
@@ -2694,7 +2695,14 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
             "contents": [
                 {
                 "type": "text",
-                "text": movieName,
+                "text": movieNameCN,
+                "size": "sm",
+                "align": "center",
+                "wrap": True
+                },
+                {
+                "type": "text",
+                "text": movieNameEN,
                 "size": "sm",
                 "align": "center",
                 "wrap": True
@@ -2868,7 +2876,8 @@ def workTeam():
                     {
                     "type": "text",
                     "text": "Yahoo電影、開眼電影網",
-                    "align": "start"
+                    "align": "start",
+                    "wrap": True
                     }
                 ]
                 }

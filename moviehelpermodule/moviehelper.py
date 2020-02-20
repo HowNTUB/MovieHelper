@@ -2627,27 +2627,27 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
                     })
             else:
                 timeContents.append({
-                        "type": "box",
-                        "layout": "vertical",
-                        "margin": "md",
-                        "action": {
-                            "type": "postback",
-                            "data": "這裡放URL"
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "action": {
+                        "type": "postback",
+                        "data": "這裡放URL"
+                    },
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": movietime,
+                        "size": "lg",
+                        "align": "center",
+                        "color": "#C1C1C1"
                         },
-                        "contents": [
-                            {
-                            "type": "text",
-                            "text": movietime,
-                            "size": "lg",
-                            "align": "center",
-                            "color": "#C1C1C1"
-                            },
-                            {
-                            "type": "separator",
-                            "margin": "md"
-                            }
-                        ]
-                    })
+                        {
+                        "type": "separator",
+                        "margin": "md"
+                        }
+                    ]
+                })
         movietheaterContents.append({
             "type": "bubble",
             "direction": "ltr",

@@ -2604,13 +2604,10 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             "data": "電影時刻"+movieID+areaID+",1"
           }
         })
-    print(range(int(areaCnt/4)+1))
     for contentIndex in range(int(len(area)/4)+1):
-        print(contentIndex)
         contentsAreaContent = []
+        print(contentsAreaContent)
         for areaIndex in range(4):
-            print('areaIndex:')
-            print(areaIndex)
             contentsAreaContent.append(areaContent[contentIndex*4+areaIndex])
         areaMessageContents.append({
             "type": "bubble",
@@ -2621,7 +2618,6 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             "contents": contentsAreaContent
             }
         })
-    print(len(areaMessageContents))
     area_flex_message = FlexSendMessage(
         alt_text='areaSelect',
         contents={
@@ -2741,7 +2737,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         print(nowPage)
         contents = []
         for index in range(totalPage):
-            if index != nowPage:
+            if index+1 != nowPage:
                 contents.append({
                     "type": "text",
                     "text": str(index+1),

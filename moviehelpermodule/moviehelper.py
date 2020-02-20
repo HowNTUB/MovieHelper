@@ -2458,7 +2458,7 @@ def get_MovieMoment(page):
             "margin": "md",
             "action": {
                 "type": "postback",
-                "data": "電影時刻"+movieID[index]+"/a02/"
+                "data": "電影時刻"+movieID[index]+"/a02/,1"
             },
             "contents": [
                 {
@@ -2538,7 +2538,7 @@ def get_MovieMoment(page):
     )
     return(movieSelect_flex_message, pagebox_flex_message)
 
-def use_movieurl_get_movieMoment(movieID, areaNo):
+def use_movieurl_get_movieMoment(movieID, areaNo, page):
     import time
     url = 'http://www.atmovies.com.tw/showtime/'+movieID+areaNo
     print(url)
@@ -2556,9 +2556,9 @@ def use_movieurl_get_movieMoment(movieID, areaNo):
         areaName.append(option.text)
         areaID.append(option["value"][33:-1])
 
-    movietheaterHtml = [i.text.strip() for i in soup.select("#filmShowtimeBlock ul")]
+    movietheaterData = [i.text.strip() for i in soup.select("#filmShowtimeBlock ul")]
     movietheaterContents = []
-    for content in movietheaterHtml[:10]:
+    for content in movietheaterData[:10]:
         print(content.split())
         print("="*10)
         timeContents = []
@@ -2617,7 +2617,46 @@ def use_movieurl_get_movieMoment(movieID, areaNo):
         }
     )
 
-    return(movietheater_flex_message)
+    totalPage = int(len(movietheaterData)/10)
+    nowPage = int(page)
+    contents = []
+    for index in range(totalPage):
+        contents.append({
+            "type": "text",
+            "text": str(index+1),
+            "align": "center",
+            "action": {
+                "type": "postback",
+                "data": "電影時刻"+movieID[index]+"/a02/,"+str(index+1)
+            }
+        })
+    # 回復
+    pagebox_flex_message = FlexSendMessage(
+        alt_text='pagebox',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": "目前第"+str(nowPage)+"頁",
+                "align": "center"
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "margin": "xl",
+                "contents": contents
+                }
+            ]
+            }
+        }
+    )
+
+    return(movietheater_flex_message, pagebox_flex_message)
 def workTeam():
     workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',

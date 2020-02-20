@@ -87,9 +87,12 @@ def handle_postback(event):
     if userpostback[:4] == '電影時刻':
         movieID = userpostback[4:userpostback.find("/")]
         area = userpostback[userpostback.find("/"):]
+        page = userpostback[userpostback.find(","):]
         print(movieID)
         print(area)
-        line_bot_api.reply_message(event.reply_token, use_movieurl_get_movieMoment(movieID, area))
+        print(page)
+        movieMoment, pagebox = use_movieurl_get_movieMoment(movieID, area, page)
+        line_bot_api.reply_message(event.reply_token, [movieMoment, pagebox])
     
 # ---------------------------------------------------------------
 @handler.add(MessageEvent, message=TextMessage)

@@ -2575,9 +2575,9 @@ def get_MovieMoment(page):
     )
     return(movieSelect_flex_message, pagebox_flex_message)
 
-def use_movieurl_get_movieMoment(movieID, areaNo, page):
+def use_movieurl_get_movieMoment(movieID, inAareaID, page):
     import time
-    url = 'http://www.atmovies.com.tw/showtime/'+movieID+areaNo
+    url = 'http://www.atmovies.com.tw/showtime/'+movieID+inAreaID
     print(url)
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
@@ -2594,6 +2594,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
     areaMessageContents = []
     areaContent = []
     for area in areaOption:
+        print(area)
         areaName.append(area.text.strip())
         areaID.append(area["value"][-5:])
         areaDict[area.text.strip()] = area["value"][-5:]
@@ -2602,9 +2603,11 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
           "action": {
             "type": "postback",
             "label": areaName,
-            "data": "電影時刻"+movieID+"/"+areaNo+"/,"+"1"
+            "data": "電影時刻"+movieID+"/"+areaID+"/,"+"1"
           }
         })
+    print(areaName)
+    print(areaID)
     for contentIndex in range(int(len(area)/4)):
         contentsAreaContent = []
         for areaIndex in range(4):
@@ -2749,7 +2752,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
                     "align": "center",
                     "action": {
                         "type": "postback",
-                        "data": "電影時刻"+movieID+"/"+areaNo+"/,"+str(index+1)
+                        "data": "電影時刻"+movieID+"/"+inAareaID+"/,"+str(index+1)
                     }
                 })
         # 回復

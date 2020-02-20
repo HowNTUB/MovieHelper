@@ -2520,7 +2520,7 @@ def get_MovieMoment(page):
             "contents": [
                 {
                 "type": "text",
-                "text": "上映中的電影",
+                "text": "請選擇想看的電影",
                 "size": "xl",
                 "align": "start",
                 "weight": "bold"

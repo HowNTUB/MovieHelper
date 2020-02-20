@@ -91,8 +91,8 @@ def handle_postback(event):
         print(movieID)
         print(area)
         print(page)
-        movieMoment, pagebox = use_movieurl_get_movieMoment(movieID, area, page)
-        line_bot_api.reply_message(event.reply_token, [movieMoment, pagebox])
+        nowtime, movieMoment, pagebox = use_movieurl_get_movieMoment(movieID, area, page)
+        line_bot_api.reply_message(event.reply_token, [nowtime, movieMoment, pagebox])
     
 # ---------------------------------------------------------------
 @handler.add(MessageEvent, message=TextMessage)

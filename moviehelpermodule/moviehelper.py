@@ -2678,6 +2678,80 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
             }
         )
 
+    movieName = soup.select_one("h2 a").text
+    movieDetail = soup.select_one(".runtimeText").text
+    movieRuntime = movieDetail[movieDetail.find("片長：")+3:movieDetail.find("分")+1]
+    movieReleaseTime = movieDetail[movieDetail.find("上映日期：")+5:movieDetail.find("廳數")+-1]
+    movieNameCN = movieName[:movieName.find(" ")]
+    movieInfo_flex_message = FlexSendMessage(
+        alt_text='pagebox',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": movieName,
+                "size": "sm",
+                "align": "center",
+                "wrap": True
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "margin": "lg",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "片長：",
+                    "align": "end"
+                    },
+                    {
+                    "type": "text",
+                    "text": movieRuntime
+                    }
+                ]
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "上映日期：",
+                    "align": "end"
+                    },
+                    {
+                    "type": "text",
+                    "text": movieReleaseTime
+                    }
+                ]
+                },
+                {
+                "type": "separator",
+                "margin": "xl"
+                }
+            ]
+            },
+            "footer": {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+                {
+                "type": "button",
+                "action": {
+                    "type": "message",
+                    "label": "詳細介紹",
+                    "text": movieNameCN
+                }
+                }
+            ]
+            }}
+        }
+    )
     nowTime_flex_message = FlexSendMessage(
         alt_text='pagebox',
         contents={

@@ -2575,7 +2575,7 @@ def get_MovieMoment(page):
     )
     return(movieSelect_flex_message, pagebox_flex_message)
 
-def use_movieurl_get_movieMoment(movieID, inAareaID, page):
+def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     import time
     url = 'http://www.atmovies.com.tw/showtime/'+movieID+inAreaID
     print(url)
@@ -2752,7 +2752,7 @@ def use_movieurl_get_movieMoment(movieID, inAareaID, page):
                     "align": "center",
                     "action": {
                         "type": "postback",
-                        "data": "電影時刻"+movieID+"/"+inAareaID+"/,"+str(index+1)
+                        "data": "電影時刻"+movieID+"/"+inAreaID+"/,"+str(index+1)
                     }
                 })
         # 回復

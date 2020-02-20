@@ -2602,7 +2602,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
           "action": {
             "type": "postback",
             "label": areaName,
-            "data": areaID
+            "data": "電影時刻"+movieID+"/"+areaNo+"/,"+"1"
           }
         })
     for contentIndex in range(int(len(area)/4)):
@@ -2618,9 +2618,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
             "contents": contentsAreaContent
             }
         })
-        
 
-    
     area_flex_message = FlexSendMessage(
         alt_text='areaSelect',
         contents={

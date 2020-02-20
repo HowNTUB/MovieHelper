@@ -2587,7 +2587,6 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     soup = BeautifulSoup(respData)
 
     areaOption = [i for i in soup.select(".theaterSelect select option")][1:]
-    areaMessageContents = []
     areaContent = []
     areaCnt = 0
     areaDict = {}
@@ -2604,7 +2603,9 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             "data": "電影時刻"+movieID+areaID+",1"
           }
         })
-    for contentIndex in range(int(len(area)/4)+1):
+    print(areaDict)
+    areaMessageContents = []
+    for contentIndex in range(int(len(areaCnt)/4)+1):
         contentsAreaContent = []
         print(contentsAreaContent)
         for areaIndex in range(4):

@@ -2612,7 +2612,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             try:
                 contentsAreaContent.append(areaContent[contentIndex*4+areaIndex])
             except:
-                contentsAreaContent.append()
+                contentsAreaContent.append({"type": "filler"})
         areaMessageContents.append({
             "type": "bubble",
             "direction": "ltr",

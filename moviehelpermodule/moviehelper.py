@@ -2620,7 +2620,8 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
                                 "type": "text",
                                 "text": movietime,
                                 "size": "lg",
-                                "align": "center"
+                                "align": "center",
+                                "color": "#C1C1C1"
                                 },
                                 {
                                 "type": "separator",
@@ -2642,8 +2643,7 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
                             "type": "text",
                             "text": movietime,
                             "size": "lg",
-                            "align": "center",
-                            "color": "#C1C1C1"
+                            "align": "center"
                             },
                             {
                             "type": "separator",

@@ -2620,7 +2620,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             "contents": contentsAreaContent
             }
         })
-
+    print(len(areaMessageContents))
     area_flex_message = FlexSendMessage(
         alt_text='areaSelect',
         contents={
@@ -2632,13 +2632,9 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     movietheaterData = [i.text.strip() for i in soup.select("#filmShowtimeBlock ul")]
     movietheaterContents = []
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
-        print(content.split())
-        print("="*10)
         timeContents = []
         for movietime in (content.split())[1:]:
-            print(movietime)
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
-            print(now)
             number = ['1','2','3','4','5','6','7','8','9','0']
             if movietime[-1] in number:
                 if int(now[:2])>=int(movietime[:2]):

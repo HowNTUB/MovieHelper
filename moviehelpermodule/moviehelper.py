@@ -2280,8 +2280,8 @@ def search_movie_type(typeName, url):
     return(movie_flex_message, pagebox_flex_message)
 
 def get_location_message():
-    movie_flex_message = FlexSendMessage(
-        alt_text='movielist',
+    location_flex_message = FlexSendMessage(
+        alt_text='location_flex_message',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -2316,7 +2316,7 @@ def get_location_message():
             }
         }
     )
-
+    return(location_flex_message)
 def use_location_search_movietheater(userAddress, userLat, userLng):
     import googlemaps
     import os

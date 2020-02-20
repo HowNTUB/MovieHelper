@@ -2678,7 +2678,26 @@ def use_movieurl_get_movieMoment(movieID, areaNo, page):
                 }
             }
         )
-    return(movietheater_flex_message, pagebox_flex_message)
+
+    nowTime_flex_message = FlexSendMessage(
+        alt_text='pagebox',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
+                "align": "center"
+                }
+            ]
+            }
+        }
+    )
+    return(nowTime_flex_message, movietheater_flex_message, pagebox_flex_message)
 
 
 def workTeam():

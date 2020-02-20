@@ -2616,7 +2616,23 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             "body": {
             "type": "box",
             "layout": "vertical",
-            "contents": contentsAreaContent
+            "contents": [
+                {
+                "type": "text",
+                "text": "請選擇欲查詢地區",
+                "size": "lg",
+                "align": "center"
+                },
+                {
+                "type": "separator",
+                "margin": "lg"
+                },
+                {
+                "type": "box",
+                "layout": "vertical",
+                "contents": contentsAreaContent
+                }
+            ]
             }
         })
     area_flex_message = FlexSendMessage(

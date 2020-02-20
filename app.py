@@ -86,8 +86,8 @@ def handle_postback(event):
     #電影時刻表
     if userpostback[:4] == '電影時刻':
         movieID = userpostback[4:userpostback.find("/")]
-        area = userpostback[userpostback.find("/"):]
-        page = userpostback[userpostback.find(","):]
+        area = userpostback[userpostback.find("/"):userpostback.find(",")]
+        page = userpostback[userpostback.find(",")+1:]
         print(movieID)
         print(area)
         print(page)

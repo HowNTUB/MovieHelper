@@ -2730,7 +2730,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         },
                         {
                         "type": "separator",
-                        "margin": "md"
+                        "margin": "sm"
                         }
                     ]
                 })
@@ -2746,7 +2746,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         "action": {
                             "type": "uri",
                             "label": movietime.text,
-                            "uri": 'https://support.fugle.tw/account/6171/'#'http://www.atmovies.com.tw'+movietime.find("a")["href"]
+                            "uri": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
                         },
                         "color": "#000000"
                         },

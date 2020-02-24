@@ -2745,7 +2745,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "margin": "md",
                     "action": {
                         "type": "url",
-                        "url": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
+                        "url": 'https://support.fugle.tw/account/6171/'#'http://www.atmovies.com.tw'+movietime.find("a")["href"]
                     },
                     "contents": [
                         {

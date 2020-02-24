@@ -2694,9 +2694,10 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
         movietheaterName = content.find("li").text
         timeContents = []
-        for movietime in [i for i in content.select("li")][1:]:
+        for movietime in [i for i in content.select("li")][3:]:
             print(movietime)
             print('*'*20)
+            print(movietime==True)
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
             number = ['1','2','3','4','5','6','7','8','9','0']
             if movietime.text[-1] in number: #如果是時間(有可能是放映規格)
@@ -2725,17 +2726,13 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                             ]
                         })
                     else: #放映時間之內
-                        try:
-                            movieTicket = 'http://www.atmovies.com.tw'+movietime.find("a")["href"]#
-                        except:
-                            movieTicket = '-'
                         timeContents.append({
                             "type": "box",
                             "layout": "vertical",
                             "margin": "md",
                             "action": {
                                 "type": "url",
-                                "url": movieTicket
+                                "url": 'https://google.com'
                             },
                             "contents": [
                                 {

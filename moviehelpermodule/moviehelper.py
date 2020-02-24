@@ -2696,7 +2696,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         timeContents = []
         number=['1','2','3','4','5','6','7','8','9','0']
         print("----1----")
-        print(content.select_one(".filmVersion")[0])
+        print(content.select_one(".filmVersion"))
         print("----2----")
         print(content.select_one(".filmVersion li"))
         if content.select_one(".filmVersion") != None:

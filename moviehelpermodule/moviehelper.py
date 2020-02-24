@@ -2689,16 +2689,6 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         }
     )
     
-    for content in movietheaterData[(int(page)-1)*15:int(page)*15]:
-        movietheaterName = content.find("li").text
-        print(movietheaterName)
-        for movietime in [i for i in content.select("li")][1:]:
-            movieTimeStr = movietime.text
-            try:
-                movieTicket = 'http://www.atmovies.com.tw/'+movietime.select_one("a")["href"]
-            except:
-                movieTicket = '-'
-
     movietheaterData = [i for i in soup.select("#filmShowtimeBlock ul")]
     movietheaterContents = []
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:

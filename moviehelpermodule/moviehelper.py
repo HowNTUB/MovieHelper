@@ -1661,8 +1661,8 @@ def search_movie_chart(url):
     rankcontents = []
     for index in range(len(movieRank)):
         if index == 0:
-            if movieSatisfactoryDegree[index]+int(float(movieSatisfactoryDegree[index])) !=0 :
-                star = movieSatisfactoryDegree[index]+int(float(movieSatisfactoryDegree[index]))*'★'
+            if int(float(movieSatisfactoryDegree[index])) != 0 :
+                star = int(float(movieSatisfactoryDegree[index]))*'★'
             else:
                 star = "☆"
             rankcontents.append({
@@ -1789,7 +1789,7 @@ def search_movie_chart(url):
                         },
                         {
                         "type": "text",
-                        "text": int(float(movieSatisfactoryDegree[index]))*'★',
+                        "text": star,
                         "flex": 0
                         }
                     ]

@@ -2694,7 +2694,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
         movietheaterName = content.find("li").text
         timeContents = []
-        for movietype in [i for i in content.select("li")][1:3]:
+        for movietype in [i.text.strip() for i in content.select("li")][1]:
             print(movietype)
             print('*'*20)
             timeContents.append({

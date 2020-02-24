@@ -2695,59 +2695,53 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         movietheaterName = content.find("li").text
         timeContents = []
         for movietime in [i for i in content.select("li")][3:]:
-            print(movietime)
-            print('*'*20)
-            print(movietime.find("a"))
-            now=time.strftime("%H:%M", time.localtime(time.time()+28800))
-            number = ['1','2','3','4','5','6','7','8','9','0']
-            if movietime.text[-1] in number: #如果是時間(有可能是放映規格)
-                if int(now[:2])>=int(movietime.text[:2]):
-                    if int(now[3:])>=int(movietime.text[3:]): #超過放映時間
-                        timeContents.append({
-                            "type": "box",
-                            "layout": "vertical",
-                            "margin": "md",
-                            "action": {
-                                "type": "postback",
-                                "data": "這裡放URL"
-                            },
-                            "contents": [
-                                {
-                                "type": "text",
-                                "text": movietime.text,
-                                "size": "lg",
-                                "align": "center",
-                                "color": "#C1C1C1"
-                                },
-                                {
-                                "type": "separator",
-                                "margin": "md"
-                                }
-                            ]
-                        })
-                    else: #放映時間之內
-                        timeContents.append({
-                            "type": "box",
-                            "layout": "vertical",
-                            "margin": "md",
-                            "action": {
-                                "type": "url",
-                                "url": 'https://google.com'
-                            },
-                            "contents": [
-                                {
-                                "type": "text",
-                                "text": movietime.text,
-                                "size": "lg",
-                                "align": "center"
-                                },
-                                {
-                                "type": "separator",
-                                "margin": "md"
-                                }
-                            ]
-                        })
-            else:
+            #now=time.strftime("%H:%M", time.localtime(time.time()+28800))
+            if movietime.find("a") == None:
+                timeContents.append({
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "action": {
+                        "type": "postback",
+                        "data": "這裡放URL"
+                    },
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": movietime.text,
+                        "size": "lg",
+                        "align": "center",
+                        "color": "#C1C1C1"
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "md"
+                        }
+                    ]
+                })
+            else: #放映時間之內
+                timeContents.append({
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "action": {
+                        "type": "url",
+                        "url": 'https://google.com'
+                    },
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": movietime.text,
+                        "size": "lg",
+                        "align": "center"
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "md"
+                        }
+                    ]
+                })
+            '''
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -2765,6 +2759,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         }
                     ]
                 })
+            '''
         movietheaterContents.append({
             "type": "bubble",
             "direction": "ltr",

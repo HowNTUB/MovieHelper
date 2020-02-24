@@ -2305,8 +2305,7 @@ def search_movie_type(typeName, url):
                         "type": "postback",
                         "label": "詳細資料",
                         "data": movieDetailUrl[index]
-                    },
-                    "color": "#B0B0B0"
+                    }
                 }]
             }
         })

@@ -953,7 +953,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "postback",
                     "label": "個人簡介",
-                    "data": '個人簡介:'+actorIntorduction
+                    "data": '個人簡介:'+actorIntorduction[:290]
                 }
                 },
                 {

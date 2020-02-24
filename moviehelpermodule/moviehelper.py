@@ -2745,7 +2745,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "margin": "md",
                     "action": {
                         "type": "url",
-                        "url": 'https://google.com'
+                        "url": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
                     },
                     "contents": [
                         {

@@ -2697,14 +2697,12 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         print('*'*10)
         timeContents = []
         for movietime in [i for i in content.select("li")][1:]:
-            print(movietime.text)
-            print(movietime)
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
-            print(now)
             number = ['1','2','3','4','5','6','7','8','9','0']
+            print(movietime.find("a")["href"])
             if movietime.text[-1] in number: #如果是時間(有可能是放映規格)
                 if int(now[:2])>=int(movietime.text[:2]):
-                    if int(now[3:])>int(movietime.text[3:]): #超過放映時間
+                    if int(now[3:])>=int(movietime.text[3:]): #超過放映時間
                         timeContents.append({
                             "type": "box",
                             "layout": "vertical",
@@ -2727,28 +2725,28 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                                 }
                             ]
                         })
-                else: #放映時間之內
-                    timeContents.append({
-                        "type": "box",
-                        "layout": "vertical",
-                        "margin": "md",
-                        "action": {
-                            "type": "url",
-                            "url": "https://movies.yahoo.com.tw/moviegenre_result.html?genre_id=19&page=1"
-                        },
-                        "contents": [
-                            {
-                            "type": "text",
-                            "text": movietime.text,
-                            "size": "lg",
-                            "align": "center"
+                    else: #放映時間之內
+                        timeContents.append({
+                            "type": "box",
+                            "layout": "vertical",
+                            "margin": "md",
+                            "action": {
+                                "type": "url",
+                                "url": "https://movies.yahoo.com.tw/moviegenre_result.html?genre_id=19&page=1"
                             },
-                            {
-                            "type": "separator",
-                            "margin": "md"
-                            }
-                        ]
-                    })
+                            "contents": [
+                                {
+                                "type": "text",
+                                "text": movietime.text,
+                                "size": "lg",
+                                "align": "center"
+                                },
+                                {
+                                "type": "separator",
+                                "margin": "md"
+                                }
+                            ]
+                        })
             else:
                 print('elseelse'+movietime.text)
                 timeContents.append({

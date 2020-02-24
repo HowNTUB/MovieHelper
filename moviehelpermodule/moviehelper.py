@@ -2723,8 +2723,8 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                             ]
                         })
                 else: #放映時間之內
-                    print(movietime.select_one("a")["href"])
-                    ticketUrl = 'http://www.atmovies.com.tw'+movietime.select_one("a")["href"]
+                    print((movietime.select_one("a"))["href"])
+                    ticketUrl = 'https://movies.yahoo.com.tw/moviegenre_result.html?genre_id=19&page=1'
                     timeContents.append({
                         "type": "box",
                         "layout": "vertical",

@@ -2702,7 +2702,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 "contents": [
                     {
                     "type": "text",
-                    "text": (content.select("li")[0]).text.split('\n')[0],
+                    "text": (content.select("li")[1]).text.split('\n')[0],
                     "size": "lg",
                     "align": "center",
                     "weight": "bold"

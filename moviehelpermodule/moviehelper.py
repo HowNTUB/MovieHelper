@@ -1026,7 +1026,7 @@ def show_actor_intorduction(url):
         alt_text='actor intorduction',
         contents={
             "type": "carousel",
-            "contents": contents[:9]
+            "contents": contents[:10]
         }
     )
     return(intorduction_flex_message)
@@ -2178,7 +2178,12 @@ def search_movie_type(typeName, url):
 
     movieNameCN = [i.text.strip()
                                 for i in soup.select(".release_movie_name > .gabtn")]
-    movieNameEN = [i.text.strip() for i in soup.select(".en .gabtn")]
+    movieNameEN = []
+    for i in soup.select(".en .gabtn"):
+        if i.text.strip() == '':
+            movieNameEN.append("-")
+        else:
+            movieNameEN.append(i.text.strip())
     movieInfo = [i for i in soup.select(".release_movie_name")]
     movieExpectation = []
     movieSatisfactoryDegree = []

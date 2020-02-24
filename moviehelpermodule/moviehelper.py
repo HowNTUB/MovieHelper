@@ -953,7 +953,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "postback",
                     "label": "個人簡介",
-                    "data": '個人簡介:'+actorIntorduction
+                    "data": '個人簡介:'+url
                 }
                 },
                 {
@@ -992,7 +992,16 @@ def use_actorURL_get_actorIntorduction(url):
     )
 
     return(actor_flex_message, introductionlist_flex_message)
-def show_actor_intorduction(intorduction):
+def show_actor_intorduction(url):
+    headers = {}
+    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+    req = request.Request(url, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+    soup = BeautifulSoup(respData)
+
+    
+    intorduction = soup.select_one(".jq_text_overflow_href_main").text
     cutFrequency = int(len(intorduction)/300)+1
     contents = []
     for frequency in range(cutFrequency):

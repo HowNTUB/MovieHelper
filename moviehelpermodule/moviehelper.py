@@ -2694,6 +2694,26 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
         movietheaterName = content.find("li").text
         timeContents = []
+        for movietype in [i for i in content.select("li")][1:3]:
+            print(movietype)
+            print('*'*20)
+            timeContents.append({
+                "type": "box",
+                "layout": "vertical",
+                "margin": "md",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": movietype.text,
+                    "size": "lg",
+                    "align": "center"
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "md"
+                    }
+                ]
+            })
         for movietime in [i for i in content.select("li")][3:]:
             #now=time.strftime("%H:%M", time.localtime(time.time()+28800))
             if movietime.find("a") == None:
@@ -2741,25 +2761,6 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         }
                     ]
                 })
-            '''
-                timeContents.append({
-                    "type": "box",
-                    "layout": "vertical",
-                    "margin": "md",
-                    "contents": [
-                        {
-                        "type": "text",
-                        "text": movietime.text,
-                        "size": "lg",
-                        "align": "center"
-                        },
-                        {
-                        "type": "separator",
-                        "margin": "md"
-                        }
-                    ]
-                })
-            '''
         movietheaterContents.append({
             "type": "bubble",
             "direction": "ltr",

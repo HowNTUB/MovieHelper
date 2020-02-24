@@ -2693,16 +2693,12 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     movietheaterData = [i for i in soup.select("#filmShowtimeBlock ul")]
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
         movietheaterName = content.find("li").text
-        print(movietheaterName)
-        print('*'*10)
         timeContents = []
         for movietime in [i for i in content.select("li")][1:]:
+            print(movietime)
+            print('*'*20)
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
             number = ['1','2','3','4','5','6','7','8','9','0']
-            try:
-                print(movietime.find("a")["href"])
-            except:
-                print("error")
             if movietime.text[-1] in number: #如果是時間(有可能是放映規格)
                 if int(now[:2])>=int(movietime.text[:2]):
                     if int(now[3:])>=int(movietime.text[3:]): #超過放映時間
@@ -2729,13 +2725,17 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                             ]
                         })
                     else: #放映時間之內
+                        try:
+                            movieTicket = 'http://www.atmovies.com.tw'+movietime.find("a")["href"]#
+                        except:
+                            movieTicket = '-'
                         timeContents.append({
                             "type": "box",
                             "layout": "vertical",
                             "margin": "md",
                             "action": {
                                 "type": "url",
-                                "url": "https://movies.yahoo.com.tw/moviegenre_result.html?genre_id=19&page=1"
+                                "url": movieTicket
                             },
                             "contents": [
                                 {
@@ -2751,7 +2751,6 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                             ]
                         })
             else:
-                print('elseelse'+movietime.text)
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

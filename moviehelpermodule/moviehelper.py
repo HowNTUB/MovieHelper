@@ -2753,7 +2753,11 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         "type": "text",
                         "text": movietime.text,
                         "size": "lg",
-                        "align": "center"
+                        "align": "center",
+                        "action": {
+                            "type": "url",
+                            "url": 'https://support.fugle.tw/account/6171/'#'http://www.atmovies.com.tw'+movietime.find("a")["href"]
+                        }
                         },
                         {
                         "type": "separator",

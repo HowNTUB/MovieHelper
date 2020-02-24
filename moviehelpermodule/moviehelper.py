@@ -235,8 +235,7 @@ def use_moviename_serch_movielist(movieNameOrURL, page):
                             "type": "postback",
                             "label": "詳細資料",
                             "data": movieDetailUrl[index]
-                        },
-                        "color": "#B0B0B0"
+                        }
                     }]
                 }
             })
@@ -1004,7 +1003,8 @@ def show_actor_intorduction(url):
     cutFrequency = int(len(intorduction)/300)+1
     contents = []
     for frequency in range(cutFrequency):
-        print(intorduction[frequency*300:(frequency+1)*300])
+        content = intorduction[frequency*300:(frequency+1)*300]
+        print(content)
         print('*'*20)
         contents.append({
             "type": "bubble",
@@ -1015,7 +1015,7 @@ def show_actor_intorduction(url):
             "contents": [
                 {
                 "type": "text",
-                "text": intorduction[frequency*300:(frequency+1)*300],
+                "text": content,
                 "align": "start",
                 "wrap": True
                 }
@@ -1029,7 +1029,7 @@ def show_actor_intorduction(url):
             "contents": contents[:9]
         }
     )
-    return(intorduction)
+    return(intorduction_flex_message)
 
 
 def use_actorURL_search_movielist(url):

@@ -2703,7 +2703,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 "contents": [
                     {
                     "type": "text",
-                    "text": content.select("li")[1].text,
+                    "text": (content.select("li")[1].text).split(' ')[1],
                     "size": "lg",
                     "align": "center",
                     "weight": "bold"

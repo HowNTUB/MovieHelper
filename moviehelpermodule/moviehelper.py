@@ -2744,20 +2744,15 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "type": "box",
                     "layout": "vertical",
                     "margin": "md",
-                    "action": {
-                        "type": "url",
-                        "url": 'https://support.fugle.tw/account/6171/'#'http://www.atmovies.com.tw'+movietime.find("a")["href"]
-                    },
-                    "contents": [
+                    "contents": [                        
                         {
-                        "type": "text",
-                        "text": movietime.text,
-                        "size": "lg",
-                        "align": "center",
+                        "type": "button",
                         "action": {
-                            "type": "url",
-                            "url": 'https://support.fugle.tw/account/6171/'#'http://www.atmovies.com.tw'+movietime.find("a")["href"]
-                        }
+                            "type": "uri",
+                            "label": movietime.text,
+                            "uri": 'https://support.fugle.tw/account/6171/'#'http://www.atmovies.com.tw'+movietime.find("a")["href"]
+                        },
+                        "color": "#000000"
                         },
                         {
                         "type": "separator",

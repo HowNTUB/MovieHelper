@@ -1639,11 +1639,11 @@ def search_movie_chart(url):
     movieRankType = []
     for div in movieRankTypeDiv:
         if div["class"][1] == "new":
-            movieRankType.append("new")
+            movieRankType.append("🆕")
         if div["class"][1] == "up":
-            movieRankType.append("★")
+            movieRankType.append("⤴️")
         if div["class"][1] == "down":
-            movieRankType.append("☆")
+            movieRankType.append("⤵️")
     movieRankOneImg = (soup.select_one(".rank_list_box img"))["src"]
     movieNameCN = [i.text for i in soup.select(".rank_txt , h2")]
     movieNameEN = soup.select_one("h3").text
@@ -1695,7 +1695,7 @@ def search_movie_chart(url):
                         },
                         {
                         "type": "text",
-                        "text": star,
+                        "text": movieSatisfactoryDegree[index]+star,
                         "flex": 0,
                         "align": "end"
                         }

@@ -951,7 +951,7 @@ def use_actorURL_get_actorIntorduction(url):
                 {
                 "type": "button",
                 "action": {
-                    "type": "message",
+                    "type": "postback",
                     "label": "個人簡介",
                     "data": '個人簡介:'+actorIntorduction
                 }

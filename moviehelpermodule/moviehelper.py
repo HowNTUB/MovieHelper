@@ -2694,7 +2694,8 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
         movietheaterName = content.find("li").text
         timeContents = []
-        number=[1,2,3,4,5,6,7,8,9,0]
+        number=['1','2','3','4','5','6','7','8','9','0']
+        print(content.select("li")[1].text)
         if content.select("li")[1].text[-1] not in number:
             timeContents.append({
                 "type": "box",
@@ -2703,7 +2704,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 "contents": [
                     {
                     "type": "text",
-                    "text": (content.select("li")[1].text).split(' ')[1],
+                    "text": content.select("li")[1].text,
                     "size": "lg",
                     "align": "center",
                     "weight": "bold"

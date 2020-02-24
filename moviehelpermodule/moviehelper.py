@@ -2756,7 +2756,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "contents": [
                         {
                         "type": "text",
-                        "text": movietime.text,
+                        "text": movietime.text[1],
                         "size": "lg",
                         "align": "center"
                         },

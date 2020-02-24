@@ -2689,16 +2689,27 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         }
     )
     
-    movietheaterData = [i.text.strip() for i in soup.select("#filmShowtimeBlock ul")]
+    for content in movietheaterData[(int(page)-1)*15:int(page)*15]:
+        movietheaterName = content.find("li").text
+        print(movietheaterName)
+        for movietime in [i for i in content.select("li")][1:]:
+            movieTimeStr = movietime.text
+            try:
+                movieTicket = 'http://www.atmovies.com.tw/'+movietime.select_one("a")["href"]
+            except:
+                movieTicket = '-'
+
+    movietheaterData = [i for i in soup.select("#filmShowtimeBlock ul")]
     movietheaterContents = []
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
+        movietheaterName = content.find("li").text
         timeContents = []
-        for movietime in (content.split())[1:]:
+        for movietime in [i for i in content.select("li")][1:]:
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
             number = ['1','2','3','4','5','6','7','8','9','0']
-            if movietime[-1] in number:
+            if movietime.text[-1] in number:
                 if int(now[:2])>=int(movietime[:2]):
-                    if int(now[3:])>int(movietime[3:]):
+                    if int(now[3:])>int(movietime[3:]): #超過放映時間
                         timeContents.append({
                             "type": "box",
                             "layout": "vertical",
@@ -2710,7 +2721,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                             "contents": [
                                 {
                                 "type": "text",
-                                "text": movietime,
+                                "text": movietime.text,
                                 "size": "lg",
                                 "align": "center",
                                 "color": "#C1C1C1"
@@ -2721,19 +2732,19 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                                 }
                             ]
                         })
-                else:
+                else: #放映時間之內
                     timeContents.append({
                         "type": "box",
                         "layout": "vertical",
                         "margin": "md",
                         "action": {
-                            "type": "postback",
-                            "data": "這裡放URL"
+                            "type": "url",
+                            "url": 'http://www.atmovies.com.tw/'+movietime.select_one("a")["href"]
                         },
                         "contents": [
                             {
                             "type": "text",
-                            "text": movietime,
+                            "text": movietime.text,
                             "size": "lg",
                             "align": "center"
                             },
@@ -2751,7 +2762,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "contents": [
                         {
                         "type": "text",
-                        "text": movietime,
+                        "text": movietime.text,
                         "size": "lg",
                         "align": "center"
                         },
@@ -2770,7 +2781,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             "contents": [
                 {
                 "type": "text",
-                "text": content.split()[0],
+                "text": movietheaterName,
                 "size": "xl",
                 "align": "start",
                 "weight": "bold",
@@ -3078,7 +3089,7 @@ def workTeam():
                 {
                 "type": "box",
                 "layout": "horizontal",
-                "margin": "xl",
+                "margin": "none",
                 "contents": [
                     {
                     "type": "filler"

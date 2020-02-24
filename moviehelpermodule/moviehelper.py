@@ -2723,7 +2723,6 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                             ]
                         })
                 else: #放映時間之內
-                    print((movietime.find("a"))["href"])
                     ticketUrl = 'https://movies.yahoo.com.tw/moviegenre_result.html?genre_id=19&page=1'
                     timeContents.append({
                         "type": "box",

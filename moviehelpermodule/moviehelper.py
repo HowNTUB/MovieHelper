@@ -809,7 +809,6 @@ def use_actorURL_get_actorIntorduction(url):
     actorImgFrom = soup.select_one(".pic_txt").text
     actorTitle = [i.text.split() for i in soup.select(".maker_tips")][0]
     actorPop = soup.select_one(".popnum").text[3:]
-    actorIntorduction = soup.select_one(".jq_text_overflow_href_main").text
 
     titleContent=[]
     for title in actorTitle:
@@ -1027,7 +1026,7 @@ def show_actor_intorduction(url):
         alt_text='actor intorduction',
         contents={
             "type": "carousel",
-            "contents": contents
+            "contents": contents[:9]
         }
     )
     return(intorduction)

@@ -2739,6 +2739,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     ]
                 })
             else: #放映時間之內
+                print('http://www.atmovies.com.tw'+movietime.find("a")["href"])
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -2931,6 +2932,14 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "type": "message",
                     "label": "詳細介紹",
                     "text": movieNameCN
+                }
+                },                
+                {
+                "type": "button",
+                "action": {
+                    "type": "message",
+                    "label": "相關文章",
+                    "text": '新聞'+movieNameCN
                 }
                 }
             ]

@@ -3070,9 +3070,23 @@ def workTeam():
                     },
                     {
                     "type": "text",
-                    "text": "Yahoo電影、開眼電影網",
-                    "align": "start",
-                    "wrap": True
+                    "text": "Yahoo電影",
+                    "align": "start"
+                    }
+                ]
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "margin": "xl",
+                "contents": [
+                    {
+                    "type": "filler"
+                    },
+                    {
+                    "type": "text",
+                    "text": "開眼電影網",
+                    "align": "start"
                     }
                 ]
                 }

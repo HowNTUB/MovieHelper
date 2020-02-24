@@ -2720,15 +2720,11 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "type": "box",
                     "layout": "vertical",
                     "margin": "md",
-                    "action": {
-                        "type": "postback",
-                        "data": "這裡放URL"
-                    },
                     "contents": [
                         {
                         "type": "text",
                         "text": movietime.text,
-                        "size": "lg",
+                        "size": "sm",
                         "align": "center",
                         "color": "#C1C1C1"
                         },

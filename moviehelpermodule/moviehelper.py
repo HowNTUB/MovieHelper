@@ -2696,7 +2696,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         print(movietheaterName)
         print('*'*10)
         timeContents = []
-        for movietime in [i for i in content.select("li")][2:]:
+        for movietime in [i for i in content.select("li")][1:]:
             print(movietime.text)
             print(movietime)
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
@@ -2750,6 +2750,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         ]
                     })
             else:
+                print('elseelse'+movietime.text)
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -2767,7 +2768,6 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         }
                     ]
                 })
-        print(movietheaterName)
         movietheaterContents.append({
             "type": "bubble",
             "direction": "ltr",

@@ -1252,7 +1252,7 @@ def search_movie_thisweekAndIntheaters(url):
     movieExpectation = []
     for info in movieInfoText:
         movieExpectation.append('未上映') if info.find(
-            "期待度") == -1 else movieExpectation.append(info[info.find("期待度")+5:info.find("期待度")+8])
+            "期待度") == None else movieExpectation.append(info[info.find("期待度")+5:info.find("期待度")+8])
     movieSatisfactoryDegree = []
     for html in movieInfo:
         try:#沒期待度
@@ -2694,7 +2694,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
         movietheaterName = content.find("li").text
         timeContents = []
-        for movietype in [i.text.strip() for i in content.select("li")][1]:
+        for movietype in [i.text.strip() for i in content.select("li")]:
             print(movietype)
             print('*'*20)
             timeContents.append({
@@ -2704,7 +2704,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 "contents": [
                     {
                     "type": "text",
-                    "text": movietype.text,
+                    "text": movietype,
                     "size": "lg",
                     "align": "center"
                     },

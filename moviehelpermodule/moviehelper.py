@@ -2697,7 +2697,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         for movietime in [i for i in content.select("li")][3:]:
             print(movietime)
             print('*'*20)
-            print(movietime==True)
+            print(movietime.find("a"))
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
             number = ['1','2','3','4','5','6','7','8','9','0']
             if movietime.text[-1] in number: #如果是時間(有可能是放映規格)

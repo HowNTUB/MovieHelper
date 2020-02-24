@@ -2699,9 +2699,8 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             now=time.strftime("%H:%M", time.localtime(time.time()+28800))
             number = ['1','2','3','4','5','6','7','8','9','0']
             if movietime.text[-1] in number: #如果是時間(有可能是放映規格)
-                print(int(movietime.text[:2]))
                 if int(now[:2])>=int(movietime.text[:2]):
-                    if int(now[3:])>int(movietime[3:]): #超過放映時間
+                    if int(now[3:])>int(movietime.text[3:]): #超過放映時間
                         timeContents.append({
                             "type": "box",
                             "layout": "vertical",

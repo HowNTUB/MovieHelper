@@ -2694,7 +2694,10 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
         movietheaterName = content.find("li").text
         timeContents = []
+        cnt=0
         if content.select_one(".filmVersion") != None:
+            cnt+=1
+            if cnt>1 : break
             timeContents.append({
                 "type": "box",
                 "layout": "vertical",

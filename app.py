@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, get_MovieMoment, use_movieurl_get_movieMoment, workTeam
+from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, get_MovieMoment, use_movieurl_get_movieMoment, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -64,7 +64,7 @@ def handle_postback(event):
         movielist, pagebox = use_actorURL_search_movielist(userpostback)
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     if userpostback[:5] == '個人簡介:':
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=userpostback[5:]))
+        line_bot_api.reply_message(event.reply_token, show_actor_intorduction(userpostback[5:]))
     #相關文章
     if userpostback[:35] == 'https://movies.yahoo.com.tw/tagged/':
         line_bot_api.reply_message(event.reply_token, use_moviename_serch_article(userpostback[35:]))

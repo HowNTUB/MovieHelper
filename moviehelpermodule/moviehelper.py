@@ -953,7 +953,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "postback",
                     "label": "個人簡介",
-                    "data": '個人簡介:'+actorIntorduction[:290]
+                    "data": '個人簡介:'+actorIntorduction
                 }
                 },
                 {
@@ -992,6 +992,37 @@ def use_actorURL_get_actorIntorduction(url):
     )
 
     return(actor_flex_message, introductionlist_flex_message)
+def show_actor_intorduction(intorduction):
+    cutFrequency = int(len(intorduction)/300)+1
+    contents = []
+    for frequency in range(cutFrequency):
+        print(intorduction[frequency*300:(frequency+1)*300])
+        print('*'*20)
+        contents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": intorduction[frequency*300:(frequency+1)*300],
+                "align": "start",
+                "wrap": True
+                }
+            ]
+            }
+        })
+    intorduction_flex_message = FlexSendMessage(
+        alt_text='actor intorduction',
+        contents={
+            "type": "carousel",
+            "contents": contents
+        }
+    )
+    return(intorduction)
+
 
 def use_actorURL_search_movielist(url):
     headers = {}

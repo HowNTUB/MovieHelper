@@ -2724,13 +2724,14 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                             ]
                         })
                 else: #放映時間之內
+                    ticketUrl = 'http://www.atmovies.com.tw'+movietime.select_one("a")["href"]
                     timeContents.append({
                         "type": "box",
                         "layout": "vertical",
                         "margin": "md",
                         "action": {
                             "type": "url",
-                            "url": 'http://www.atmovies.com.tw/'+movietime.select_one("a")["href"]
+                            "url": ticketUrl
                         },
                         "contents": [
                             {

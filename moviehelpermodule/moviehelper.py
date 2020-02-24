@@ -953,7 +953,7 @@ def use_actorURL_get_actorIntorduction(url):
                 "action": {
                     "type": "message",
                     "label": "個人簡介",
-                    "text": 'actorIntorduction'
+                    "data": '個人簡介:'+actorIntorduction
                 }
                 },
                 {

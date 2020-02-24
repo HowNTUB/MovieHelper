@@ -1255,12 +1255,11 @@ def search_movie_thisweekAndIntheaters(url):
             "期待度") == None else movieExpectation.append(info[info.find("期待度")+5:info.find("期待度")+8])
     movieSatisfactoryDegree = []
     for html in movieInfo:
-        try:#沒期待度
-            movieSatisfactoryDegree.append(
-                (html.select("span")[0])["data-num"])
-        except:#有期待度
+        try:
             movieSatisfactoryDegree.append(
                 (html.select("span")[1])["data-num"])
+        except:
+            movieSatisfactoryDegree.append("無")
     moviePoster = [i["src"] for i in soup.select("#content_l img")]
     movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
     movieDetailUrl = [i["href"]

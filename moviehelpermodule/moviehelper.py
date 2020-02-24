@@ -2701,6 +2701,8 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             number = ['1','2','3','4','5','6','7','8','9','0']
             try:
                 print(movietime.find("a")["href"])
+            except:
+                print("error")
             if movietime.text[-1] in number: #如果是時間(有可能是放映規格)
                 if int(now[:2])>=int(movietime.text[:2]):
                     if int(now[3:])>=int(movietime.text[3:]): #超過放映時間

@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, get_MovieMoment, use_movieurl_get_movieMoment, workTeam
+from moviehelpermodule.moviehelper import use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_movieInfo_message, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, search_movie_chart, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, get_MovieMoment, use_movieurl_get_movieMoment, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -101,6 +101,8 @@ def handle_message(event):
     print(event)
     if userMessage == '製作團隊':
         line_bot_api.reply_message(event.reply_token,workTeam())
+    elif userMessage == '電影資訊':
+        line_bot_api.reply_message(event.reply_token,show_movieInfo_message())
     elif userMessage == '即將上映':
         movietab, movielist, pagebox = search_movie_comingsoon('')
         line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])

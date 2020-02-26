@@ -362,6 +362,98 @@ def use_moviename_serch_article(movieName):
         )
     return(article_flex_message)
 
+def show_movieInfo_message():
+    movie_flex_message = FlexSendMessage(
+        alt_text='movieInfoSelect',
+        contents={
+            "type": "carousel",
+            "contents": [
+                {
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "將於本週上映的新片。",
+                    "size": "lg",
+                    "wrap": True
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "lg"
+                    },
+                    {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "查看本週新片",
+                        "text": "本週新片"
+                    }
+                    }
+                ]}
+                },
+                {
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": "目前熱映中的院線片！",
+                        "size": "lg",
+                        "wrap": True
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "lg"
+                        },
+                        {
+                        "type": "button",
+                        "action": {
+                            "type": "message",
+                            "label": "查看上映中的電影",
+                            "text": "上映中"
+                        }
+                        }
+                    ]
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "body": {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": "未來數週到數個月會上映的電影。",
+                        "size": "lg",
+                        "wrap": True
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "lg"
+                        },
+                        {
+                        "type": "button",
+                        "action": {
+                            "type": "message",
+                            "label": "查看即將上映的電影",
+                            "text": "即將上映"
+                        }
+                        }
+                    ]
+                    }
+                }
+            ]
+        }
+    )
 
 def use_movieurl_get_movieinfo(url):
     try:

@@ -454,6 +454,7 @@ def show_movieInfo_message():
             ]
         }
     )
+    return(movie_flex_message)
 
 def use_movieurl_get_movieinfo(url):
     try:

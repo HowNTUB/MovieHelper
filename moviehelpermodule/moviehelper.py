@@ -705,11 +705,12 @@ def use_movieurl_get_movieinfo(url):
             }
         )
         # --------------------story
-        story = soup.select_one("#story")
-        for br in story.select('br'):
-            br.insert_after("\n")
-            br.unwrap()
-        story = story.text
+        #story = soup.select_one("#story")
+        #for br in story.select('br'):
+        #    br.insert_after("\n")
+        #    br.unwrap()
+        #story = story.text
+        story = soup.select_one("#story").text
         story_flex_message = FlexSendMessage(
             alt_text='actorlist',
             contents={

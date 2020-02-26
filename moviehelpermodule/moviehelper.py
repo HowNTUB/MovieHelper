@@ -377,7 +377,7 @@ def show_movieInfo_message():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "將於本週上映的新片。",
+                    "text": "⏱想知道這週有什麼新電影？查詢將於本週上映的最新電影。",
                     "size": "lg",
                     "wrap": True
                     },
@@ -404,7 +404,7 @@ def show_movieInfo_message():
                     "contents": [
                         {
                         "type": "text",
-                        "text": "目前熱映中的院線片！",
+                        "text": "🔥想知道現都在夯什麼嗎？來看目前熱映中的院線片！",
                         "size": "lg",
                         "wrap": True
                         },
@@ -432,7 +432,7 @@ def show_movieInfo_message():
                     "contents": [
                         {
                         "type": "text",
-                        "text": "未來數週到數個月會上映的電影。",
+                        "text": "📅想知道接下來有什麼大作？查看未來數週到數個月會上映的電影。",
                         "size": "lg",
                         "wrap": True
                         },
@@ -710,7 +710,7 @@ def use_movieurl_get_movieinfo(url):
         #    br.insert_after("\n")
         #    br.unwrap()
         #story = story.text
-        story = soup.select_one("#story").text
+        story = soup.select_one(".gray_infobox_inner").text
         story_flex_message = FlexSendMessage(
             alt_text='actorlist',
             contents={

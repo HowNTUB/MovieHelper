@@ -2129,7 +2129,7 @@ def search_movie_chartNetizens(url):
         }
     )
 
-    dataDate = soup.select(".rank_data span")[1].text
+    dataFrom = soup.select(".rank_data span")[1].text
     data_flex_message = FlexSendMessage(
         alt_text='chartdata',
         contents={
@@ -2147,13 +2147,11 @@ def search_movie_chartNetizens(url):
                 "align": "start"
                 },
                 {
-                "type": "image",
-                "url": dataDate,
+                "type": "text",
+                "text": "dataFrom",
                 "flex": 0,
-                "align": "start",
-                "aspectRatio": "4:1",
-                "aspectMode": "fit",
-                "backgroundColor": "#FFFFFF"
+                "margin": "md",
+                "align": "start"
                 }
             ]
             }

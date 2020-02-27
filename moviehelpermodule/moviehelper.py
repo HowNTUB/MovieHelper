@@ -1754,20 +1754,19 @@ def search_movie_chart(url):
             movieURL.append("沒有資料")
     contents = []
     for index in range(4):
-        print("index")
-        print(index)
         rankContents =[]
         for index2 in range(5):
             now = (index*5)+index2
-            print("↓index2")
-            print(index2)
-            print("↓now")
-            print(now)
+            print(movieURL[now])
+            print(movieNameCN[now])
+            print(movieRank[now])
+            print(movieReleaseTime[now])
+            print(movieSatisfactoryDegree)
             if int(float(movieSatisfactoryDegree[now])) != 0 :
                 star = int(float(movieSatisfactoryDegree[now]))*'★'
             else:
                 star = "☆"
-
+            print(star)
             if now != 0 :
                 rankContents.append({
                     "type": "box",

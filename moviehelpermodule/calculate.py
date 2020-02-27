@@ -1,4 +1,5 @@
 from math import radians, atan, tan, acos, cos, sin
+import time
 
 def getDistance(latA, lonA, latB, lonB):  
     ra = 6378140  # radius of equator: meter  
@@ -18,3 +19,94 @@ def getDistance(latA, lonA, latB, lonB):
     dr = flatten / 8 * (c1 - c2)  
     distance = ra * (x + dr)
     return round(distance/1000,2)
+
+def getNowTimeEmoji():
+    nowHour = int(time.strftime("%H", time.localtime(time.time()+28800)))
+    nowMinute = int(time.strftime("%M", time.localtime(time.time()+28800)))
+
+    if nowHour in [0, 12]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕛"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕧"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕐"
+    elif nowHour in [1, 13]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕐"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕜"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕑"
+    elif nowHour in [2, 14]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕑"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕝"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕒"
+    elif nowHour in [3, 15]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕒"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕞"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕓"
+    elif nowHour in [4, 16]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕓"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕟"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕔"
+    elif nowHour in [5, 17]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕔"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕠"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕕"
+    elif nowHour in [6, 18]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕕"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕡"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕖"
+    elif nowHour in [7, 19]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕖"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕢"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕗"
+    elif nowHour in [8, 20]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕗"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕣"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕘"
+    elif nowHour in [9, 21]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕘"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕤"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕙"
+    elif nowHour in [10, 22]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕙"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕥"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕚"
+    elif nowHour in [11, 23]:
+        if nowMinute >= 0 and nowMinute < 15 :
+            nowTimeEmoji = "🕚"
+        elif nowMinute >= 15 and nowMinute < 45 :
+            nowTimeEmoji = "🕦"
+        elif nowMinute >= 45 and nowMinute < 60 :
+            nowTimeEmoji = "🕛"
+
+    return(nowTimeEmoji)

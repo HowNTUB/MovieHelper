@@ -2,7 +2,7 @@ from urllib import request, parse
 import urllib
 from bs4 import BeautifulSoup
 from linebot.models import *
-from moviehelpermodule.calculate import getDistance
+from moviehelpermodule.calculate import getDistance, getNowTimeEmoji
 def pagebox(soup):
     # --------------------pagebox
     if len(soup.select(".page_numbox ul")) == 0:
@@ -3297,6 +3297,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             }
         }        
     )
+    
     nowTime_flex_message = FlexSendMessage(
         alt_text='pagebox',
         contents={
@@ -3310,23 +3311,47 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 "type": "text",
                 "text": "查詢地點：",
                 "align": "center",
+                "weight": "bold"
                 },
                 {
                 "type": "text",
                 "text": areaDict[inAreaID],
-                "align": "center",
-                "weight": "bold"
-                },
-                {
-                "type": "text",
-                "text": "現在時間：",
-                "align": "center",
-                "weight": "bold"
-                },
-                {
-                "type": "text",
-                "text": time.strftime("%Y-%m-%d %H:%M", time.localtime(time.time()+28800)),
                 "align": "center"
+                },
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": [
+                        {
+                        "type": "filler"
+                        },
+                        {
+                        "type": "text",
+                        "text": "現在時間：",
+                        "align": "center",
+                        "weight": "bold"
+                        },
+                        {
+                        "type": "text",
+                        "text": time.strftime("%Y-%m-%d %H:%M", time.localtime(time.time()+28800)),
+                        "align": "center"
+                        },
+                        {
+                        "type": "filler"
+                        }
+                    ]
+                    },
+                    {
+                    "type": "text",
+                    "text": getNowTimeEmoji(),
+                    "flex": 0,
+                    "size": "4xl"
+                    }
+                ]
                 }
             ]
             }

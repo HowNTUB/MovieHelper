@@ -1757,10 +1757,10 @@ def search_movie_chart(url):
             if movieSatisfactoryDegree[now] == '':
                 movieSatisfactoryDegree[now] = '-1'
 
-            if int(float(movieSatisfactoryDegree[now])) != 0 :
-                star = int(float(movieSatisfactoryDegree[now]))*'★'
-            elif movieSatisfactoryDegree[now] == '-1':
+            if int(float(movieSatisfactoryDegree[now])) == -1:
                 star = "無評分"
+            elif int(float(movieSatisfactoryDegree[now])) != 0 :
+                star = int(float(movieSatisfactoryDegree[now]))*'★'
             else:
                 star = "☆"
 

@@ -1719,7 +1719,6 @@ def search_movie_comingsoon(url):
 
     return(movietab_flex_message, movie_flex_message, pagebox_flex_message)
 
-
 def search_movie_chart(url):
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
@@ -1738,9 +1737,7 @@ def search_movie_chart(url):
             movieRankType.append("⤴️")
         if div["class"][1] == "down":
             movieRankType.append("⤵️")
-    movieRankOneImg = (soup.select_one(".rank_list_box img"))["src"]
     movieNameCN = [i.text for i in soup.select(".rank_txt , h2")]
-    movieNameEN = soup.select_one("h3").text
     movieReleaseTime = [i.text for i in soup.select(".tr+ .tr .td:nth-child(5)")]
     movieSatisfactoryDegree = [i.text.strip()
                                             for i in soup.select(".starwithnum")]

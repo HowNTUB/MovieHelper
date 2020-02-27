@@ -2,7 +2,7 @@ from urllib import request, parse
 import urllib
 from bs4 import BeautifulSoup
 from linebot.models import *
-from moviehelpermodule.calculate import getDistance, getNowTimeEmoji
+from moviehelpermodule.calculate import getDistance, getNowTimeEmoji, useTimeGetTimeEmoji
 def pagebox(soup):
     # --------------------pagebox
     if len(soup.select(".page_numbox ul")) == 0:

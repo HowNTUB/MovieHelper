@@ -1944,16 +1944,9 @@ def search_movie_chart(url):
             "layout": "vertical",
             "contents": [
                 {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "統計時間：",
-                    "flex": 0,
-                    "align": "end"
-                    }
-                ]
+                "type": "text",
+                "text": "統計時間：",
+                "flex": 0,
                 },
                 {
                 "type": "text",
@@ -2148,7 +2141,7 @@ def search_movie_chartNetizens(url):
                 },
                 {
                 "type": "text",
-                "text": "dataFrom",
+                "text": dataFrom,
                 "flex": 0,
                 "margin": "md",
                 "align": "start"

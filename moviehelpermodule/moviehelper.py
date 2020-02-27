@@ -1750,7 +1750,7 @@ def search_movie_chart(url):
         else:
             movieURL.append("沒有資料")
     contents = []
-    for index in range(4):
+    for index in range(int(len(movieNameCN)/5)):
         rankContents =[]
         for index2 in range(5):
             now = (index*5)+index2 # 1~20

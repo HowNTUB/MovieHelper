@@ -1761,16 +1761,16 @@ def show_chart_message():
                 "type": "button",
                 "action": {
                     "type": "message",
-                    "label": "施工中",
-                    "text": "台北票房榜"
+                    "label": "網友期待榜",
+                    "text": "網友期待榜30"
                 }
                 },
                 {
                 "type": "button",
                 "action": {
                     "type": "message",
-                    "label": "施工中",
-                    "text": "台北票房榜"
+                    "label": "網友滿意榜",
+                    "text": "網友滿意榜30"
                 }
                 }
             ]

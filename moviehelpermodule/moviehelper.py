@@ -1755,7 +1755,7 @@ def search_movie_chart(url):
         for index2 in range(5):
             now = (index*5)+index2 # 1~20
             if movieSatisfactoryDegree[now] == '':
-                movieSatisfactoryDegree[now] == -1
+                movieSatisfactoryDegree[now] = -1
 
             if int(float(movieSatisfactoryDegree[now])) != 0 :
                 star = int(float(movieSatisfactoryDegree[now]))*'★'

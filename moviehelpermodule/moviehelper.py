@@ -1782,6 +1782,16 @@ def search_movie_chart(url):
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
     soup = BeautifulSoup(respData)
 
+
+    if url == "https://movies.yahoo.com.tw/chart.html":
+        chartType = "台北票房榜"
+    elif url == "https://movies.yahoo.com.tw/chart.html?cate=us":
+        chartType = "全美票房榜"
+    elif url == "https://movies.yahoo.com.tw/chart.html?cate=year":
+        chartType = "年度票房榜"
+    else:
+        chartType = "排行榜"
+
     movieRank = [i.text for i in soup.select(".tr+ .tr .td:nth-child(1)")]
     movieRankTypeDiv = [i for i in soup.select(".up , .new , .down")]
     movieRankType = []
@@ -1895,7 +1905,7 @@ def search_movie_chart(url):
             "contents": [
                 {
                 "type": "text",
-                "text": "排行榜",
+                "text": chartType,
                 "size": "xl",
                 "align": "start",
                 "weight": "bold"

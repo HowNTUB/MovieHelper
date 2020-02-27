@@ -3,6 +3,8 @@ import urllib
 from bs4 import BeautifulSoup
 from linebot.models import *
 from moviehelpermodule.calculate import getDistance, getNowTimeEmoji, useTimeGetTimeEmoji
+
+
 def pagebox(soup):
     # --------------------pagebox
     if len(soup.select(".page_numbox ul")) == 0:
@@ -3101,7 +3103,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         "type": "button",
                         "action": {
                             "type": "uri",
-                            "label": movietime.text + useTimeGetTimeEmoji(movietime.text[:2], movietime.text[3:5]),
+                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
                             "uri": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
                         },
                         "color": "#000000"

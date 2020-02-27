@@ -1807,6 +1807,7 @@ def search_movie_chart(url):
                         {
                         "type": "box",
                         "layout": "vertical",
+                        "margin": "sm",
                         "contents": [
                             {
                             "type": "spacer",
@@ -1828,6 +1829,10 @@ def search_movie_chart(url):
                         ]
                         }
                     ]
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "md"
                     }
                 ]
             })
@@ -1887,6 +1892,10 @@ def search_movie_chart(url):
                         "flex": 0
                         }
                     ]
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "md"
                     }
                 ]
             })

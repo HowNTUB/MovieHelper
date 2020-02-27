@@ -3004,7 +3004,6 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     areaMessageContents = []
     for contentIndex in range(int(areaCnt/4)+1):
         contentsAreaContent = []
-        print(contentsAreaContent)
         for areaIndex in range(4):
             try:
                 contentsAreaContent.append(areaContent[contentIndex*4+areaIndex])
@@ -3147,7 +3146,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
 
     totalPage = int(len(movietheaterData)/10)
     print(totalPage)
-    if totalPage>0 :
+    if totalPage>1 :
         nowPage = int(page)
         print(nowPage)
         contents = []

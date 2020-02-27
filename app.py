@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelpermodule.moviehelper import show_movieHelper, use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_movieInfo_message, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, show_chart_message, search_movie_chart, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, get_MovieMoment, use_movieurl_get_movieMoment, workTeam
+from moviehelpermodule.moviehelper import show_movieHelper, use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_movieInfo_message, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, show_chart_message, search_movie_chart, search_movie_chartNetizens, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, get_MovieMoment, use_movieurl_get_movieMoment, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -119,10 +119,16 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
     elif userMessage == '全美票房榜':
         movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html?cate=us')
-        line_bot_api.reply_message(event.reply_token, [movierank, data])
+        line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
     elif userMessage == '年度票房榜':
         movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html?cate=year')
-        line_bot_api.reply_message(event.reply_token, [movierank, data])
+        line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
+    elif userMessage == '網友期待榜30':
+        movierank, data = search_movie_chartNetizens('https://movies.yahoo.com.tw/chart.html?cate=exp_30')
+        line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
+    elif userMessage == '網友滿意榜30':
+        movierank, data = search_movie_chartNetizens('https://movies.yahoo.com.tw/chart.html?cate=rating')
+        line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
     elif userMessage == '類型找電影':
         line_bot_api.reply_message(event.reply_token, select_movie_type())
     elif userMessage == '附近電影院':

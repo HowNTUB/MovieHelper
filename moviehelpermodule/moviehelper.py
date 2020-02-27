@@ -1982,6 +1982,185 @@ def search_movie_chart(url):
     )
     return(movierank_flex_message, data_flex_message)
 
+
+def search_movie_chartNetizens(url):
+    headers = {}
+    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+    req = request.Request(url, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+    soup = BeautifulSoup(respData)
+
+
+    if url == "https://movies.yahoo.com.tw/chart.html?cate=exp_30":
+        chartType = "網友期待榜"
+    elif url == "https://movies.yahoo.com.tw/chart.html?cate=rating":
+        chartType = "網友滿意榜"
+    elif url == "https://movies.yahoo.com.tw/chart.html?cate=year":
+        chartType = "年度票房榜"
+    else:
+        chartType = "排行榜"
+
+    movieRank = [i.text for i in soup.select(".tr+ .tr .td:nth-child(1)")]
+    movieNameCN = [i.text for i in soup.select(".rank_txt , h2")]
+    movieReleaseTime = [i.text for i in soup.select(".tr+ .tr .td:nth-child(3)")]
+    movieSatisfactory = [i.text for i in soup.select("h6")]
+    movieVotes = [i.text for i in soup.select("h4")]
+    movieURLHTML = [i for i in soup.select(
+        ".tr+ .tr .td:nth-child(2)")]
+    movieURL = []
+    for html in movieURLHTML:
+        if html.a != None:
+            movieURL.append(html.a["href"])
+        else:
+            movieURL.append("沒有資料")
+
+
+    contents = []
+    for index in range(int(len(movieNameCN)/5)):
+        rankContents =[]
+        for index2 in range(5):
+            now = (index*5)+index2 # 1~max
+            if movieSatisfactory[now] == '':
+                movieSatisfactory[now] = '台灣未上映'
+
+            if movieSatisfactory[now] == '台灣未上映':
+                star = "故無評分"
+            elif int(float(movieSatisfactory[now])) == 0 :
+                star = "☆"
+            elif int(float(movieSatisfactory[now])) > 5:
+                star = "人想看"
+            else:
+                star = int(float(movieSatisfactory[now]))*'★'
+
+            print(movieSatisfactory[now])
+            print(star)
+            rankContents.append({
+                "type": "box",
+                "layout": "vertical",
+                "margin": "md",
+                "action": {
+                    "type": "postback",
+                    "data": movieURL[now]
+                },
+                "contents": [
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "spacing": "md",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": movieRank[now],
+                        "size": "lg",
+                        "weight": "bold"
+                        },
+                        {
+                        "type": "text",
+                        "text": movieVotes[now],
+                        "align": "end"
+                        }
+                    ]
+                    },
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": movieReleaseTime[now],
+                        "flex": 3
+                        },
+                        {
+                        "type": "text",
+                        "text": movieSatisfactory[now],
+                        "flex": 0,
+                        "align": "end"
+                        },
+                        {
+                        "type": "text",
+                        "text": star,
+                        "flex": 0,
+                        "align": "start"
+                        }
+                    ]
+                    },
+                    {
+                    "type": "text",
+                    "text": movieNameCN[now],
+                    "size": "lg",
+                    "weight": "bold"
+                    }
+                ]
+            })
+            rankContents.append({
+                "type": "separator",
+                "margin": "md"
+            })
+
+
+        contents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": chartType,
+                "size": "xl",
+                "align": "start",
+                "weight": "bold"
+                }
+            ]
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": rankContents
+            }
+        })
+    movierank_flex_message = FlexSendMessage(
+        alt_text='chartlist',
+        contents={
+            "type": "carousel",
+            "contents": contents
+        }
+    )
+
+    dataDate = soup.select(".rank_data span")[1].text
+    data_flex_message = FlexSendMessage(
+        alt_text='chartdata',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [                
+                {
+                "type": "text",
+                "text": "資料來源：",
+                "flex": 0,
+                "margin": "md",
+                "align": "start"
+                },
+                {
+                "type": "image",
+                "url": dataDate,
+                "flex": 0,
+                "align": "start",
+                "aspectRatio": "4:1",
+                "aspectMode": "fit",
+                "backgroundColor": "#FFFFFF"
+                }
+            ]
+            }
+        }
+    )
+    return(movierank_flex_message, data_flex_message)
+
 def select_movie_type():
     '''
     1動作

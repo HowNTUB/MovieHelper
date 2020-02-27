@@ -1719,6 +1719,61 @@ def search_movie_comingsoon(url):
 
     return(movietab_flex_message, movie_flex_message, pagebox_flex_message)
 
+
+def show_chart_message():
+    chartSelect_flex_message = FlexSendMessage(
+        alt_text='chartSelect',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": "台灣排行榜（票房）",
+                "size": "xl",
+                "align": "center",
+                "weight": "bold"
+                },
+                {
+                "type": "separator",
+                "margin": "lg"
+                },
+                {
+                "type": "text",
+                "text": "全美排行榜（票房）",
+                "margin": "lg",
+                "size": "xl",
+                "align": "center",
+                "action": {
+                    "type": "message",
+                    "text": "全美排行榜"
+                }
+                },
+                {
+                "type": "separator",
+                "margin": "lg"
+                },
+                {
+                "type": "text",
+                "text": "年度排行榜（票房）",
+                "margin": "lg",
+                "size": "xl",
+                "align": "center",
+                "action": {
+                    "type": "message",
+                    "text": "年度排行榜"
+                }
+                }
+            ]
+            }
+        }
+    )
+    return(chartSelect_flex_message)
+
+
 def search_movie_chart(url):
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'

@@ -1757,7 +1757,7 @@ def search_movie_chart(url):
         rankContents =[]
         for index2 in range(5):
             now = (index*5)+index2
-
+            print("aaa")
             if int(float(movieSatisfactoryDegree[now])) != 0 :
                 star = int(float(movieSatisfactoryDegree[now]))*'★'
             else:

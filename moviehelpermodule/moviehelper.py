@@ -1830,10 +1830,10 @@ def search_movie_chart(url):
                         }
                     ]
                     },
-                    {
-                    "type": "separator",
-                    "margin": "md"
-                    }
+                {
+                "type": "separator",
+                "margin": "md"
+                }
                 ]
             })
         else:

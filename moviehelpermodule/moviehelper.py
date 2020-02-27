@@ -1884,6 +1884,7 @@ def search_movie_chart(url):
                         "type": "text",
                         "text": star,
                         "flex": 0,
+                        "color": "#FCFF4E",
                         "align": "start"
                         }
                     ]

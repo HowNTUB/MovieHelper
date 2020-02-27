@@ -119,16 +119,16 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
     elif userMessage == '全美票房榜':
         movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html?cate=us')
-        line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
+        line_bot_api.reply_message(event.reply_token, [movierank, data])
     elif userMessage == '年度票房榜':
         movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html?cate=year')
-        line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
+        line_bot_api.reply_message(event.reply_token, [movierank, data])
     elif userMessage == '網友期待榜30':
         movierank, data = search_movie_chartNetizens('https://movies.yahoo.com.tw/chart.html?cate=exp_30')
-        line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
+        line_bot_api.reply_message(event.reply_token, [movierank, data])
     elif userMessage == '網友滿意榜30':
         movierank, data = search_movie_chartNetizens('https://movies.yahoo.com.tw/chart.html?cate=rating')
-        line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
+        line_bot_api.reply_message(event.reply_token, [movierank, data])
     elif userMessage == '類型找電影':
         line_bot_api.reply_message(event.reply_token, select_movie_type())
     elif userMessage == '附近電影院':

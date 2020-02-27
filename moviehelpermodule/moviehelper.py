@@ -1731,40 +1731,46 @@ def show_chart_message():
             "layout": "vertical",
             "contents": [
                 {
-                "type": "text",
-                "text": "台灣排行榜（票房）",
-                "size": "xl",
-                "align": "center",
-                "weight": "bold"
-                },
-                {
-                "type": "separator",
-                "margin": "lg"
-                },
-                {
-                "type": "text",
-                "text": "全美排行榜（票房）",
-                "margin": "lg",
-                "size": "xl",
-                "align": "center",
+                "type": "button",
                 "action": {
                     "type": "message",
-                    "text": "全美排行榜"
+                    "label": "台北票房榜",
+                    "text": "台北票房榜"
                 }
                 },
                 {
-                "type": "separator",
-                "margin": "lg"
-                },
-                {
-                "type": "text",
-                "text": "年度排行榜（票房）",
-                "margin": "lg",
-                "size": "xl",
-                "align": "center",
+                "type": "button",
                 "action": {
                     "type": "message",
-                    "text": "年度排行榜"
+                    "label": "全美票房榜",
+                    "text": "全美票房榜"
+                }
+                },
+                {
+                "type": "button",
+                "action": {
+                    "type": "message",
+                    "label": "年度票房榜",
+                    "text": "年度票房榜"
+                }
+                },
+                {
+                "type": "separator"
+                },
+                {
+                "type": "button",
+                "action": {
+                    "type": "message",
+                    "label": "施工中",
+                    "text": "台北票房榜"
+                }
+                },
+                {
+                "type": "button",
+                "action": {
+                    "type": "message",
+                    "label": "施工中",
+                    "text": "台北票房榜"
                 }
                 }
             ]

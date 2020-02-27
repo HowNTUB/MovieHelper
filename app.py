@@ -117,10 +117,10 @@ def handle_message(event):
     elif userMessage == '排行榜':
         movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html')
         line_bot_api.reply_message(event.reply_token, [show_chart_message(), movierank, data])
-    elif userMessage == '全美排行榜':
+    elif userMessage == '全美票房榜':
         movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html?cate=us')
         line_bot_api.reply_message(event.reply_token, [movierank, data])
-    elif userMessage == '年度排行榜':
+    elif userMessage == '年度票房榜':
         movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html?cate=year')
         line_bot_api.reply_message(event.reply_token, [movierank, data])
     elif userMessage == '類型找電影':

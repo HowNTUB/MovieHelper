@@ -117,6 +117,9 @@ def handle_message(event):
     elif userMessage == '排行榜':
         movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html')
         line_bot_api.reply_message(event.reply_token, [movierank, data])
+    elif userMessage == '排行榜全美':
+        movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html?cate=us')
+        line_bot_api.reply_message(event.reply_token, [movierank, data])
     elif userMessage == '類型找電影':
         line_bot_api.reply_message(event.reply_token, select_movie_type())
     elif userMessage == '附近電影院':

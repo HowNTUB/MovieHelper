@@ -1756,174 +1756,74 @@ def search_movie_chart(url):
     for index in range(4):
         rankContents =[]
         for index2 in range(5):
-            now = (index*5)+index2
-            print(movieURL[now])
-            print(movieNameCN[now])
-            print(movieRank[now])
-            print(movieReleaseTime[now])
-            print(movieSatisfactoryDegree[now])
+            now = (index*5)+index2 # 1~20
             if int(float(movieSatisfactoryDegree[now])) != 0 :
                 star = int(float(movieSatisfactoryDegree[now]))*'★'
             else:
                 star = "☆"
-            print(star)
-            if now != -10 :
-                rankContents.append({
+            rankContents.append({
+                "type": "box",
+                "layout": "vertical",
+                "margin": "md",
+                "action": {
+                    "type": "postback",
+                    "data": movieURL[now]
+                },
+                "contents": [
+                    {
                     "type": "box",
-                    "layout": "vertical",
-                    "margin": "md",
-                    "action": {
-                        "type": "postback",
-                        "data": movieURL[now]
-                    },
+                    "layout": "horizontal",
+                    "spacing": "md",
                     "contents": [
                         {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "spacing": "md",
-                        "contents": [
-                            {
-                            "type": "text",
-                            "text": movieRankType[now],
-                            "flex": 0,
-                            "gravity": "bottom"
-                            },
-                            {
-                            "type": "text",
-                            "text": movieRank[now],
-                            "size": "lg",
-                            "weight": "bold"
-                            }
-                        ]
-                        },
-                        {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "contents": [
-                            {
-                            "type": "text",
-                            "text": movieReleaseTime[now],
-                            "flex": 3
-                            },
-                            {
-                            "type": "text",
-                            "text": movieSatisfactoryDegree[now],
-                            "flex": 0,
-                            "align": "end"
-                            },
-                            {
-                            "type": "text",
-                            "text": star,
-                            "flex": 0,
-                            "align": "start"
-                            }
-                        ]
+                        "type": "text",
+                        "text": movieRankType[now],
+                        "flex": 0,
+                        "gravity": "bottom"
                         },
                         {
                         "type": "text",
-                        "text": movieNameCN[now],
+                        "text": movieRank[now],
                         "size": "lg",
                         "weight": "bold"
                         }
                     ]
-                })
-                rankContents.append({
-                    "type": "separator",
-                    "margin": "md"
-                })
-            else:
-                rankContents.append({
-                    "type": "box",
-                    "layout": "vertical",
-                    "margin": "md",
-                    "action": {
-                        "type": "postback",
-                        "data": movieURL[now]
                     },
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
                     "contents": [
                         {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "spacing": "md",
-                        "contents": [
-                            {
-                            "type": "text",
-                            "text": movieRankType[now],
-                            "flex": 0,
-                            "gravity": "bottom"
-                            },
-                            {
-                            "type": "text",
-                            "text": movieRank[now],
-                            "size": "lg",
-                            "weight": "bold"
-                            }
-                        ]
+                        "type": "text",
+                        "text": movieReleaseTime[now],
+                        "flex": 3
                         },
                         {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "contents": [
-                            {
-                            "type": "text",
-                            "text": movieReleaseTime[now],
-                            "flex": 3
-                            },
-                            {
-                            "type": "text",
-                            "text": movieSatisfactoryDegree[now],
-                            "flex": 0,
-                            "align": "end"
-                            },
-                            {
-                            "type": "text",
-                            "text": "★★★★",
-                            "flex": 0,
-                            "align": star
-                            }
-                        ]
+                        "type": "text",
+                        "text": movieSatisfactoryDegree[now],
+                        "flex": 0,
+                        "align": "end"
                         },
                         {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "spacing": "lg",
-                        "margin": "xs",
-                        "contents": [
-                            {
-                            "type": "image",
-                            "url": movieRankOneImg,
-                            "flex": 0,
-                            "align": "start",
-                            "size": "sm",
-                            "aspectRatio": "3:4",
-                            "aspectMode": "cover"
-                            },
-                            {
-                            "type": "box",
-                            "layout": "vertical",
-                            "contents": [
-                                {
-                                "type": "text",
-                                "text": movieNameCN[now],
-                                "size": "lg",
-                                "weight": "bold",
-                                "wrap": True
-                                },
-                                {
-                                "type": "text",
-                                "text": movieNameEN,
-                                "wrap": True
-                                }
-                            ]
-                            }
-                        ]
+                        "type": "text",
+                        "text": star,
+                        "flex": 0,
+                        "align": "start"
                         }
                     ]
-                })
-                rankContents.append({
-                    "type": "separator",
-                    "margin": "md"
-                })
+                    },
+                    {
+                    "type": "text",
+                    "text": movieNameCN[now],
+                    "size": "lg",
+                    "weight": "bold"
+                    }
+                ]
+            })
+            rankContents.append({
+                "type": "separator",
+                "margin": "md"
+            })
 
 
         contents.append({
@@ -1943,9 +1843,9 @@ def search_movie_chart(url):
             ]
             },
             "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": rankContents
+                "type": "box",
+                "layout": "vertical",
+                "contents": rankContents
             }
         })
     movierank_flex_message = FlexSendMessage(

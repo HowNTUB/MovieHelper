@@ -1840,8 +1840,15 @@ def search_movie_chart(url):
             else:
                 starColor = "#000000"
 
-            print(movieSatisfactoryDegree[now])
-            print(star)
+            if now == 0:
+                medal = "🥇"
+            elif now == 1:
+                medal = "🥈"
+            elif now == 2:
+                medal = "🥉"
+            else:
+                medal = ""
+
             rankContents.append({
                 "type": "box",
                 "layout": "vertical",
@@ -1864,7 +1871,7 @@ def search_movie_chart(url):
                         },
                         {
                         "type": "text",
-                        "text": movieRank[now],
+                        "text": movieRank[now] + medal,
                         "size": "lg",
                         "weight": "bold"
                         }
@@ -2037,6 +2044,14 @@ def search_movie_chartNetizens(url):
             else:
                 starColor = "#000000"
 
+            if now == 0:
+                medal = "🥇"
+            elif now == 1:
+                medal = "🥈"
+            elif now == 2:
+                medal = "🥉"
+            else:
+                medal = ""
             rankContents.append({
                 "type": "box",
                 "layout": "vertical",
@@ -2053,7 +2068,7 @@ def search_movie_chartNetizens(url):
                     "contents": [
                         {
                         "type": "text",
-                        "text": movieRank[now],
+                        "text": movieRank[now] + medal,
                         "size": "lg",
                         "weight": "bold"
                         },

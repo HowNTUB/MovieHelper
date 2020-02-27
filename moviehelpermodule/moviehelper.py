@@ -1735,7 +1735,7 @@ def show_chart_message():
                 "action": {
                     "type": "message",
                     "label": "台北票房榜",
-                    "text": "台北票房榜"
+                    "text": "排行榜"
                 }
                 },
                 {

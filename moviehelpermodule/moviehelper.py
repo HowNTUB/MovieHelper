@@ -3077,7 +3077,223 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     )
     return(movieInfo_flex_message, nowTime_flex_message, area_flex_message, movietheater_flex_message, pagebox_flex_message)
 
-
+def show_movieHelper():
+    moviehelper_flex_message = FlexSendMessage(
+        alt_text='movieHelper',
+        contents={
+            "type": "bubble",
+        "direction": "ltr",
+        "header": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+            "type": "text",
+            "text": "使用說明",
+            "size": "xl",
+            "align": "start",
+            "weight": "bold"
+            }
+        ]
+        },
+        "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "flex": 0,
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "⌨️小鍵盤－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "直接輸入電影名稱來查詢電影資訊吧！",
+                "wrap": True
+                }
+            ]
+            },
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "flex": 0,
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "📰查新聞－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "在電影名稱前加上新聞兩字來查詢電影的相關文章與新聞。（e.g. 新聞復仇者聯盟）",
+                "wrap": True
+                }
+            ]
+            },
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "flex": 0,
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "🗺附近影院－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "傳送你的位置資訊來查詢你附近的電影院！（來自google map）",
+                "wrap": True
+                }
+            ]
+            },
+            {
+            "type": "text",
+            "text": "圖文選單：",
+            "size": "lg"
+            },
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "flex": 0,
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "🕒電影時刻－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "可以查詢今日的電影放映時刻！",
+                "wrap": True
+                }
+            ]
+            },
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "🎲電影類型－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "用類型來找喜歡的電影吧！",
+                "wrap": True
+                }
+            ]
+            },
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "🏆排行榜－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "近期的熱門電影。（來自Yahoo電影）",
+                "wrap": True
+                }
+            ]
+            },
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "📽近期上映－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "查詢未來數週到數個月將發行的電影。",
+                "wrap": True
+                }
+            ]
+            },
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "👓上映中－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "查詢現在熱映的電影！",
+                "wrap": True
+                }
+            ]
+            },
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "🎞本週新片－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "可以查到將於這週上映的最新電影！",
+                "wrap": True
+                }
+            ]
+            },
+            {
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "contents": [
+                {
+                "type": "text",
+                "text": "電影Ｍ幫手－",
+                "flex": 1,
+                "align": "end"
+                },
+                {
+                "type": "text",
+                "text": "使用說明、其他資訊。",
+                "align": "start",
+                "wrap": True
+                }
+            ]
+            }
+        ]
+        }}
+    )
+    return(moviehelper_flex_message)
 def workTeam():
     workTeam_flex_message = FlexSendMessage(
         alt_text='movielist',
@@ -3150,7 +3366,7 @@ def workTeam():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "畫面插圖：",
+                    "text": "選單插圖：",
                     "align": "end"
                     },
                     {

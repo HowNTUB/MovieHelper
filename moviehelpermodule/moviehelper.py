@@ -2144,7 +2144,8 @@ def search_movie_chartNetizens(url):
                 "text": dataFrom,
                 "flex": 0,
                 "margin": "md",
-                "align": "start"
+                "align": "start",
+                "wrap": True
                 }
             ]
             }

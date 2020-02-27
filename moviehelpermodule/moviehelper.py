@@ -1829,11 +1829,7 @@ def search_movie_chart(url):
                         ]
                         }
                     ]
-                    },
-                {
-                "type": "separator",
-                "margin": "md"
-                }
+                    }
                 ]
             })
         else:
@@ -1892,10 +1888,6 @@ def search_movie_chart(url):
                         "flex": 0
                         }
                     ]
-                    },
-                    {
-                    "type": "separator",
-                    "margin": "md"
                     }
                 ]
             })

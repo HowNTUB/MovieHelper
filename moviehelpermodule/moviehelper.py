@@ -1835,6 +1835,11 @@ def search_movie_chart(url):
             else:
                 star = int(float(movieSatisfactoryDegree[now]))*'★'
 
+            if star[0]=="★":
+                starColor = "#FF7100"
+            else:
+                starColor = "#000000"
+
             print(movieSatisfactoryDegree[now])
             print(star)
             rankContents.append({
@@ -1884,7 +1889,7 @@ def search_movie_chart(url):
                         "type": "text",
                         "text": star,
                         "flex": 0,
-                        "color": "#FCFF4E",
+                        "color": starColor,
                         "align": "start"
                         }
                     ]
@@ -2026,9 +2031,12 @@ def search_movie_chartNetizens(url):
                 star = "人想看"
             else:
                 star = int(float(movieSatisfactory[now]))*'★'
+            
+            if star[0]=="★":
+                starColor = "#FF7100"
+            else:
+                starColor = "#000000"
 
-            print(movieSatisfactory[now])
-            print(star)
             rankContents.append({
                 "type": "box",
                 "layout": "vertical",
@@ -2075,6 +2083,7 @@ def search_movie_chartNetizens(url):
                         "type": "text",
                         "text": star,
                         "flex": 0,
+                        "color": starColor,
                         "align": "start"
                         }
                     ]

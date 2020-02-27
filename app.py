@@ -115,8 +115,8 @@ def handle_message(event):
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_intheaters.html?page=1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     elif userMessage == '排行榜':
-        movierank = search_movie_chart('https://movies.yahoo.com.tw/chart.html')
-        line_bot_api.reply_message(event.reply_token, movierank)
+        movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html')
+        line_bot_api.reply_message(event.reply_token, [movierank, data])
     elif userMessage == '類型找電影':
         line_bot_api.reply_message(event.reply_token, select_movie_type())
     elif userMessage == '附近電影院':

@@ -1846,13 +1846,62 @@ def search_movie_chart(url):
             }
         })
     movierank_flex_message = FlexSendMessage(
-        alt_text='movielist',
+        alt_text='chartlist',
         contents={
             "type": "carousel",
             "contents": contents
         }
     )
-    return(movierank_flex_message)
+
+    dataImg = "https://movies.yahoo.com.tw"+soup.select_one(".rank_data img")["src"]
+    dataDate = soup.select_one(".rank_time").text[5:]
+    data_flex_message = FlexSendMessage(
+        alt_text='chartdata',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "統計時間：",
+                    "flex": 0,
+                    "align": "end"
+                    }
+                ]
+                },
+                {
+                "type": "text",
+                "text": dataDate,
+                "align": "start"
+                },
+                {
+                "type": "text",
+                "text": "資料來源：",
+                "flex": 0,
+                "margin": "md",
+                "align": "start"
+                },
+                {
+                "type": "image",
+                "url": dataImg,
+                "flex": 0,
+                "align": "start",
+                "aspectRatio": "4:1",
+                "aspectMode": "fit",
+                "backgroundColor": "#FFFFFF"
+                }
+            ]
+            }
+        }
+    )
+    return(movierank_flex_message, data_flex_message)
 
 def select_movie_type():
     '''

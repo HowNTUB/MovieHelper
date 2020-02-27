@@ -432,7 +432,7 @@ def show_movieInfo_message():
                     "contents": [
                         {
                         "type": "text",
-                        "text": "📅想知道接下來有什麼大作？查看未來數週到數個月會上映的電影。",
+                        "text": "🗓想知道接下來有什麼大作？查看未來數週到數個月會上映的電影。",
                         "size": "lg",
                         "wrap": True
                         },
@@ -3155,7 +3155,7 @@ def workTeam():
                     },
                     {
                     "type": "text",
-                    "text": "陳衍儒(還沒畫)",
+                    "text": "陳衍儒",
                     "align": "start"
                     }
                 ]

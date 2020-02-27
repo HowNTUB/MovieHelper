@@ -3101,7 +3101,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         "type": "button",
                         "action": {
                             "type": "uri",
-                            "label": movietime.text,
+                            "label": movietime.text + useTimeGetTimeEmoji(movietime.text[:2], movietime.text[3:5]),
                             "uri": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
                         },
                         "color": "#000000"

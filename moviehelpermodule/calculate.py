@@ -110,3 +110,92 @@ def getNowTimeEmoji():
             nowTimeEmoji = "🕛"
 
     return(nowTimeEmoji)
+
+def useTimeGetTimeEmoji(hour, minute):
+    
+    if hour in [0, 12]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕛"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕧"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕐"
+    elif hour in [1, 13]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕐"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕜"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕑"
+    elif hour in [2, 14]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕑"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕝"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕒"
+    elif hour in [3, 15]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕒"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕞"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕓"
+    elif hour in [4, 16]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕓"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕟"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕔"
+    elif hour in [5, 17]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕔"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕠"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕕"
+    elif hour in [6, 18]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕕"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕡"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕖"
+    elif hour in [7, 19]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕖"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕢"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕗"
+    elif hour in [8, 20]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕗"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕣"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕘"
+    elif hour in [9, 21]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕘"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕤"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕙"
+    elif hour in [10, 22]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕙"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕥"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕚"
+    elif hour in [11, 23]:
+        if minute >= 0 and minute < 15 :
+            nowTimeEmoji = "🕚"
+        elif minute >= 15 and minute < 45 :
+            nowTimeEmoji = "🕦"
+        elif minute >= 45 and minute < 60 :
+            nowTimeEmoji = "🕛"
+
+    return(nowTimeEmoji)

@@ -1761,13 +1761,13 @@ def search_movie_chart(url):
             print(movieNameCN[now])
             print(movieRank[now])
             print(movieReleaseTime[now])
-            print(movieSatisfactoryDegree)
+            print(movieSatisfactoryDegree[now])
             if int(float(movieSatisfactoryDegree[now])) != 0 :
                 star = int(float(movieSatisfactoryDegree[now]))*'★'
             else:
                 star = "☆"
             print(star)
-            if now != 0 :
+            if now != -10 :
                 rankContents.append({
                     "type": "box",
                     "layout": "vertical",

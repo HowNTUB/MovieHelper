@@ -811,7 +811,7 @@ def use_movieurl_get_movieinfo(url):
                     },
                     "hero": {
                         "type": "image",
-                        "url": "https://i.imgur.com/54d0LXf.jpg",#actorImg[index],
+                        "url": actorImg[index],
                         "size": "full",
                         "aspectRatio": "3:4",
                         "aspectMode": "cover"

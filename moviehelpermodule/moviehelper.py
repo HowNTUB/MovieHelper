@@ -899,11 +899,17 @@ def use_actorURL_get_actorIntorduction(url):
     # --------------------info
     actorNameCN = soup.select_one(".maker_name").text
     actorNameEN = soup.select_one(".name_en").text
+    if actorNameEN == "":
+        actorNameEN = "無資料"
     actorNameCN = actorNameCN[:-len(actorNameEN)]
     actorBirth = soup.select_one(".maker_birth").text[5:]
+    if actorBirth == "":
+        actorBirth = "無資料"
     actorImg = soup.select_one(".pic img")["src"]
     actorImgFrom = soup.select_one(".pic_txt").text
     actorTitle = [i.text.split() for i in soup.select(".maker_tips")][0]
+    if actorTitle == []:
+        actorTitle.append("無資料")
     actorPop = soup.select_one(".popnum").text[3:]
     print(actorNameCN)
     print(actorNameEN)

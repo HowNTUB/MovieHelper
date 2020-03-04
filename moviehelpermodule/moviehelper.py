@@ -737,7 +737,7 @@ def use_movieurl_get_movieinfo(url):
                 "contents": [
                     {
                     "type": "text",
-                    "text": story,
+                    "text": "story",
                     "align": "start",
                     "wrap": True
                     }

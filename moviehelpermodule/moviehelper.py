@@ -737,7 +737,7 @@ def use_movieurl_get_movieinfo(url):
                 "contents": [
                     {
                     "type": "text",
-                    "text": "story",
+                    "text": story,
                     "align": "start",
                     "wrap": True
                     }
@@ -842,7 +842,7 @@ def use_movieurl_get_movieinfo(url):
                                 "action": {
                                     "type": "postback",
                                     "label": "詳細介紹",
-                                    "data": actorDetailURL[index]
+                                    "data": "詳細介紹"#actorDetailURL[index]
                                 }
                             }
                         ]

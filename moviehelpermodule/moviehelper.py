@@ -787,8 +787,6 @@ def use_movieurl_get_movieinfo(url):
                     else:
                         actorImg.append(img["src"])
                 print(actorImg)
-                actorImg = [i["src"] for i in soup.select(
-                    "._slickcontent .fotoinner img")]
                 actorNameCN = actorNameCN[:10]
                 actorDetailURL = [i["href"] for i in soup.select(".starlist a")]
                 print(actorDetailURL)

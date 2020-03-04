@@ -865,22 +865,18 @@ def use_movieurl_get_movieinfo(url):
         print(movieStillsUrl)
         movieStillsContent = []
         cnt = 0
-        for img in movieStillsUrl:
-            cnt += 1
-            if cnt <= 10:
-                movieStillsContent.append({
-                    "type": "bubble",
-                    "direction": "ltr",
-                    "hero": {
-                        "type": "image",
-                        "url": img,
-                        "size": "full",
-                        "aspectRatio": "1.85:1",
-                        "aspectMode": "cover"
-                    }
-                })
-            else:
-                break
+        for img in movieStillsUrl[:10]:
+            movieStillsContent.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "hero": {
+                    "type": "image",
+                    "url": img,
+                    "size": "full",
+                    "aspectRatio": "1.85:1",
+                    "aspectMode": "cover"
+                }
+            })
 
         movieStills_flex_message = FlexSendMessage(
             alt_text='movieStillslist',

@@ -785,10 +785,7 @@ def use_movieurl_get_movieinfo(url):
                     if img["src"] == "/build/images/noavatar.jpg":
                         actorImg.append("https://movies.yahoo.com.tw/build/images/noavatar.jpg")
                     else:
-                        if img["src"][-3:] == "JPG":
-                            actorImg.append(img["src"][:-3]+"jpg")
-                        else:
-                            actorImg.append(img["src"])
+                        actorImg.append(img["src"])
                 print(actorImg)
                 actorImg = [i["src"] for i in soup.select(
                     "._slickcontent .fotoinner img")]
@@ -865,7 +862,7 @@ def use_movieurl_get_movieinfo(url):
         movieStillsUrl = []
         for img in movieStills:
             movieStillsUrl.append(img["src"])
-
+        print(movieStillsUrl)
         movieStillsContent = []
         cnt = 0
         for img in movieStillsUrl:

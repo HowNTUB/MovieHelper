@@ -782,14 +782,13 @@ def use_movieurl_get_movieinfo(url):
                         actorNameEN.append(' ')
                 actorImg = []
                 for img in soup.select("._slickcontent .fotoinner img"):
-                    if img["src"] == "/build/images/noavatar.jpg" or img["src"][-3:] == "JPG":
+                    if img["src"] == "/build/images/noavatar.jpg":
                         actorImg.append("https://i.imgur.com/zmymekq.jpg")
                     else:
                         actorImg.append(img["src"])
                 print(actorImg)
                 actorNameCN = actorNameCN[:10]
                 actorDetailURL = [i["href"] for i in soup.select(".starlist a")]
-                print(actorDetailURL)
             for index in range(len(actorNameCN)):
                 actorContents.append({
                     "type": "bubble",

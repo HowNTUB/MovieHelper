@@ -791,6 +791,7 @@ def use_movieurl_get_movieinfo(url):
                     "._slickcontent .fotoinner img")]
                 actorNameCN = actorNameCN[:10]
                 actorDetailURL = [i["href"] for i in soup.select(".starlist a")]
+                print(actorDetailURL)
             for index in range(len(actorNameCN)):
                 actorContents.append({
                     "type": "bubble",

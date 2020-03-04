@@ -782,7 +782,7 @@ def use_movieurl_get_movieinfo(url):
                         actorNameEN.append(' ')
                 actorImg = []
                 for img in soup.select("._slickcontent .fotoinner img"):
-                    if img["src"] == "/build/images/noavatar.jpg":
+                    if img["src"] == "/build/images/noavatar.jpg" or img["src"][-3:] == "JPG":
                         actorImg.append("https://i.imgur.com/zmymekq.jpg")
                     else:
                         actorImg.append(img["src"])

@@ -2998,7 +2998,7 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID):
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
     soup = BeautifulSoup(respData)
     
-    areaOption = [i for i in soup.select(".movie_theater select")][1:]
+    areaOption = [i for i in soup.select(".movie_theater select option")][1:]
     areaContent = []
     areaCnt = 0
     areaDict = {}
@@ -3015,6 +3015,8 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID):
             "data": "電影時刻"+movieID+areaID+",1"
           }
         })
+    print(areaName)
+    print(areaID)
     print(areaDict)
     areaMessageContents = []
     for contentIndex in range(int(areaCnt/4)+1):

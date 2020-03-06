@@ -89,8 +89,10 @@ def handle_postback(event):
     #電影放映地區
     if userpostback[:6] == '電影放映地區':
         movieURL = userpostback[6:userpostback.find("|")]
-        movieID = userpostback[userpostback.find("|")+1:]
-        line_bot_api.reply_message(event.reply_token, use_movieurl_get_movieReleasedArea(movieURL, movieID))
+        movieID = userpostback[userpostback.find("|")+1:userpostback.find("@")]
+        movieName = userpostback[userpostback.find("@")+1:]
+        nameMessage, areaMessage = use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName)
+        line_bot_api.reply_message(event.reply_token, [nameMessage, areaMessage])
     #電影時刻表
     if userpostback[:4] == '電影時刻':
         movieID = userpostback[4:userpostback.find("/")]

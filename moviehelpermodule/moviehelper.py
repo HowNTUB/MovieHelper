@@ -2910,7 +2910,7 @@ def get_MovieMoment(page):
             "margin": "lg",
             "action": {
                 "type": "postback",
-                "data": "電影放映地區"+movieURL[index]+"|"+movieID[index]
+                "data": "電影放映地區"+movieURL[index]+"|"+movieID[index]+"@"+movieName[index]
             },
             "contents": [
                 {
@@ -2990,7 +2990,7 @@ def get_MovieMoment(page):
     )
     return(movieSelect_flex_message, pagebox_flex_message)
 
-def use_movieurl_get_movieReleasedArea(movieURL, movieID):
+def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(movieURL, headers=headers)
@@ -2998,6 +2998,27 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID):
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
     soup = BeautifulSoup(respData)
     
+    
+    name_flex_message = FlexSendMessage(
+        alt_text='movieName',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": movieName,
+                "align": "center",
+                "weight": "bold"
+                }
+            ]
+            }
+        }
+    )
+
     areaOption = [i for i in soup.select(".movie_theater select option")][1:]
     areaContent = []
     areaCnt = 0
@@ -3060,7 +3081,7 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID):
     )
     #.movie_theater select
     
-    return(area_flex_message)
+    return(name_flex_message, area_flex_message)
 
 def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     import time

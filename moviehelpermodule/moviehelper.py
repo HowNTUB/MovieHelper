@@ -2906,7 +2906,7 @@ def get_MovieMoment():
 
     for page in range(4):
         movieNameContents = []
-        for index in range((int(page)-1)*15,int(page)*15):
+        for index in range(int(page)*15,int(page+1)*15):
             movieNameContents.append({
                 "type": "box",
                 "layout": "vertical",
@@ -2950,26 +2950,6 @@ def get_MovieMoment():
             }
         })
     
-
-    # "type": "bubble",
-    #         "direction": "ltr",
-    #         "body": {
-    #         "type": "box",
-    #         "layout": "vertical",
-    #         "contents": [
-    #             {
-    #             "type": "text",
-    #             "text": "目前第"+str(nowPage)+"頁",
-    #             "align": "center"
-    #             },
-    #             {
-    #             "type": "box",
-    #             "layout": "horizontal",
-    #             "margin": "xl",
-    #             "contents": contents
-    #             }
-    #         ]
-    #         }
     movieSelect_flex_message = FlexSendMessage(
         alt_text='movieSelector',
         contents={

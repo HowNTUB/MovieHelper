@@ -498,14 +498,14 @@ def use_movieurl_get_movieinfo(url):
             director = [i.text.replace('\n', '').replace(' ', '').split(
                 '、') for i in soup.select(".movie_intro_list")][0]
             director = ','.join(director)
-        if soup.select(".movie_intro_list")[1] == None or len(soup.select(".movie_intro_list")[1]) == 0:
+        if soup.select(".movie_intro_list")[0] == None or len(soup.select(".movie_intro_list")[0]) == 0:
             actor="無演員資訊"
         else:
             actor = [i.text.replace('\n', '').replace(' ', '').split(
                 '、') for i in soup.select(".movie_intro_list")][1]
             actor = ','.join(actor)
         # 彈性訊息
-        print(director)
+        print(soup.select(".movie_intro_list"))
         print(actor)
         movieTagContent = []
         for tag in movieTag:

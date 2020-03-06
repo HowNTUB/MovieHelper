@@ -3057,6 +3057,8 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID):
         }
     )
     #.movie_theater select
+    
+    return(area_flex_message)
 
 def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     import time

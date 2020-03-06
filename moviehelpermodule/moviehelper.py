@@ -2886,7 +2886,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     )
     return(movietheater_flex_message)
     
-def get_MovieMoment(page):
+def get_MovieMoment():
     url = 'http://www.atmovies.com.tw/movie/new/'
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
@@ -2898,35 +2898,36 @@ def get_MovieMoment(page):
     movieName = []
     movieURL = []
     movieID = []
+    movieSelectContents = []
     for option in movieOption:
         movieName.append(option.text)
         movieURL.append(option["value"])
         movieID.append(option["value"][33:-1])
-    movieNameContents = []
-    for index in range((int(page)-1)*15,int(page)*15):
-        movieNameContents.append({
-            "type": "box",
-            "layout": "vertical",
-            "margin": "lg",
-            "action": {
-                "type": "postback",
-                "data": "電影放映地區"+movieURL[index]+"|"+movieID[index]+"@"+movieName[index]
-            },
-            "contents": [
-                {
-                "type": "text",
-                "text": movieName[index],
-                "size": "lg"
+
+    for page in range(4):
+        movieNameContents = []
+        for index in range((int(page)-1)*15,int(page)*15):
+            movieNameContents.append({
+                "type": "box",
+                "layout": "vertical",
+                "margin": "lg",
+                "action": {
+                    "type": "postback",
+                    "data": "電影放映地區"+movieURL[index]+"|"+movieID[index]+"@"+movieName[index]
                 },
-                {
-                "type": "separator",
-                "margin": "lg"
-                }
-            ]
-        })
-    movieSelect_flex_message = FlexSendMessage(
-        alt_text='movieSelect',
-        contents={
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": movieName[index],
+                    "size": "lg"
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "lg"
+                    }
+                ]
+            })
+        movieSelectContents.append({
             "type": "bubble",
             "direction": "ltr",
             "header": {
@@ -2947,48 +2948,36 @@ def get_MovieMoment(page):
             "layout": "vertical",
             "contents": movieNameContents
             }
-        }
-    )
-    
-    totalPage = int(len(movieName)/15)
-    nowPage = int(page)
-    contents = []
-    for index in range(totalPage):
-        contents.append({
-            "type": "text",
-            "text": str(index+1),
-            "align": "center",
-            "action": {
-                "type": "postback",
-                "data": "電影表"+str(index+1)
-            }
         })
-    #
-    pagebox_flex_message = FlexSendMessage(
-        alt_text='pagebox',
+    
+
+    # "type": "bubble",
+    #         "direction": "ltr",
+    #         "body": {
+    #         "type": "box",
+    #         "layout": "vertical",
+    #         "contents": [
+    #             {
+    #             "type": "text",
+    #             "text": "目前第"+str(nowPage)+"頁",
+    #             "align": "center"
+    #             },
+    #             {
+    #             "type": "box",
+    #             "layout": "horizontal",
+    #             "margin": "xl",
+    #             "contents": contents
+    #             }
+    #         ]
+    #         }
+    movieSelect_flex_message = FlexSendMessage(
+        alt_text='movieSelector',
         contents={
-            "type": "bubble",
-            "direction": "ltr",
-            "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": "目前第"+str(nowPage)+"頁",
-                "align": "center"
-                },
-                {
-                "type": "box",
-                "layout": "horizontal",
-                "margin": "xl",
-                "contents": contents
-                }
-            ]
-            }
+            "type": "carousel",
+            "contents": movieSelectContents
         }
     )
-    return(movieSelect_flex_message, pagebox_flex_message)
+    return(movieSelect_flex_message)
 
 def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
     headers = {}

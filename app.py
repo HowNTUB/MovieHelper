@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelpermodule.moviehelper import show_movieHelper, use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_movieInfo_message, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, show_chart_message, search_movie_chart, search_movie_chartNetizens, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, get_MovieMoment, use_movieurl_get_movieMoment, workTeam
+from moviehelpermodule.moviehelper import show_movieHelper, use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_movieInfo_message, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, show_chart_message, search_movie_chart, search_movie_chartNetizens, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, get_MovieMoment, use_movieurl_get_movieReleasedArea, use_movieurl_get_movieMoment, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -90,6 +90,7 @@ def handle_postback(event):
     if userpostback[:5] == '電影放映地區':
         movieURL = userpostback[5:userpostback.find("|")]
         movieID = userpostback[userpostback.find("|")+1:]
+        line_bot_api.reply_message(event.reply_token, use_movieurl_get_movieReleasedArea(movieURL, movieID))
     #電影時刻表
     if userpostback[:4] == '電影時刻':
         movieID = userpostback[4:userpostback.find("/")]

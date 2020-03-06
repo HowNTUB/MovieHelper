@@ -498,7 +498,7 @@ def use_movieurl_get_movieinfo(url):
             director = [i.text.replace('\n', '').replace(' ', '').split(
                 '、') for i in soup.select(".movie_intro_list")][0]
             director = ','.join(director)
-        if (soup.select(".movie_intro_list")[1]).text == "":
+        if len((soup.select(".movie_intro_list")[1]).text) == 3:#沒有演員
             print("1")
             actor="無演員資訊"
         else:

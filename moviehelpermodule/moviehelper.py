@@ -498,7 +498,7 @@ def use_movieurl_get_movieinfo(url):
             director = [i.text.replace('\n', '').replace(' ', '').split(
                 '、') for i in soup.select(".movie_intro_list")][0]
             director = ','.join(director)
-        if soup.select(".movie_intro_list")[1] == None or soup.select(".movie_intro_list")[1] == "":
+        if soup.select(".movie_intro_list")[1] == None or soup.select(".movie_intro_list")[1] == " ":
             actor="無演員資訊"
         else:
             actor = [i.text.replace('\n', '').replace(' ', '').split(
@@ -506,7 +506,7 @@ def use_movieurl_get_movieinfo(url):
             actor = ','.join(actor)
         # 彈性訊息
         print(director)
-        print(actor)
+        print(len(actor))
         movieTagContent = []
         for tag in movieTag:
             movieTagContent.append({

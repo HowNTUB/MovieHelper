@@ -499,7 +499,7 @@ def use_movieurl_get_movieinfo(url):
                 '、') for i in soup.select(".movie_intro_list")][0]
             director = ','.join(director)
         if soup.select(".movie_intro_list")[0] == None:
-            director="無演員資訊"
+            actor="無演員資訊"
         else:
             actor = [i.text.replace('\n', '').replace(' ', '').split(
                 '、') for i in soup.select(".movie_intro_list")][1]

@@ -2905,7 +2905,7 @@ def get_MovieMoment(page):
         movieNameContents.append({
             "type": "box",
             "layout": "vertical",
-            "margin": "md",
+            "margin": "lg",
             "action": {
                 "type": "postback",
                 "data": "電影時刻"+movieID[index]+"/a02/,1"
@@ -2918,7 +2918,7 @@ def get_MovieMoment(page):
                 },
                 {
                 "type": "separator",
-                "margin": "md"
+                "margin": "lg"
                 }
             ]
         })
@@ -2961,7 +2961,7 @@ def get_MovieMoment(page):
                 "data": "電影表"+str(index+1)
             }
         })
-    # 回復
+    #
     pagebox_flex_message = FlexSendMessage(
         alt_text='pagebox',
         contents={

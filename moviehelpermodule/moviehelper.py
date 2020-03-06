@@ -901,7 +901,9 @@ def use_actorURL_get_actorIntorduction(url):
     actorNameEN = soup.select_one(".name_en").text
     if actorNameEN == "":
         actorNameEN = "無資料"
-    actorNameCN = actorNameCN[:-len(actorNameEN)]
+    if len(actorNameCN[:-len(actorNameEN)]) > 1:
+        actorNameCN = actorNameCN[:-len(actorNameEN)]
+
     actorBirth = soup.select_one(".maker_birth").text[5:]
     if actorBirth == "":
         actorBirth = "無資料"

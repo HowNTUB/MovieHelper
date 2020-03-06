@@ -505,6 +505,8 @@ def use_movieurl_get_movieinfo(url):
                 '、') for i in soup.select(".movie_intro_list")][1]
             actor = ','.join(actor)
         # 彈性訊息
+        print(director)
+        print(actor)
         movieTagContent = []
         for tag in movieTag:
             movieTagContent.append({

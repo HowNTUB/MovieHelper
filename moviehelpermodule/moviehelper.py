@@ -717,6 +717,8 @@ def use_movieurl_get_movieinfo(url):
         #    br.unwrap()
         #story = story.text
         story = soup.select_one(".gray_infobox_inner").text
+        if story[-3:] == "詳全文":
+            story = story[:-3]
         story_flex_message = FlexSendMessage(
             alt_text='actorlist',
             contents={

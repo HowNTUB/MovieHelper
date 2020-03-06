@@ -2998,7 +2998,8 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
     soup = BeautifulSoup(respData)
     
-    
+    if movieName[0] == "★":
+        movieName = movieName[1:]
     name_flex_message = FlexSendMessage(
         alt_text='movieName',
         contents={

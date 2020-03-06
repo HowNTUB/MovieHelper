@@ -2910,7 +2910,7 @@ def get_MovieMoment(page):
             "margin": "lg",
             "action": {
                 "type": "postback",
-                "data": "電影放映地區"+movieURL[index]+"|"+movieID
+                "data": "電影放映地區"+movieURL[index]+"|"+movieID[index]
             },
             "contents": [
                 {

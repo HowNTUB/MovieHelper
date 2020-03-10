@@ -2887,8 +2887,8 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     
 def use_movieTheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng):
     location_message = LocationSendMessage(
-        title='movietheaterName',
-        address='movietheaterAddress',
+        title=movietheaterName,
+        address=movietheaterAddress,
         latitude=float(movietheaterLat),
         longitude=float(movietheaterLng)
     )

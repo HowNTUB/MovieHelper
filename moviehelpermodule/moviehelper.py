@@ -2863,7 +2863,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 "type": "button",
                 "action": {
                     "type": "postback",
-                    "data": "電影院位置資訊"+"name"+movietheaterName+"address"+movietheaterAddress+"lat"+movietheaterLat+"lng"+movietheaterLng
+                    "data": "電影院位置資訊"+"name"+movietheaterName[index]+"address"+movietheaterAddress[index]+"lat"+movietheaterLat[index]+"lng"+movietheaterLng[index]
                 }
                 }
             ]

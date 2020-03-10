@@ -2862,6 +2862,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 "type": "button",
                 "action": {
                     "type": "postback",
+                    "label": "位置資訊"
                     "data": "電影院位置資訊"+"name"+movietheaterName[index]+"address"+movietheaterAddress[index]+"lat"+str(movietheaterLat[index])+"lng"+str(movietheaterLng[index])
                 }
                 }

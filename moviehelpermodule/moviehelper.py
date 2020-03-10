@@ -2758,7 +2758,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         movietheaterRating.append(data["rating"])
         movietheaterAddress.append(data["vicinity"])
     contents = []
-    for index in range(len(movietheaterName)):
+    for index in range(len(movietheaterName[:10])):
         print(index)
         print(movietheaterName[index])
         print(movietheaterLat[index])
@@ -2767,7 +2767,6 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         print(movietheaterRating[index])
         print(movietheaterAddress[index])
         print(getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]))
-        if index > 9 : break
         contents.append({
             "type": "bubble",
             "direction": "ltr",
@@ -2863,7 +2862,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 "type": "button",
                 "action": {
                     "type": "postback",
-                    "data": "電影院位置資訊"+"name"+movietheaterName[index]+"address"+movietheaterAddress[index]+"lat"+movietheaterLat[index]+"lng"+movietheaterLng[index]
+                    "data": "電影院位置資訊"+"name"+movietheaterName[index]+"address"+movietheaterAddress[index]+"lat"+str(movietheaterLat[index])+"lng"+str(movietheaterLng[index])
                 }
                 }
             ]
@@ -2889,8 +2888,8 @@ def use_movieTheaterInfo_get_locationMessage(movietheaterName, movietheaterAddre
     location_message = LocationSendMessage(
         title='movietheaterName',
         address='movietheaterAddress',
-        latitude=movietheaterLat,
-        longitude=movietheaterLng
+        latitude=float(movietheaterLat),
+        longitude=float(movietheaterLng)
     )
     return(location_message)
 

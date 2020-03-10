@@ -105,7 +105,7 @@ def handle_postback(event):
         movieTheaterName = userpostback[userpostback.find("name")+4:userpostback.find("address")]
         movietheaterAddress = userpostback[userpostback.find("address")+7:userpostback.find("lat")]
         movietheaterLat = userpostback[userpostback.find("lat")+3:userpostback.find("lng")]
-        movietheaterLng = userpostback[userpostback.find("lng"):]
+        movietheaterLng = userpostback[userpostback.find("lng")+3:]
         line_bot_api.reply_message(event.reply_token, use_movieTheaterInfo_get_locationMessage(movieTheaterName, movietheaterAddress, movietheaterLat, movietheaterLng))
         
 # ---------------------------------------------------------------

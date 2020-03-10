@@ -2862,9 +2862,8 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 {
                 "type": "button",
                 "action": {
-                    "type": "uri",
-                    "label": "位置資訊",
-                    "uri": "https://linecorp.com"
+                    "type": "postback",
+                    "data": "電影院位置資訊"+"name"+movietheaterName+"address"+movietheaterAddress+"lat"+movietheaterLat+"lng"+movietheaterLng
                 }
                 }
             ]
@@ -2886,6 +2885,15 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     )
     return(movietheater_flex_message)
     
+def use_movieTheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng):
+    location_message = LocationSendMessage(
+        title='movietheaterName',
+        address='movietheaterAddress',
+        latitude=movietheaterLat,
+        longitude=movietheaterLng
+    )
+    return(location_message)
+
 def get_MovieMoment():
     url = 'http://www.atmovies.com.tw/movie/new/'
     headers = {}

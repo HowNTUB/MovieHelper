@@ -3019,109 +3019,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         }
     )
 
-    movietheaterContents = []
-    movietheaterData = [i for i in soup.select("#filmShowtimeBlock ul")]
-    for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
-        movietheaterName = content.find("li").text
-        timeContents = []
-        cnt=0
-        if content.select_one(".filmVersion") != None:
-            cnt+=1
-            if cnt>1 : break
-            timeContents.append({
-                "type": "box",
-                "layout": "vertical",
-                "margin": "md",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": (content.select("li")[1]).text.split('\n')[0],
-                    "size": "lg",
-                    "align": "center",
-                    "weight": "bold"
-                    },
-                    {
-                    "type": "separator",
-                    "margin": "md"
-                    }
-                ]
-            })
-        for movietime in [i for i in content.select("li")][3:]:
-            #now=time.strftime("%H:%M", time.localtime(time.time()+28800))
-            if movietime.find("a") == None:
-                timeContents.append({
-                    "type": "box",
-                    "layout": "vertical",
-                    "margin": "md",
-                    "contents": [
-                        {
-                        "type": "text",
-                        "text": movietime.text,
-                        "size": "sm",
-                        "align": "center",
-                        "color": "#C1C1C1"
-                        },
-                        {
-                        "type": "separator",
-                        "margin": "sm"
-                        }
-                    ]
-                })
-            else: #放映時間之內
-                print('http://www.atmovies.com.tw'+movietime.find("a")["href"])
-                timeContents.append({
-                    "type": "box",
-                    "layout": "vertical",
-                    "margin": "md",
-                    "contents": [                        
-                        {
-                        "type": "button",
-                        "action": {
-                            "type": "uri",
-                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
-                            "uri": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
-                        },
-                        "color": "#000000"
-                        },
-                        {
-                        "type": "separator",
-                        "margin": "md"
-                        }
-                    ]
-                })
-        movietheaterContents.append({
-            "type": "bubble",
-            "direction": "ltr",
-            "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": movietheaterName,
-                "size": "xl",
-                "align": "start",
-                "weight": "bold",
-                "wrap": True
-                }
-            ]
-            },
-            "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": timeContents
-            }
-        })
-
-    movietheater_flex_message = FlexSendMessage(
-        alt_text='articlelist',
-        contents={
-            "type": "carousel",
-            "contents": movietheaterContents
-        }
-    )
-
-    totalPage = int(len(movietheaterData)/10)
+    totalPage = int(len(movieList)/10)
     print(totalPage)
     if totalPage>1 :
         nowPage = int(page)
@@ -3135,7 +3033,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                     "align": "center",
                     "action": {
                         "type": "postback",
-                        "data": "電影時刻"+movieID+inAreaID+","+str(index+1)
+                        "data": "電影院上映"+movietheaterName+":"+str(index+1)
                     }
                 })
         # 回復

@@ -2930,7 +2930,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
             elif cnt==1: #片長
                 print("2")
             elif cnt>=2:
-                if cnt == 2 and (movietime.text[-1] == "0" or movietime.text[-1] == "5"):
+                if cnt == 2 and (movietime.text[-1] != "0" or movietime.text[-1] != "5"):
                     print("title"+movietime.text)
                     timeContents.append({
                         "type": "box",
@@ -3087,7 +3087,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
             }
         )
 
-    return(movie_flex_message, pagebox)
+    return(movie_flex_message, pagebox_flex_message)
     #---------------------------------------------------------------------
 
 def use_movietheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng):

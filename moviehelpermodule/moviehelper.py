@@ -120,7 +120,13 @@ def use_moviename_serch_movielist(movieNameOrURL, page):
     else:
         movieInfo = [i.text for i in soup.select(".release_info")]
         movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
-        movieNameEN = [i.text for i in soup.select(".en a")]
+        movieNameEN = [i.text for i in soup.select("")]
+        movieNameEN = []
+        for i in soup.select(".en a"):
+            if i.text.strip() == '':
+                movieNameEN.append("-")
+            else:
+                movieNameEN.append(i.text.strip())
         movieExpectation = [i.text for i in soup.select("#content_l dt span")]
         movieSatisfactoryDegree = []
         for info in movieInfo:
@@ -1358,7 +1364,12 @@ def search_movie_thisweekAndIntheaters(url):
     movieInfo = [i for i in soup.select(".release_info")]
     movieInfoText = [i.text for i in soup.select(".release_info")]
     movieNameCN = [i.text.strip() for i in soup.select(".release_movie_name > .gabtn")]
-    movieNameEN = [i.text.strip() for i in soup.select(".en .gabtn")]
+    movieNameEN = []
+    for i in soup.select(".en .gabtn"):
+        if i.text.strip() == '':
+            movieNameEN.append("-")
+        else:
+            movieNameEN.append(i.text.strip())
     movieExpectation = []
     for info in movieInfoText:
         movieExpectation.append('未上映') if info.find(
@@ -1884,12 +1895,12 @@ def search_movie_chart(url):
                     "layout": "horizontal",
                     "spacing": "md",
                     "contents": [
-                        {
-                        "type": "text",
-                        "text": movieRankType[now],
-                        "flex": 0,
-                        "gravity": "bottom"
-                        },
+                        # { 排行異動符號
+                        # "type": "text",
+                        # "text": movieRankType[now],
+                        # "flex": 0,
+                        # "gravity": "bottom"
+                        # },
                         {
                         "type": "text",
                         "text": movieRank[now] + medal,

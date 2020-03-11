@@ -2929,7 +2929,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
             elif cnt==1: #片長
                 print("2")
             elif cnt>=2:
-                if cnt == 2 and movietime[-1] == "0":
+                if cnt == 2 and movietime.text[-1] == "0":
                     timeContents.append({
                         "type": "box",
                         "layout": "vertical",

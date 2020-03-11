@@ -2927,10 +2927,8 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         for movietime in movieInfo.select("ul ul li")[:-1]:
             if cnt==0: #電影連結
                 print("1")
-            elif cnt==1: #片長
-                print("2")
-            elif cnt>=2:
-                if cnt == 2 and (movietime.text[-1] != "0" or movietime.text[-1] != "5"):
+            elif cnt>=1:
+                if cnt == 1 and (movietime.text[-1] != "0" or movietime.text[-1] != "5"):
                     print("title"+movietime.text)
                     timeContents.append({
                         "type": "box",

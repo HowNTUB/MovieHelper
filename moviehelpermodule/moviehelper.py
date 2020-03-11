@@ -2863,7 +2863,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 "action": {
                     "type": "postback",
                     "label": "上映場次",
-                    "data": "電影院上映"+movietheaterName[index]
+                    "data": "電影院上映"+movietheaterName[index]+":1"
                 }
                 },
                 {
@@ -2887,7 +2887,9 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     )
     return(movietheater_flex_message)
 
-def use_movietheatherName_search_movie(movietheaterName):
+def use_movietheatherName_search_movie(movietheaterName, page):
+
+    #先用google搜尋電影網的資料(google關鍵字搜尋結果比用網站的搜尋結果好)
     movietheaterNameQuote = parse.quote(movietheaterName)
     googleSearchURL = "https://www.google.com/search?ei=cn&q="+movietheaterNameQuote+"+site%3Ahttp%3A%2F%2Fwww.atmovies.com.tw%2F"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'}
@@ -2898,19 +2900,289 @@ def use_movietheatherName_search_movie(movietheaterName):
 
     movietheaterURL = soup.select_one("#res .r a")["href"]
 
-
+    #抓網站資料
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(movietheaterURL, headers=headers)
     resp = request.urlopen(req)
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
     soup = BeautifulSoup(respData)
+
+    # movieList = [i for i in soup.findAll('ul',{'id':'theaterShowtimeTable'})]
+    # for movieInfo in movieList[(int(page)-1)*10:int(page)*10]:
+    #     print("movieName"+movieInfo.select_one("a").text)
+    #     for ul in movieInfo.select("ul ul li")[:-1]:
+    #         print("***")
+    #         print(ul)
+    movietheaterContents = []
     movieList = [i for i in soup.findAll('ul',{'id':'theaterShowtimeTable'})]
-    for movieInfo in movieList:
-        print("movieName"+movieInfo.select_one("a").text)
-        for ul in movieInfo.select("ul ul li")[:-1]:
-            print("***")
-            print(ul)
+    movieContents = []
+    for movieInfo in movieList[(int(page)-1)*10:int(page)*10]:
+        movieName = movieInfo.select_one("a").text
+        timeContents = []
+        cnt=0
+        for movietime in movieInfo.select("ul ul li")[:-1]:
+            if cnt==0: #電影連結
+                print("1")
+            elif cnt==1: #片長
+                print("2")
+            elif cnt>=2:
+                if cnt == 2 and movietime[-1] == "0":
+                    timeContents.append({
+                        "type": "box",
+                        "layout": "vertical",
+                        "margin": "md",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": movietime.text,
+                            "size": "lg",
+                            "align": "center",
+                            "weight": "bold"
+                            },
+                            {
+                            "type": "separator",
+                            "margin": "md"
+                            }
+                        ]
+                    })
+                if movietime.find("a") == None:
+                    timeContents.append({
+                        "type": "box",
+                        "layout": "vertical",
+                        "margin": "md",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": movietime.text,
+                            "size": "sm",
+                            "align": "center",
+                            "color": "#C1C1C1"
+                            },
+                            {
+                            "type": "separator",
+                            "margin": "sm"
+                            }
+                        ]
+                    })
+                else:
+                    timeContents.append({
+                        "type": "box",
+                        "layout": "vertical",
+                        "margin": "md",
+                        "contents": [                        
+                            {
+                            "type": "button",
+                            "action": {
+                                "type": "uri",
+                                "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
+                                "uri": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
+                            },
+                            "color": "#000000"
+                            },
+                            {
+                            "type": "separator",
+                            "margin": "md"
+                            }
+                        ]
+                    })
+                cnt+=1
+            movieContents.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": movietheaterName,
+                    "size": "xl",
+                    "align": "start",
+                    "weight": "bold",
+                    "wrap": True
+                    }
+                ]
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": timeContents
+                }
+            })
+
+    movie_flex_message = FlexSendMessage(
+        alt_text='movielist',
+        contents={
+            "type": "carousel",
+            "contents": movieContents
+        }
+    )
+
+    movietheaterContents = []
+    movietheaterData = [i for i in soup.select("#filmShowtimeBlock ul")]
+    for content in movietheaterData[(int(page)-1)*10:int(page)*10]:
+        movietheaterName = content.find("li").text
+        timeContents = []
+        cnt=0
+        if content.select_one(".filmVersion") != None:
+            cnt+=1
+            if cnt>1 : break
+            timeContents.append({
+                "type": "box",
+                "layout": "vertical",
+                "margin": "md",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": (content.select("li")[1]).text.split('\n')[0],
+                    "size": "lg",
+                    "align": "center",
+                    "weight": "bold"
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "md"
+                    }
+                ]
+            })
+        for movietime in [i for i in content.select("li")][3:]:
+            #now=time.strftime("%H:%M", time.localtime(time.time()+28800))
+            if movietime.find("a") == None:
+                timeContents.append({
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": movietime.text,
+                        "size": "sm",
+                        "align": "center",
+                        "color": "#C1C1C1"
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "sm"
+                        }
+                    ]
+                })
+            else: #放映時間之內
+                print('http://www.atmovies.com.tw'+movietime.find("a")["href"])
+                timeContents.append({
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "contents": [                        
+                        {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
+                            "uri": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
+                        },
+                        "color": "#000000"
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "md"
+                        }
+                    ]
+                })
+        movietheaterContents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": movietheaterName,
+                "size": "xl",
+                "align": "start",
+                "weight": "bold",
+                "wrap": True
+                }
+            ]
+            },
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": timeContents
+            }
+        })
+
+    movietheater_flex_message = FlexSendMessage(
+        alt_text='articlelist',
+        contents={
+            "type": "carousel",
+            "contents": movietheaterContents
+        }
+    )
+
+    totalPage = int(len(movietheaterData)/10)
+    print(totalPage)
+    if totalPage>1 :
+        nowPage = int(page)
+        print(nowPage)
+        contents = []
+        for index in range(totalPage):
+            if index+1 != nowPage:
+                contents.append({
+                    "type": "text",
+                    "text": str(index+1),
+                    "align": "center",
+                    "action": {
+                        "type": "postback",
+                        "data": "電影時刻"+movieID+inAreaID+","+str(index+1)
+                    }
+                })
+        # 回復
+        pagebox_flex_message = FlexSendMessage(
+            alt_text='pagebox',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "目前第"+str(nowPage)+"頁",
+                    "align": "center"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "margin": "xl",
+                    "contents": contents
+                    }
+                ]
+                }
+            }
+        )
+    else:
+        pagebox_flex_message = FlexSendMessage(
+            alt_text='pagebox',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "僅一頁搜尋結果",
+                    "align": "center"
+                    }
+                ]
+                }
+            }
+        )
+    #---------------------------------------------------------------------
 
 def use_movietheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng):
     location_message = LocationSendMessage(
@@ -3091,7 +3363,6 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
 def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     import time
     url = 'http://www.atmovies.com.tw/showtime/'+movieID+inAreaID
-    print(url)
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
     req = request.Request(url, headers=headers)

@@ -109,7 +109,8 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, use_movietheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng))
     #電影院上映電影
     if userpostback[:5] == '電影院上映':
-        movietheaterName = userpostback[5:]
+        movietheaterName = userpostback[5:userpostback.find(":")]
+        page = userpostback[userpostback.find(":")+1:]
         line_bot_api.reply_message(event.reply_token, use_movietheatherName_search_movie(movietheaterName))
 # ---------------------------------------------------------------
 @handler.add(MessageEvent, message=TextMessage)

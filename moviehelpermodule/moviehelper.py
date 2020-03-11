@@ -2753,7 +2753,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
 
     googleAPIKey = os.environ['GOOGLE_API_KEY'] # 在heroku專案中的Config Vars中設定
     gmaps = googlemaps.Client(key=googleAPIKey)
-    nearbyMovietheater = googlemaps.places.places_nearby(location=(userLat,userLng), radius=50000, language="zh-TW", keyword="movietheater", client=gmaps)
+    nearbyMovietheater = googlemaps.places.places_nearby(location=(userLat,userLng), radius=20000, language="zh-TW", keyword="movietheater", client=gmaps)
     print(nearbyMovietheater)
     movietheaterName = []
     movietheaterLat = []
@@ -2988,30 +2988,30 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                             }
                         ]
                     })
-                cnt+=1
-            movieContents.append({
-                "type": "bubble",
-                "direction": "ltr",
-                "header": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": movietheaterName,
-                    "size": "xl",
-                    "align": "start",
-                    "weight": "bold",
-                    "wrap": True
-                    }
-                ]
-                },
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": timeContents
+            cnt+=1
+        movieContents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": movietheaterName,
+                "size": "xl",
+                "align": "start",
+                "weight": "bold",
+                "wrap": True
                 }
-            })
+            ]
+            },
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": timeContents
+            }
+        })
 
     movie_flex_message = FlexSendMessage(
         alt_text='movielist',

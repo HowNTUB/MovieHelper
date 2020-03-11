@@ -1580,7 +1580,12 @@ def search_movie_comingsoon(url):
     movieInfo = [i.text for i in soup.select(".release_info")]
     movieNameCN = [i.text.strip()
                                 for i in soup.select(".release_movie_name > a")]
-    movieNameEN = [i.text.strip() for i in soup.select(".en a")]
+    movieNameEN = []
+    for i in soup.select(".en a"):
+        if i.text.strip() == '':
+            movieNameEN.append("-")
+        else:
+            movieNameEN.append(i.text.strip())
     movieExpectation = [i.text for i in soup.select("#content_l dt span")]
     movieSatisfactoryDegree = []
     for info in movieInfo:
@@ -2759,14 +2764,6 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         movietheaterAddress.append(data["vicinity"])
     contents = []
     for index in range(len(movietheaterName[:10])):
-        print(index)
-        print(movietheaterName[index])
-        print(movietheaterLat[index])
-        print(movietheaterLng[index])
-        print(movietheaterPhotos[index])
-        print(movietheaterRating[index])
-        print(movietheaterAddress[index])
-        print(getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]))
         contents.append({
             "type": "bubble",
             "direction": "ltr",
@@ -2853,9 +2850,9 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 {
                 "type": "button",
                 "action": {
-                    "type": "uri",
+                    "type": "postback",
                     "label": "上映場次",
-                    "uri": "https://linecorp.com"
+                    "data": "電影院上映"+movietheaterName[index]
                 }
                 },
                 {
@@ -2870,12 +2867,6 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
             }
         })
 
-    print(movietheaterName)
-    print(movietheaterLat)
-    print(movietheaterLng)
-    print(movietheaterPhotos)
-    print(movietheaterRating)
-    print(movietheaterAddress)
     movietheater_flex_message = FlexSendMessage(
         alt_text='movietheater',
         contents={
@@ -2884,8 +2875,33 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         }
     )
     return(movietheater_flex_message)
-    
-def use_movieTheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng):
+
+def use_movietheatherName_search_movie(movietheaterName):
+    movietheaterNameQuote = parse.quote(movietheaterName)
+    googleSearchURL = "https://www.google.com/search?ei=cn&q="+movietheaterNameQuote+"+site%3Ahttp%3A%2F%2Fwww.atmovies.com.tw%2F"
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36'}
+    req = request.Request(googleSearchURL, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+    soup = BeautifulSoup(respData)
+
+    movietheaterURL = soup.select_one("#res .r a")["href"]
+
+
+    headers = {}
+    headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'
+    req = request.Request(movietheaterURL, headers=headers)
+    resp = request.urlopen(req)
+    respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
+    soup = BeautifulSoup(respData)
+    movieList = [i for i in soup.findAll('ul',{'id':'theaterShowtimeTable'})]
+    for movieInfo in movieList:
+        print("movieName"+movieInfo.select_one("a").text)
+        for ul in movieInfo.select("ul ul li")[:-1]:
+            print("***")
+            print(ul)
+
+def use_movietheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng):
     location_message = LocationSendMessage(
         title=movietheaterName,
         address=movietheaterAddress,

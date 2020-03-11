@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelpermodule.moviehelper import show_movieHelper, use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_movieInfo_message, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, show_chart_message, search_movie_chart, search_movie_chartNetizens, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, use_movieTheaterInfo_get_locationMessage, get_MovieMoment, use_movieurl_get_movieReleasedArea, use_movieurl_get_movieMoment, workTeam
+from moviehelpermodule.moviehelper import show_movieHelper, use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_movieInfo_message, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, show_chart_message, search_movie_chart, search_movie_chartNetizens, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, use_movietheatherName_search_movie, use_movietheaterInfo_get_locationMessage, get_MovieMoment, use_movieurl_get_movieReleasedArea, use_movieurl_get_movieMoment, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -102,12 +102,15 @@ def handle_postback(event):
         line_bot_api.reply_message(event.reply_token, [movieInfo, nowtime, movieMoment, pagebox])
     #電影院位置資訊
     if userpostback[:7] == '電影院位置資訊':
-        movieTheaterName = userpostback[userpostback.find("name")+4:userpostback.find("address")]
+        movietheaterName = userpostback[userpostback.find("name")+4:userpostback.find("address")]
         movietheaterAddress = userpostback[userpostback.find("address")+7:userpostback.find("lat")]
         movietheaterLat = userpostback[userpostback.find("lat")+3:userpostback.find("lng")]
         movietheaterLng = userpostback[userpostback.find("lng")+3:]
-        line_bot_api.reply_message(event.reply_token, use_movieTheaterInfo_get_locationMessage(movieTheaterName, movietheaterAddress, movietheaterLat, movietheaterLng))
-        
+        line_bot_api.reply_message(event.reply_token, use_movietheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng))
+    #電影院上映電影
+    if userpostback[:5] == '電影院上映':
+        movietheaterName = userpostback[5:]
+        line_bot_api.reply_message(event.reply_token, use_movietheatherName_search_movie(movietheaterName))
 # ---------------------------------------------------------------
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

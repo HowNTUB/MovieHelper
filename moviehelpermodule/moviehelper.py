@@ -2921,6 +2921,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
     movieContents = []
     for movieInfo in movieList[(int(page)-1)*10:int(page)*10]:
         movieName = movieInfo.select_one("a").text
+        print(movieName)
         timeContents = []
         cnt=0
         for movietime in movieInfo.select("ul ul li")[:-1]:
@@ -2930,6 +2931,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 print("2")
             elif cnt>=2:
                 if cnt == 2 and movietime.text[-1] == "0":
+                    print("title"+movietime.text)
                     timeContents.append({
                         "type": "box",
                         "layout": "vertical",
@@ -2949,6 +2951,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         ]
                     })
                 if movietime.find("a") == None:
+                    print("notnow"+movietime.text)
                     timeContents.append({
                         "type": "box",
                         "layout": "vertical",
@@ -2968,6 +2971,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         ]
                     })
                 else:
+                    print("now"+movietime.text)
                     timeContents.append({
                         "type": "box",
                         "layout": "vertical",
@@ -2998,7 +3002,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
             "contents": [
                 {
                 "type": "text",
-                "text": movietheaterName,
+                "text": movieName,
                 "size": "xl",
                 "align": "start",
                 "weight": "bold",

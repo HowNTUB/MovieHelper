@@ -3082,6 +3082,8 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 }
             }
         )
+
+    return(movie_flex_message, pagebox)
     #---------------------------------------------------------------------
 
 def use_movietheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng):

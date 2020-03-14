@@ -3378,8 +3378,8 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 "weight": "bold",
                 "wrap": True,
                 "action": {
-                    "type": "message",
-                    "text": "電影院上映"+":1"#+soup.select_one("h2 a").text[:soup.select_one("h2 a").text.find(" ")]
+                    "type": "postback",
+                    "data": "電影院上映"+movietheaterName+":1"
                 }
                 }
             ]
@@ -3570,7 +3570,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 },
                 {
                 "type": "text",
-                "text": areaDict.get(inAreaID,"其他"),
+                "text": "其他",
                 "align": "center"
                 },
                 {

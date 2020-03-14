@@ -3379,7 +3379,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 "wrap": True,
                 "action": {
                     "type": "message",
-                    "text": "電影院上映"+soup.select_one("h2 a").text[:soup.select_one("h2 a").text.find(" ")]+":1"
+                    "text": "電影院上映"+":1"#+soup.select_one("h2 a").text[:soup.select_one("h2 a").text.find(" ")]
                 }
                 }
             ]

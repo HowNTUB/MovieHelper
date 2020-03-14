@@ -6,7 +6,7 @@ import flask
 from urllib import request
 from urllib import parse
 from bs4 import BeautifulSoup
-from moviehelpermodule.moviehelper import show_movieHelper, use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_movieInfo_message, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, show_chart_message, search_movie_chart, search_movie_chartNetizens, select_movie_type, search_movie_type, get_location_message, use_location_search_movietheater, use_movietheatherName_search_movie, use_movietheaterInfo_get_locationMessage, get_MovieMoment, use_movieurl_get_movieReleasedArea, use_movieurl_get_movieMoment, workTeam
+from moviehelpermodule.moviehelper import show_movieHelper, use_moviename_serch_movielist, use_moviename_serch_article, use_movieurl_get_movieinfo, use_actorURL_get_actorIntorduction, show_movieInfo_message, show_actor_intorduction, use_actorURL_search_movielist, search_movie_thisweekAndIntheaters, search_movie_comingsoon, show_chart_message, search_movie_chart, search_movie_chartNetizens, select_movie_type, search_movie_type, show_location_message, use_location_search_movietheater, use_movietheatherName_search_movie, use_movietheaterInfo_get_locationMessage, get_MovieMoment, use_movieurl_get_movieReleasedArea, use_movieurl_get_movieMoment, workTeam
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -151,7 +151,7 @@ def handle_message(event):
     elif userMessage == '類型找電影':
         line_bot_api.reply_message(event.reply_token, select_movie_type())
     elif userMessage == '附近電影院':
-        line_bot_api.reply_message(event.reply_token, get_location_message())
+        line_bot_api.reply_message(event.reply_token, show_location_message())
     elif userMessage == '電影時刻':
         movielist = get_MovieMoment()
         line_bot_api.reply_message(event.reply_token, movielist)

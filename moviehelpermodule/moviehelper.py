@@ -2708,13 +2708,14 @@ def search_movie_type(typeName, url):
 
     return(movie_flex_message, pagebox_flex_message)
 
-def get_location_message():
+def show_location_message():
     location_flex_message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
-            thumbnail_image_url='https://example.com/image.jpg',
-            title='Menu',
+            title='附近電影院',
             text='點擊地圖的指定位置，我將幫您查詢附近的電影院。',
+            size='lg',
+            weight='bold',
             actions=[
                 LocationAction(
                     label='選擇指定位置'

@@ -2943,7 +2943,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                     href = movietime.select_one("a")["href"]
                 except:
                     href = None
-                if cnt == 1 and (movietime.text[-1] != "0" or movietime.text[-1] != "5"):
+                if cnt == 2 and (movietime.text[-1] != "0" or movietime.text[-1] != "5"):
                     print("title"+movietime.text)
                     timeContents.append({
                         "type": "box",
@@ -3022,7 +3022,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 "wrap": True,
                 "action": {
                     "type": "message",
-                    "text": "movieName"
+                    "text": movieName
                 }
                 }
             ]

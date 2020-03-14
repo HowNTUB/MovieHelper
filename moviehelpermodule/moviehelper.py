@@ -2746,12 +2746,14 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         movietheaterLng.append(data["geometry"]["location"]["lng"])
         distance = getDistance(userLat,userLng,data["geometry"]["location"]["lat"],data["geometry"]["location"]["lng"])
         movietheaterDistance.append(distance)
-        if distance < 3:
+        if distance < 2:
             movietheaterPhotos.append("https://i.imgur.com/5HQbSSD.png")
-        elif distance < 7:
+        elif distance < 6:
             movietheaterPhotos.append("https://i.imgur.com/Xfu8rQU.png")
-        elif distance < 20:
+        elif distance < 10:
             movietheaterPhotos.append("https://i.imgur.com/3s4OfPN.png")
+        elif distance <30:
+            movietheaterPhotos.append("https://i.imgur.com/HW88JUy.png")
         else:
             movietheaterPhotos.append("https://i.imgur.com/GfGsFuy.png")
         # try: #用googleAPI去抓電影院的圖片 可是這樣很浪費流量

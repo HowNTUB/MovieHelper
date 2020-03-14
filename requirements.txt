@@ -5,3 +5,5 @@ request
 parse
 bs4
 googlemaps
+--upgrade setuptools pip wheel
+google-cloud-bigquery

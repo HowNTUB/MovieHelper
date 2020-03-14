@@ -2709,6 +2709,19 @@ def search_movie_type(typeName, url):
     return(movie_flex_message, pagebox_flex_message)
 
 def get_location_message():
+    buttons_template_message = TemplateSendMessage(
+        alt_text='Buttons template',
+        template=ButtonsTemplate(
+            thumbnail_image_url='https://example.com/image.jpg',
+            title='Menu',
+            text='點擊地圖的指定位置，我將幫您查詢附近的電影院。',
+            actions=[
+                LocationAction(
+                    label='選擇指定位置'
+                )
+            ]
+        )
+    )
     location_flex_message = FlexSendMessage(
         alt_text='getLocation',
         contents={

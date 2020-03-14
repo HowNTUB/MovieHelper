@@ -2709,7 +2709,7 @@ def search_movie_type(typeName, url):
     return(movie_flex_message, pagebox_flex_message)
 
 def get_location_message():
-    buttons_template_message = TemplateSendMessage(
+    location_flex_message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
             thumbnail_image_url='https://example.com/image.jpg',
@@ -2721,42 +2721,6 @@ def get_location_message():
                 )
             ]
         )
-    )
-    location_flex_message = FlexSendMessage(
-        alt_text='getLocation',
-        contents={
-            "type": "bubble",
-            "direction": "ltr",
-            "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": "點擊地圖的指定位置，我將幫您查詢附近的電影院。",
-                "align": "start",
-                "wrap": True
-                },
-                {
-                "type": "separator",
-                "margin": "xl"
-                }
-            ]
-            },
-            "footer": {
-            "type": "box",
-            "layout": "horizontal",
-            "contents": [
-                {
-                "type": "button",
-                "action": {
-                    "type":"location",
-                    "label": "選擇指定位置"
-                }
-                }
-            ]
-            }
-        }
     )
     return(location_flex_message)
 def use_location_search_movietheater(userAddress, userLat, userLng):

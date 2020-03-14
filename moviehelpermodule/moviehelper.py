@@ -3019,7 +3019,11 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 "size": "xl",
                 "align": "start",
                 "weight": "bold",
-                "wrap": True
+                "wrap": True,
+                "action": {
+                    "type": "message",
+                    "text": "movieName"
+                }
                 }
             ]
             },

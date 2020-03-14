@@ -3570,7 +3570,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 },
                 {
                 "type": "text",
-                "text": areaDict[inAreaID],
+                "text": areaDict.get(inAreaID,"其他"),
                 "align": "center"
                 },
                 {

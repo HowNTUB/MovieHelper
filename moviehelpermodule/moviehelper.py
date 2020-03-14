@@ -2739,16 +2739,27 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     movietheaterPhotos = []
     movietheaterRating = []
     movietheaterAddress = []
+    movietheaterDistance = []
     for data in nearbyMovietheater["results"]:
         movietheaterName.append(data["name"])
         movietheaterLat.append(data["geometry"]["location"]["lat"])
         movietheaterLng.append(data["geometry"]["location"]["lng"])
-        try:
-            photoReference = data["photos"][0]['photo_reference']
-            movietheaterPhotos.append('https://maps.googleapis.com/maps/api/place/photo?maxheight=900&maxwidth=1200&photoreference=' +
-                                      photoReference+'&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
-        except:
-            movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
+        movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
+        movietheaterDistance.append(getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]))
+        if movietheaterDistance[index] < 3:
+            movietheaterPhotos.append("https://i.imgur.com/5HQbSSD.png")
+        elif movietheaterDistance[index] < 7:
+            movietheaterPhotos.append("https://i.imgur.com/Xfu8rQU.png")
+        elif movietheaterDistance[index] < 20:
+            movietheaterPhotos.append("https://i.imgur.com/3s4OfPN.png")
+        else:
+            movietheaterPhotos.append("https://i.imgur.com/GfGsFuy.png")
+        # try:
+        #     photoReference = data["photos"][0]['photo_reference']
+        #     movietheaterPhotos.append('https://maps.googleapis.com/maps/api/place/photo?maxheight=900&maxwidth=1200&photoreference=' +
+        #                               photoReference+'&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
+        # except:
+        #     movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
         movietheaterRating.append(data["rating"])
         movietheaterAddress.append(data["vicinity"])
     contents = []
@@ -2818,7 +2829,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": str(getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index])),
+                    "text": str(movietheaterDistance[index]),
                     "flex": 0,
                     "size": "xl"
                     },

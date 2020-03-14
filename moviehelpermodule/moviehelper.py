@@ -2744,12 +2744,13 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
         movietheaterName.append(data["name"])
         movietheaterLat.append(data["geometry"]["location"]["lat"])
         movietheaterLng.append(data["geometry"]["location"]["lng"])
-        movietheaterDistance.append(getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index]))
-        if movietheaterDistance[index] < 3:
+        distance = getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index])
+        movietheaterDistance.append(distance)
+        if distance < 3:
             movietheaterPhotos.append("https://i.imgur.com/5HQbSSD.png")
-        elif movietheaterDistance[index] < 7:
+        elif distance < 7:
             movietheaterPhotos.append("https://i.imgur.com/Xfu8rQU.png")
-        elif movietheaterDistance[index] < 20:
+        elif distance < 20:
             movietheaterPhotos.append("https://i.imgur.com/3s4OfPN.png")
         else:
             movietheaterPhotos.append("https://i.imgur.com/GfGsFuy.png")

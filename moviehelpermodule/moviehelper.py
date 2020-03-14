@@ -3102,8 +3102,25 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 }
             }
         )
-
-    return(movie_flex_message, pagebox_flex_message)
+    movietheaterName_flex_message = FlexSendMessage(
+        alt_text=movietheaterName,
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": movietheaterName,
+                "align": "center"
+                }
+            ]
+            }
+        }
+    )
+    return(movietheaterName_flex_message, movie_flex_message, pagebox_flex_message)
     #---------------------------------------------------------------------
 
 def use_movietheaterInfo_get_locationMessage(movietheaterName, movietheaterAddress, movietheaterLat, movietheaterLng):
@@ -3570,7 +3587,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 },
                 {
                 "type": "text",
-                "text": "其他",
+                "text": areaDict.get(inAreaID,"其他"),
                 "align": "center"
                 },
                 {

@@ -2784,7 +2784,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 }
             }
         )
-    elif:
+    else:
         for index in range(len(movietheaterName[:10])):
             contents.append({
                 "type": "bubble",

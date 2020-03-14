@@ -5,4 +5,3 @@ request
 parse
 bs4
 googlemaps
-google-cloud-bigquery

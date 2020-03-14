@@ -3042,7 +3042,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         }
     )
 
-    totalPage = int(len(movieList)/10)
+    totalPage = int(len(soup.select(".filmTitle a"))/10)
     print(totalPage)
     if totalPage>1 :
         nowPage = int(page)

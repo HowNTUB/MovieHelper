@@ -2938,7 +2938,11 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         for movietime in movieInfo.select("ul ul li")[:-1]:
             if cnt==0: #電影連結
                 print("1")
-            elif cnt>=1:
+            elif cnt>=2:
+                try:
+                    href = movietime.select_one("a")["href"]
+                except:
+                    href = None
                 if cnt == 1 and (movietime.text[-1] != "0" or movietime.text[-1] != "5"):
                     print("title"+movietime.text)
                     timeContents.append({
@@ -2959,7 +2963,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                             }
                         ]
                     })
-                elif movietime.find("a") == None:
+                elif href == None:
                     print("notnow"+movietime.text)
                     timeContents.append({
                         "type": "box",
@@ -2991,7 +2995,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                             "action": {
                                 "type": "uri",
                                 "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
-                                "uri": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
+                                "uri": 'http://www.atmovies.com.tw'+href
                             },
                             "color": "#000000"
                             },

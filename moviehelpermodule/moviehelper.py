@@ -120,7 +120,6 @@ def use_moviename_serch_movielist(movieNameOrURL, page):
     else:
         movieInfo = [i.text for i in soup.select(".release_info")]
         movieNameCN = [i.text for i in soup.select(".release_movie_name > a")]
-        movieNameEN = [i.text for i in soup.select("")]
         movieNameEN = []
         for i in soup.select(".en a"):
             if i.text.strip() == '':

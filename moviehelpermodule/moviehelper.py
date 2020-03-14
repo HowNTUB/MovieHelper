@@ -2739,11 +2739,13 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     movietheaterPhotos = []
     movietheaterRating = []
     movietheaterAddress = []
+    movietheaterDistance = []
     for data in nearbyMovietheater["results"]:
         movietheaterName.append(data["name"])
         movietheaterLat.append(data["geometry"]["location"]["lat"])
         movietheaterLng.append(data["geometry"]["location"]["lng"])
         distance = getDistance(userLat,userLng,movietheaterLat[index],movietheaterLng[index])
+        movietheaterDistance.append(distance)
         if distance < 3:
             movietheaterPhotos.append("https://i.imgur.com/5HQbSSD.png")
         elif distance < 7:
@@ -2827,7 +2829,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                     },
                     {
                     "type": "text",
-                    "text": str(distance),
+                    "text": str(movietheaterDistance[index]),
                     "flex": 0,
                     "size": "xl"
                     },

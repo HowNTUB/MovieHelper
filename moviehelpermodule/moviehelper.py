@@ -412,7 +412,7 @@ def show_movieInfo_message():
                     "contents": [
                         {
                         "type": "text",
-                        "text": "🔥想知道現都在夯什麼嗎？來看目前熱映中的院線片！",
+                        "text": "🔥想知道現都在夯什麼嗎？快來看目前熱映中的院線片吧！",
                         "size": "lg",
                         "wrap": True
                         },

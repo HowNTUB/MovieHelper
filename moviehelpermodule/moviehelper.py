@@ -8,24 +8,7 @@ from moviehelpermodule.calculate import getDistance, getNowTimeEmoji, useTimeGet
 def pagebox(soup):
     # --------------------pagebox
     if len(soup.select(".page_numbox ul")) == 0:
-        pagebox_flex_message = FlexSendMessage(
-            alt_text='pagebox',
-            contents={
-                "type": "bubble",
-                "direction": "ltr",
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "僅一頁搜尋結果",
-                    "align": "center"
-                    }
-                ]
-                }
-            }
-        )
+        pagebox_flex_message = False
     else:
         pagebox = soup.select(".page_numbox ul")[0]
         nowpage = pagebox.select(".active span")[0].text

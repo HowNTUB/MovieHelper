@@ -3337,12 +3337,12 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "contents": [                        
                         {
                         "type": "button",
-                        "color": "#000000",
                         "action": {
                             "type": "postback",
                             "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
                             "data": "此無提供線上訂票"
-                        }
+                        },
+                        "color": "#000000"
                         },
                         {
                         "type": "separator",

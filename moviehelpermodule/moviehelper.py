@@ -3274,7 +3274,7 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
                 "contents": [
                     {
                     "type": "text",
-                    "text": "沒有找到放映場次，可能已經下檔了。",
+                    "text": "沒有找到放映場次，可能已下檔。",
                     "align": "center",
                     "weight": "bold",
                     "wrap": True

@@ -3201,68 +3201,88 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
             }
         }
     )
-
-    areaOption = [i for i in soup.select(".movie_theater select option")][1:]
-    areaContent = []
-    areaCnt = 0
-    areaDict = {}
-    for area in areaOption:
-        areaCnt+=1
-        areaName = area.text.strip()
-        areaID = area["value"][-5:]
-        areaDict[areaID] = areaName
-        areaContent.append({
-          "type": "button",
-          "action": {
-            "type": "postback",
-            "label": areaName,
-            "data": "電影時刻"+movieID+areaID+",1"
-          }
-        })
-    print(areaName)
-    print(areaID)
-    print(areaDict)
-    areaMessageContents = []
-    for contentIndex in range(int(areaCnt/4)+1):
-        contentsAreaContent = []
-        for areaIndex in range(4):
-            try:
-                contentsAreaContent.append(areaContent[contentIndex*4+areaIndex])
-            except:
-                contentsAreaContent.append({"type": "filler"})
-        areaMessageContents.append({
-            "type": "bubble",
-            "direction": "ltr",
-            "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": "請選擇欲查詢地區",
-                "size": "lg",
-                "align": "center"
-                },
-                {
-                "type": "separator",
-                "margin": "lg"
-                },
-                {
+    try:
+        areaOption = [i for i in soup.select(".movie_theater select option")][1:]
+        areaContent = []
+        areaCnt = 0
+        areaDict = {}
+        for area in areaOption:
+            areaCnt+=1
+            areaName = area.text.strip()
+            areaID = area["value"][-5:]
+            areaDict[areaID] = areaName
+            areaContent.append({
+            "type": "button",
+            "action": {
+                "type": "postback",
+                "label": areaName,
+                "data": "電影時刻"+movieID+areaID+",1"
+            }
+            })
+        print(areaName)
+        print(areaID)
+        print(areaDict)
+        areaMessageContents = []
+        for contentIndex in range(int(areaCnt/4)+1):
+            contentsAreaContent = []
+            for areaIndex in range(4):
+                try:
+                    contentsAreaContent.append(areaContent[contentIndex*4+areaIndex])
+                except:
+                    contentsAreaContent.append({"type": "filler"})
+            areaMessageContents.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
                 "type": "box",
                 "layout": "vertical",
-                "contents": contentsAreaContent
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "請選擇欲查詢地區",
+                    "size": "lg",
+                    "align": "center"
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "lg"
+                    },
+                    {
+                    "type": "box",
+                    "layout": "vertical",
+                    "contents": contentsAreaContent
+                    }
+                ]
                 }
-            ]
+            })
+        area_flex_message = FlexSendMessage(
+            alt_text='areaSelect',
+            contents={
+                "type": "carousel",
+                "contents": areaMessageContents
             }
-        })
-    area_flex_message = FlexSendMessage(
-        alt_text='areaSelect',
-        contents={
-            "type": "carousel",
-            "contents": areaMessageContents
-        }
-    )
-    #.movie_theater select
+        )
+    except:
+        area_flex_message = FlexSendMessage(
+            alt_text='areaSelect',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "沒有找到放映場次，可能已經下檔了。",
+                    "align": "center",
+                    "weight": "bold",
+                    "wrap": True
+                    }
+                ]
+                }
+            }
+        )
     
     return(name_flex_message, area_flex_message)
 

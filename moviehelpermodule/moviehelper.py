@@ -2740,29 +2740,30 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     movietheaterAddress = []
     movietheaterDistance = []
     for data in nearbyMovietheater["results"]:
-        movietheaterName.append(data["name"])
-        movietheaterLat.append(data["geometry"]["location"]["lat"])
-        movietheaterLng.append(data["geometry"]["location"]["lng"])
-        distance = getDistance(userLat,userLng,data["geometry"]["location"]["lat"],data["geometry"]["location"]["lng"])
-        movietheaterDistance.append(distance)
-        if distance < 2:
-            movietheaterPhotos.append("https://i.imgur.com/5HQbSSD.png")
-        elif distance < 6:
-            movietheaterPhotos.append("https://i.imgur.com/Xfu8rQU.png")
-        elif distance < 10:
-            movietheaterPhotos.append("https://i.imgur.com/3s4OfPN.png")
-        elif distance <30:
-            movietheaterPhotos.append("https://i.imgur.com/HW88JUy.png")
-        else:
-            movietheaterPhotos.append("https://i.imgur.com/GfGsFuy.png")
-        # try: #用googleAPI去抓電影院的圖片 可是這樣很浪費流量
-        #     photoReference = data["photos"][0]['photo_reference']
-        #     movietheaterPhotos.append('https://maps.googleapis.com/maps/api/place/photo?maxheight=900&maxwidth=1200&photoreference=' +
-        #                               photoReference+'&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
-        # except:
-        #     movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
-        movietheaterRating.append(data["rating"])
-        movietheaterAddress.append(data["vicinity"])
+        if data["name"] not in "股份有限公司":
+            movietheaterName.append(data["name"])
+            movietheaterLat.append(data["geometry"]["location"]["lat"])
+            movietheaterLng.append(data["geometry"]["location"]["lng"])
+            distance = getDistance(userLat,userLng,data["geometry"]["location"]["lat"],data["geometry"]["location"]["lng"])
+            movietheaterDistance.append(distance)
+            if distance < 2:
+                movietheaterPhotos.append("https://i.imgur.com/5HQbSSD.png")
+            elif distance < 6:
+                movietheaterPhotos.append("https://i.imgur.com/Xfu8rQU.png")
+            elif distance < 10:
+                movietheaterPhotos.append("https://i.imgur.com/3s4OfPN.png")
+            elif distance <30:
+                movietheaterPhotos.append("https://i.imgur.com/HW88JUy.png")
+            else:
+                movietheaterPhotos.append("https://i.imgur.com/GfGsFuy.png")
+            # try: #用googleAPI去抓電影院的圖片 可是這樣很浪費流量
+            #     photoReference = data["photos"][0]['photo_reference']
+            #     movietheaterPhotos.append('https://maps.googleapis.com/maps/api/place/photo?maxheight=900&maxwidth=1200&photoreference=' +
+            #                               photoReference+'&key=AIzaSyATyj-s1QtmrmCFQIsDhnPxS4-D929PlxM')
+            # except:
+            #     movietheaterPhotos.append('https://i.imgur.com/CMAl4DQ.jpg')
+            movietheaterRating.append(data["rating"])
+            movietheaterAddress.append(data["vicinity"])
     contents = []
     if len(movietheaterName)==0:
         movietheater_flex_message = FlexSendMessage(

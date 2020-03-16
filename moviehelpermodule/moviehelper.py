@@ -3327,7 +3327,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         }
                     ]
                 })
-            elif movietime.text > time.strftime("%H:%M", time.localtime(time.time()+28800)):
+            elif movietime.text.replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)):
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

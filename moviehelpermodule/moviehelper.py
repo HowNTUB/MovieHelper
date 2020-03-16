@@ -3338,6 +3338,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         "color": "#000000",
                         "action": {
                             "type": "postback",
+                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
                             "data": "此無提供線上訂票"
                         }
                         },

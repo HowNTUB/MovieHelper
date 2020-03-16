@@ -3306,6 +3306,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             })
         for movietime in [i for i in content.select("li")][2:]:
             #now=time.strftime("%H:%M", time.localtime(time.time()+28800))
+            print(movietime.text.replace("：",":")+"<-movie "+" now->"+time.strftime("%H:%M", time.localtime(time.time()+28800)))
             if len(movietime.text)>9:#有時候會怪怪的 搜尋到一大串時間
                 print("no")
             elif movietime.find("a") == None:

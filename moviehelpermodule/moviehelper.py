@@ -3068,24 +3068,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
             }
         )
     else:
-        pagebox_flex_message = FlexSendMessage(
-            alt_text='pagebox',
-            contents={
-                "type": "bubble",
-                "direction": "ltr",
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "僅一頁搜尋結果",
-                    "align": "center"
-                    }
-                ]
-                }
-            }
-        )
+        pagebox_flex_message = False
     movietheaterName_flex_message = FlexSendMessage(
         alt_text=movietheaterName,
         contents={
@@ -3321,7 +3304,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     }
                 ]
             })
-        for movietime in [i for i in content.select("li")][3:]:
+        for movietime in [i for i in content.select("li")][4:]:
             #now=time.strftime("%H:%M", time.localtime(time.time()+28800))
             if movietime.find("a") == None:
                 timeContents.append({
@@ -3443,24 +3426,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             }
         )
     else:
-        pagebox_flex_message = FlexSendMessage(
-            alt_text='pagebox',
-            contents={
-                "type": "bubble",
-                "direction": "ltr",
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "僅一頁搜尋結果",
-                    "align": "center"
-                    }
-                ]
-                }
-            }
-        )
+        pagebox_flex_message = False
 
     movieName = soup.select_one("h2 a").text
     movieNameCN = movieName[:movieName.find(" ")]

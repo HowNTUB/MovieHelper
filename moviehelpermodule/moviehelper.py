@@ -3310,26 +3310,29 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             print(movietime.text.replace("：",":")+"<-movie "+" now->"+time.strftime("%H:%M", time.localtime(time.time()+28800)))
             if len(movietime.text)>9:#有時候會怪怪的 搜尋到一大串時間
                 print("no")
-            elif movietime.find("a") == None:
+            elif movietime.find("a") != None:#可線上訂票(代表放映時間內)
+                print('http://www.atmovies.com.tw'+movietime.find("a")["href"])
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
                     "margin": "md",
-                    "contents": [
+                    "contents": [                        
                         {
-                        "type": "text",
-                        "text": movietime.text,
-                        "size": "sm",
-                        "align": "center",
-                        "color": "#C1C1C1"
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
+                            "uri": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
+                        },
+                        "color": "#000000"
                         },
                         {
                         "type": "separator",
-                        "margin": "sm"
+                        "margin": "md"
                         }
                     ]
                 })
-            elif movietime.text.replace("\n","").replace("\r","").replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)):
+            elif movietime.text.replace("\n","").replace("\r","").replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)):#不可線上訂票 但放映時間內
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -3350,25 +3353,22 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         }
                     ]
                 })
-            else: #放映時間之內
-                print('http://www.atmovies.com.tw'+movietime.find("a")["href"])
+            else:#超過放映時間
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
                     "margin": "md",
-                    "contents": [                        
+                    "contents": [
                         {
-                        "type": "button",
-                        "action": {
-                            "type": "uri",
-                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
-                            "uri": 'http://www.atmovies.com.tw'+movietime.find("a")["href"]
-                        },
-                        "color": "#000000"
+                        "type": "text",
+                        "text": movietime.text,
+                        "size": "sm",
+                        "align": "center",
+                        "color": "#C1C1C1"
                         },
                         {
                         "type": "separator",
-                        "margin": "md"
+                        "margin": "sm"
                         }
                     ]
                 })

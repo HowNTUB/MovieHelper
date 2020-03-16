@@ -28,7 +28,7 @@ def pagebox(soup):
             })
         # 回復
         pagebox_flex_message = FlexSendMessage(
-            alt_text='pagebox',
+            alt_text='頁碼',
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -81,7 +81,7 @@ def use_moviename_serch_movielist(movieNameOrURL, page):
     # --------------------movie list
     if soup.select_one(".release_movie_name > a") == None:
         movie_flex_message = FlexSendMessage(
-            alt_text='movielist',
+            alt_text= "找不到 "+movieNameOrURL+" 的相關電影",
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -231,7 +231,7 @@ def use_moviename_serch_movielist(movieNameOrURL, page):
             })
         # 回復
         movie_flex_message = FlexSendMessage(
-            alt_text='movielist',
+            alt_text='電影列表',
             contents={
                 "type": "carousel",
                 "contents": contents
@@ -258,7 +258,7 @@ def use_moviename_serch_article(movieName):
 
     if soup.select_one(".fotoinner img") == None:
         article_flex_message = FlexSendMessage(
-            alt_text='notfound',
+            alt_text="無找到 "+movieName+" 的相關文章",
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -344,7 +344,7 @@ def use_moviename_serch_article(movieName):
             })
 
         article_flex_message = FlexSendMessage(
-            alt_text='articlelist',
+            alt_text='文章列表',
             contents={
                 "type": "carousel",
                 "contents": articleContents
@@ -354,7 +354,7 @@ def use_moviename_serch_article(movieName):
 
 def show_movieInfo_message():
     movie_flex_message = FlexSendMessage(
-        alt_text='movieInfoSelect',
+        alt_text='選擇電影要查看的資訊',
         contents={
             "type": "carousel",
             "contents": [
@@ -507,7 +507,7 @@ def use_movieurl_get_movieinfo(url):
                 "color": "#000C3B"
             })
         info_flex_message = FlexSendMessage(
-            alt_text='movielist',
+            alt_text='電影資訊',
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -701,7 +701,7 @@ def use_movieurl_get_movieinfo(url):
         # --------------------story
         story = soup.select_one("#story").text
         story_flex_message = FlexSendMessage(
-            alt_text='actorlist',
+            alt_text='簡介',
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -834,7 +834,7 @@ def use_movieurl_get_movieinfo(url):
                 })
 
         actor_flex_message = FlexSendMessage(
-            alt_text='actorlist',
+            alt_text='演員列表',
             contents={
                 "type": "carousel",
                 "contents": actorContents
@@ -863,7 +863,7 @@ def use_movieurl_get_movieinfo(url):
             })
 
         movieStills_flex_message = FlexSendMessage(
-            alt_text='movieStillslist',
+            alt_text='電影海報',
             contents={
                 "type": "carousel",
                 "contents": movieStillsContent
@@ -918,7 +918,7 @@ def use_actorURL_get_actorIntorduction(url):
         })
 
     actor_flex_message = FlexSendMessage(
-        alt_text='actorlist',
+        alt_text='演員介紹',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -1036,7 +1036,7 @@ def use_actorURL_get_actorIntorduction(url):
     )
 
     introductionlist_flex_message = FlexSendMessage(
-        alt_text='introductionlist',
+        alt_text='演員簡介',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -1121,7 +1121,7 @@ def show_actor_intorduction(url):
             }
         })
     intorduction_flex_message = FlexSendMessage(
-        alt_text='actor intorduction',
+        alt_text='演員介紹',
         contents={
             "type": "carousel",
             "contents": contents[:10]
@@ -1149,7 +1149,7 @@ def use_actorURL_search_movielist(url):
     # --------------------movie list
     if soup.select_one(".release_movie_name > .gabtn") == None:
         movie_flex_message = FlexSendMessage(
-            alt_text='movielist',
+            alt_text="找不到的相關電影",
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -1323,7 +1323,7 @@ def use_actorURL_search_movielist(url):
             })
         # 回復
         movie_flex_message = FlexSendMessage(
-            alt_text='movielist',
+            alt_text='電影列表',
             contents={
                 "type": "carousel",
                 "contents": contents
@@ -1480,7 +1480,7 @@ def search_movie_thisweekAndIntheaters(url):
         })
     # 回復
     movie_flex_message = FlexSendMessage(
-        alt_text='movielist',
+        alt_text='電影列表',
         contents={
             "type": "carousel",
             "contents": contents
@@ -1544,7 +1544,7 @@ def search_movie_comingsoon(url):
                 })
 
     movietab_flex_message = FlexSendMessage(
-        alt_text='movielist',
+        alt_text='電影列表',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -1722,7 +1722,7 @@ def search_movie_comingsoon(url):
 
     # 回復
     movie_flex_message = FlexSendMessage(
-        alt_text='movielist',
+        alt_text='電影列表',
         contents={
             "type": "carousel",
             "contents": contents
@@ -1736,7 +1736,7 @@ def search_movie_comingsoon(url):
 
 def show_chart_message():
     chartSelect_flex_message = FlexSendMessage(
-        alt_text='chartSelect',
+        alt_text='選擇排行榜'',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -1952,7 +1952,7 @@ def search_movie_chart(url):
             }
         })
     movierank_flex_message = FlexSendMessage(
-        alt_text='chartlist',
+        alt_text='排行榜',
         contents={
             "type": "carousel",
             "contents": contents
@@ -2217,7 +2217,7 @@ def select_movie_type():
     21影集
     '''
     movieType_flex_message = FlexSendMessage(
-        alt_text='typelist',
+        alt_text='選擇電影類型',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -2679,7 +2679,7 @@ def search_movie_type(typeName, url):
         })
     # 回復
     movie_flex_message = FlexSendMessage(
-        alt_text='movielist',
+        alt_text='電影列表',
         contents={
             "type": "carousel",
             "contents": contents
@@ -2692,7 +2692,7 @@ def search_movie_type(typeName, url):
 
 def show_location_message():
     location_flex_message = TemplateSendMessage(
-        alt_text='Buttons template',
+        alt_text='請指定現在位置',
         template=ButtonsTemplate(
             title='附近電影院',
             text='點擊地圖的指定位置，我將幫您查詢附近的電影院。',
@@ -2873,7 +2873,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
             })
 
         movietheater_flex_message = FlexSendMessage(
-            alt_text='movietheater',
+            alt_text='電影院列表',
             contents={
                 "type": "carousel",
                 "contents": contents
@@ -3018,7 +3018,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         })
 
     movie_flex_message = FlexSendMessage(
-        alt_text='movielist',
+        alt_text='電影清單',
         contents={
             "type": "carousel",
             "contents": movieContents
@@ -3044,7 +3044,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 })
         # 回復
         pagebox_flex_message = FlexSendMessage(
-            alt_text='pagebox',
+            alt_text='頁碼',
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -3164,7 +3164,7 @@ def get_MovieMoment():
         })
     
     movieSelect_flex_message = FlexSendMessage(
-        alt_text='movieSelector',
+        alt_text='選擇想看的電影',
         contents={
             "type": "carousel",
             "contents": movieSelectContents
@@ -3183,7 +3183,7 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
     if movieName[0] == "★":
         movieName = movieName[1:]
     name_flex_message = FlexSendMessage(
-        alt_text='movieName',
+        alt_text='電影表',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -3256,7 +3256,7 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
                 }
             })
         area_flex_message = FlexSendMessage(
-            alt_text='areaSelect',
+            alt_text='選擇地區',
             contents={
                 "type": "carousel",
                 "contents": areaMessageContents
@@ -3264,7 +3264,7 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
         )
     except:
         area_flex_message = FlexSendMessage(
-            alt_text='areaSelect',
+            alt_text='沒有找到放映場次，可能已下檔。',
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -3421,7 +3421,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
         })
 
     movietheater_flex_message = FlexSendMessage(
-        alt_text='articlelist',
+        alt_text='上映電影院',
         contents={
             "type": "carousel",
             "contents": movietheaterContents
@@ -3447,7 +3447,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 })
         # 回復
         pagebox_flex_message = FlexSendMessage(
-            alt_text='pagebox',
+            alt_text='頁碼',
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -3480,7 +3480,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     movieRuntime = movieDetail[movieDetail.find("片長：")+3:movieDetail.find("分")+1]
     movieReleaseTime = movieDetail[movieDetail.find("上映日期：")+5:movieDetail.find("廳數")+-1]
     movieInfo_flex_message = FlexSendMessage(
-        alt_text='pagebox',
+        alt_text='頁碼',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -3566,7 +3566,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
     )
     areaDict = {"/a01/":"基隆","/a02/":"台北","/a03/":"桃園","/a35/":"新竹","/a37/":"苗栗","/a04/":"台中","/a47/":"彰化","/a45/":"雲林","/a49/":"南投","/a05/":"嘉義","/a06/":"台南","/a07/":"高雄","/a39/":"宜蘭","/a38/":"花蓮","/a89/":"台東","/a87/":"屏東","/a69/":"澎湖","/a68/":"金門"}
     nowTime_flex_message = FlexSendMessage(
-        alt_text='pagebox',
+        alt_text='目前時間',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -3628,7 +3628,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
 
 def show_movieHelper():
     moviehelper_flex_message = FlexSendMessage(
-        alt_text='movieHelper',
+        alt_text='電影小幫手',
         contents={
             "type": "bubble",
             "direction": "ltr",
@@ -3846,7 +3846,7 @@ def show_movieHelper():
     return(moviehelper_flex_message)
 def workTeam():
     workTeam_flex_message = FlexSendMessage(
-        alt_text='movielist',
+        alt_text='製作團隊',
         contents={
             "type": "bubble",
             "direction": "ltr",

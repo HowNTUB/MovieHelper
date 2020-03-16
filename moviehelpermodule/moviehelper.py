@@ -3304,9 +3304,11 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     }
                 ]
             })
-        for movietime in [i for i in content.select("li")][4:]:
+        for movietime in [i for i in content.select("li")][2:]:
             #now=time.strftime("%H:%M", time.localtime(time.time()+28800))
-            if movietime.find("a") == None:
+            if len(movietime.text)>10:
+                print("no")
+            elif movietime.find("a") == None:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

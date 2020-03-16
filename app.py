@@ -113,6 +113,9 @@ def handle_postback(event):
         page = userpostback[userpostback.find(":")+1:]
         theaterName, movielist, page = use_movietheatherName_search_movie(movietheaterName, page)
         line_bot_api.reply_message(event.reply_token, [theaterName, movielist, page])
+    
+    if userpostback == '此無提供線上訂票':
+        line_bot_api.reply_message(event.reply_token("此無提供線上訂票"))
 # ---------------------------------------------------------------
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):

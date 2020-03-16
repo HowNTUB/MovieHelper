@@ -3306,7 +3306,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
             })
         for movietime in [i for i in content.select("li")][2:]:
             #now=time.strftime("%H:%M", time.localtime(time.time()+28800))
-            if len(movietime.text)>10:
+            if len(movietime.text)>9:#有時候會怪怪的 搜尋到一大串時間
                 print("no")
             elif movietime.find("a") == None:
                 timeContents.append({
@@ -3324,6 +3324,26 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         {
                         "type": "separator",
                         "margin": "sm"
+                        }
+                    ]
+                })
+            elif movietime.text > time.strftime("%H:%M", time.localtime(time.time()+28800)):
+                timeContents.append({
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "contents": [                        
+                        {
+                        "type": "button",
+                        "color": "#000000",
+                        "action": {
+                            "type": "postback",
+                            "data": "此無提供線上訂票"
+                        }
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "md"
                         }
                     ]
                 })

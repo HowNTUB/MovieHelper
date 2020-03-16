@@ -2740,7 +2740,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
     movietheaterAddress = []
     movietheaterDistance = []
     for data in nearbyMovietheater["results"]:
-        if data["name"] not in "股份有限公司":
+        if data["name"].find("股份有限公司") == -1:
             movietheaterName.append(data["name"])
             movietheaterLat.append(data["geometry"]["location"]["lat"])
             movietheaterLng.append(data["geometry"]["location"]["lng"])

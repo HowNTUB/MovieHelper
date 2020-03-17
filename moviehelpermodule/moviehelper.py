@@ -3120,7 +3120,8 @@ def get_MovieMoment():
         movieURL.append(option["value"])
         movieID.append(option["value"][33:-1])
 
-    for page in range(int(len(movieName)/10)+1):
+    print(len(movieName))
+    for page in range(int(len(movieName)/10)):
         movieNameContents = []
         for index in range(int(page)*10,int(page+1)*10):
             movieNameContents.append({

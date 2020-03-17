@@ -3128,7 +3128,7 @@ def get_MovieMoment():
     movieSelectContents = []
     for option in movieOption:
         if option.text[0] == "★":
-            movieName.append("⭐️"+option.text[1:])
+            movieName.append("🔥"+option.text[1:])
         else:
             movieName.append(option.text)
         movieURL.append(option["value"])
@@ -3198,7 +3198,7 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
     respData = str(resp.read().decode('utf-8'))  # 將所得的資料解碼
     soup = BeautifulSoup(respData)
     
-    if movieName[0] == "★":
+    if movieName[0] == "🔥":
         movieName = movieName[1:]
     name_flex_message = FlexSendMessage(
         alt_text='電影表',
@@ -3707,25 +3707,6 @@ def show_movieHelper():
                 ]
                 },
                 {
-                "type": "box",
-                "layout": "horizontal",
-                "flex": 0,
-                "margin": "md",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "🗺附近影院－",
-                    "flex": 1,
-                    "align": "end"
-                    },
-                    {
-                    "type": "text",
-                    "text": "傳送你的位置資訊來查詢你附近的電影院！（來自google map）",
-                    "wrap": True
-                    }
-                ]
-                },
-                {
                 "type": "text",
                 "text": "圖文選單：",
                 "size": "lg"
@@ -3792,13 +3773,13 @@ def show_movieHelper():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "📽近期上映－",
+                    "text": "📽近期放映－",
                     "flex": 1,
                     "align": "end"
                     },
                     {
                     "type": "text",
-                    "text": "查詢未來數週到數個月將發行的電影。",
+                    "text": "查詢已上映、未來數週到數個月將上映的電影。",
                     "wrap": True
                     }
                 ]
@@ -3810,13 +3791,13 @@ def show_movieHelper():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "👓上映中－",
+                    "text": "🌎地球－",
                     "flex": 1,
                     "align": "end"
                     },
                     {
                     "type": "text",
-                    "text": "查詢現在熱映的電影！",
+                    "text": "傳送現在位置來查詢附近的電影院。",
                     "wrap": True
                     }
                 ]
@@ -3828,25 +3809,7 @@ def show_movieHelper():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "🎞本週新片－",
-                    "flex": 1,
-                    "align": "end"
-                    },
-                    {
-                    "type": "text",
-                    "text": "可以查到將於這週上映的最新電影！",
-                    "wrap": True
-                    }
-                ]
-                },
-                {
-                "type": "box",
-                "layout": "horizontal",
-                "margin": "md",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "電影Ｍ幫手－",
+                    "text": "電影小幫手－",
                     "flex": 1,
                     "align": "end"
                     },

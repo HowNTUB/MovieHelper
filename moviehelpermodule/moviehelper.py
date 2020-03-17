@@ -463,12 +463,12 @@ def use_movieurl_get_movieinfo(url):
         )
         # --------------------info
         movieNameCN = soup.select_one("h1").text
-        movieNameEN = []
+        
         for i in soup.select(".movie_intro_info_r h3"):
             if i.text.strip() == '':
-                movieNameEN.append("-")
+                movieNameEN = "-"
             else:
-                movieNameEN.append(i.text.strip())
+                movieNameEN = i.text.strip()
         movieTag = [((i.text.split())[0])+'　'
                     for i in soup.select(".level_name .gabtn")]
         movieReleaseTime = soup.select_one(".level_name_box+ span").text[5:]

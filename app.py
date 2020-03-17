@@ -123,7 +123,7 @@ def handle_message(event):
     print(event)
     if userMessage == '製作團隊':
         line_bot_api.reply_message(event.reply_token,workTeam())
-    elif userMessage == '電影資訊':
+    elif userMessage == '近期放映':
         line_bot_api.reply_message(event.reply_token,show_movieInfo_message())
     elif userMessage == '電影小幫手':
         line_bot_api.reply_message(event.reply_token,show_movieHelper())
@@ -151,7 +151,7 @@ def handle_message(event):
     elif userMessage == '網友滿意榜30':
         movierank, data = search_movie_chartNetizens('https://movies.yahoo.com.tw/chart.html?cate=rating')
         line_bot_api.reply_message(event.reply_token, [movierank])
-    elif userMessage == '近期放映':
+    elif userMessage == '電影類型':
         line_bot_api.reply_message(event.reply_token, select_movie_type())
     elif userMessage == '附近電影院':
         line_bot_api.reply_message(event.reply_token, show_location_message())

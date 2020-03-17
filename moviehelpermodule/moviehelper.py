@@ -1051,12 +1051,12 @@ def use_actorURL_get_actorIntorduction(url):
     if "導演" not in actorTitle:
         directorColor = "#4B6174"
     else:
-        directorColor = ""
+        directorColor = "#42659A"
 
     if "演員" not in actorTitle:
         actorColor = "#4B6174"
     else:
-        actorColor = ""
+        actorColor = "#42659A"
 
     introductionlist_flex_message = FlexSendMessage(
         alt_text='演員簡介',
@@ -1172,7 +1172,7 @@ def use_actorURL_search_movielist(url):
     # movieDetailUrl 詳細資訊網址
 
     # --------------------movie list
-    if soup.select_one(".release_movie_name > .gabtn") == None:
+    if soup.select_one(".release_info") == None:
         movie_flex_message = FlexSendMessage(
             alt_text="找不到的相關電影",
             contents={

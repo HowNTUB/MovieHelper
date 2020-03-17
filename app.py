@@ -151,11 +151,11 @@ def handle_message(event):
     elif userMessage == '網友滿意榜30':
         movierank, data = search_movie_chartNetizens('https://movies.yahoo.com.tw/chart.html?cate=rating')
         line_bot_api.reply_message(event.reply_token, [movierank])
-    elif userMessage == '類型找電影':
+    elif userMessage == '近期放映':
         line_bot_api.reply_message(event.reply_token, select_movie_type())
     elif userMessage == '附近電影院':
         line_bot_api.reply_message(event.reply_token, show_location_message())
-    elif userMessage == '電影時刻':
+    elif userMessage == '放映時刻':
         movielist = get_MovieMoment()
         line_bot_api.reply_message(event.reply_token, movielist)
     elif userMessage[:2] == '新聞':

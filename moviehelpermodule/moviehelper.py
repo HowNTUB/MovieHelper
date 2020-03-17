@@ -1048,7 +1048,25 @@ def use_actorURL_get_actorIntorduction(url):
             }
         }
     )
-
+    portfolioSelectButton = []
+    if actorTitle in "導演":
+        portfolioSelectButton.append({
+        "type": "button",
+        "action": {
+            "type": "postback",
+            "label": "導演作品",
+            "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=1'
+        }
+        })
+    if actorTitle in "演員":
+        portfolioSelectButton.append({
+        "type": "button",
+        "action": {
+            "type": "postback",
+            "label": "演員作品",
+            "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=2'
+        }
+        })
     introductionlist_flex_message = FlexSendMessage(
         alt_text='演員簡介',
         contents={
@@ -1069,22 +1087,7 @@ def use_actorURL_get_actorIntorduction(url):
                 {
                 "type": "separator"
                 },
-                {
-                "type": "button",
-                "action": {
-                    "type": "postback",
-                    "label": "導演作品",
-                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=1'
-                }
-                },
-                {
-                "type": "button",
-                "action": {
-                    "type": "postback",
-                    "label": "演員作品",
-                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=2'
-                }
-                },
+                portfolioSelectButton,
                 {
                 "type": "separator"
                 },

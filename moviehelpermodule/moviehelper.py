@@ -1048,27 +1048,16 @@ def use_actorURL_get_actorIntorduction(url):
             }
         }
     )
-    portfolioSelectButton = []
-    print("導演" in actorTitle)
-    print("演員" in actorTitle)
-    if "導演" in actorTitle:
-        portfolioSelectButton.append({
-        "type": "button",
-        "action": {
-            "type": "postback",
-            "label": "導演作品",
-            "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=1'
-        }
-        })
-    if "演員" in actorTitle:
-        portfolioSelectButton.append({
-        "type": "button",
-        "action": {
-            "type": "postback",
-            "label": "演員作品",
-            "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=2'
-        }
-        })
+    if "導演" not in actorTitle:
+        directorColor = "#4B6174"
+    else:
+        directorColor = "##000000"
+
+    if "演員" not in actorTitle:
+        actorColor = "#4B6174"
+    else:
+        actorColor = "##000000"
+
     introductionlist_flex_message = FlexSendMessage(
         alt_text='演員簡介',
         contents={
@@ -1089,7 +1078,24 @@ def use_actorURL_get_actorIntorduction(url):
                 {
                 "type": "separator"
                 },
-                [portfolioSelectButton],
+                {
+                "type": "button",
+                "action": {
+                    "type": "postback",
+                    "label": "導演作品",
+                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=1'
+                },
+                "color": directorColor
+                },
+                {
+                "type": "button",
+                "action": {
+                    "type": "postback",
+                    "label": "演員作品",
+                    "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=2'
+                },
+                "color": actorColor
+                },
                 {
                 "type": "separator"
                 },

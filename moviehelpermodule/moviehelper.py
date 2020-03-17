@@ -538,7 +538,7 @@ def use_movieurl_get_movieinfo(url):
                         },
                         {
                         "type": "separator",
-                        "margin": "xl",
+                        "margin": "sm",
                         "color": "#4B6174"
                         }
                     ]

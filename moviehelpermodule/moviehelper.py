@@ -1054,12 +1054,12 @@ def use_actorURL_get_actorIntorduction(url):
         }
     )
     if "導演" not in actorTitle:
-        directorColor = "#4B6174"
+        directorColor = "#D6D6D6"
     else:
         directorColor = "#42659A"
 
     if "演員" not in actorTitle:
-        actorColor = "#4B6174"
+        actorColor = "#D6D6D6"
     else:
         actorColor = "#42659A"
 

@@ -3113,11 +3113,14 @@ def get_MovieMoment():
     movieID = []
     movieSelectContents = []
     for option in movieOption:
-        movieName.append(option.text)
+        if option.text[0] == "★":
+            movieName.append("⭐️"+option.text[1:])
+        else:
+            movieName.append(option.text)
         movieURL.append(option["value"])
         movieID.append(option["value"][33:-1])
 
-    for page in range(len(movieName)/10)):
+    for page in range(len(movieName)/10):
         movieNameContents = []
         for index in range(int(page)*10,int(page+1)*10):
             movieNameContents.append({

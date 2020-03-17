@@ -535,6 +535,11 @@ def use_movieurl_get_movieinfo(url):
                             "size": "xl",
                             "align": "start",
                             "weight": "bold"
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "xl",
+                        "color": "#4B6174"
                         }
                     ]
                 },

@@ -1348,7 +1348,7 @@ def search_movie_thisweekAndIntheaters(url):
     movieNameCN = [i.text.strip() for i in soup.select(".release_movie_name > .gabtn")]
     movieNameEN = []
     for i in soup.select(".en .gabtn"):
-        if i.text.strip() == '':
+        if i.text.strip() == None:
             movieNameEN.append("-")
         else:
             movieNameEN.append(i.text.strip())

@@ -3595,7 +3595,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 {
                 "type": "text",
                 "text": "查詢地點：",
-                "align": "left",
+                "align": "start",
                 "weight": "bold"
                 },
                 {
@@ -3617,7 +3617,7 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                         {
                         "type": "text",
                         "text": "現在時間：",
-                        "align": "left",
+                        "align": "start",
                         "weight": "bold"
                         },
                         {

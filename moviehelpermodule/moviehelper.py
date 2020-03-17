@@ -1089,7 +1089,7 @@ def use_actorURL_get_actorIntorduction(url):
                 {
                 "type": "separator"
                 },
-                portfolioSelectButton,
+                [portfolioSelectButton],
                 {
                 "type": "separator"
                 },

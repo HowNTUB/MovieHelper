@@ -54,7 +54,7 @@ def handle_postback(event):
         moviePosterContant, infoContant, storyContant, actorContant, stillsContant = use_movieurl_get_movieinfo(
             userpostback)
         line_bot_api.reply_message(
-            event.reply_token, [moviePosterContant, infoContant, storyContant, actorContant, stillsContant])
+            event.reply_token, [ infoContant, storyContant, actorContant, stillsContant])
     #演員詳細資料
     if userpostback[:38] == 'https://movies.yahoo.com.tw/name_main/':
         actor, button = use_actorURL_get_actorIntorduction(userpostback)

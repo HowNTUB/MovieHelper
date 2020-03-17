@@ -1049,6 +1049,8 @@ def use_actorURL_get_actorIntorduction(url):
         }
     )
     portfolioSelectButton = []
+    print("導演" in actorTitle)
+    print("演員" in actorTitle)
     if "導演" in actorTitle:
         portfolioSelectButton.append({
         "type": "button",

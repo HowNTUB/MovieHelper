@@ -1049,7 +1049,7 @@ def use_actorURL_get_actorIntorduction(url):
         }
     )
     portfolioSelectButton = []
-    if actorTitle in "導演":
+    if "導演" in actorTitle:
         portfolioSelectButton.append({
         "type": "button",
         "action": {
@@ -1058,7 +1058,7 @@ def use_actorURL_get_actorIntorduction(url):
             "data": 'https://movies.yahoo.com.tw/name_movies/'+url[url.find('-',-10)+1:]+'?type=1'
         }
         })
-    if actorTitle in "演員":
+    if "演員" in actorTitle:
         portfolioSelectButton.append({
         "type": "button",
         "action": {

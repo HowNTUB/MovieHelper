@@ -1051,12 +1051,12 @@ def use_actorURL_get_actorIntorduction(url):
     if "導演" not in actorTitle:
         directorColor = "#4B6174"
     else:
-        directorColor = "##000000"
+        directorColor = "#000000"
 
     if "演員" not in actorTitle:
         actorColor = "#4B6174"
     else:
-        actorColor = "##000000"
+        actorColor = "#000000"
 
     introductionlist_flex_message = FlexSendMessage(
         alt_text='演員簡介',

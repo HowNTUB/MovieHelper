@@ -3957,7 +3957,11 @@ def workTeam():
                     {
                     "type": "text",
                     "text": "Yahoo電影",
-                    "align": "start"
+                    "align": "start",
+                    "action": {
+                        "type": "uri",
+                        "uri": "https://movies.yahoo.com.tw/"
+                    }
                     }
                 ]
                 },
@@ -3972,7 +3976,11 @@ def workTeam():
                     {
                     "type": "text",
                     "text": "開眼電影網",
-                    "align": "start"
+                    "align": "start",
+                    "action": {
+                        "type": "uri",
+                        "uri": "http://www.atmovies.com.tw/home/"
+                    }
                     }
                 ]
                 }

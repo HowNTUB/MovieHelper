@@ -1736,7 +1736,7 @@ def search_movie_comingsoon(url):
 
 def show_chart_message():
     chartSelect_flex_message = FlexSendMessage(
-        alt_text='選擇排行榜'',
+        alt_text='選擇排行榜',
         contents={
             "type": "bubble",
             "direction": "ltr",

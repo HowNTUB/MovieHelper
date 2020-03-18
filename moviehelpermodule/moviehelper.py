@@ -2812,9 +2812,9 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 "hero": {
                 "type": "image",
                 "url": movietheaterPhotos[index],
-                "size": "full",
-                "aspectRatio": "1:1",
-                "aspectMode": "fit"
+                "size": "xxl",
+                "aspectRatio": "1.91:1",
+                "aspectMode": "cover"
                 },
                 "body": {
                 "type": "box",

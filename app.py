@@ -168,8 +168,8 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
 
 
-@handler.add(MessageEvent, message=FollowEvent)
-def handle_follow_message(event):
+@handler.add(FollowEvent)
+def handle_follow(event):
     line_bot_api.reply_message(event.reply_token,show_movieHelper())
 
 

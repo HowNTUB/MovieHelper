@@ -2245,20 +2245,7 @@ def select_movie_type():
         alt_text='選擇電影類型',
         contents={
             "type": "bubble",
-            "direction": "ltr",
-            "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": "類型找電影",
-                "size": "xl",
-                "align": "start",
-                "weight": "bold"
-                }
-            ]
-            },
+            "direction": "ltr",,
             "body": {
             "type": "box",
             "layout": "vertical",
@@ -2268,6 +2255,18 @@ def select_movie_type():
                 "layout": "horizontal",
                 "margin": "lg",
                 "contents": [
+                    {
+                    "type": "text",
+                    "text": "類型找電影",
+                    "size": "xl",
+                    "align": "start",
+                    "weight": "bold"
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "md",
+                    "color": "#4B6174"
+                    },
                     {
                     "type": "text",
                     "text": "動作",

@@ -544,6 +544,7 @@ def use_movieurl_get_movieinfo(url):
                         {
                             "type": "text",
                             "text": movieNameCN,
+                            "margin": "md",
                             "size": "lg",
                             "align": "center",
                             "weight": "bold",

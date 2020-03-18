@@ -167,6 +167,12 @@ def handle_message(event):
         else:
             line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
 
+
+@handler.add(MessageEvent, message=FollowEvent)
+def handle_message(event):
+    line_bot_api.reply_message(event.reply_token,show_movieHelper())
+
+
 @handler.add(MessageEvent, message=LocationMessage)
 def handle_location_message(event):
     print(event.message.address)

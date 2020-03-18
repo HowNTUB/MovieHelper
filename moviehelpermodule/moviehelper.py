@@ -540,11 +540,7 @@ def use_movieurl_get_movieinfo(url):
                         "type": "separator",
                         "margin": "md",
                         "color": "#4B6174"
-                        }
-                    ],
-                    "type": "box",
-                    "layout": "vertical",
-                    "contents": [
+                        },
                         {
                             "type": "text",
                             "text": movieNameCN,

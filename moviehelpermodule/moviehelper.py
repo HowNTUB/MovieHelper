@@ -2944,12 +2944,13 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         cnt=0
         
         for movietime in movieInfo.select("ul ul li")[:-1]:
+            cnt+=1
             try:
                 href = movietime.select_one("a")["href"]
             except:
                 href = None
 
-            if href != None:
+            if href != None and cnt != 1:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

@@ -2814,7 +2814,7 @@ def use_location_search_movietheater(userAddress, userLat, userLng):
                 "url": movietheaterPhotos[index],
                 "size": "xxl",
                 "aspectRatio": "1.91:1",
-                "aspectMode": "cover"
+                "aspectMode": "fit"
                 },
                 "body": {
                 "type": "box",

@@ -2942,77 +2942,77 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         print(movieName)
         timeContents = []
         cnt=0
-        for movietime in movieInfo.select("ul ul li")[:-1]:
-            if cnt==0: #電影連結
-                print("1")
-            elif cnt>=2:
-                try:
-                    href = movietime.select_one("a")["href"]
-                except:
-                    href = None
-                if (cnt == 1 or cnt == 2) and (movietime.text[-1] != "0" or movietime.text[-1] != "5"):
-                    print("title"+movietime.text)
-                    timeContents.append({
-                        "type": "box",
-                        "layout": "vertical",
-                        "margin": "md",
-                        "contents": [
-                            {
-                            "type": "text",
-                            "text": movietime.text,
-                            "size": "lg",
-                            "align": "center",
-                            "weight": "bold"
-                            },
-                            {
-                            "type": "separator",
-                            "margin": "md"
-                            }
-                        ]
-                    })
-                elif href == None:
-                    print("notnow"+movietime.text)
-                    timeContents.append({
-                        "type": "box",
-                        "layout": "vertical",
-                        "margin": "md",
-                        "contents": [
-                            {
-                            "type": "text",
-                            "text": movietime.text,
-                            "size": "sm",
-                            "align": "center",
-                            "color": "#C1C1C1"
-                            },
-                            {
-                            "type": "separator",
-                            "margin": "sm"
-                            }
-                        ]
-                    })
-                else:
-                    print("now"+movietime.text)
-                    timeContents.append({
-                        "type": "box",
-                        "layout": "vertical",
-                        "margin": "md",
-                        "contents": [                        
-                            {
-                            "type": "button",
-                            "action": {
-                                "type": "uri",
-                                "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
-                                "uri": 'http://www.atmovies.com.tw'+href
-                            },
-                            "color": "#000000"
-                            },
-                            {
-                            "type": "separator",
-                            "margin": "md"
-                            }
-                        ]
-                    })
-            cnt+=1
+        
+        for movietime in movieInfo.select("ul ul li")[1:-1]:
+            try:
+                href = movietime.select_one("a")["href"]
+            except:
+                href = None
+
+            if href != None:
+                timeContents.append({
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "contents": [                        
+                        {
+                        "type": "button",
+                        "action": {
+                            "type": "uri",
+                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
+                            "uri": 'http://www.atmovies.com.tw'+href
+                        },
+                        "color": "#000000"
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "md"
+                        }
+                    ]
+                })
+            elif movietime.text.replace("\n","").replace("\r","").replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)):
+                timeContents.append({
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "contents": [                        
+                        {
+                        "type": "button",
+                        "action": {
+                            "type": "postback",
+                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
+                            "data": "此無提供線上訂票"
+                        },
+                        "color": "#000000"
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "md"
+                        }
+                    ]
+                })
+            
+            else:
+                print("title"+movietime.text)
+                timeContents.append({
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": movietime.text,
+                        "size": "lg",
+                        "align": "center",
+                        "weight": "bold"
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "md"
+                        }
+                    ]
+                })
+            
         movieContents.append({
             "type": "bubble",
             "direction": "ltr",

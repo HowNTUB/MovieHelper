@@ -2991,7 +2991,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif movietime.text == "0" or movietime.text == "5":
+            elif movietime.text[-1] == "0" or movietime.text[-1] == "5":
                 print("title"+movietime.text)
                 timeContents.append({
                     "type": "box",

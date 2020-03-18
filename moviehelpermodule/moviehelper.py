@@ -2959,7 +2959,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         "type": "button",
                         "action": {
                             "type": "uri",
-                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
+                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text.replace("\n","").replace("\r","")[:2]), int(movietime.text.replace("\n","").replace("\r","")[3:5])),
                             "uri": 'http://www.atmovies.com.tw'+href
                         },
                         "color": "#000000"
@@ -2975,7 +2975,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                     "type": "box",
                     "layout": "vertical",
                     "margin": "md",
-                    "contents": [                        
+                    "contents": [
                         {
                         "type": "button",
                         "action": {
@@ -3011,7 +3011,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif movietime.text[-1] != "分":
+            else:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

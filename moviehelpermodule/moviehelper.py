@@ -2943,7 +2943,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         timeContents = []
         cnt=0
         
-        for movietime in movieInfo.select("ul ul li")[1:-1]:
+        for movietime in movieInfo.select("ul ul li")[:-1]:
             try:
                 href = movietime.select_one("a")["href"]
             except:
@@ -2991,9 +2991,27 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            
-            else:
+            elif movietime.text == "0" or movietime.text == "5":
                 print("title"+movietime.text)
+                timeContents.append({
+                    "type": "box",
+                    "layout": "vertical",
+                    "margin": "md",
+                    "contents": [
+                        {
+                        "type": "text",
+                        "text": movietime.text,
+                        "size": "sm",
+                        "align": "center",
+                        "color": "#C1C1C1"
+                        },
+                        {
+                        "type": "separator",
+                        "margin": "sm"
+                        }
+                    ]
+                })
+            elif movietime.text[-1] != "分":
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -3012,7 +3030,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            
+
         movieContents.append({
             "type": "bubble",
             "direction": "ltr",

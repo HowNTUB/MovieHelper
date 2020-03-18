@@ -3,7 +3,7 @@ import urllib
 from bs4 import BeautifulSoup
 from linebot.models import *
 from moviehelpermodule.calculate import getDistance, getNowTimeEmoji, useTimeGetTimeEmoji
-
+import time
 
 def pagebox(soup):
     # --------------------pagebox
@@ -3315,7 +3315,6 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
     return(name_flex_message, area_flex_message)
 
 def use_movieurl_get_movieMoment(movieID, inAreaID, page):
-    import time
     url = 'http://www.atmovies.com.tw/showtime/'+movieID+inAreaID
     headers = {}
     headers['User-Agent'] = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1312.27 Safari/537.17'

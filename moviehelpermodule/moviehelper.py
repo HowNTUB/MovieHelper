@@ -525,7 +525,7 @@ def use_movieurl_get_movieinfo(url):
             contents={
                 "type": "bubble",
                 "direction": "ltr",
-                "header": {
+                "body": {
                     "type": "box",
                     "layout": "vertical",
                     "contents": [
@@ -538,12 +538,10 @@ def use_movieurl_get_movieinfo(url):
                         },
                         {
                         "type": "separator",
-                        "margin": "sm",
+                        "margin": "md",
                         "color": "#4B6174"
                         }
-                    ]
-                },
-                "body": {
+                    ],
                     "type": "box",
                     "layout": "vertical",
                     "contents": [

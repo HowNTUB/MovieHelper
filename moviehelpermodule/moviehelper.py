@@ -2245,7 +2245,7 @@ def select_movie_type():
         alt_text='選擇電影類型',
         contents={
             "type": "bubble",
-            "direction": "ltr",,
+            "direction": "ltr",
             "body": {
             "type": "box",
             "layout": "vertical",

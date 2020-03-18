@@ -2251,22 +2251,22 @@ def select_movie_type():
             "layout": "vertical",
             "contents": [
                 {
+                "type": "text",
+                "text": "類型找電影",
+                "size": "xl",
+                "align": "start",
+                "weight": "bold"
+                },
+                {
+                "type": "separator",
+                "margin": "md",
+                "color": "#4B6174"
+                },
+                {
                 "type": "box",
                 "layout": "horizontal",
                 "margin": "lg",
                 "contents": [
-                    {
-                    "type": "text",
-                    "text": "類型找電影",
-                    "size": "xl",
-                    "align": "start",
-                    "weight": "bold"
-                    },
-                    {
-                    "type": "separator",
-                    "margin": "md",
-                    "color": "#4B6174"
-                    },
                     {
                     "type": "text",
                     "text": "動作",

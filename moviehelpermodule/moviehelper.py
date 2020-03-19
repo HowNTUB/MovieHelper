@@ -1376,7 +1376,7 @@ def search_movie_thisweekAndIntheaters(url):
         if i.text.strip() == '':
             movieNameEN.append("-")
         else:
-            movieNameEN.append("i.text.strip()")
+            movieNameEN.append(i.text.strip())
     movieExpectation = []
     for info in movieInfoText:
         movieExpectation.append('未上映') if info.find(

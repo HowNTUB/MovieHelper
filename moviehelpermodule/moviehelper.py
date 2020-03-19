@@ -1392,13 +1392,14 @@ def search_movie_thisweekAndIntheaters(url):
     movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
     movieDetailUrl = [i["href"]
                         for i in soup.select(".release_movie_name > .gabtn")]
-    print(movieNameCN)
-    print(movieNameEN)
-    print(movieExpectation)
-    print(movieSatisfactoryDegree)
-    print(moviePoster)
-    print(movieReleaseTime)
-    print(movieDetailUrl)
+    
+    print(len(movieNameCN))
+    print(len(movieNameEN))
+    print(len(movieExpectation))
+    print(len(movieSatisfactoryDegree))
+    print(len(moviePoster))
+    print(len(movieReleaseTime))
+    print(len(movieDetailUrl))
     # --------------------
     contents = []
     for index in range(len(movieNameCN)):

@@ -7,6 +7,10 @@ import time
 
 def pagebox(soup):
     # --------------------pagebox
+    print("page")
+    print(len(soup.select(".page_numbox ul")))
+    print(soup.select_one(".page_numbox ul"))
+    print("page")
     if len(soup.select(".page_numbox ul")) == 0 or soup.select_one(".page_numbox ul") == None:
         pagebox_flex_message = False
     else:

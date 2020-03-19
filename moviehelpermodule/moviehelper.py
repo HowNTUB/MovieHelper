@@ -1387,7 +1387,7 @@ def search_movie_thisweekAndIntheaters(url):
             movieSatisfactoryDegree.append(
                 (html.select("span")[1])["data-num"])
         except:
-            movieSatisfactoryDegree.append("無")
+            movieSatisfactoryDegree.append("0%")
     moviePoster = [i["src"] for i in soup.select("#content_l img")]
     movieReleaseTime = [(i.text)[7:] for i in soup.select(".release_movie_time")]
     movieDetailUrl = [i["href"]

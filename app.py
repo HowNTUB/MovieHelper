@@ -133,8 +133,10 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])
     elif userMessage == '本週新片':
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_thisweek.html?page=1')
-        print(pagebox)
-        line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
+        if pagebox:
+            line_bot_api.reply_message(event.reply_token, movielist)
+        else:
+            line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     elif userMessage == '上映中':
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_intheaters.html?page=1')
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])

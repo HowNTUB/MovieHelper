@@ -134,7 +134,7 @@ def handle_message(event):
     elif userMessage == '本週新片':
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_thisweek.html?page=1')
         print(pagebox)
-        if pagebox:
+        if pagebox == False:
             print("false")
             line_bot_api.reply_message(event.reply_token, movielist)
         else:

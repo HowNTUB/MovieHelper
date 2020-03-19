@@ -48,6 +48,7 @@ def handle_postback(event):
     #電影清單
     if userpostback[:71] == 'https://movies.yahoo.com.tw/moviesearch_result.html?type=movie&keyword=':
         movielist, pagebox = use_moviename_serch_movielist(userpostback, '')
+        print(pagebox)
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     #電影詳細資料
     if userpostback[:43] == 'https://movies.yahoo.com.tw/movieinfo_main/':
@@ -132,6 +133,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])
     elif userMessage == '本週新片':
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_thisweek.html?page=1')
+        print(pagebox)
         line_bot_api.reply_message(event.reply_token, [movielist, pagebox])
     elif userMessage == '上映中':
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_intheaters.html?page=1')

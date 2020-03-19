@@ -1376,7 +1376,7 @@ def search_movie_thisweekAndIntheaters(url):
         if i.text.strip() == '':
             movieNameEN.append("-")
         else:
-            movieNameEN.append(i.text.strip())
+            movieNameEN.append("i.text.strip()")
     movieExpectation = []
     for info in movieInfoText:
         movieExpectation.append('未上映') if info.find(
@@ -1393,13 +1393,13 @@ def search_movie_thisweekAndIntheaters(url):
     movieDetailUrl = [i["href"]
                         for i in soup.select(".release_movie_name > .gabtn")]
     
-    print(len(movieNameCN))
-    print(len(movieNameEN))
-    print(len(movieExpectation))
-    print(len(movieSatisfactoryDegree))
-    print(len(moviePoster))
-    print(len(movieReleaseTime))
-    print(len(movieDetailUrl))
+    print(movieNameCN)
+    print(movieNameEN)
+    print(movieExpectation)
+    print(movieSatisfactoryDegree)
+    print(moviePoster)
+    print(movieReleaseTime)
+    print(movieDetailUrl)
     # --------------------
     contents = []
     for index in range(len(movieNameCN)):

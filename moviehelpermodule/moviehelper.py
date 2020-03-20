@@ -2948,10 +2948,10 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 href = movietime.select_one("a")["href"]
             except:
                 href = None
-            print(timestr)
+            print(timestr[-1])
             if len(timestr) >10:
                 print("No")
-            elif href != None:
+            elif href != None and (timestr[-1] == "0" or timestr[-1] == "5"):
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -2993,7 +2993,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif timestr in ["0","5"]:
+            elif  timestr[-1] == "0" or timestr[-1] == "5":
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

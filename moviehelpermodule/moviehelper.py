@@ -2939,19 +2939,17 @@ def use_movietheatherName_search_movie(movietheaterName, page):
     movieContents = []
     for movieInfo in movieList[(int(page)-1)*10:int(page)*10]:
         movieName = movieInfo.select_one("a").text
-        print(movieInfo)
         timeContents = []
         cnt=0
         
         for movietime in movieInfo.select("ul + ul li")[:-1]:
             timestr = movietime.text.replace("\n","").replace("\r","")
-            print(timestr)
             try:
                 href = movietime.select_one("a")["href"]
             except:
                 href = None
             print(timestr)
-            if href != None and timestr[-1] in ["0", "5"]:
+            if href != None:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

@@ -2948,7 +2948,9 @@ def use_movietheatherName_search_movie(movietheaterName, page):
             except:
                 href = None
             if len(movietime.text) >10:
-                print("No")
+                show = False
+            elif movieName == movietime.text:
+                show = False
             elif href != None and (movietime.text[-1] == "0" or movietime.text[-1] == "5"):
                 timeContents.append({
                     "type": "box",
@@ -3029,34 +3031,36 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-
-        movieContents.append({
-            "type": "bubble",
-            "direction": "ltr",
-            "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": movieName,
-                "size": "xl",
-                "align": "start",
-                "weight": "bold",
-                "wrap": True,
-                "action": {
-                    "type": "message",
-                    "text": movieName
+        if not show:
+            print("No")
+        else:
+            movieContents.append({
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": movieName,
+                    "size": "xl",
+                    "align": "start",
+                    "weight": "bold",
+                    "wrap": True,
+                    "action": {
+                        "type": "message",
+                        "text": movieName
+                    }
+                    }
+                ]
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": timeContents
                 }
-                }
-            ]
-            },
-            "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": timeContents
-            }
-        })
+            })
 
     movie_flex_message = FlexSendMessage(
         alt_text='電影清單',

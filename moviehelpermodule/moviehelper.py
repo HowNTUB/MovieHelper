@@ -2943,10 +2943,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         timeContents = []
         cnt=0
         
-        for movietime in movieInfo.select("ul ul li")[1:-1]:
-            cnt+=1
-            print(cnt)
-            print(movietime)
+        for movietime in movieInfo.select("ul + ul li")[:-1]:
             try:
                 href = movietime.select_one("a")["href"]
             except:

@@ -2973,7 +2973,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif movietime.text.replace("\n","").replace("\r","").replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)):
+            elif movietime.text.replace("\n","").replace("\r","").replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)) and movietime.text[-1] in ["0", "5"]:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

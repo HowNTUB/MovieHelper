@@ -2952,9 +2952,9 @@ def use_movietheatherName_search_movie(movietheaterName, page):
             print(movietime.text)
             if len(movietime.text) >10:
                 print("NO")
-            elif movietime.text.split().replace("\n","") == movieName:
+            elif movietime.text.strip() == movieName:
                 print("NO")
-            elif movietime.text.split().replace("\n","")[:2] == "片長":
+            elif movietime.text.strip()[:2] == "片長":
                 print("NO")
             elif href != None and (movietime.text[-1] == "0" or movietime.text[-1] == "5"):
                 timeContents.append({

@@ -160,7 +160,8 @@ def handle_message(event):
     elif userMessage == '附近電影院':
         line_bot_api.reply_message(event.reply_token, show_location_message())
     elif userMessage[:3] == '電影院':
-        line_bot_api.reply_message(event.reply_token, use_movietheatherName_search_movie(userMessage[3:], "1"))
+        movie, page = use_movietheatherName_search_movie(userMessage[3:], "1")
+        line_bot_api.reply_message(event.reply_token, [movie, page])
     elif userMessage == '放映時刻':
         movielist = get_MovieMoment()
         line_bot_api.reply_message(event.reply_token, movielist)

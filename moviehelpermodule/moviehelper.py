@@ -3033,36 +3033,33 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-        if not show:
-            print("No")
-        else:
-            movieContents.append({
-                "type": "bubble",
-                "direction": "ltr",
-                "header": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": movieName,
-                    "size": "xl",
-                    "align": "start",
-                    "weight": "bold",
-                    "wrap": True,
-                    "action": {
-                        "type": "message",
-                        "text": movieName
-                    }
-                    }
-                ]
-                },
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": timeContents
+        movieContents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "header": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": movieName,
+                "size": "xl",
+                "align": "start",
+                "weight": "bold",
+                "wrap": True,
+                "action": {
+                    "type": "message",
+                    "text": movieName
                 }
-            })
+                }
+            ]
+            },
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": timeContents
+            }
+        })
 
     movie_flex_message = FlexSendMessage(
         alt_text='電影清單',

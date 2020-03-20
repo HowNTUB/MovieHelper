@@ -7,10 +7,6 @@ import time
 
 def pagebox(soup):
     # --------------------pagebox
-    print("page")
-    print(len(soup.select(".page_numbox ul")))
-    print(soup.select_one(".page_numbox ul"))
-    print("page")
     if len(soup.select(".page_numbox ul")) == 0 or soup.select_one(".page_numbox ul") == None:
         pagebox_flex_message = False
     else:
@@ -1397,13 +1393,6 @@ def search_movie_thisweekAndIntheaters(url):
     movieDetailUrl = [i["href"]
                         for i in soup.select(".release_movie_name > .gabtn")]
     
-    print(movieNameCN)
-    print(movieNameEN)
-    print(movieExpectation)
-    print(movieSatisfactoryDegree)
-    print(moviePoster)
-    print(movieReleaseTime)
-    print(movieDetailUrl)
     # --------------------
     contents = []
     for index in range(len(movieNameCN)):
@@ -2950,11 +2939,14 @@ def use_movietheatherName_search_movie(movietheaterName, page):
     movieContents = []
     for movieInfo in movieList[(int(page)-1)*10:int(page)*10]:
         movieName = movieInfo.select_one("a").text
-        print(movieName)
+        print(movieInfo)
         timeContents = []
         cnt=0
         
         for movietime in movieInfo.select("ul ul li")[1:-1]:
+            cnt++
+            print(cnt)
+            print(movietime)
             try:
                 href = movietime.select_one("a")["href"]
             except:

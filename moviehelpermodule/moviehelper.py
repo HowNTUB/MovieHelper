@@ -2950,7 +2950,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 href = movietime.select_one("a")["href"]
             except:
                 href = None
-
+            print(timestr)
             if href != None and timestr[-1] in ["0", "5"]:
                 timeContents.append({
                     "type": "box",

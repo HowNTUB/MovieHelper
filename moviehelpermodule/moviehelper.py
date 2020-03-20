@@ -2944,7 +2944,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         cnt=0
         
         for movietime in movieInfo.select("ul ul li")[1:-1]:
-            cnt++
+            cnt+=1
             print(cnt)
             print(movietime)
             try:

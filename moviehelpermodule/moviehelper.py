@@ -2944,12 +2944,14 @@ def use_movietheatherName_search_movie(movietheaterName, page):
         cnt=0
         
         for movietime in movieInfo.select("ul + ul li")[:-1]:
+            timestr = movietime.text.replace("\n","").replace("\r","")
+            print(timestr)
             try:
                 href = movietime.select_one("a")["href"]
             except:
                 href = None
 
-            if href != None and movietime.text[-1] in ["0", "5"]:
+            if href != None and timestr[-1] in ["0", "5"]:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -2959,7 +2961,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         "type": "button",
                         "action": {
                             "type": "uri",
-                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text.replace("\n","").replace("\r","")[:2]), int(movietime.text.replace("\n","").replace("\r","")[3:5])),
+                            "label": timestr + useTimeGetTimeEmoji(int(timestr[:2]), int(timestr[3:5])),
                             "uri": 'http://www.atmovies.com.tw'+href
                         },
                         "color": "#000000"
@@ -2970,7 +2972,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif movietime.text.replace("\n","").replace("\r","").replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)) and movietime.text[-1] in ["0", "5"]:
+            elif timestr.replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)) and timestr[-1] in ["0", "5"]:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -2980,7 +2982,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         "type": "button",
                         "action": {
                             "type": "postback",
-                            "label": movietime.text + useTimeGetTimeEmoji(int(movietime.text[:2]), int(movietime.text[3:5])),
+                            "label": timestr + useTimeGetTimeEmoji(int(timestr[:2]), int(timestr[3:5])),
                             "data": "此無提供線上訂票"
                         },
                         "color": "#000000"
@@ -2991,7 +2993,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif movietime.text.replace("\n","").replace("\r","").replace("：",":")[-1] in ["0","5"]:
+            elif timestr[-1] in ["0","5"]:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

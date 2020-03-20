@@ -2970,7 +2970,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif timestr.replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)) and timestr[-1] in ["0", "5"]:
+            elif timestr.replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)) and timestr in ["0", "5"]:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -2991,7 +2991,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif timestr[-1] in ["0","5"]:
+            elif timestr in ["0","5"]:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

@@ -2949,7 +2949,9 @@ def use_movietheatherName_search_movie(movietheaterName, page):
             except:
                 href = None
             print(timestr)
-            if href != None and timestr in ["0","5"]:
+            if len(timestr) >10:
+                print("No")
+            elif href != None:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",
@@ -2970,7 +2972,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif timestr.replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)) and timestr in ["0", "5"]:
+            elif timestr.replace("：",":") > time.strftime("%H:%M", time.localtime(time.time()+28800)):
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

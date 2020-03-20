@@ -2947,6 +2947,9 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 href = movietime.select_one("a")["href"]
             except:
                 href = None
+
+            print("*"*5)
+            print(movietime.text)
             if len(movietime.text) >10:
                 print("NO")
             elif movietime.text == movieName:

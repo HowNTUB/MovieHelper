@@ -2948,11 +2948,11 @@ def use_movietheatherName_search_movie(movietheaterName, page):
             except:
                 href = None
             if len(movietime.text) >10:
-                show = False
+                break
             elif movieName == movietime.text:
-                show = False
+                break
             elif movietime.text[:2] == "片長":
-                show = False
+                break
             elif href != None and (movietime.text[-1] == "0" or movietime.text[-1] == "5"):
                 timeContents.append({
                     "type": "box",

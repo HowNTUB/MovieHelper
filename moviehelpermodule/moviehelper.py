@@ -2956,6 +2956,8 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                 print("NO")
             elif movietime.text.strip()[:2] == "片長":
                 print("NO")
+            elif movietime.text.strip() == "":
+                print("NO")
             elif href != None and (movietime.text[-1] == "0" or movietime.text[-1] == "5"):
                 timeContents.append({
                     "type": "box",

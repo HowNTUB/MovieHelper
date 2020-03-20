@@ -2991,7 +2991,7 @@ def use_movietheatherName_search_movie(movietheaterName, page):
                         }
                     ]
                 })
-            elif movietime.text[-1] == "0" or movietime.text[-1] == "5":
+            elif movietime.text.replace("\n","").replace("\r","").replace("：",":")[-1] in ["0","5"]:
                 timeContents.append({
                     "type": "box",
                     "layout": "vertical",

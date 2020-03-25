@@ -1543,7 +1543,6 @@ def search_movie_comingsoon(url):
                 "contents": month[index+int(index%3):index+int(index%3)+3]
             })
             print(month)
-        if int(index%3) == 2:
             contents.append(monthBoxContents)
         if tab.text[:2] == '20':  # 年
             contents.append({

@@ -1540,6 +1540,7 @@ def search_movie_comingsoon(url):
                 "type": "text",
                 "text": tab.text,
                 "size": "lg",
+                "margin": "xxl",
                 "align": "center",
                 "weight": "bold"
             })
@@ -1549,7 +1550,8 @@ def search_movie_comingsoon(url):
                 month.append({
                     "type": "text",
                     "text": tab.text,
-                    "size": "xxl",
+                    "size": "xl",
+                    "align": "center",
                     "action": {
                         "type": "postback",
                         "data": tab.a["href"]
@@ -1563,6 +1565,7 @@ def search_movie_comingsoon(url):
                     "text": tab.text,
                     "size": "xl",
                     "weight": "bold",
+                    "align": "center",
                     "action": {
                         "type": "postback",
                         "data": tab.a["href"]

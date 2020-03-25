@@ -1535,15 +1535,6 @@ def search_movie_comingsoon(url):
     month = []
     for index in range(len(movieTab)):
         tab = movieTab[index]
-        if int(index%3) == 0:
-            monthBoxContents.append({
-                "type": "box",
-                "layout": "horizontal",
-                "margin": "xxl",
-                "contents": month[index+int(index%3):index+int(index%3)+3]
-            })
-            print(month)
-            contents.append(monthBoxContents)
         if tab.text[:2] == '20':  # 年
             contents.append({
                 "type": "text",
@@ -1577,6 +1568,14 @@ def search_movie_comingsoon(url):
                         "data": tab.a["href"]
                     }
                 })
+        if int(index%3) == 2:
+            contents.append({
+                "type": "box",
+                "layout": "horizontal",
+                "margin": "xxl",
+                "contents": month[0:3]
+            })
+            month=[]
     # movieTab = [i for i in soup.select(".comingsoon_tab li")]
     # contents = []
     # for tab in movieTab:

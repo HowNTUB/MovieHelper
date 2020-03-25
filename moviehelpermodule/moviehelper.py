@@ -1540,7 +1540,7 @@ def search_movie_comingsoon(url):
                 "type": "box",
                 "layout": "horizontal",
                 "margin": "xxl",
-                "contents": month
+                "contents": month[index+int(index%3):index+int(index%3)+3]
             })
         if tab.text[:2] == '20':  # 年
             contents.append({

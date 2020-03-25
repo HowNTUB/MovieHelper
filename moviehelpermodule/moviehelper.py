@@ -1534,7 +1534,7 @@ def search_movie_comingsoon(url):
     monthBoxContents = []
     for index in range(len(movieTab)):
         tab = movieTab[index]
-        if int(index/3) == 0:
+        if int(index%3) == 0:
             month=[]
             monthBoxContents.append({
                 "type": "box",

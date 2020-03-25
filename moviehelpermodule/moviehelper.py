@@ -1532,10 +1532,10 @@ def search_movie_comingsoon(url):
     movieTab = [i for i in soup.select(".comingsoon_tab li")]
     contents = []
     monthBoxContents = []
+    month = []
     for index in range(len(movieTab)):
         tab = movieTab[index]
         if int(index%3) == 0:
-            month=[]
             monthBoxContents.append({
                 "type": "box",
                 "layout": "horizontal",

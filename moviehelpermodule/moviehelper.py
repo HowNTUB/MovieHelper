@@ -1533,10 +1533,10 @@ def search_movie_comingsoon(url):
     contents = []
     monthBoxContents = []
     month = []
-    cnt = 0
     for index in range(len(movieTab)):
         tab = movieTab[index]
         if tab.text[:2] == '20':  # 年
+            cnt = 0
             contents.append({
                 "type": "text",
                 "text": tab.text,
@@ -1573,7 +1573,7 @@ def search_movie_comingsoon(url):
                         "data": tab.a["href"]
                     }
                 })
-        if cnt == 3:
+        if cnt == 1:
             cnt = 0
             contents.append({
                 "type": "box",

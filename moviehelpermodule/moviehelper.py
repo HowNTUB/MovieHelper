@@ -1573,7 +1573,7 @@ def search_movie_comingsoon(url):
                         "data": tab.a["href"]
                     }
                 })
-        if cnt == 1:
+        if cnt == 3:
             cnt = 0
             contents.append({
                 "type": "box",

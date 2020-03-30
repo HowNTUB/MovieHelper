@@ -1529,7 +1529,8 @@ def search_movie_comingsoon(url):
 
     # --------------------movieTab
     #content_l a
-    if soup.select(".comingsoon_tab li") == []:
+    print(soup.select(".comingsoon_tab li"))
+    if soup.select(".comingsoon_tab li") == None:
         movieTab = [i for i in soup.select("content_l a")]
         contents = []
         monthBoxContents = []

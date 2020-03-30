@@ -1530,6 +1530,7 @@ def search_movie_comingsoon(url):
     # --------------------movieTab
     #content_l a
     movieTab = [i for i in soup.select(".comingsoon_tab li")]
+    print(movieTab)
     contents = []
     monthBoxContents = []
     month = []
@@ -1560,8 +1561,6 @@ def search_movie_comingsoon(url):
                     }
                 })
             else:
-                print(tab.text)  # 每月
-                print(tab.a["href"])
                 month.append({
                     "type": "text",
                     "text": tab.text,
@@ -1582,7 +1581,6 @@ def search_movie_comingsoon(url):
                 "contents": month[0:3]
             })
             month=[]
-            print(contents)
         if cnt == len(movieTab):
             cnt = 0
             contents.append({

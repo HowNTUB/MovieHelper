@@ -1643,22 +1643,22 @@ def search_movie_comingsoon(url):
     contents = []
     print(movieNameCN)
     if movieNameCN == []:
-            contents.append({
-                "type": "bubble",
-                "direction": "ltr",
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "無即將上映的電影",
-                    "size": "lg",
-                    "align": "center"
-                    }
-                ]
+        contents.append({
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                "type": "text",
+                "text": "無即將上映的電影",
+                "size": "lg",
+                "align": "center"
                 }
-            })
+            ]
+            }
+        })
     else:
         for index in range(len(movieNameCN)):
             contents.append({

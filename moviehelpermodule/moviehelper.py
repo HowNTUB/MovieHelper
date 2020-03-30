@@ -1659,6 +1659,7 @@ def search_movie_comingsoon(url):
             ]
             }
         })
+        pagebox_flex_message = False
     else:
         for index in range(len(movieNameCN)):
             contents.append({
@@ -1769,6 +1770,7 @@ def search_movie_comingsoon(url):
                     }]
                 }
             })
+        pagebox_flex_message = pagebox(soup)
 
     # 回復
     movie_flex_message = FlexSendMessage(
@@ -1779,7 +1781,6 @@ def search_movie_comingsoon(url):
         }
     )
 
-    pagebox_flex_message = pagebox(soup)
 
     return(movietab_flex_message, movie_flex_message, pagebox_flex_message)
 

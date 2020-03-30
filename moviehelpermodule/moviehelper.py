@@ -1652,9 +1652,9 @@ def search_movie_comingsoon(url):
             "contents": [
                 {
                 "type": "text",
-                "text": "無即將上映的電影",
-                "size": "lg",
-                "align": "center"
+                "text": "無導演作品",
+                "align": "center",
+                "weight": "bold"
                 }
             ]
             }

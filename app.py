@@ -131,8 +131,10 @@ def handle_message(event):
     elif userMessage == '即將上映':
         movietab, movielist, pagebox = search_movie_comingsoon('')
         if pagebox == False:
-            line_bot_api.reply_message(event.reply_token, [movielist])
+            print("false")
+            line_bot_api.reply_message(event.reply_token, [movietab, movielist])
         else:
+            print("true")
             line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])
     elif userMessage == '本週新片':
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_thisweek.html?page=1')

@@ -1528,139 +1528,233 @@ def search_movie_comingsoon(url):
     soup = BeautifulSoup(respData)
 
     # --------------------movieTab
-        
-    movieTab = [i for i in soup.select(".comingsoon_tab li")]
-    contents = []
-    monthBoxContents = []
-    month = []
-    for index in range(len(movieTab)):
-        tab = movieTab[index]
-        if tab.text[:2] == '20':  # 年
-            cnt = 0
-            contents.append({
-                "type": "text",
-                "text": tab.text,
-                "size": "lg",
-                "margin": "xxl",
-                "align": "center",
-                "weight": "bold"
-            })
-        else:
-            cnt+=1
-            if tab["class"] == ['select']:  # 當月
-                thisMonth = tab["class"] == ['select']
-                month.append({
+    #content_l a
+    if soup.select(".comingsoon_tab li") == []:
+        movieTab = [i for i in soup.select("content_l a")]
+        contents = []
+        monthBoxContents = []
+        month = []
+        for index in range(len(movieTab)):
+            tab = movieTab[index]
+            if tab.text[:2] == '20':  # 年
+                cnt = 0
+                contents.append({
                     "type": "text",
                     "text": tab.text,
-                    "size": "xl",
+                    "size": "lg",
+                    "margin": "xxl",
                     "align": "center",
-                    "action": {
-                        "type": "postback",
-                        "data": tab.a["href"]
-                    }
+                    "weight": "bold"
                 })
             else:
-                print(tab.text)  # 每月
-                print(tab.a["href"])
-                month.append({
-                    "type": "text",
-                    "text": tab.text,
-                    "size": "xl",
-                    "weight": "bold",
-                    "align": "center",
-                    "action": {
-                        "type": "postback",
-                        "data": tab.a["href"]
-                    }
+                cnt+=1
+                if tab["class"] == ['select']:  # 當月
+                    thisMonth = tab["class"] == ['select']
+                    month.append({
+                        "type": "text",
+                        "text": tab.text,
+                        "size": "xl",
+                        "align": "center",
+                        "action": {
+                            "type": "postback",
+                            "data": tab.a["href"]
+                        }
+                    })
+                else:
+                    print(tab.text)  # 每月
+                    print(tab.a["href"])
+                    month.append({
+                        "type": "text",
+                        "text": tab.text,
+                        "size": "xl",
+                        "weight": "bold",
+                        "align": "center",
+                        "action": {
+                            "type": "postback",
+                            "data": tab.a["href"]
+                        }
+                    })
+            if cnt == 3:
+                cnt = 0
+                contents.append({
+                    "type": "box",
+                    "layout": "horizontal",
+                    "margin": "xxl",
+                    "contents": month[0:3]
                 })
-        if cnt == 3:
-            cnt = 0
-            contents.append({
-                "type": "box",
-                "layout": "horizontal",
-                "margin": "xxl",
-                "contents": month[0:3]
-            })
-            month=[]
-            print(contents)
-        if cnt == len(movieTab):
-            cnt = 0
-            contents.append({
-                "type": "box",
-                "layout": "horizontal",
-                "margin": "xxl",
-                "contents": month[0:3]
-            })
-            month=[]
-    movietab_flex_message = FlexSendMessage(
-        alt_text='電影列表',
-        contents={
-            "type": "bubble",
-            "direction": "ltr",
-            "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": "即將上映",
-                "size": "xl",
-                "align": "start",
-                "weight": "bold"
-                }
-            ]
-            },
-            "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": contents
-            }
-        }
-    )
-
-    # --------------------movieInfo
-    movieInfo = [i.text for i in soup.select(".release_info")]
-    movieNameCN = [i.text.strip()
-                                for i in soup.select(".release_movie_name > a")]
-    movieNameEN = []
-    for i in soup.select(".en a"):
-        if i.text.strip() == '':
-            movieNameEN.append("-")
-        else:
-            movieNameEN.append(i.text.strip())
-    movieExpectation = [i.text for i in soup.select("#content_l dt span")]
-    movieSatisfactoryDegree = []
-    for info in movieInfo:
-        movieSatisfactoryDegree.append('未上映') if info.find(
-            "滿意度") == -1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
-    moviePoster = [i["src"] for i in soup.select(".release_foto img")]
-    movieReleaseTime = [(i.text)[7:]
-                         for i in soup.select(".release_movie_time")]
-    movieDetailUrl = [i["href"]
-                        for i in soup.select(".release_movie_name > a")]
-
-    # --------------------
-    contents = []
-    print(movieNameCN == [])
-    if movieNameCN == []:
-        contents.append({
-            "type": "bubble",
-            "direction": "ltr",
-            "body": {
+                month=[]
+                print(contents)
+            if cnt == len(movieTab):
+                cnt = 0
+                contents.append({
+                    "type": "box",
+                    "layout": "horizontal",
+                    "margin": "xxl",
+                    "contents": month[0:3]
+                })
+                month=[]
+        movietab_flex_message = FlexSendMessage(
+            alt_text='電影列表',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
                 "type": "box",
                 "layout": "vertical",
                 "contents": [
                     {
                     "type": "text",
-                    "text": "當月暫無即將上映的電影資訊",
-                    "align": "center",
+                    "text": "即將上映",
+                    "size": "xl",
+                    "align": "start",
                     "weight": "bold"
                     }
                 ]
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": contents
+                }
             }
-        })
+        )
+        movie_flex_message = FlexSendMessage(
+            alt_text='電影列表',
+            contents={
+                "type": "carousel",
+                "contents": {
+                    "type": "bubble",
+                    "direction": "ltr",
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                            "type": "text",
+                            "text": "當月暫無即將上映的電影資訊",
+                            "align": "center",
+                            "weight": "bold"
+                            }
+                        ]
+                    }
+                }
+            }
+        )
         pagebox_flex_message = False
+        return(movietab_flex_message, movie_flex_message, pagebox_flex_message)
     else:
+        movieTab = [i for i in soup.select(".comingsoon_tab li")]
+        contents = []
+        monthBoxContents = []
+        month = []
+        for index in range(len(movieTab)):
+            tab = movieTab[index]
+            if tab.text[:2] == '20':  # 年
+                cnt = 0
+                contents.append({
+                    "type": "text",
+                    "text": tab.text,
+                    "size": "lg",
+                    "margin": "xxl",
+                    "align": "center",
+                    "weight": "bold"
+                })
+            else:
+                cnt+=1
+                if tab["class"] == ['select']:  # 當月
+                    thisMonth = tab["class"] == ['select']
+                    month.append({
+                        "type": "text",
+                        "text": tab.text,
+                        "size": "xl",
+                        "align": "center",
+                        "action": {
+                            "type": "postback",
+                            "data": tab.a["href"]
+                        }
+                    })
+                else:
+                    print(tab.text)  # 每月
+                    print(tab.a["href"])
+                    month.append({
+                        "type": "text",
+                        "text": tab.text,
+                        "size": "xl",
+                        "weight": "bold",
+                        "align": "center",
+                        "action": {
+                            "type": "postback",
+                            "data": tab.a["href"]
+                        }
+                    })
+            if cnt == 3:
+                cnt = 0
+                contents.append({
+                    "type": "box",
+                    "layout": "horizontal",
+                    "margin": "xxl",
+                    "contents": month[0:3]
+                })
+                month=[]
+                print(contents)
+            if cnt == len(movieTab):
+                cnt = 0
+                contents.append({
+                    "type": "box",
+                    "layout": "horizontal",
+                    "margin": "xxl",
+                    "contents": month[0:3]
+                })
+                month=[]
+        movietab_flex_message = FlexSendMessage(
+            alt_text='電影列表',
+            contents={
+                "type": "bubble",
+                "direction": "ltr",
+                "header": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "即將上映",
+                    "size": "xl",
+                    "align": "start",
+                    "weight": "bold"
+                    }
+                ]
+                },
+                "body": {
+                "type": "box",
+                "layout": "vertical",
+                "contents": contents
+                }
+            }
+        )
+
+        # --------------------movieInfo
+        movieInfo = [i.text for i in soup.select(".release_info")]
+        movieNameCN = [i.text.strip()
+                                    for i in soup.select(".release_movie_name > a")]
+        movieNameEN = []
+        for i in soup.select(".en a"):
+            if i.text.strip() == '':
+                movieNameEN.append("-")
+            else:
+                movieNameEN.append(i.text.strip())
+        movieExpectation = [i.text for i in soup.select("#content_l dt span")]
+        movieSatisfactoryDegree = []
+        for info in movieInfo:
+            movieSatisfactoryDegree.append('未上映') if info.find(
+                "滿意度") == -1 else movieSatisfactoryDegree.append(info[info.find("滿意度")+5:info.find("滿意度")+8])
+        moviePoster = [i["src"] for i in soup.select(".release_foto img")]
+        movieReleaseTime = [(i.text)[7:]
+                            for i in soup.select(".release_movie_time")]
+        movieDetailUrl = [i["href"]
+                            for i in soup.select(".release_movie_name > a")]
+
+        # --------------------
+        contents = []
         for index in range(len(movieNameCN)):
             contents.append({
                 "type": "bubble",
@@ -1772,17 +1866,17 @@ def search_movie_comingsoon(url):
             })
         pagebox_flex_message = pagebox(soup)
 
-    # 回復
-    movie_flex_message = FlexSendMessage(
-        alt_text='電影列表',
-        contents={
-            "type": "carousel",
-            "contents": contents
-        }
-    )
+        # 回復
+        movie_flex_message = FlexSendMessage(
+            alt_text='電影列表',
+            contents={
+                "type": "carousel",
+                "contents": contents
+            }
+        )
 
 
-    return(movietab_flex_message, movie_flex_message, pagebox_flex_message)
+        return(movietab_flex_message, movie_flex_message, pagebox_flex_message)
 
 
 def show_chart_message():

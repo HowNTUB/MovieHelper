@@ -1647,16 +1647,16 @@ def search_movie_comingsoon(url):
             "type": "bubble",
             "direction": "ltr",
             "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": "當月暫無即將上映的電影資訊",
-                "align": "center",
-                "weight": "bold"
-                }
-            ]
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "當月暫無即將上映的電影資訊",
+                    "align": "center",
+                    "weight": "bold"
+                    }
+                ]
             }
         })
         pagebox_flex_message = False

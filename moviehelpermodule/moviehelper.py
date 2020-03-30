@@ -1583,6 +1583,15 @@ def search_movie_comingsoon(url):
             })
             month=[]
             print(contents)
+        if cnt == len(movieTab):
+            cnt = 0
+            contents.append({
+                "type": "box",
+                "layout": "horizontal",
+                "margin": "xxl",
+                "contents": month[0:3]
+            })
+            month=[]
     movietab_flex_message = FlexSendMessage(
         alt_text='電影列表',
         contents={

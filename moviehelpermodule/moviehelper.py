@@ -1641,7 +1641,7 @@ def search_movie_comingsoon(url):
 
     # --------------------
     contents = []
-    if movieNameCN.select_one(".release_movie_name > a") == None:
+    if movieNameCN[0] == None:
             contents.append({
                 "type": "bubble",
                 "direction": "ltr",

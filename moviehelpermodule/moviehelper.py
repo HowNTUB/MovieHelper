@@ -1641,7 +1641,7 @@ def search_movie_comingsoon(url):
 
     # --------------------
     contents = []
-    print(movieNameCN)
+    print(movieNameCN == [])
     if movieNameCN == []:
         contents.append({
             "type": "bubble",

@@ -130,7 +130,7 @@ def handle_message(event):
         line_bot_api.reply_message(event.reply_token,show_movieHelper())
     elif userMessage == '即將上映':
         movietab, movielist, pagebox = search_movie_comingsoon('')
-        if not pagebox:
+        if pagebox == False:
             line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])
         else:
             line_bot_api.reply_message(event.reply_token, [movietab, movielist])

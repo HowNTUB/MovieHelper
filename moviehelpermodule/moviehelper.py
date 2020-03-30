@@ -1617,8 +1617,10 @@ def search_movie_comingsoon(url):
     )
 
     # --------------------movieInfo
+    print(movietab_flex_message)
     movieInfo = [i.text for i in soup.select(".release_info")]
     if movieInfo == []:
+        print("no data")
         movie_flex_message = FlexSendMessage(
             alt_text='當月無上映電影資訊',
             contents={

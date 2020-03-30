@@ -1637,6 +1637,7 @@ def search_movie_comingsoon(url):
                 ]
                 }
             })
+        pagebox_flex_message = False
     else:
         movieNameCN = [i.text.strip()
                                     for i in soup.select(".release_movie_name > a")]

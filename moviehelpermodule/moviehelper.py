@@ -1618,6 +1618,8 @@ def search_movie_comingsoon(url):
 
     # --------------------movieInfo
     movieInfo = [i.text for i in soup.select(".release_info")]
+    print("*"*10)
+    print(movieInfo)
     movieNameCN = [i.text.strip()
                                 for i in soup.select(".release_movie_name > a")]
     movieNameEN = []

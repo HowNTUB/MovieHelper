@@ -1548,7 +1548,7 @@ def search_movie_comingsoon(url):
         else:
             cnt+=1
             if tab["class"] == ['select']:  # 當月
-                print(True)
+                thisMonth = tab["class"] == ['select']
                 month.append({
                     "type": "text",
                     "text": tab.text,
@@ -1652,7 +1652,7 @@ def search_movie_comingsoon(url):
             "contents": [
                 {
                 "type": "text",
-                "text": "無導演作品",
+                "text": thisMonth+"月無即將上映的電影",
                 "align": "center",
                 "weight": "bold"
                 }

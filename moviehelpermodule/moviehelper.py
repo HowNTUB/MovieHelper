@@ -1620,7 +1620,7 @@ def search_movie_comingsoon(url):
     movieInfo = [i.text for i in soup.select(".release_info")]
     if movieInfo == []:
         movie_flex_message = FlexSendMessage(
-            alt_text='選擇電影要查看的資訊',
+            alt_text='當月無上映電影資訊',
             contents={
                 "type": "bubble",
                 "direction": "ltr",
@@ -1636,7 +1636,8 @@ def search_movie_comingsoon(url):
                     }
                 ]
                 }
-            })
+            }
+        )
         pagebox_flex_message = False
     else:
         movieNameCN = [i.text.strip()

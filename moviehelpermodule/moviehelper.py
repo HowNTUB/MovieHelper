@@ -1652,7 +1652,7 @@ def search_movie_comingsoon(url):
             "contents": [
                 {
                 "type": "text",
-                "text": thisMonth+"月無即將上映的電影",
+                "text": "當月暫無即將上映的電影資訊",
                 "align": "center",
                 "weight": "bold"
                 }

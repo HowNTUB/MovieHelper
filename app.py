@@ -132,7 +132,7 @@ def handle_message(event):
         movietab, movielist, pagebox = search_movie_comingsoon('')
         if pagebox == False:
             print("false")
-            line_bot_api.reply_message(event.reply_token, [movietab, movielist])
+            line_bot_api.reply_message(event.reply_token, movielist)
         else:
             print("true")
             line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])

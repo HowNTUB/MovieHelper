@@ -2184,28 +2184,31 @@ def search_movie_chartNetizens(url):
             })
 
 
+        rankContents.insert(0,{
+                    "type": "text",
+                    "text": chartType,
+                    "size": "xl",
+                    "weight": "bold"
+                    })
+        rankContents.insert(1,
+                    {
+                    "type": "separator",
+                    "margin": "xl",
+                    "color": "#4B6174"
+                    })
+
         contents.append({
             "type": "bubble",
             "direction": "ltr",
-            "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": chartType,
-                "size": "xl",
-                "align": "start",
-                "weight": "bold"
-                }
-            ]
-            },
             "body": {
                 "type": "box",
                 "layout": "vertical",
                 "contents": rankContents
             }
         })
+
+    
+
     movierank_flex_message = FlexSendMessage(
         alt_text='chartlist',
         contents={

@@ -3915,6 +3915,7 @@ def workTeam():
                 {
                 "type": "box",
                 "layout": "horizontal",
+                "margin": "xl",
                 "contents": [
                     {
                     "type": "text",

@@ -3779,7 +3779,8 @@ def show_movieHelper():
                 {
                 "type": "text",
                 "text": "圖文選單：",
-                "size": "lg"
+                "size": "lg",
+                "margin": "md"
                 },
                 {
                 "type": "box",

@@ -1590,16 +1590,8 @@ def search_movie_comingsoon(url):
                 "contents": month[0:3]
             })
             month=[]
-    movietab_flex_message = FlexSendMessage(
-        alt_text='電影列表',
-        contents={
-            "type": "bubble",
-            "direction": "ltr",
-            "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
+
+    contents.insert(0,{
                 "type": "text",
                 "text": "即將上映",
                 "size": "xl",
@@ -1608,8 +1600,16 @@ def search_movie_comingsoon(url):
                 {
                 "type": "separator",
                 "margin": "xl"
-                },contents
-            ]
+                })
+    movietab_flex_message = FlexSendMessage(
+        alt_text='電影列表',
+        contents={
+            "type": "bubble",
+            "direction": "ltr",
+            "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": contents
             }
         }
     )

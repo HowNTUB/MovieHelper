@@ -3779,14 +3779,13 @@ def show_movieHelper():
                 {
                 "type": "text",
                 "text": "圖文選單：",
-                "size": "lg",
-                "margin": "md"
+                "size": "lg"
                 },
                 {
                 "type": "box",
                 "layout": "horizontal",
                 "flex": 0,
-                "margin": "md",
+                "margin": "xl",
                 "contents": [
                     {
                     "type": "text",

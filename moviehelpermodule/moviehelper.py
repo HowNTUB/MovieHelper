@@ -1600,7 +1600,8 @@ def search_movie_comingsoon(url):
     contents.insert(1,
                 {
                 "type": "separator",
-                "margin": "xl"
+                "margin": "xl",
+                "color": "#4B6174"
                 })
     movietab_flex_message = FlexSendMessage(
         alt_text='電影列表',
@@ -1711,7 +1712,6 @@ def search_movie_comingsoon(url):
                         {
                         "type": "separator",
                         "margin": "lg",
-                        "color": "#FFFFFF"
                     },
                         {
                         "type": "box",
@@ -1980,22 +1980,23 @@ def search_movie_chart(url):
             })
 
 
+
+        rankContents.insert(0,{
+                    "type": "text",
+                    "text": chartType,
+                    "size": "xl",
+                    "weight": "bold"
+                    })
+        rankContents.insert(1,
+                    {
+                    "type": "separator",
+                    "margin": "xl",
+                    "color": "#4B6174"
+                    })
+
         contents.append({
             "type": "bubble",
             "direction": "ltr",
-            "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": chartType,
-                "size": "xl",
-                "align": "start",
-                "weight": "bold"
-                }
-            ]
-            },
             "body": {
                 "type": "box",
                 "layout": "vertical",

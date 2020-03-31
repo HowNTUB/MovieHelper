@@ -3223,22 +3223,22 @@ def get_MovieMoment():
                     }
                 ]
             })
+
+        movieNameContents.insert(0,{
+                    "type": "text",
+                    "text": "即將上映",
+                    "size": "xl",
+                    "weight": "bold"
+                    })
+        movieNameContents.insert(1,
+                    {
+                    "type": "separator",
+                    "margin": "xl",
+                    "color": "#4B6174"
+                    })
         movieSelectContents.append({
             "type": "bubble",
             "direction": "ltr",
-            "header": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": [
-                {
-                "type": "text",
-                "text": "請選擇想看的電影",
-                "size": "xl",
-                "align": "start",
-                "weight": "bold"
-                }
-            ]
-            },
             "body": {
             "type": "box",
             "layout": "vertical",
@@ -3328,7 +3328,8 @@ def use_movieurl_get_movieReleasedArea(movieURL, movieID, movieName):
                     },
                     {
                     "type": "separator",
-                    "margin": "lg"
+                    "margin": "lg",
+                    "color": "#4B6174"
                     },
                     {
                     "type": "box",
@@ -3492,6 +3493,11 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                     "type": "postback",
                     "data": "電影院上映"+movietheaterName+":1"
                 }
+                },
+                {
+                "type": "separator",
+                "margin": "xl",
+                "color": "#4B6174"
                 }
             ]
             },

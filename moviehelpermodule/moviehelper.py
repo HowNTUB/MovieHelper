@@ -2210,7 +2210,7 @@ def search_movie_chartNetizens(url):
     
 
     movierank_flex_message = FlexSendMessage(
-        alt_text='chartlist',
+        alt_text='排行榜',
         contents={
             "type": "carousel",
             "contents": contents
@@ -2219,7 +2219,7 @@ def search_movie_chartNetizens(url):
 
     dataFrom = soup.select(".rank_data span")[1].text
     data_flex_message = FlexSendMessage(
-        alt_text='chartdata',
+        alt_text='排行榜',
         contents={
             "type": "bubble",
             "direction": "ltr",

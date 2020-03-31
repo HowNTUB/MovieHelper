@@ -715,7 +715,7 @@ def use_movieurl_get_movieinfo(url):
         # --------------------story
         story = soup.select_one("#story").text
         print(story)
-        print(soup.select_one("#story"))
+        print(soup.select_one(".storeinfo"))
         story_flex_message = FlexSendMessage(
             alt_text='簡介',
             contents={

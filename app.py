@@ -157,10 +157,10 @@ def handle_message(event):
     elif userMessage == '年度票房榜':
         movierank, data = search_movie_chart('https://movies.yahoo.com.tw/chart.html?cate=year')
         line_bot_api.reply_message(event.reply_token, [movierank])
-    elif userMessage == '網友期待榜30':
+    elif userMessage == '網友期待榜':
         movierank, data = search_movie_chartNetizens('https://movies.yahoo.com.tw/chart.html?cate=exp_30')
         line_bot_api.reply_message(event.reply_token, [movierank])
-    elif userMessage == '網友滿意榜30':
+    elif userMessage == '網友滿意榜':
         movierank, data = search_movie_chartNetizens('https://movies.yahoo.com.tw/chart.html?cate=rating')
         line_bot_api.reply_message(event.reply_token, [movierank])
     elif userMessage == '電影類型':

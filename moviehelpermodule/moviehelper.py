@@ -1828,7 +1828,7 @@ def show_chart_message():
                 "action": {
                     "type": "message",
                     "label": "網友期待榜",
-                    "text": "網友期待榜30"
+                    "text": "網友期待榜"
                 }
                 },
                 {
@@ -1836,7 +1836,7 @@ def show_chart_message():
                 "action": {
                     "type": "message",
                     "label": "網友滿意榜",
-                    "text": "網友滿意榜30"
+                    "text": "網友滿意榜"
                 }
                 }
             ]
@@ -2087,7 +2087,6 @@ def search_movie_chartNetizens(url):
             movieURL.append(html.a["href"])
         else:
             movieURL.append("沒有資料")
-
 
     contents = []
     for index in range(int(len(movieNameCN)/5)):

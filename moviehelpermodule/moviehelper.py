@@ -1659,6 +1659,7 @@ def search_movie_comingsoon(url):
                 }
             }
         )
+        findType = False
     else:
         movieNameCN = [i.text.strip()
                                     for i in soup.select(".release_movie_name > a")]
@@ -1800,9 +1801,9 @@ def search_movie_comingsoon(url):
                 "contents": contents
             }
         )
+        findType = True
 
-
-    return(movietab_flex_message, movie_flex_message, pagebox_flex_message)
+    return(movietab_flex_message, movie_flex_message, pagebox_flex_message, findType)
 
 
 def show_chart_message():

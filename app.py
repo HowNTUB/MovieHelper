@@ -129,13 +129,13 @@ def handle_message(event):
     elif userMessage == '電影小幫手':
         line_bot_api.reply_message(event.reply_token,show_movieHelper())
     elif userMessage == '即將上映':
-        movietab, movielist, pagebox = search_movie_comingsoon('')
-        if pagebox == False:
-            print("false")
-            line_bot_api.reply_message(event.reply_token, movielist)
-        else:
+        movietab, movielist, pagebox, findType = search_movie_comingsoon('')
+        if findType:
             print("true")
             line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])
+        else:
+            print("false")
+            line_bot_api.reply_message(event.reply_token, [movietab, movielist])
     elif userMessage == '本週新片':
         movielist, pagebox = search_movie_thisweekAndIntheaters('https://movies.yahoo.com.tw/movie_thisweek.html?page=1')
         if pagebox == False:

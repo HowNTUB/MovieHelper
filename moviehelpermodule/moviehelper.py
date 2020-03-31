@@ -3825,7 +3825,7 @@ def show_movieHelper():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "👑排行榜－",
+                    "text": "👑排行榜　－",
                     "flex": 1,
                     "align": "end"
                     },
@@ -3861,7 +3861,7 @@ def show_movieHelper():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "🌎地球－",
+                    "text": "🌎附近影院－",
                     "flex": 1,
                     "align": "end"
                     },

@@ -1591,7 +1591,7 @@ def search_movie_comingsoon(url):
             })
             month=[]
 
-    contents.insert(0,{
+    contents.insert(0,({
                 "type": "text",
                 "text": "即將上映",
                 "size": "xl",
@@ -1600,7 +1600,7 @@ def search_movie_comingsoon(url):
                 {
                 "type": "separator",
                 "margin": "xl"
-                })
+                }))
     movietab_flex_message = FlexSendMessage(
         alt_text='電影列表',
         contents={

@@ -73,7 +73,10 @@ def handle_postback(event):
     #即將上映
     if userpostback[:49] == 'https://movies.yahoo.com.tw/movie_comingsoon.html':
         movietab, movielist, pagebox = search_movie_comingsoon(userpostback)
-        line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])
+        if pagebox != False:
+            line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])
+        else:
+            line_bot_api.reply_message(event.reply_token, [movietab, movielist])
     #本週新片 上映中
     if userpostback[:47] == 'https://movies.yahoo.com.tw/movie_thisweek.html' or userpostback[:49] == 'https://movies.yahoo.com.tw/movie_intheaters.html':
         movielist, pagebox = search_movie_thisweekAndIntheaters(userpostback)
@@ -129,8 +132,8 @@ def handle_message(event):
     elif userMessage == '電影小幫手':
         line_bot_api.reply_message(event.reply_token,show_movieHelper())
     elif userMessage == '即將上映':
-        movietab, movielist, pagebox, findType = search_movie_comingsoon('')
-        if findType: 
+        movietab, movielist, pagebox = search_movie_comingsoon('')
+        if pagebox != False: 
             print("true")
             line_bot_api.reply_message(event.reply_token, [movietab, movielist, pagebox])
         else:

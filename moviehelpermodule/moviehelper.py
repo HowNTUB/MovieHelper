@@ -1640,26 +1640,7 @@ def search_movie_comingsoon(url):
                 }
             }
         )
-        pagebox_flex_message = FlexSendMessage(
-            alt_text='當月無上映電影資訊',
-            contents={
-                "type": "bubble",
-                "direction": "ltr",
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "此月暫無即將上映的電影資訊",
-                    "align": "center",
-                    "weight": "bold"
-                    }
-                ]
-                }
-            }
-        )
-        findType = False
+        pagebox_flex_message = False
     else:
         movieNameCN = [i.text.strip()
                                     for i in soup.select(".release_movie_name > a")]
@@ -1801,9 +1782,8 @@ def search_movie_comingsoon(url):
                 "contents": contents
             }
         )
-        findType = True
 
-    return(movietab_flex_message, movie_flex_message, pagebox_flex_message, findType)
+    return(movietab_flex_message, movie_flex_message, pagebox_flex_message)
 
 
 def show_chart_message():

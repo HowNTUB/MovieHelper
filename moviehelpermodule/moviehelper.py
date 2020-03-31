@@ -3490,8 +3490,8 @@ def use_movieurl_get_movieMoment(movieID, inAreaID, page):
                 "weight": "bold",
                 "wrap": True,
                 "action": {
-                    "type": "postback",
-                    "data": "電影院上映"+movietheaterName+":1"
+                    "type": "text",
+                    "text": "電影院"+movietheaterName
                 }
                 },
                 {

@@ -1554,6 +1554,7 @@ def search_movie_comingsoon(url):
                     "type": "text",
                     "text": tab.text,
                     "size": "xl",
+                    "weight": "bold",
                     "align": "center",
                     "action": {
                         "type": "postback",
@@ -1565,7 +1566,6 @@ def search_movie_comingsoon(url):
                     "type": "text",
                     "text": tab.text,
                     "size": "xl",
-                    "weight": "bold",
                     "align": "center",
                     "action": {
                         "type": "postback",
@@ -1595,7 +1595,7 @@ def search_movie_comingsoon(url):
         contents={
             "type": "bubble",
             "direction": "ltr",
-            "header": {
+            "body": {
             "type": "box",
             "layout": "vertical",
             "contents": [
@@ -1603,15 +1603,13 @@ def search_movie_comingsoon(url):
                 "type": "text",
                 "text": "即將上映",
                 "size": "xl",
-                "align": "start",
                 "weight": "bold"
-                }
+                },
+                {
+                "type": "separator",
+                "margin": "xl"
+                },contents
             ]
-            },
-            "body": {
-            "type": "box",
-            "layout": "vertical",
-            "contents": contents
             }
         }
     )

@@ -719,7 +719,7 @@ def use_movieurl_get_movieinfo(url):
             contents={
                 "type": "bubble",
                 "direction": "ltr",
-                "header": {
+                "body": {
                 "type": "box",
                 "layout": "vertical",
                 "contents": [
@@ -729,13 +729,12 @@ def use_movieurl_get_movieinfo(url):
                     "size": "xl",
                     "align": "start",
                     "weight": "bold"
-                    }
-                ]
-                },
-                "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
+                    },
+                    {
+                    "type": "separator",
+                    "margin": "md",
+                    "color": "#4B6174"
+                    },
                     {
                     "type": "text",
                     "text": story,

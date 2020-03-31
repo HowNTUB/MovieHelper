@@ -3746,7 +3746,7 @@ def show_movieHelper():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "⌨️小鍵盤－",
+                    "text": "⌨️查電影－",
                     "flex": 1,
                     "align": "end"
                     },
@@ -3825,7 +3825,7 @@ def show_movieHelper():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "🏆排行榜－",
+                    "text": "👑排行榜－",
                     "flex": 1,
                     "align": "end"
                     },
@@ -3843,7 +3843,7 @@ def show_movieHelper():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "📽近期放映－",
+                    "text": "👓近期放映－",
                     "flex": 1,
                     "align": "end"
                     },
@@ -3915,11 +3915,10 @@ def workTeam():
                 {
                 "type": "box",
                 "layout": "horizontal",
-                "margin": "xl",
                 "contents": [
                     {
                     "type": "text",
-                    "text": "構想：",
+                    "text": "程式：",
                     "align": "end"
                     },
                     {
@@ -3935,7 +3934,7 @@ def workTeam():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "程式設計：",
+                    "text": "介面：",
                     "align": "end"
                     },
                     {
@@ -3951,23 +3950,7 @@ def workTeam():
                 "contents": [
                     {
                     "type": "text",
-                    "text": "前端介面：",
-                    "align": "end"
-                    },
-                    {
-                    "type": "text",
-                    "text": "林萬豪",
-                    "align": "start"
-                    }
-                ]
-                },
-                {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "選單插圖：",
+                    "text": "插圖：",
                     "align": "end"
                     },
                     {

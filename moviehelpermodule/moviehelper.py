@@ -1711,10 +1711,6 @@ def search_movie_comingsoon(url):
                         }]
                     },
                         {
-                        "type": "separator",
-                        "margin": "lg",
-                    },
-                        {
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [{
@@ -1767,8 +1763,7 @@ def search_movie_comingsoon(url):
                             "type": "postback",
                             "label": "詳細資料",
                             "data": movieDetailUrl[index]
-                        },
-                        "color": "#B0B0B0"
+                        }
                     }]
                 }
             })
